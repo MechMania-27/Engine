@@ -1,2 +1,8 @@
-.idea/*
+## IDEA IDE Config
+.idea
 
+# Gradle
+gradle/*
+.gradle/*
+**/build/
+!src/**/build/

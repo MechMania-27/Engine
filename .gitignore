@@ -1,7 +1,9 @@
 ## IDEA IDE Config
 .idea
 
-# Gradle
+# Ignore Gradle project-specific cache directory
 .gradle/*
-**/build/
-!src/**/build/
+
+# Ignore Gradle build output directory
+build/*
+out/*

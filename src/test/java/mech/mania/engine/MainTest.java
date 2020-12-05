@@ -1,4 +1,4 @@
-package mech.mania;
+package mech.mania.engine;
 
 import static org.junit.Assert.assertTrue;
 

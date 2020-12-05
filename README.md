@@ -13,6 +13,8 @@ The internal game engine to be used in the MechMania 27 AI Competition.
 
 ## Running
 
-- `./gradlew run` to run main function (located in `src/main/java/mech/mania/engine/Main.java`)
-- `./gradlew test` to run all unit tests
-- `./gradlew jar` to build a jar (creates jar in tar-ed folder in `build/distributions/Engine.{zip,tar}`
+`$GRADLEW` refers to the Gradle wrapper executable. This is either `./gradlew` for Linux machines or `./gradlew.bat` for Windows machines.
+
+- `$GRADLEW run` to run main function (located in `src/main/java/mech/mania/engine/Main.java`)
+- `$GRADLEW test` to run all unit tests
+- `$GRADLEW jar` to build a jar (creates jar in tar-ed folder in `build/distributions/Engine.{zip,tar}`

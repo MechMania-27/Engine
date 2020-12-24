@@ -1,7 +1,13 @@
-package mech.mania.engine.model;
+package mech.mania.engine.networking;
 
+import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.PlayerDecision;
+
+/**
+ * A class that will hold information about communication with the player, including
+ * the player's name and any pipes open to communicate with the player.
+ */
 public class PlayerCommunicationInfo {
-
     private String playerName;
     private String playerExecutable;
     private String log;

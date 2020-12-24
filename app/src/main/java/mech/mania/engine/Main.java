@@ -4,7 +4,7 @@ import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlayerCommunicationInfo;
+import mech.mania.engine.networking.PlayerCommunicationInfo;
 import mech.mania.engine.model.PlayerDecision;
 import org.apache.commons.cli.*;
 
@@ -21,8 +21,8 @@ public class Main {
             return;
         }
 
-        GameLog log = new GameLog();
-
+        // using the information from the command line, package up all necessary
+        // information into a PlayerCommunicationInfo object
         PlayerCommunicationInfo player1 = new PlayerCommunicationInfo(
                 commandLine.getOptionValue("n"),
                 commandLine.getOptionValue("e"));
@@ -34,6 +34,12 @@ public class Main {
         player1.start();
         player2.start();
 
+        // persistent object that will keep track of all game states that will
+        // be outputted each round.
+        GameLog gameStates = new GameLog();
+
+        // use the getConfig function to initialize the Config object for game
+        // parameters
         Config gameConfig = Config.getConfig();
         GameState gameState = new GameState(gameConfig,
                 player1.getPlayerName(), player2.getPlayerName());
@@ -43,7 +49,8 @@ public class Main {
             player1.sendGameState(gameState);
             player2.sendGameState(gameState);
 
-            log.addState(gameState);
+            assert gameState != null;
+            gameStates.addState(new GameState(gameState));
 
             PlayerDecision player1Decision = player1.getPlayerDecision();
             PlayerDecision player2Decision = player2.getPlayerDecision();
@@ -54,7 +61,7 @@ public class Main {
         // TODO: add command line arguments to determine whether game log should be written to file and specify filename
         player1.writeLogToFile();
         player2.writeLogToFile();
-        writeLogToFile(log, "game.log");
+        writeLogToFile(gameStates, "game.log");
     }
 
     /**

@@ -102,6 +102,7 @@ public class Config {
         // read file
 
         // create new config object
+        // TODO: waiting on game properties file to get the proper deserialization format
         return new Config();
     }
 }

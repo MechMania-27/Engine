@@ -24,4 +24,5 @@ public class Plant {
     public void setType(PlantType type) {
         this.type = type;
     }
+
 }

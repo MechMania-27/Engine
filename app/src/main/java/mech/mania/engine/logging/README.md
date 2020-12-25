@@ -2,4 +2,5 @@
 
 ## Notes
 
-## TODO
+* STDOUT is reserved for human made messages
+* STDERR is reserved for errors/exceptions

@@ -12,8 +12,8 @@ public class GameState {
     public GameState(Config gameConfig, String player1Name, String player2Name) {
         players = new ArrayList<>();
         // TODO: add initial parameters for the Player to initialize object
-        players.add(new Player(player1Name));
-        players.add(new Player(player2Name));
+        // players.add(new Player(player1Name));
+        // players.add(new Player(player2Name));
     }
 
     public GameState(GameState other) {

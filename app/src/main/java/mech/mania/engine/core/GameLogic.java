@@ -8,7 +8,11 @@ public class GameLogic {
         return false;
     }
 
-    public static GameState updateGameState(PlayerDecision player1Decision, PlayerDecision player2Decision) {
-        return null;
+    public static GameState updateGameState(GameState gameState, PlayerDecision player1Decision, PlayerDecision player2Decision) {
+        return new GameState(gameState);
+    }
+
+    public static Winner getWinner(GameState gameState) {
+        return Winner.TIE;
     }
 }

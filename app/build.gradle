@@ -28,6 +28,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'commons-cli:commons-cli:1.4'
+
+    implementation 'commons-io:commons-io:2.8.0'
 }
 
 application {
@@ -36,6 +38,5 @@ application {
 }
 
 jar {
-    archiveBaseName = 'mm27'
-    archiveVersion =  '0.0.1'
+    baseName = rootProject.name
 }

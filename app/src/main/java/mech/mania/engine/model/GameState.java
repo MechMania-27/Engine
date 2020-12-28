@@ -14,6 +14,9 @@ public class GameState {
         // TODO: add initial parameters for the Player to initialize object
         // players.add(new Player(player1Name));
         // players.add(new Player(player2Name));
+
+        // TODO: initialize tileMap
+        // tileMap = new TileMap();
     }
 
     public GameState(GameState other) {

@@ -17,9 +17,9 @@ public class Config {
     private int plantRadius;
     private int harvestRadius;
     private int carryingCapacity;
+    private String defaultReplayFileName;
 
     // ========== OTHER CONSTANTS ===============
-    private int replayFileName;
 
     public int getBoardHeight() {
         return boardHeight;
@@ -82,7 +82,8 @@ public class Config {
     }
 
     public String getDefaultReplayFileName() {
-        return null;
+        // TODO: change
+        return "game.log";
     }
 
     public Config() {

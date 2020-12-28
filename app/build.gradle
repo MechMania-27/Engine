@@ -36,7 +36,3 @@ application {
     // Define the main class for the application.
     mainClass = 'mech.mania.engine.Main'
 }
-
-jar {
-    baseName = rootProject.name
-}

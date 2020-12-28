@@ -33,7 +33,6 @@ public class Main {
      * @param args Program arguments
      */
     public static void main( String[] args ) {
-
         Config gameConfig = new Config();
         CommandLine commandLine = getCommandLineArgs(args, gameConfig);
         if (commandLine == null) {
@@ -49,42 +48,53 @@ public class Main {
                 commandLine.getOptionValue("N"),
                 commandLine.getOptionValue("E"));
 
+        boolean player1Crashed = false, player2Crashed = false;
+
         // player process startup
         if (!player1.start()) {
-            // player 1 failed to start
             LOGGER.warning("Player 1 failed to start. Aborting. See stderr for details.");
-            return;
+            player1Crashed = true;
         }
         if (!player2.start()) {
-            // player 2 failed to start
             LOGGER.warning("Player 2 failed to start. Aborting. See stderr for details.");
-            return;
+            player2Crashed = true;
         }
 
-        // persistent object that will keep track of all game states that will
-        // be outputted each round.
-        GameLog gameStates = new GameLog();
-        Winner winner = gameLoop(gameConfig, gameStates, player1, player2);
+        LOGGER.fine("Finished player initialization");
 
-        LOGGER.info("after game loop");
+        // logic to handle immediate winners due to crashing bots
+        Winner winner;
+        if (player1Crashed && !player2Crashed) {
+            winner = Winner.PLAYER2;
+        } else if (player2Crashed && !player1Crashed) {
+            winner = Winner.PLAYER1;
+        } else if (player1Crashed && player2Crashed) {
+            winner = Winner.CRASH;
+        } else {
+            GameLog gameStates = new GameLog();
+            winner = gameLoop(gameConfig, gameStates, player1, player2);
 
-        // finish game by writing all log files and replay files
-        writeListToFile(player1.getLog(), commandLine.getOptionValue("l", player1.getPlayerName() + ".log"));
-        writeListToFile(player2.getLog(), commandLine.getOptionValue("L", player2.getPlayerName() + ".log"));
-        // LOGGER.info("after player write");
-        String gameLogJson = new Gson().toJson(gameStates, GameLog.class);
-        writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.getDefaultReplayFileName()));
+            LOGGER.fine("Finished game loop");
 
-        LOGGER.info("after game log write");
-        try {
-            player1.stop();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            player2.stop();
-        } catch (IOException e) {
-            e.printStackTrace();
+            // finish game by writing all log files and replay files
+            writeListToFile(player1.getLogs(), commandLine.getOptionValue("l", player1.getPlayerName() + ".log"));
+            writeListToFile(player2.getLogs(), commandLine.getOptionValue("L", player2.getPlayerName() + ".log"));
+
+            String gameLogJson = new Gson().toJson(gameStates, GameLog.class);
+            writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.getDefaultReplayFileName()));
+
+            LOGGER.fine("Finished game log write");
+
+            try {
+                player1.stop();
+            } catch (IOException e) {
+                LOGGER.warning("Unable to stop player 1 (check bot logs): " + e.getMessage());
+            }
+            try {
+                player2.stop();
+            } catch (IOException e) {
+                LOGGER.warning("Unable to stop player 2 (check bot logs): " + e.getMessage());
+            }
         }
 
         System.out.println("Game complete. Winner: " + winner);
@@ -100,7 +110,7 @@ public class Main {
      * @param gameDefaults Config object that contains the game defaults
      * @return a com.apache.commons.cli.CommandLine object that can be used to read parsed values
      */
-    public static CommandLine getCommandLineArgs(String[] args, Config gameDefaults) {
+    private static CommandLine getCommandLineArgs(String[] args, Config gameDefaults) {
         Options options = new Options();
 
         Options helpOptions = new Options();
@@ -150,7 +160,7 @@ public class Main {
                 .build();
         options.addOption(player2Executable);
 
-        // ============================ GAME LOG FILENAMES ========================
+        // ============================ GAME LOGS =================================
         Option replayFileName = Option.builder("r")
                 .longOpt("replayfile-name")
                 .hasArg()
@@ -181,6 +191,8 @@ public class Main {
                 .build();
         options.addOption(player2LogFileName);
 
+        // TODO: add option for debug/verbose for LOGGER.fine() calls
+        // TODO: add option for no log files generated?
 
         CommandLineParser parser = new DefaultParser();
         CommandLine commandLine = null;
@@ -202,15 +214,14 @@ public class Main {
     /**
      * This function will run the game until the game is over and return the winner.
      * This is mostly an attempt to uncrowd the main function.
-     * TODO: change the exit condition
      *
      * @param gameConfig Config object that contains game default values
-     * @param gameStates GameLog object that contains the running list of GameState objects
+     * @param gameStates GameLog object that contains the running list of GameState objects. Should be empty, will be filled
      * @param player1 PlayerCommunicationInfo object that keeps information about communication with player 1
      * @param player2 PlayerCommunicationInfo object that keeps information about communication with player 2
      * @return the winner as a mech.mania.engine.core.Winner enum
      */
-    private static Winner gameLoop(Config gameConfig, GameLog gameStates, PlayerCommunicationInfo player1, PlayerCommunicationInfo player2) {
+    protected static Winner gameLoop(Config gameConfig, GameLog gameStates, PlayerCommunicationInfo player1, PlayerCommunicationInfo player2) {
         GameState gameState = new GameState(gameConfig,
                 player1.getPlayerName(), player2.getPlayerName());
 
@@ -218,44 +229,63 @@ public class Main {
         do {
             // LOGGER.info(String.format("Turn %d", turn));
             // send game states
+            // TODO: if both players Except, then TIE
+            boolean player1Crashed = false, player2Crashed = false;
             try {
                 player1.sendGameState(gameState);
             } catch (Exception e) {
-                LOGGER.warning("Exception while sending player 1 game state: " + e.getMessage());
-                return Winner.PLAYER2;
+                LOGGER.warning("Exception while sending player 1 game state (check bot logs): " + e.getMessage());
+                player1Crashed = true;
             }
 
             try {
                 player2.sendGameState(gameState);
             } catch (Exception e) {
-                LOGGER.warning("Exception while sending player 2 game state: " + e.getMessage());
+                LOGGER.warning("Exception while sending player 2 game state (check bot logs): " + e.getMessage());
+                player2Crashed = true;
+            }
+
+            if (player1Crashed && !player2Crashed) {
+                return Winner.PLAYER2;
+            } else if (player2Crashed && !player1Crashed) {
                 return Winner.PLAYER1;
+            } else if (player1Crashed && player2Crashed) {
+                return Winner.CRASH;
             }
 
             // add game states to list of total game states
             gameStates.addState(new GameState(gameState));
 
             // retrieve decisions from players
-            PlayerDecision player1Decision;
+            PlayerDecision player1Decision = null;
             try {
                 player1Decision = player1.getPlayerDecision();
             } catch (Exception e) {
-                LOGGER.warning("Exception while getting player 1 decision: " + e.getMessage());
-                return Winner.PLAYER2;
+                LOGGER.warning("Exception while getting player 1 decision (check bot logs): " + e.getMessage());
+                player1Crashed = true;
             }
 
-            PlayerDecision player2Decision;
+            PlayerDecision player2Decision = null;
             try {
                 player2Decision = player2.getPlayerDecision();
             } catch (Exception e) {
-                LOGGER.warning("Exception while getting player 2 decision: " + e.getMessage());
+                LOGGER.warning("Exception while getting player 2 decision (check bot logs): " + e.getMessage());
+                player2Crashed = true;
+            }
+
+            if (player1Crashed && !player2Crashed) {
+                return Winner.PLAYER2;
+            } else if (player2Crashed && !player1Crashed) {
                 return Winner.PLAYER1;
+            } else if (player1Crashed && player2Crashed) {
+                return Winner.CRASH;
             }
 
             // update game state
             gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision);
             turn++;
 
+            // TODO: change
             if (turn == 100) {
                 break;
             }
@@ -270,7 +300,7 @@ public class Main {
      * @param toWrite List of Strings to write
      * @param fileName file to write to
      */
-    public static void writeListToFile(List<String> toWrite, String fileName) {
+    private static void writeListToFile(List<String> toWrite, String fileName) {
         if (fileName == null || fileName.length() == 0) {
             LOGGER.warning("File name is empty. Aborting write");
             return;

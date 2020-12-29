@@ -4,8 +4,11 @@ import mech.mania.engine.config.Config;
 import mech.mania.engine.core.Winner;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static mech.mania.engine.Main.gameLoop;
 
@@ -21,6 +24,8 @@ public class MainTest {
     private final String CRASHING_BOT_EXEC = "python3 -u src/test/resources/bots/crashing_bot.py";
 
     private final Config gameConfig = new Config();
+
+    public MainTest() throws IOException, ConfigurationException { }
 
     private void printBotLogs(PlayerCommunicationInfo player1, PlayerCommunicationInfo player2) {
         System.out.println(
@@ -39,7 +44,7 @@ public class MainTest {
      * Test to make sure bot2 wins if only bot1 crashes.
      */
     @Test
-    public void bot1CrashesBot2Wins() {
+    public void bot1CrashesBot2Wins() throws IOException {
         // launch bot 1 (crashes before bot 2)
         String bot1Executable = CRASHING_BOT_EXEC + " 3";
         PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo("bot1", bot1Executable);
@@ -61,7 +66,7 @@ public class MainTest {
      * Test to make sure both bots have a chance to crash on the same turn for a tie.
      */
     @Test
-    public void bothBotsCanCrashResultCrash() {
+    public void bothBotsCanCrashResultCrash() throws IOException {
         String bot1Executable = CRASHING_BOT_EXEC + " 3";
         PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo("bot1", bot1Executable);
         bot1.start();
@@ -81,7 +86,7 @@ public class MainTest {
      * Test to make sure bot2 can crash as well.
      */
     @Test
-    public void bot2CrashesBot1Wins() {
+    public void bot2CrashesBot1Wins() throws IOException {
         String bot1Executable = CRASHING_BOT_EXEC + " 10";
         PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo("bot1", bot1Executable);
         bot1.start();

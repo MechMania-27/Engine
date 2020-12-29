@@ -9,14 +9,19 @@ public class GameState {
     private List<Player> players;
     private TileMap tileMap;
 
-    public GameState(Config gameConfig, String player1Name, String player2Name) {
+    public GameState(Config gameConfig,
+                     String player1Name, Item player1Item, Upgrade player1Upgrade,
+                     String player2Name, Item player2Item, Upgrade player2Upgrade) {
         players = new ArrayList<>();
-        // TODO: add initial parameters for the Player to initialize object
-        // players.add(new Player(player1Name));
-        // players.add(new Player(player2Name));
 
-        // TODO: initialize tileMap
-        // tileMap = new TileMap();
+        int startingMoney = gameConfig.getStartingMoney();
+        Position player1Position = new Position(0, 0);
+        Position player2Position = new Position(gameConfig.getBoardWidth(), 0);
+
+        Player player1 = new Player(player1Name, player1Position, player1Item, player1Upgrade, startingMoney);
+        Player player2 = new Player(player2Name, player2Position, player2Item, player2Upgrade, startingMoney);
+
+        tileMap = new TileMap(gameConfig, player1, player2);
     }
 
     public GameState(GameState other) {

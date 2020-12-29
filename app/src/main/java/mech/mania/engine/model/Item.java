@@ -1,6 +1,24 @@
 package mech.mania.engine.model;
 
-public class Item {
+public enum Item {
+    RAIN_TOTEM("Rain totem"),
+    FERTILITY_IDOL("Fertility idol"),
+    PESTICIDE("Pesticide"),
+    SCARECROW("Scarecrow"),
+    NONE("");
+
+    String description;
+    Item(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}
+
+/*
+
     private ItemType type;
     private String description;  // optional
 
@@ -29,3 +47,4 @@ public class Item {
         this.description = description;
     }
 }
+*/

@@ -14,15 +14,11 @@ public class Position {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setPosition(final int x, final int y) {
+        // TODO: figure out how to get config here so that we can check validity
     }
 }

@@ -9,6 +9,7 @@ import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.PlayerDecision;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
 import org.apache.commons.cli.*;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -33,7 +34,13 @@ public class Main {
      * @param args Program arguments
      */
     public static void main( String[] args ) {
-        Config gameConfig = new Config();
+        Config gameConfig;
+        try {
+            gameConfig = new Config();
+        } catch (IOException | ConfigurationException e) {
+            LOGGER.severe("Config file could not be read: " + e.getMessage());
+            return;
+        }
         CommandLine commandLine = getCommandLineArgs(args, gameConfig);
         if (commandLine == null) {
             return;
@@ -51,26 +58,36 @@ public class Main {
         boolean player1Crashed = false, player2Crashed = false;
 
         // player process startup
-        if (!player1.start()) {
+        try {
+            player1.start();
+            player1.askForStartingItems();
+        } catch (IOException e) {
             LOGGER.warning("Player 1 failed to start. Aborting. See stderr for details.");
             player1Crashed = true;
         }
-        if (!player2.start()) {
+
+        try {
+            player2.start();
+            player2.askForStartingItems();
+        } catch (IOException e) {
             LOGGER.warning("Player 2 failed to start. Aborting. See stderr for details.");
             player2Crashed = true;
         }
 
-        LOGGER.fine("Finished player initialization");
-
         // logic to handle immediate winners due to crashing bots
         Winner winner;
         if (player1Crashed && !player2Crashed) {
+            LOGGER.fine("Player 1 crashed");
             winner = Winner.PLAYER2;
         } else if (player2Crashed && !player1Crashed) {
+            LOGGER.fine("Player 2 crashed");
             winner = Winner.PLAYER1;
         } else if (player1Crashed && player2Crashed) {
+            LOGGER.fine("Both players crashed");
             winner = Winner.CRASH;
         } else {
+            LOGGER.fine("Successful player initialization");
+
             GameLog gameStates = new GameLog();
             winner = gameLoop(gameConfig, gameStates, player1, player2);
 
@@ -221,15 +238,16 @@ public class Main {
      * @param player2 PlayerCommunicationInfo object that keeps information about communication with player 2
      * @return the winner as a mech.mania.engine.core.Winner enum
      */
-    protected static Winner gameLoop(Config gameConfig, GameLog gameStates, PlayerCommunicationInfo player1, PlayerCommunicationInfo player2) {
+    protected static Winner gameLoop(Config gameConfig, GameLog gameStates,
+                                     PlayerCommunicationInfo player1,
+                                     PlayerCommunicationInfo player2) {
         GameState gameState = new GameState(gameConfig,
-                player1.getPlayerName(), player2.getPlayerName());
+                player1.getPlayerName(), player1.getStartingItem(), player1.getStartingUpgrade(),
+                player2.getPlayerName(), player2.getStartingItem(), player2.getStartingUpgrade());
 
         int turn = 1;
         do {
-            // LOGGER.info(String.format("Turn %d", turn));
             // send game states
-            // TODO: if both players Except, then TIE
             boolean player1Crashed = false, player2Crashed = false;
             try {
                 player1.sendGameState(gameState);

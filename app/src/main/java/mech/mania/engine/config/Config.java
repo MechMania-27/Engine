@@ -4,7 +4,6 @@ import org.apache.commons.configuration2.XMLConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
-import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class Config {
@@ -64,18 +63,15 @@ public class Config {
 
     public String getDefaultReplayFileName() { return defaultReplayFileName; }
 
-    public Config() throws IOException, ConfigurationException {
-        // String configFileName = System.getenv("MM27_CONFIG_FILENAME");
-        // if (configFileName == null) {
-        //     throw(new IOException("Environment variable MM27_CONFIG_FILENAME not set. Please set this to the name of the config file."));
-        // }
-        String configFileName = "mm27.xml";
+    public Config() throws ConfigurationException {
+        this("mm27.xml");
+    }
 
+    public Config(String configFileName) throws ConfigurationException {
         // read file
         Configurations configurations = new Configurations();
 
         XMLConfiguration configRead = configurations.xml(configFileName);
-
 
         try {
             // board props

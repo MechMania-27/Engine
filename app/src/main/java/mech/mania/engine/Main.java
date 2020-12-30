@@ -9,7 +9,6 @@ import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.PlayerDecision;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
 import org.apache.commons.cli.*;
-import org.apache.commons.configuration2.ex.ConfigurationException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -17,7 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.*;
+import java.util.logging.Logger;
 
 /**
  * Class that runs the game.
@@ -37,7 +36,7 @@ public class Main {
         Config gameConfig;
         try {
             gameConfig = new Config();
-        } catch (IOException | ConfigurationException e) {
+        } catch (Exception e) {
             LOGGER.severe("Config file could not be read: " + e.getMessage());
             return;
         }
@@ -88,8 +87,9 @@ public class Main {
         } else {
             LOGGER.fine("Successful player initialization");
 
-            GameLog gameStates = new GameLog();
-            winner = gameLoop(gameConfig, gameStates, player1, player2);
+            GameLog gameLog = new GameLog();
+            gameLoop(gameConfig, gameLog, player1, player2);
+            winner = gameLog.getWinner();
 
             LOGGER.fine("Finished game loop");
 
@@ -97,7 +97,7 @@ public class Main {
             writeListToFile(player1.getLogs(), commandLine.getOptionValue("l", player1.getPlayerName() + ".log"));
             writeListToFile(player2.getLogs(), commandLine.getOptionValue("L", player2.getPlayerName() + ".log"));
 
-            String gameLogJson = new Gson().toJson(gameStates, GameLog.class);
+            String gameLogJson = new Gson().toJson(gameLog, GameLog.class);
             writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.getDefaultReplayFileName()));
 
             LOGGER.fine("Finished game log write");
@@ -236,16 +236,16 @@ public class Main {
      * @param gameStates GameLog object that contains the running list of GameState objects. Should be empty, will be filled
      * @param player1 PlayerCommunicationInfo object that keeps information about communication with player 1
      * @param player2 PlayerCommunicationInfo object that keeps information about communication with player 2
-     * @return the winner as a mech.mania.engine.core.Winner enum
      */
-    protected static Winner gameLoop(Config gameConfig, GameLog gameStates,
-                                     PlayerCommunicationInfo player1,
-                                     PlayerCommunicationInfo player2) {
+    protected static void gameLoop(Config gameConfig, GameLog gameStates,
+                                   PlayerCommunicationInfo player1,
+                                   PlayerCommunicationInfo player2) {
         GameState gameState = new GameState(gameConfig,
                 player1.getPlayerName(), player1.getStartingItem(), player1.getStartingUpgrade(),
                 player2.getPlayerName(), player2.getStartingItem(), player2.getStartingUpgrade());
 
         int turn = 1;
+        Winner winner = null;
         do {
             // send game states
             boolean player1Crashed = false, player2Crashed = false;
@@ -264,11 +264,14 @@ public class Main {
             }
 
             if (player1Crashed && !player2Crashed) {
-                return Winner.PLAYER2;
+                winner = Winner.PLAYER2;
+                break;
             } else if (player2Crashed && !player1Crashed) {
-                return Winner.PLAYER1;
+                winner = Winner.PLAYER1;
+                break;
             } else if (player1Crashed && player2Crashed) {
-                return Winner.CRASH;
+                winner = Winner.CRASH;
+                break;
             }
 
             // add game states to list of total game states
@@ -292,11 +295,14 @@ public class Main {
             }
 
             if (player1Crashed && !player2Crashed) {
-                return Winner.PLAYER2;
+                winner = Winner.PLAYER2;
+                break;
             } else if (player2Crashed && !player1Crashed) {
-                return Winner.PLAYER1;
+                winner = Winner.PLAYER1;
+                break;
             } else if (player1Crashed && player2Crashed) {
-                return Winner.CRASH;
+                winner = Winner.CRASH;
+                break;
             }
 
             // update game state
@@ -309,7 +315,10 @@ public class Main {
             }
         } while (!GameLogic.isGameOver(gameState));
 
-        return GameLogic.getWinner(gameState);
+        if (winner == null) {
+            winner = GameLogic.getWinner(gameState);
+        }
+        gameStates.setWinner(winner);
     }
 
     /**

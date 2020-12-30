@@ -1,10 +1,17 @@
 package mech.mania.engine.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Player {
+    @Expose
     private String name;
+    @Expose
     private Position position;
+    @Expose
     private Item item;
+    @Expose
     private Upgrade upgrade;
+    @Expose
     private int money;
 
     public Player(String name, Position position, Item item, Upgrade upgrade, int money) {

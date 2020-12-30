@@ -1,5 +1,6 @@
 package mech.mania.engine.model;
 
+import com.google.gson.annotations.Expose;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.util.GameUtils;
 
@@ -8,9 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TileMap {
+    @Expose
     private final int mapHeight;
+    @Expose
     private final int mapWidth;
+    @Expose
     private final List<List<Tile>> tiles;
+
     private final Config gameConfig;
     private final Player player1;
     private final Player player2;
@@ -78,6 +83,9 @@ public class TileMap {
     }
 
 
+    /**
+     * Utility Iterator object to iterate through Tiles easily
+     */
     class TileMapIterator implements Iterator<Tile> {
         private int pos = 0;
 

@@ -1,7 +1,11 @@
 package mech.mania.engine.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Tile {
+    @Expose
     private TileType type;
+    @Expose
     private int fertility;
 
     public Tile(TileType type, int fertility) {

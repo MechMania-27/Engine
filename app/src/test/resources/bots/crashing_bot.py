@@ -8,7 +8,7 @@ turn = 1
 while True:
     game_state_string = sys.stdin.readline()
     game_state = json.loads(game_state_string)
-    print(f"Turn {turn}: {game_state}", file=sys.stderr, flush=True)
+    print(f"Turn {turn}", file=sys.stderr, flush=True)
 
     if len(sys.argv) > 1:
         # uses command line argument to determine when to crash
@@ -17,6 +17,6 @@ while True:
             b = a[4]  # index out of bounds exception
 
     # sending decision
-    print("", flush=True)
+    print("move 1 1", flush=True)
 
     turn += 1

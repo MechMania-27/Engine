@@ -23,9 +23,11 @@ public class MainTest {
      */
     private final String CRASHING_BOT_EXEC = "python3 -u src/test/resources/bots/crashing_bot.py";
 
-    private final Config gameConfig = new Config();
+    private final Config gameConfig;
 
-    public MainTest() throws IOException, ConfigurationException { }
+    public MainTest() throws IOException, ConfigurationException {
+        gameConfig = new Config();
+    }
 
     private void printBotLogs(PlayerCommunicationInfo player1, PlayerCommunicationInfo player2) {
         System.out.println(
@@ -55,7 +57,9 @@ public class MainTest {
         PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo("bot2", bot2Executable);
         bot2.start();
 
-        Winner winner = gameLoop(gameConfig, new GameLog(), bot1, bot2);
+        GameLog gameLog = new GameLog();
+        gameLoop(gameConfig, gameLog, bot1, bot2);
+        Winner winner = gameLog.getWinner();
 
         printBotLogs(bot1, bot2);
 
@@ -75,7 +79,9 @@ public class MainTest {
         PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo("bot2", bot2Executable);
         bot2.start();
 
-        Winner winner = gameLoop(gameConfig, new GameLog(), bot1, bot2);
+        GameLog gameLog = new GameLog();
+        gameLoop(gameConfig, gameLog, bot1, bot2);
+        Winner winner = gameLog.getWinner();
 
         printBotLogs(bot1, bot2);
 
@@ -95,7 +101,9 @@ public class MainTest {
         PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo("bot2", bot2Executable);
         bot2.start();
 
-        Winner winner = gameLoop(gameConfig, new GameLog(), bot1, bot2);
+        GameLog gameLog = new GameLog();
+        gameLoop(gameConfig, gameLog, bot1, bot2);
+        Winner winner = gameLog.getWinner();
 
         printBotLogs(bot1, bot2);
 

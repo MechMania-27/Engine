@@ -36,15 +36,10 @@ public class PlayerCommunicationInfo {
         this.playerExecutable = MainUtils.translateCommandline(playerExecutable);
     }
 
-    public boolean start() throws IOException {
+    public void start() throws IOException {
         // use executable string to start process, initialize streams to communicate
         ProcessBuilder pb = new ProcessBuilder(playerExecutable);
-        try {
-            process = pb.start();
-        } catch (IOException e) {
-            System.err.println("Failed to start player process: " + e.getMessage());
-            throw(e);
-        }
+        process = pb.start();
 
         // be constantly catching the error stream to keep the buffer clear
         // whenever we are reading the inputstream as well as for properly
@@ -66,7 +61,6 @@ public class PlayerCommunicationInfo {
         inputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
 
-        return true;
     }
 
     public void stop() throws IOException {
@@ -85,7 +79,7 @@ public class PlayerCommunicationInfo {
 
     public void sendGameState(GameState gameState) throws IOException {
         // send player turn to stdin
-        String message = PlayerParseUtils.gameStateToString(gameState);
+        String message = PlayerParseUtils.sendInfoFromGameState(gameState);
         LOGGER.fine(String.format("Bot (pid %d): writing: %s", MainUtils.tryGetPid(process), message));
         writer.append(message).append(System.getProperty("line.separator"));
         writer.flush();
@@ -111,7 +105,7 @@ public class PlayerCommunicationInfo {
         String itemResponse = inputReader.readLine();
         this.startingItem = PlayerParseUtils.itemFromString(itemResponse);
         String upgradeResponse = inputReader.readLine();
-        this.startingUpgrade = PlayerParseUtils.upgradeFromString(itemResponse);
+        this.startingUpgrade = PlayerParseUtils.upgradeFromString(upgradeResponse);
     }
 
     public String getPlayerName() {

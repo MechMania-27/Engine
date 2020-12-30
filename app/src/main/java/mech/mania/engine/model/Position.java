@@ -1,8 +1,12 @@
 package mech.mania.engine.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Position {
 
+    @Expose
     private int x;
+    @Expose
     private int y;
 
     public Position(final int x, final int y) {
@@ -16,9 +20,5 @@ public class Position {
 
     public int getY() {
         return y;
-    }
-
-    public void setPosition(final int x, final int y) {
-        // TODO: figure out how to get config here so that we can check validity
     }
 }

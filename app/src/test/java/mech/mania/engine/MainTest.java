@@ -4,7 +4,6 @@ import mech.mania.engine.config.Config;
 import mech.mania.engine.core.Winner;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
-import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,22 +24,21 @@ public class MainTest {
 
     private final Config gameConfig;
 
-    public MainTest() throws IOException, ConfigurationException {
-        gameConfig = new Config();
+    public MainTest() {
+        gameConfig = new Config("debug");
     }
 
     private void printBotLogs(PlayerCommunicationInfo player1, PlayerCommunicationInfo player2) {
-        System.out.println(
-                String.format(
-                        "========================= BOT LOGS ==============================\n" +
-                        "%s log:\n%s\n" +
-                        "-----------------------------------------------------------------\n" +
-                        "%s log:\n%s\n" +
-                        "=================================================================",
-                player1.getPlayerName(),
-                String.join("\n", player1.getLogs()),
-                player2.getPlayerName(),
-                String.join("\n", player2.getLogs())));
+        System.out.printf(
+                "========================= BOT LOGS ==============================\n" +
+                "%s log:\n%s\n" +
+                "-----------------------------------------------------------------\n" +
+                "%s log:\n%s\n" +
+                "=================================================================%n",
+            player1.getPlayerName(),
+            String.join("\n", player1.getLogs()),
+            player2.getPlayerName(),
+            String.join("\n", player2.getLogs()));
     }
 
     /**

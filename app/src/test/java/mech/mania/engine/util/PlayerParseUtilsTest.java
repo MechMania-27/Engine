@@ -1,5 +1,6 @@
 package mech.mania.engine.util;
 
+import mech.mania.engine.config.Config;
 import mech.mania.engine.model.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -59,8 +60,8 @@ public class PlayerParseUtilsTest {
     }
 
     // @Test
-    // public void gameStateToStringTest() throws ConfigurationException {
-    //     Config debugConfig = new Config("debug.xml");
+    // public void gameStateToStringTest() {
+    //     Config debugConfig = new Config("debug");
     //     GameState gameState = new GameState(debugConfig,
     //             "bot1", ItemType.NONE, UpgradeType.NONE,
     //             "bot2", ItemType.NONE, UpgradeType.NONE);

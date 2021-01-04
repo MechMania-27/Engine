@@ -1,19 +1,36 @@
 package mech.mania.engine.model;
 
-public enum ItemType {
-    RAIN_TOTEM("Rain totem"),
-    FERTILITY_IDOL("Fertility idol"),
-    PESTICIDE("Pesticide"),
-    SCARECROW("Scarecrow"),
-    NONE("");
 
-    String description;
-    ItemType(String description) {
-        this.description = description;
+import java.util.ResourceBundle;
+
+public enum ItemType {
+    RAIN_TOTEM("itemtype.raintotem"),
+    FERTILITY_IDOL("itemtype.fertilityidol"),
+    PESTICIDE("itemtype.pesticide"),
+    SCARECROW("itemtype.scarecrow"),
+    NONE("itemtype.none");
+
+    /**
+     * ResourceBundle to get properties file values from
+     * Note: Since "mm27" is defined here, we cannot change the values for
+     * the crop parameters by using a separate .properties file, since this
+     * is initialized statically.
+     */
+    private static final ResourceBundle rb = ResourceBundle.getBundle("mm27");
+
+    /**
+     * A prefix to use for getting future properties from the properties file
+     * (via ResourceBundle). For example, the ItemType RAIN_TOTEM will
+     * have all of its values taken from the itemtype.raintotem.something
+     * properties.
+     */
+    private String propsPrefix;
+    ItemType(String propsPrefix) {
+        this.propsPrefix = propsPrefix;
     }
 
     public String getDescription() {
-        return description;
+        return rb.getString(propsPrefix + ".description");
     }
 
     public static ItemType getEnum(String item) {

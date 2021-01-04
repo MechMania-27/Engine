@@ -1,18 +1,34 @@
 package mech.mania.engine.model;
 
-public enum CropType {
-    POTATO(10, 2, 5),
-    CORN(15, 3, 5),
-    DUCHAMFRUIT(25, 25, 2),
-    NONE(0, 0, 0);
+import java.util.ResourceBundle;
 
-    private int timeToGrow;
-    private int seedBuyPrice;
-    private int grownPlantSellPrice;
-    CropType(int timeToGrow, int seedBuyPrice, int grownPlantSellPrice) {
-        this.timeToGrow = timeToGrow;
-        this.seedBuyPrice = seedBuyPrice;
-        this.grownPlantSellPrice = grownPlantSellPrice;
+public enum CropType {
+    POTATO("croptype.potato"),
+    CORN("croptype.corn"),
+    DUCHAMFRUIT("croptype.duchamfruit"),
+    NONE("croptype.none");
+
+    /**
+     * ResourceBundle to get properties file values from
+     * Note: Since "mm27" is defined here, we cannot change the values for
+     * the crop parameters by using a separate .properties file, since this
+     * is initialized statically.
+     */
+    private static final ResourceBundle rb = ResourceBundle.getBundle("mm27");
+
+    /**
+     * A prefix to use for getting future properties from the properties file
+     * (via ResourceBundle). For example, the CropType POTATO will
+     * have all of its values taken from the croptype.potato.something
+     * properties.
+     */
+    private String propsPrefix;
+    CropType(String propsPrefix) {
+        this.propsPrefix = propsPrefix;
+    }
+
+    public String getDescription() {
+        return rb.getString(propsPrefix + ".description");
     }
 
     public static CropType getEnum(String crop) {
@@ -26,14 +42,14 @@ public enum CropType {
     }
 
     public int getTimeToGrow() {
-        return timeToGrow;
+        return Integer.parseInt(rb.getString(propsPrefix + ".growthtime"));
     }
 
     public int getSeedBuyPrice() {
-        return seedBuyPrice;
+        return Integer.parseInt(rb.getString(propsPrefix + ".seedprice"));
     }
 
     public int getGrownPlantSellPrice() {
-        return grownPlantSellPrice;
+        return Integer.parseInt(rb.getString(propsPrefix + ".valuegrowth"));
     }
 }

@@ -21,4 +21,18 @@ public class Position {
     public int getY() {
         return y;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (!(obj instanceof Position)) {
+            return false;
+        }
+
+        final Position other = (Position) obj;
+        return other.x == this.x && other.y == this.y;
+    }
 }

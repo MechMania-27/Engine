@@ -98,7 +98,7 @@ public class Main {
             writeListToFile(player2.getLogs(), commandLine.getOptionValue("L", player2.getPlayerName() + ".log"));
 
             String gameLogJson = new Gson().toJson(gameLog, GameLog.class);
-            writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.getDefaultReplayFileName()));
+            writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME));
 
             LOGGER.fine("Finished game log write");
 
@@ -183,7 +183,7 @@ public class Main {
                 .hasArg()
                 .argName("filename")
                 .desc("Name of the replay file to be made (for visualizer) " +
-                        "(default=" + gameDefaults.getDefaultReplayFileName() + ")")
+                        "(default=" + gameDefaults.REPLAY_FILENAME + ")")
                 .type(String.class)
                 .build();
         options.addOption(replayFileName);

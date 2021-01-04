@@ -31,7 +31,8 @@ public class MainTest {
 
     private void printBotLogs(PlayerCommunicationInfo player1, PlayerCommunicationInfo player2) {
         System.out.println(
-                String.format("========================= BOT LOGS ==============================\n" +
+                String.format(
+                        "========================= BOT LOGS ==============================\n" +
                         "%s log:\n%s\n" +
                         "-----------------------------------------------------------------\n" +
                         "%s log:\n%s\n" +

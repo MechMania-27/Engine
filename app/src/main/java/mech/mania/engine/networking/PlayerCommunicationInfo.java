@@ -2,14 +2,15 @@ package mech.mania.engine.networking;
 
 import com.google.gson.JsonParseException;
 import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.Item;
+import mech.mania.engine.model.ItemType;
 import mech.mania.engine.model.PlayerDecision;
-import mech.mania.engine.model.Upgrade;
-import mech.mania.engine.util.PlayerParseUtils;
+import mech.mania.engine.model.UpgradeType;
 import mech.mania.engine.util.MainUtils;
+import mech.mania.engine.util.PlayerParseUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -21,15 +22,15 @@ import java.util.logging.Logger;
 public class PlayerCommunicationInfo {
     private static final Logger LOGGER = Logger.getLogger("PlayerCommunicationInfo");
 
-    private String playerName;
-    private String[] playerExecutable;
+    private final String playerName;
+    private final String[] playerExecutable;
     private Process process;
     private BufferedReader inputReader;
-    private ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+    private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
     private BufferedWriter writer;
 
-    private Item startingItem;
-    private Upgrade startingUpgrade;
+    private ItemType startingItem;
+    private UpgradeType startingUpgradeType;
 
     public PlayerCommunicationInfo(String playerName, String playerExecutable) {
         this.playerName = playerName;
@@ -72,9 +73,17 @@ public class PlayerCommunicationInfo {
     public PlayerDecision getPlayerDecision() throws JsonParseException, IOException {
         // capture any stderr in log
         // capture all stdout as PlayerDecision
-        String response = inputReader.readLine();
-        LOGGER.fine(String.format("Bot (pid %d): reading: %s", MainUtils.tryGetPid(process), response));
-        return PlayerParseUtils.decisionFromString(response);
+        List<String> responses = new ArrayList<>();
+        String response;
+        while (true) {
+            response = inputReader.readLine();
+            if (response.equalsIgnoreCase("done")) {
+                break;
+            }
+            responses.add(response);
+        }
+        LOGGER.fine(String.format("Bot (pid %d): reading: %s", MainUtils.tryGetPid(process), responses));
+        return PlayerParseUtils.decisionFromString(responses);
     }
 
     public void sendGameState(GameState gameState) throws IOException {
@@ -91,7 +100,7 @@ public class PlayerCommunicationInfo {
      * @return List of Strings containing one line of the logs each
      */
     public List<String> getLogs() {
-        String stringLog = new String(errorStream.toByteArray());
+        String stringLog = errorStream.toString();
 
         // collect everything from player's stderr
         return Arrays.asList(stringLog.split("\n"));
@@ -105,19 +114,19 @@ public class PlayerCommunicationInfo {
         String itemResponse = inputReader.readLine();
         this.startingItem = PlayerParseUtils.itemFromString(itemResponse);
         String upgradeResponse = inputReader.readLine();
-        this.startingUpgrade = PlayerParseUtils.upgradeFromString(upgradeResponse);
+        this.startingUpgradeType = PlayerParseUtils.upgradeFromString(upgradeResponse);
     }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public Item getStartingItem() {
+    public ItemType getStartingItem() {
         return startingItem;
     }
 
-    public Upgrade getStartingUpgrade() {
-        return startingUpgrade;
+    public UpgradeType getStartingUpgrade() {
+        return startingUpgradeType;
     }
 
 }

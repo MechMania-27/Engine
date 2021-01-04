@@ -6,11 +6,23 @@ public class Tile {
     @Expose
     private TileType type;
     @Expose
-    private int fertility;
+    private double soilQuality;
+    @Expose
+    private Crop crop;
+    @Expose
+    private ItemType item;
 
-    public Tile(TileType type, int fertility) {
+    private int turnsLeftToGrow;
+    private Player planter;
+
+    private boolean rainTotemEffect = false;
+    private boolean fertilityIdolEffect = false;
+    private boolean pesticideEffect = false;
+    private boolean scarecrowEffect = false;
+
+    public Tile(TileType type, int soilQuality) {
         this.type = type;
-        this.fertility = fertility;
+        this.soilQuality = soilQuality;
     }
 
     public TileType getType() {
@@ -21,11 +33,43 @@ public class Tile {
         this.type = type;
     }
 
-    public int getFertility() {
-        return fertility;
+    public double getSoilQuality() {
+        return soilQuality;
     }
 
-    public void setFertility(int fertility) {
-        this.fertility = fertility;
+    public void setSoilQuality(int soilQuality) {
+        this.soilQuality = soilQuality;
+    }
+
+    public boolean isRainTotemEffect() {
+        return rainTotemEffect;
+    }
+
+    public void setRainTotemEffect(boolean rainTotemEffect) {
+        this.rainTotemEffect = rainTotemEffect;
+    }
+
+    public boolean isFertilityIdolEffect() {
+        return fertilityIdolEffect;
+    }
+
+    public void setFertilityIdolEffect(boolean fertilityIdolEffect) {
+        this.fertilityIdolEffect = fertilityIdolEffect;
+    }
+
+    public boolean isPesticideEffect() {
+        return pesticideEffect;
+    }
+
+    public void setPesticideEffect(boolean pesticideEffect) {
+        this.pesticideEffect = pesticideEffect;
+    }
+
+    public boolean isScarecrowEffect() {
+        return scarecrowEffect;
+    }
+
+    public void setScarecrowEffect(boolean scarecrowEffect) {
+        this.scarecrowEffect = scarecrowEffect;
     }
 }

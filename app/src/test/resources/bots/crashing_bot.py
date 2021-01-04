@@ -18,5 +18,6 @@ while True:
 
     # sending decision
     print("move 1 1", flush=True)
+    print("done", flush=True)
 
     turn += 1

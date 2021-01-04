@@ -21,8 +21,8 @@ public class TileMap {
     private final Player player2;
 
     public TileMap(final Config gameConfig, final Player player1, final Player player2) {
-        mapHeight = gameConfig.getBoardHeight();
-        mapWidth = gameConfig.getBoardWidth();
+        mapHeight = gameConfig.BOARD_HEIGHT;
+        mapWidth = gameConfig.BOARD_WIDTH;
 
         tiles = new ArrayList<>();
         for (int row = 0; row < mapHeight; row++) {
@@ -56,7 +56,7 @@ public class TileMap {
 
         }
 
-        if (GameUtils.distance(player1.getPosition(), newPos) < gameConfig.getMaxMovement()) {
+        if (GameUtils.distance(player1.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
             // error handling/notification for moving too far
 
         }
@@ -70,7 +70,7 @@ public class TileMap {
 
         }
 
-        if (GameUtils.distance(player2.getPosition(), newPos) < gameConfig.getMaxMovement()) {
+        if (GameUtils.distance(player2.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
             // error handling/notification for moving too far
 
         }
@@ -81,7 +81,6 @@ public class TileMap {
     public Iterator<Tile> iterator() {
         return new TileMapIterator();
     }
-
 
     /**
      * Utility Iterator object to iterate through Tiles easily

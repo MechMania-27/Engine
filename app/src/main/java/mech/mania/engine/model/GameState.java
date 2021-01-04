@@ -13,14 +13,14 @@ public class GameState {
     private TileMap tileMap;
 
     public GameState(Config gameConfig,
-                     String player1Name, Item player1Item, Upgrade player1Upgrade,
-                     String player2Name, Item player2Item, Upgrade player2Upgrade) {
-        int startingMoney = gameConfig.getStartingMoney();
+                     String player1Name, ItemType player1Item, UpgradeType player1UpgradeType,
+                     String player2Name, ItemType player2Item, UpgradeType player2UpgradeType) {
+        int startingMoney = gameConfig.STARTING_MONEY;
         Position player1Position = new Position(0, 0);
-        Position player2Position = new Position(gameConfig.getBoardWidth() - 1, 0);
+        Position player2Position = new Position(gameConfig.BOARD_WIDTH - 1, 0);
 
-        Player player1 = new Player(player1Name, player1Position, player1Item, player1Upgrade, startingMoney);
-        Player player2 = new Player(player2Name, player2Position, player2Item, player2Upgrade, startingMoney);
+        Player player1 = new Player(player1Name, player1Position, player1Item, player1UpgradeType, startingMoney);
+        Player player2 = new Player(player2Name, player2Position, player2Item, player2UpgradeType, startingMoney);
 
         players = new ArrayList<>();
         players.add(player1);

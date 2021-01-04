@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class PlayerDecision {
 
-    enum ActionType {
+    public enum ActionType {
         NONE,
         PLANT,
         HARVEST,
@@ -20,22 +20,24 @@ public class PlayerDecision {
 
     private Position movePos;  // specifically for MOVE action
     private ActionType action;  // action that isn't MOVE
-    private Item itemToUse;  // for use item
-    private List<Plant> seeds;  // for plant, buy
+    private ItemType itemToUse;  // for use item
+    private List<Crop> crops;  // for plant, buy
+    private List<Integer> buyAmounts;  // for buy
     private List<Position> actionPositions;  // for move, plant, harvest
 
-    public PlayerDecision(Position movePos, ActionType action) {
-        this.movePos = movePos;
-        this.action = action;
+    public PlayerDecision() {
+        this.movePos = null;
+        this.action = null;
         this.itemToUse = null;
-        this.seeds = null;
+        this.crops = null;
         this.actionPositions = null;
     }
 
     public Position getMovePos() { return movePos; }
     public ActionType getAction() { return action; }
-    public Item getItemToUse() { return itemToUse; }
-    public List<Plant> getSeeds() { return seeds; }
+    public ItemType getItemToUse() { return itemToUse; }
+    public List<Crop> getCrops() { return crops; }
+    public List<Integer> getBuyAmounts() { return buyAmounts; }
     public List<Position> getActionPositions() { return actionPositions; }
 
     public void setMovePos(Position movePos) {
@@ -46,18 +48,25 @@ public class PlayerDecision {
         this.action = action;
     }
 
-    public void setItemToUse(Item itemToUse) {
+    public void setItemToUse(ItemType itemToUse) {
         this.itemToUse = itemToUse;
     }
 
-    public void addSeed(Plant seeds) {
-        if (this.seeds == null) {
-            this.seeds = new ArrayList<>();
+    public void addBuyAmount(int buyAmount) {
+        if (this.buyAmounts == null) {
+            this.buyAmounts = new ArrayList<>();
         }
-        this.seeds.add(seeds);
+        this.buyAmounts.add(buyAmount);
     }
 
-    public void addActionPos(Position actionPos) {
+    public void addSeed(Crop seeds) {
+        if (this.crops == null) {
+            this.crops = new ArrayList<>();
+        }
+        this.crops.add(seeds);
+    }
+
+    public void addActionPosition(Position actionPos) {
         if (this.actionPositions == null) {
             this.actionPositions = new ArrayList<>();
         }

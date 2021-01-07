@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class Main {
 
-    private static final Logger LOGGER = Logger.getLogger("Main");
+    private static final Logger LOGGER = Logger.getLogger("mech.mania.engine.Main");
 
     /**
      * The Main function. This will get the command line arguments, create the
@@ -251,6 +251,8 @@ public class Main {
         PlayerEndState player2EndState;
 
         do {
+            long startTime = System.nanoTime();
+
             // send game states
             player1EndState = null;
             player2EndState = null;
@@ -322,8 +324,12 @@ public class Main {
                 return;
             }
 
+            long endTime = System.nanoTime();
+            LOGGER.finer(String.format("Turn %d took %.2f milliseconds", gameState.getTurn(), (endTime - startTime) / 1e6));
+
             // update game state
             gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision);
+
         } while (!GameLogic.isGameOver(gameState));
 
         gameStates.setPlayer1EndState(player1EndState);

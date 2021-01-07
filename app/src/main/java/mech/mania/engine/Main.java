@@ -3,7 +3,7 @@ package mech.mania.engine;
 import com.google.gson.Gson;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
-import mech.mania.engine.core.Winner;
+import mech.mania.engine.core.PlayerEndState;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.PlayerDecision;
@@ -48,48 +48,51 @@ public class Main {
         // using the arguments from the command line, package up all necessary
         // arguments into a PlayerCommunicationInfo object
         PlayerCommunicationInfo player1 = new PlayerCommunicationInfo(
+                gameConfig,
                 commandLine.getOptionValue("n"),
                 commandLine.getOptionValue("e"));
         PlayerCommunicationInfo player2 = new PlayerCommunicationInfo(
+                gameConfig,
                 commandLine.getOptionValue("N"),
                 commandLine.getOptionValue("E"));
 
-        boolean player1Crashed = false, player2Crashed = false;
+        PlayerEndState player1EndState = null;
+        PlayerEndState player2EndState = null;
 
         // player process startup
         try {
             player1.start();
             player1.askForStartingItems();
         } catch (IOException e) {
-            LOGGER.warning("Player 1 failed to start. Aborting. See stderr for details.");
-            player1Crashed = true;
+            LOGGER.warning("Player 1 failed to start: " + e.getMessage());
+            player1EndState = PlayerEndState.ERROR;
+        } catch (IllegalThreadStateException e) {
+            // player timed out
+            LOGGER.warning("Player 1 failed to start: " + e.getMessage());
+            player1EndState = PlayerEndState.TIMED_OUT;
         }
 
         try {
             player2.start();
             player2.askForStartingItems();
         } catch (IOException e) {
-            LOGGER.warning("Player 2 failed to start. Aborting. See stderr for details.");
-            player2Crashed = true;
+            LOGGER.warning("Player 2 failed to start: " + e.getMessage());
+            player2EndState = PlayerEndState.ERROR;
+        } catch (IllegalThreadStateException e) {
+            // player timed out
+            LOGGER.warning("Player 2 failed to start: " + e.getMessage());
+            player2EndState = PlayerEndState.TIMED_OUT;
         }
 
-        // logic to handle immediate winners due to crashing bots
-        Winner winner;
-        if (player1Crashed && !player2Crashed) {
-            LOGGER.fine("Player 1 crashed");
-            winner = Winner.PLAYER2;
-        } else if (player2Crashed && !player1Crashed) {
-            LOGGER.fine("Player 2 crashed");
-            winner = Winner.PLAYER1;
-        } else if (player1Crashed && player2Crashed) {
-            LOGGER.fine("Both players crashed");
-            winner = Winner.CRASH;
+        if (player1EndState != null || player2EndState != null) {
+            // TODO: decide on how this is handled
         } else {
             LOGGER.fine("Successful player initialization");
 
             GameLog gameLog = new GameLog();
             gameLoop(gameConfig, gameLog, player1, player2);
-            winner = gameLog.getWinner();
+            player1EndState = gameLog.getPlayer1EndState();
+            player2EndState = gameLog.getPlayer2EndState();
 
             LOGGER.fine("Finished game loop");
 
@@ -114,7 +117,7 @@ public class Main {
             }
         }
 
-        System.out.println("Game complete. Winner: " + winner);
+        System.out.println("Game complete. PLAYER1: " + player1EndState + ", PLAYER2: " + player2EndState);
     }
 
     /**
@@ -244,81 +247,87 @@ public class Main {
                 player1.getPlayerName(), player1.getStartingItem(), player1.getStartingUpgrade(),
                 player2.getPlayerName(), player2.getStartingItem(), player2.getStartingUpgrade());
 
-        int turn = 1;
-        Winner winner = null;
+        PlayerEndState player1EndState;
+        PlayerEndState player2EndState;
+
         do {
             // send game states
-            boolean player1Crashed = false, player2Crashed = false;
+            player1EndState = null;
+            player2EndState = null;
+
             try {
                 player1.sendGameState(gameState);
-            } catch (Exception e) {
-                LOGGER.warning("Exception while sending player 1 game state (check bot logs): " + e.getMessage());
-                player1Crashed = true;
+            } catch (IOException e) {
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while sending game state to player 1: " + e.getMessage());
+                player1EndState = PlayerEndState.ERROR;
+            } catch (IllegalThreadStateException e) {
+                // player timed out
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while sending game state to player 1: " + e.getMessage());
+                player1EndState = PlayerEndState.TIMED_OUT;
             }
 
             try {
                 player2.sendGameState(gameState);
-            } catch (Exception e) {
-                LOGGER.warning("Exception while sending player 2 game state (check bot logs): " + e.getMessage());
-                player2Crashed = true;
+            } catch (IOException e) {
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while sending game state to player 2: " + e.getMessage());
+                player2EndState = PlayerEndState.ERROR;
+            } catch (IllegalThreadStateException e) {
+                // player timed out
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while sending game state to player 2: " + e.getMessage());
+                player2EndState = PlayerEndState.TIMED_OUT;
             }
 
-            if (player1Crashed && !player2Crashed) {
-                winner = Winner.PLAYER2;
-                break;
-            } else if (player2Crashed && !player1Crashed) {
-                winner = Winner.PLAYER1;
-                break;
-            } else if (player1Crashed && player2Crashed) {
-                winner = Winner.CRASH;
-                break;
+            if (player1EndState != null || player2EndState != null) {
+                // TODO: figure this logic out
+                gameStates.setPlayer1EndState(player1EndState);
+                gameStates.setPlayer2EndState(player2EndState);
+                return;
             }
 
             // add game states to list of total game states
             gameStates.addState(new GameState(gameState));
 
             // retrieve decisions from players
+            player1EndState = null;
+            player2EndState = null;
             PlayerDecision player1Decision = null;
+            PlayerDecision player2Decision = null;
+
             try {
                 player1Decision = player1.getPlayerDecision();
-            } catch (Exception e) {
-                LOGGER.warning("Exception while getting player 1 decision (check bot logs): " + e.getMessage());
-                player1Crashed = true;
+            } catch (IOException e) {
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while getting player decision from player 1: " + e.getMessage());
+                player1EndState = PlayerEndState.ERROR;
+            } catch (IllegalThreadStateException e) {
+                // player timed out
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while getting player decision from player 1: " + e.getMessage());
+                player1EndState = PlayerEndState.TIMED_OUT;
             }
 
-            PlayerDecision player2Decision = null;
             try {
                 player2Decision = player2.getPlayerDecision();
-            } catch (Exception e) {
-                LOGGER.warning("Exception while getting player 2 decision (check bot logs): " + e.getMessage());
-                player2Crashed = true;
+            } catch (IOException e) {
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while getting player decision from player 2: " + e.getMessage());
+                player2EndState = PlayerEndState.ERROR;
+            } catch (IllegalThreadStateException e) {
+                // player timed out
+                LOGGER.warning("[Turn " + gameState.getTurn() + "] Error while getting player decision from player 2: " + e.getMessage());
+                player2EndState = PlayerEndState.TIMED_OUT;
             }
 
-            if (player1Crashed && !player2Crashed) {
-                winner = Winner.PLAYER2;
-                break;
-            } else if (player2Crashed && !player1Crashed) {
-                winner = Winner.PLAYER1;
-                break;
-            } else if (player1Crashed && player2Crashed) {
-                winner = Winner.CRASH;
-                break;
+            if (player1EndState != null || player2EndState != null) {
+                // TODO: figure this logic out
+                gameStates.setPlayer1EndState(player1EndState);
+                gameStates.setPlayer2EndState(player2EndState);
+                return;
             }
 
             // update game state
             gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision);
-            turn++;
-
-            // TODO: change
-            if (turn == 100) {
-                break;
-            }
         } while (!GameLogic.isGameOver(gameState));
 
-        if (winner == null) {
-            winner = GameLogic.getWinner(gameState);
-        }
-        gameStates.setWinner(winner);
+        gameStates.setPlayer1EndState(player1EndState);
+        gameStates.setPlayer2EndState(player2EndState);
     }
 
     /**
@@ -328,14 +337,9 @@ public class Main {
      * @param fileName file to write to
      */
     private static void writeListToFile(List<String> toWrite, String fileName) {
-        if (fileName == null || fileName.length() == 0) {
-            LOGGER.warning("File name is empty. Aborting write");
-            return;
-        }
-
         try {
             Files.write(Paths.get(fileName), toWrite, StandardCharsets.UTF_8);
-        } catch (IOException e) {
+        } catch (Exception e) {
             LOGGER.warning(String.format("Wasn't able to write to file (%s), writing to stdout instead. Error: %s",
                     fileName, e.getMessage()));
             LOGGER.info(String.join(System.getProperty("line.separator"), toWrite));

@@ -1,7 +1,7 @@
 package mech.mania.engine;
 
 import mech.mania.engine.config.Config;
-import mech.mania.engine.core.Winner;
+import mech.mania.engine.core.PlayerEndState;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
 import org.junit.Assert;
@@ -48,21 +48,23 @@ public class MainTest {
     public void bot1CrashesBot2Wins() throws IOException {
         // launch bot 1 (crashes before bot 2)
         String bot1Executable = CRASHING_BOT_EXEC + " 3";
-        PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo("bot1", bot1Executable);
+        PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo(gameConfig, "bot1", bot1Executable);
         bot1.start();
 
         // launch bot 2 (doesn't crash until turn 10)
         String bot2Executable = CRASHING_BOT_EXEC + " 10";
-        PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo("bot2", bot2Executable);
+        PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo(gameConfig, "bot2", bot2Executable);
         bot2.start();
 
         GameLog gameLog = new GameLog();
         gameLoop(gameConfig, gameLog, bot1, bot2);
-        Winner winner = gameLog.getWinner();
+        PlayerEndState player1EndState = gameLog.getPlayer1EndState();
+        PlayerEndState player2EndState = gameLog.getPlayer2EndState();
 
         printBotLogs(bot1, bot2);
 
-        Assert.assertEquals(Winner.PLAYER2, winner);
+        Assert.assertEquals(PlayerEndState.TIMED_OUT, player1EndState);
+        // TODO: Assert.assertEquals(PlayerEndState.WON, player2EndState);
     }
 
     /**
@@ -71,20 +73,22 @@ public class MainTest {
     @Test
     public void bothBotsCanCrashResultCrash() throws IOException {
         String bot1Executable = CRASHING_BOT_EXEC + " 3";
-        PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo("bot1", bot1Executable);
+        PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo(gameConfig, "bot1", bot1Executable);
         bot1.start();
 
         String bot2Executable = CRASHING_BOT_EXEC + " 3";
-        PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo("bot2", bot2Executable);
+        PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo(gameConfig, "bot2", bot2Executable);
         bot2.start();
 
         GameLog gameLog = new GameLog();
         gameLoop(gameConfig, gameLog, bot1, bot2);
-        Winner winner = gameLog.getWinner();
+        PlayerEndState player1EndState = gameLog.getPlayer1EndState();
+        PlayerEndState player2EndState = gameLog.getPlayer2EndState();
 
         printBotLogs(bot1, bot2);
 
-        Assert.assertEquals(Winner.CRASH, winner);
+        Assert.assertEquals(PlayerEndState.TIMED_OUT, player1EndState);
+        Assert.assertEquals(PlayerEndState.TIMED_OUT, player2EndState);
     }
 
     /**
@@ -93,20 +97,22 @@ public class MainTest {
     @Test
     public void bot2CrashesBot1Wins() throws IOException {
         String bot1Executable = CRASHING_BOT_EXEC + " 10";
-        PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo("bot1", bot1Executable);
+        PlayerCommunicationInfo bot1 = new PlayerCommunicationInfo(gameConfig, "bot1", bot1Executable);
         bot1.start();
 
         String bot2Executable = CRASHING_BOT_EXEC + " 2";
-        PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo("bot2", bot2Executable);
+        PlayerCommunicationInfo bot2 = new PlayerCommunicationInfo(gameConfig, "bot2", bot2Executable);
         bot2.start();
 
         GameLog gameLog = new GameLog();
         gameLoop(gameConfig, gameLog, bot1, bot2);
-        Winner winner = gameLog.getWinner();
+        PlayerEndState player1EndState = gameLog.getPlayer1EndState();
+        PlayerEndState player2EndState = gameLog.getPlayer2EndState();
 
         printBotLogs(bot1, bot2);
 
-        Assert.assertEquals(Winner.PLAYER1, winner);
+        // TODO: Assert.assertEquals(PlayerEndState.WON, player1EndState);
+        Assert.assertEquals(PlayerEndState.TIMED_OUT, player2EndState);
     }
 
 }

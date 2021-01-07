@@ -26,6 +26,7 @@ public final class Config {
 
     // ========== OTHER CONSTANTS ===============
     public final String REPLAY_FILENAME;
+    public final int TIMEOUT;
 
     private ResourceBundle rb;
 
@@ -54,6 +55,8 @@ public final class Config {
         HARVEST_RADIUS =         Integer.parseInt(rb.getString("player.harvestradius"));
         PROTECTION_RADIUS =      Integer.parseInt(rb.getString("player.protectionradius"));
         STARTING_MONEY =         Integer.parseInt(rb.getString("player.startingmoney"));
+
+        TIMEOUT =                Integer.parseInt(rb.getString("networking.timeout"));
 
         // other props
         REPLAY_FILENAME = rb.getString("replayfile.name");

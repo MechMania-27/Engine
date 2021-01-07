@@ -8,6 +8,8 @@ import java.util.List;
 
 public class GameState {
     @Expose
+    private int turn = 1;
+    @Expose
     private List<Player> players;
     @Expose
     private TileMap tileMap;
@@ -32,6 +34,14 @@ public class GameState {
     public GameState(GameState other) {
         this.players = other.getPlayers();
         this.tileMap = other.getTileMap();
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 
     public List<Player> getPlayers() {

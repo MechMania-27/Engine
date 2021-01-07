@@ -1,6 +1,6 @@
 package mech.mania.engine.networking;
 
-import com.google.gson.JsonParseException;
+import mech.mania.engine.config.Config;
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.ItemType;
 import mech.mania.engine.model.PlayerDecision;
@@ -22,17 +22,20 @@ import java.util.logging.Logger;
 public class PlayerCommunicationInfo {
     private static final Logger LOGGER = Logger.getLogger("PlayerCommunicationInfo");
 
+    private final Config gameConfig;
+
     private final String playerName;
     private final String[] playerExecutable;
     private Process process;
-    private BufferedReader inputReader;
+    private SafeBufferedReader inputReader;
     private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
     private BufferedWriter writer;
 
     private ItemType startingItem;
     private UpgradeType startingUpgradeType;
 
-    public PlayerCommunicationInfo(String playerName, String playerExecutable) {
+    public PlayerCommunicationInfo(Config gameConfig, String playerName, String playerExecutable) {
+        this.gameConfig = gameConfig;
         this.playerName = playerName;
         this.playerExecutable = MainUtils.translateCommandline(playerExecutable);
     }
@@ -59,7 +62,7 @@ public class PlayerCommunicationInfo {
         // since inputstream will be needed every turn and will need to be blocking, these
         // other two will be started on the main thread
         LOGGER.fine(String.format("Bot (pid %d): creating", MainUtils.tryGetPid(process)));
-        inputReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.TIMEOUT);
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
 
     }
@@ -70,7 +73,7 @@ public class PlayerCommunicationInfo {
         writer.close();
     }
 
-    public PlayerDecision getPlayerDecision() throws JsonParseException, IOException {
+    public PlayerDecision getPlayerDecision() throws IOException, IllegalThreadStateException {
         // capture any stderr in log
         // capture all stdout as PlayerDecision
         List<String> responses = new ArrayList<>();
@@ -110,7 +113,7 @@ public class PlayerCommunicationInfo {
      * Method that should be called after start but before the game starts to ask
      * for Item and Upgrade that will be used.
      */
-    public void askForStartingItems() throws IOException {
+    public void askForStartingItems() throws IOException, IllegalThreadStateException {
         String itemResponse = inputReader.readLine();
         this.startingItem = PlayerParseUtils.itemFromString(itemResponse);
         String upgradeResponse = inputReader.readLine();

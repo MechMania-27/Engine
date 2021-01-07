@@ -29,7 +29,7 @@ public class TileMap {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
                 // TODO: check if correct
-                tiles.get(row).add(new Tile(TileType.SOIL, 0));
+                tiles.get(row).add(new Tile(TileType.SOIL_0, 0));
             }
         }
 

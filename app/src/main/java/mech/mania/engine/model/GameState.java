@@ -3,14 +3,13 @@ package mech.mania.engine.model;
 import com.google.gson.annotations.Expose;
 import mech.mania.engine.config.Config;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameState {
     @Expose
     private int turn = 1;
     @Expose
-    private List<Player> players;
+    private Player player1;
+    @Expose
+    private Player player2;
     @Expose
     private TileMap tileMap;
 
@@ -24,15 +23,15 @@ public class GameState {
         Player player1 = new Player(player1Name, player1Position, player1Item, player1UpgradeType, startingMoney);
         Player player2 = new Player(player2Name, player2Position, player2Item, player2UpgradeType, startingMoney);
 
-        players = new ArrayList<>();
-        players.add(player1);
-        players.add(player2);
+        this.player1 = player1;
+        this.player2 = player2;
 
         tileMap = new TileMap(gameConfig, player1, player2);
     }
 
     public GameState(GameState other) {
-        this.players = other.getPlayers();
+        this.player1 = other.getPlayer1();
+        this.player2 = other.getPlayer2();
         this.tileMap = other.getTileMap();
     }
 
@@ -44,20 +43,28 @@ public class GameState {
         this.turn = turn;
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
     public TileMap getTileMap() {
         return tileMap;
     }
 
     public void setTileMap(TileMap tileMap) {
         this.tileMap = tileMap;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
     }
 
 }

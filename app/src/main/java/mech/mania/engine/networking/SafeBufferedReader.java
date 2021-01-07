@@ -106,13 +106,14 @@ public class SafeBufferedReader extends BufferedReader {
     /**
      * This is actually forcing us to read the buffer twice in order to determine a line is actually ready.
      *
-     * @throws IllegalThreadStateException
-     * @throws IOException
+     * @throws IllegalThreadStateException will be thrown if the read times out
+     * @throws IOException will be thrown if the read cannot be done
      */
     protected void waitReadyLine() throws IllegalThreadStateException, IOException {
         long timeout = System.currentTimeMillis() + millisTimeout;
         waitReady();
 
+        // https://stackoverflow.com/questions/45578725/java-io-ioexception-mark-invalid
         super.mark(1);
         try {
             while(System.currentTimeMillis() < timeout) {

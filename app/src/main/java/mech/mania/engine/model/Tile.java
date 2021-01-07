@@ -7,10 +7,13 @@ public class Tile {
     private TileType type;
     @Expose
     private double soilQuality;
+
     @Expose
     private Crop crop;
     @Expose
-    private ItemType item;
+    private ItemType p1Item;
+    @Expose
+    private ItemType p2Item;
 
     private int turnsLeftToGrow;
     private Player planter;
@@ -72,4 +75,29 @@ public class Tile {
     public void setScarecrowEffect(boolean scarecrowEffect) {
         this.scarecrowEffect = scarecrowEffect;
     }
+
+    public Crop getCrop() {
+        return crop;
+    }
+
+    public void setCrop(Crop crop) {
+        this.crop = crop;
+    }
+
+    public ItemType getP1Item() {
+        return p1Item;
+    }
+
+    public void setP1Item(ItemType p1Item) {
+        this.p1Item = p1Item;
+    }
+
+    public ItemType getP2Item() {
+        return p2Item;
+    }
+
+    public void setP2Item(ItemType p2Item) {
+        this.p2Item = p2Item;
+    }
+
 }

@@ -91,7 +91,7 @@ public class PlayerCommunicationInfo {
      * @return List of Strings containing one line of the logs each
      */
     public List<String> getLogs() {
-        String stringLog = new String(errorStream.toByteArray());
+        String stringLog = errorStream.toString();
 
         // collect everything from player's stderr
         return Arrays.asList(stringLog.split("\n"));

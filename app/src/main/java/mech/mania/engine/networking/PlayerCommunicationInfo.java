@@ -1,7 +1,7 @@
 package mech.mania.engine.networking;
 
 import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlayerDecision;
+import mech.mania.engine.model.decisions.PlayerDecision;
 
 /**
  * A class that will hold information about communication with the player, including

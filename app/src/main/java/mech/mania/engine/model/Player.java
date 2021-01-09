@@ -54,4 +54,9 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+
+    // stub for now
+    public int getHarvestRadius() {
+        return -1;
+    }
 }

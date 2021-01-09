@@ -1,7 +1,7 @@
 package mech.mania.engine.core;
 
 import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlayerDecision;
+import mech.mania.engine.model.decisions.PlayerDecision;
 
 public class GameLogic {
     public static boolean isGameOver(GameState gameState) {

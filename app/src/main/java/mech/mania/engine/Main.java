@@ -4,8 +4,8 @@ import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.decisions.PlayerDecision;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
-import mech.mania.engine.model.PlayerDecision;
 import org.apache.commons.cli.*;
 
 /**

@@ -25,10 +25,6 @@ import java.util.List;
  */
 public class Main {
 
-    private static final JsonLogger ENGINE_LOGGER = new JsonLogger(0);
-    private static final JsonLogger PLAYER1_LOGGER = new JsonLogger(0);
-    private static final JsonLogger PLAYER2_LOGGER = new JsonLogger(0);
-
     /**
      * The Main function. This will get the command line arguments, create the
      * players via PlayerCommunicationInfo objects, start the game using gameLoop,
@@ -49,19 +45,23 @@ public class Main {
             return;
         }
 
+        JsonLogger player1Logger = new JsonLogger(0);
+        JsonLogger player2Logger = new JsonLogger(0);
+        JsonLogger engineLogger = new JsonLogger(0);
+
         // should the logger print debug statements?
-        PLAYER1_LOGGER.setDebug(commandLine.hasOption("d"));
-        PLAYER2_LOGGER.setDebug(commandLine.hasOption("d"));
-        ENGINE_LOGGER.setDebug(commandLine.hasOption("d"));
+        player1Logger.setDebug(commandLine.hasOption("d"));
+        player2Logger.setDebug(commandLine.hasOption("d"));
+        engineLogger.setDebug(commandLine.hasOption("d"));
 
         // using the arguments from the command line, package up all necessary
         // arguments into a PlayerCommunicationInfo object
         PlayerCommunicationInfo player1 = new PlayerCommunicationInfo(
-                gameConfig, ENGINE_LOGGER, PLAYER1_LOGGER,
+                gameConfig, engineLogger, player1Logger,
                 commandLine.getOptionValue("n"),
                 commandLine.getOptionValue("e"));
         PlayerCommunicationInfo player2 = new PlayerCommunicationInfo(
-                gameConfig, ENGINE_LOGGER, PLAYER2_LOGGER,
+                gameConfig, engineLogger, player2Logger,
                 commandLine.getOptionValue("N"),
                 commandLine.getOptionValue("E"));
 
@@ -73,7 +73,7 @@ public class Main {
             player1.start();
             player1.askForStartingItems();
         } catch (IOException | IllegalThreadStateException e) {
-            ENGINE_LOGGER.severe("Player 1 failed to start", e);
+            engineLogger.severe("Player 1 failed to start", e);
             player1EndState = PlayerEndState.ERROR;
         }
 
@@ -81,55 +81,55 @@ public class Main {
             player2.start();
             player2.askForStartingItems();
         } catch (IOException | IllegalThreadStateException e) {
-            ENGINE_LOGGER.severe("Player 2 failed to start", e);
+            engineLogger.severe("Player 2 failed to start", e);
             player2EndState = PlayerEndState.ERROR;
         }
 
         // start the game
-        PLAYER1_LOGGER.incrementTurn();
-        PLAYER2_LOGGER.incrementTurn();
-        ENGINE_LOGGER.incrementTurn();
+        player1Logger.incrementTurn();
+        player2Logger.incrementTurn();
+        engineLogger.incrementTurn();
 
         if (player1EndState != null || player2EndState != null) {
             player1EndState = PlayerEndState.ERROR;
             player2EndState = PlayerEndState.ERROR;
         } else {
-            ENGINE_LOGGER.info("Successful player initialization");
+            engineLogger.info("Successful player initialization");
 
             GameLog gameLog = new GameLog();
-            gameLoop(gameConfig, gameLog, player1, player2);
+            gameLoop(gameConfig, gameLog, player1, player2, engineLogger);
 
             player1EndState = gameLog.getPlayer1EndState();
             player2EndState = gameLog.getPlayer2EndState();
 
-            ENGINE_LOGGER.info("Finished game loop");
+            engineLogger.info("Finished game loop");
 
             Gson serializer = new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
                     .create();
             String gameLogJson = serializer.toJson(gameLog, GameLog.class);
-            writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME));
+            writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
         }
 
         try {
             player1.stop();
         } catch (IOException e) {
-            ENGINE_LOGGER.severe("Unable to stop player 1 (check bot logs)", e);
+            engineLogger.severe("Unable to stop player 1 (check bot logs)", e);
         }
         try {
             player2.stop();
         } catch (IOException e) {
-            ENGINE_LOGGER.severe("Unable to stop player 2 (check bot logs)", e);
+            engineLogger.severe("Unable to stop player 2 (check bot logs)", e);
         }
 
-        PLAYER1_LOGGER.incrementTurn();
-        PLAYER2_LOGGER.incrementTurn();
-        ENGINE_LOGGER.incrementTurn();
+        player1Logger.incrementTurn();
+        player2Logger.incrementTurn();
+        engineLogger.incrementTurn();
 
         // finish game by writing all log files and replay files
-        PLAYER1_LOGGER.writeToFile(commandLine.getOptionValue("l", player1.getPlayerName() + gameConfig.PLAYERLOG_EXTENSION));
-        PLAYER2_LOGGER.writeToFile(commandLine.getOptionValue("L", player2.getPlayerName() + gameConfig.PLAYERLOG_EXTENSION));
-        ENGINE_LOGGER.writeToFile(gameConfig.ENGINELOG_FILENAME);
+        player1Logger.writeToFile(commandLine.getOptionValue("l", player1.getPlayerName() + gameConfig.PLAYERLOG_EXTENSION));
+        player2Logger.writeToFile(commandLine.getOptionValue("L", player2.getPlayerName() + gameConfig.PLAYERLOG_EXTENSION));
+        engineLogger.writeToFile(gameConfig.ENGINELOG_FILENAME);
 
         System.out.println("Game complete. PLAYER1: " + player1EndState + ", PLAYER2: " + player2EndState);
     }
@@ -270,7 +270,8 @@ public class Main {
      */
     protected static void gameLoop(Config gameConfig, GameLog gameStates,
                                    PlayerCommunicationInfo player1,
-                                   PlayerCommunicationInfo player2) {
+                                   PlayerCommunicationInfo player2,
+                                   JsonLogger engineLogger) {
         GameState gameState = new GameState(gameConfig,
                 player1.getPlayerName(), player1.getStartingItem(), player1.getStartingUpgrade(),
                 player2.getPlayerName(), player2.getStartingItem(), player2.getStartingUpgrade());
@@ -288,14 +289,14 @@ public class Main {
             try {
                 player1.sendGameState(gameState);
             } catch (IOException | IllegalThreadStateException e) {
-                ENGINE_LOGGER.severe("Error while sending game state to player 1: ", e);
+                engineLogger.severe("Error while sending game state to player 1: ", e);
                 player1EndState = PlayerEndState.ERROR;
             }
 
             try {
                 player2.sendGameState(gameState);
             } catch (IOException | IllegalThreadStateException e) {
-                ENGINE_LOGGER.severe("Error while sending game state to player 2", e);
+                engineLogger.severe("Error while sending game state to player 2", e);
                 player2EndState = PlayerEndState.ERROR;
             }
 
@@ -325,14 +326,14 @@ public class Main {
             try {
                 player1Decision = player1.getPlayerDecision();
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
-                ENGINE_LOGGER.severe("Error while getting player decision from player 1", e);
+                engineLogger.severe("Error while getting player decision from player 1", e);
                 player1EndState = PlayerEndState.ERROR;
             }
 
             try {
                 player2Decision = player2.getPlayerDecision();
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
-                ENGINE_LOGGER.severe("Error while getting player decision from player 2", e);
+                engineLogger.severe("Error while getting player decision from player 2", e);
                 player2EndState = PlayerEndState.ERROR;
             }
 
@@ -351,11 +352,11 @@ public class Main {
             }
 
             long endTime = System.nanoTime();
-            ENGINE_LOGGER.info(String.format("Turn %d took %.2f milliseconds", gameState.getTurn(), (endTime - startTime) / 1e6));
+            engineLogger.info(String.format("Turn %d took %.2f milliseconds", gameState.getTurn(), (endTime - startTime) / 1e6));
 
-            PLAYER1_LOGGER.incrementTurn();
-            PLAYER2_LOGGER.incrementTurn();
-            ENGINE_LOGGER.incrementTurn();
+            player1.getLogger().incrementTurn();
+            player2.getLogger().incrementTurn();
+            engineLogger.incrementTurn();
 
             // update game state
             gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision);
@@ -373,13 +374,13 @@ public class Main {
      * @param toWrite List of Strings to write
      * @param fileName file to write to
      */
-    private static void writeListToFile(List<String> toWrite, String fileName) {
+    private static void writeListToFile(List<String> toWrite, String fileName, JsonLogger engineLogger) {
         try {
             Files.write(Paths.get(fileName), toWrite, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            ENGINE_LOGGER.severe(String.format("Wasn't able to write to file (%s), writing to log instead.",
+            engineLogger.severe(String.format("Wasn't able to write to file (%s), writing to log instead.",
                     fileName), e);
-            ENGINE_LOGGER.info(String.join(System.getProperty("line.separator"), toWrite));
+            engineLogger.info(String.join(System.getProperty("line.separator"), toWrite));
         }
     }
 }

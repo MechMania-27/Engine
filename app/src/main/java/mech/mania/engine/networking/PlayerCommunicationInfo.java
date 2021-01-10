@@ -154,4 +154,8 @@ public class PlayerCommunicationInfo {
         return startingUpgradeType;
     }
 
+    public JsonLogger getLogger() {
+        return logger;
+    }
+
 }

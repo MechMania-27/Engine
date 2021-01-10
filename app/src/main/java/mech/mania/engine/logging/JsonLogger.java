@@ -56,17 +56,17 @@ public class JsonLogger {
     }
 
     public void info(String log) {
-        infoLogs.addAll(Arrays.asList(log.split("\n")));
+        infoLogs.addAll(stringLines(log));
     }
 
     public void debug(String log) {
         if (debug) {
-            debugLogs.addAll(Arrays.asList(log.split("\n")));
+            debugLogs.addAll(stringLines(log));
         }
     }
 
     public void severe(String log) {
-        exceptionLogs.addAll(Arrays.asList(log.split("\n")));
+        exceptionLogs.addAll(stringLines(log));
     }
 
     public void severe(String message, Exception e) {
@@ -76,14 +76,29 @@ public class JsonLogger {
 
         String res = String.format("%s: %s\nStackTrace: %s",
                 e.getClass().getSimpleName(), message, sw.toString());
-        exceptionLogs.addAll(Arrays.asList(res.split("\n")));
+        exceptionLogs.addAll(stringLines(res));
+    }
+
+    /**
+     * Will split into lines and return as a List of String for each line
+     *
+     * @param input String to parse
+     * @return List of Strings for each line
+     */
+    private List<String> stringLines(String input) {
+        String[] lines = input.split("\n");
+        return Arrays.asList(lines);
     }
 
     public void severe(Exception e) {
         severe(e.getMessage(), e);
     }
 
-    public void writeToFile(String fileName) {
+    public String serializedString() {
+        if (!infoLogs.isEmpty() || (!debugLogs.isEmpty() && debug) || !exceptionLogs.isEmpty()) {
+            incrementTurn();
+        }
+
         Gson serializer = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .addSerializationExclusionStrategy(new ExclusionStrategy() {
@@ -97,11 +112,14 @@ public class JsonLogger {
                         return false;
                     }
                 })
+                .disableHtmlEscaping()
                 .create();
-        String serialized = serializer.toJson(this, JsonLogger.class);
+        return serializer.toJson(this, JsonLogger.class);
+    }
 
+    public void writeToFile(String fileName) {
         try {
-            Files.write(Paths.get(fileName), Collections.singletonList(serialized), StandardCharsets.UTF_8);
+            Files.write(Paths.get(fileName), Collections.singletonList(serializedString()), StandardCharsets.UTF_8);
         } catch (IOException e) {
             severe(String.format("Could not write to file (%s)", fileName), e);
         }

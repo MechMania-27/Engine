@@ -128,7 +128,7 @@ public class PlayerParseUtilsTest {
     }
 
     @Test
-    public void decisionFromString() {
+    public void decisionFromString() throws PlayerDecisionParseException {
         List<String> decisionStrings = new ArrayList<>();
         decisionStrings.add("move 1 1");
         decisionStrings.add("useitem fertility_idol 1 1");

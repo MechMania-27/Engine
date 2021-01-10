@@ -52,7 +52,7 @@ public class PlayerParseUtils {
      * @param decisionStrings List of Strings that were given from the bot
      * @return a PlayerDecision object containing information about the actions made
      */
-    public static PlayerDecision decisionFromString(List<String> decisionStrings) {
+    public static PlayerDecision decisionFromString(List<String> decisionStrings) throws PlayerDecisionParseException {
         PlayerDecision decision = new PlayerDecision();
 
         for (String decisionString : decisionStrings) {

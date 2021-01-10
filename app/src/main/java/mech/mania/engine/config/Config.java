@@ -26,7 +26,9 @@ public final class Config {
 
     // ========== OTHER CONSTANTS ===============
     public final String REPLAY_FILENAME;
-    public final int TIMEOUT;
+    public final String ENGINELOG_FILENAME;
+    public final int PLAYER_TIMEOUT;
+    public final String PLAYERLOG_EXTENSION;
 
     private ResourceBundle rb;
 
@@ -56,10 +58,12 @@ public final class Config {
         PROTECTION_RADIUS =      Integer.parseInt(rb.getString("player.protectionradius"));
         STARTING_MONEY =         Integer.parseInt(rb.getString("player.startingmoney"));
 
-        TIMEOUT =                Integer.parseInt(rb.getString("networking.timeout"));
+        PLAYER_TIMEOUT =         Integer.parseInt(rb.getString("networking.timeout"));
 
         // other props
-        REPLAY_FILENAME = rb.getString("replayfile.name");
+        REPLAY_FILENAME =        rb.getString("replayfile.name");
+        ENGINELOG_FILENAME =     rb.getString("enginelogfile.name");
+        PLAYERLOG_EXTENSION =    rb.getString("playerlogfile.extension");
     }
 
 }

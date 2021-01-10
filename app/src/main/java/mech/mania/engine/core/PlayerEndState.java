@@ -2,8 +2,7 @@ package mech.mania.engine.core;
 
 public enum PlayerEndState {
     WON,
+    TIE,
     LOST,
-    TIED,
-    TIMED_OUT,
     ERROR,
 }

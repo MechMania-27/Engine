@@ -84,10 +84,10 @@ public class PlayerParseUtilsTest {
         Assert.assertEquals(new Position(1, 1), decision.getMovePos());
 
         decision = new PlayerDecision();
-        decisionString = "plant duchamfruit 1 1";
+        decisionString = "plant grape 1 1";
         PlayerParseUtils.parseDecision(decision, decisionString);
         Assert.assertEquals(PlayerDecision.ActionType.PLANT, decision.getAction());
-        Assert.assertEquals(CropType.DUCHAMFRUIT, decision.getCrops().get(0).getType());
+        Assert.assertEquals(CropType.GRAPE, decision.getCrops().get(0).getType());
         Assert.assertEquals(new Position(1, 1), decision.getActionPositions().get(0));
 
         decision = new PlayerDecision();
@@ -97,10 +97,10 @@ public class PlayerParseUtilsTest {
         Assert.assertEquals(new Position(1, 1), decision.getActionPositions().get(0));
 
         decision = new PlayerDecision();
-        decisionString = "buy duchamfruit 1";
+        decisionString = "buy grape 1";
         PlayerParseUtils.parseDecision(decision, decisionString);
         Assert.assertEquals(PlayerDecision.ActionType.BUY, decision.getAction());
-        Assert.assertEquals(CropType.DUCHAMFRUIT, decision.getCrops().get(0).getType());
+        Assert.assertEquals(CropType.GRAPE, decision.getCrops().get(0).getType());
         Assert.assertEquals(1, (int) decision.getBuyAmounts().get(0));
 
         decision = new PlayerDecision();

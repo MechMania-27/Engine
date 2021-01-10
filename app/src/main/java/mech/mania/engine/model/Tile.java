@@ -1,6 +1,7 @@
 package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Tile {
     @Expose
@@ -8,8 +9,10 @@ public class Tile {
     @Expose
     private Crop crop;
     @Expose
+    @SerializedName("p1_item")
     private ItemType p1Item;
     @Expose
+    @SerializedName("p2_item")
     private ItemType p2Item;
 
     private int turnsLeftToGrow;

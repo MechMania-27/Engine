@@ -1,6 +1,7 @@
 package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import mech.mania.engine.core.PlayerEndState;
 
 import java.util.ArrayList;
@@ -10,8 +11,10 @@ public class GameLog {
     @Expose
     private List<GameState> states;
     @Expose
+    @SerializedName("p1_status")
     private PlayerEndState player1EndState;
     @Expose
+    @SerializedName("p2_status")
     private PlayerEndState player2EndState;
 
     public GameLog() {

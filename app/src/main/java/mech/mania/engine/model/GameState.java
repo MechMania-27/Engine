@@ -1,14 +1,17 @@
 package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import mech.mania.engine.config.Config;
 
 public class GameState {
     @Expose
     private int turn = 1;
     @Expose
+    @SerializedName("p1")
     private Player player1;
     @Expose
+    @SerializedName("p2")
     private Player player2;
     @Expose
     private TileMap tileMap;

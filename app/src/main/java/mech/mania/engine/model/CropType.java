@@ -3,10 +3,10 @@ package mech.mania.engine.model;
 import java.util.ResourceBundle;
 
 public enum CropType {
-    POTATO("croptype.potato"),
+    NONE("croptype.none"),
+    GRAPE("croptype.grape"),
     CORN("croptype.corn"),
-    DUCHAMFRUIT("croptype.duchamfruit"),
-    NONE("croptype.none");
+    POTATO("croptype.potato");
 
     /**
      * ResourceBundle to get properties file values from

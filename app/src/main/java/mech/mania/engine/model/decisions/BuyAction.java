@@ -1,14 +1,39 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.model.CropType;
 import mech.mania.engine.model.GameState;
 
-public class BuyAction extends PlayerDecision {
-    public BuyAction(String playerID, String input) {
-        this.playerID = playerID;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-        if (!input.strip().equalsIgnoreCase("buy")) {
-            throw new IllegalArgumentException(String.format("Wrong class input, should be %s", input));
+public class BuyAction extends PlayerDecision {
+    private ArrayList<CropType> seeds;
+    private ArrayList<Integer> quantities;
+
+    public BuyAction(int playerID) {
+        this.playerID = playerID;
+    }
+
+    public PlayerDecision parse(String args) {
+        String regex = "(?<seed>[a-z|A-Z]+)" + separatorRegEx + "(?<quantity>\\d+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(args);
+
+        seeds = new ArrayList<>();
+        quantities = new ArrayList<>();
+
+        // Command must have at least one result
+        if (!matcher.find()) {
+            throw new IllegalArgumentException("Arguments did not match Buy regex");
         }
+
+        do {
+            seeds.add(CropType.getEnum(matcher.group("seed")));
+            quantities.add(Integer.parseInt(matcher.group("quantity")));
+        } while (matcher.find());
+
+        return this;
     }
 
     public void performAction(GameState state) {

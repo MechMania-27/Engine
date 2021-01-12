@@ -1,14 +1,38 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.ItemType;
+import mech.mania.engine.model.Position;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UseItemAction extends PlayerDecision {
-    public UseItemAction(String playerID, String input) {
-        this.playerID = playerID;
+    private ItemType item;
+    private Position actionPosition;
 
-        if (!input.strip().equalsIgnoreCase("useitem")) {
-            throw new IllegalArgumentException(String.format("Wrong class input, should be %s", input));
+    public UseItemAction(int playerID) {
+        this.playerID = playerID;
+        this.item = ItemType.NONE;
+        this.actionPosition = null;
+    }
+
+    public PlayerDecision parse(String args) {
+        String regex = "(?<item>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(args);
+
+
+        if (matcher.find()) {
+            int x = Integer.parseInt(matcher.group("x"));
+            int y = Integer.parseInt(matcher.group("y"));
+            actionPosition = new Position(x, y);
+            item = ItemType.getEnum(matcher.group("item"));
+        } else{
+            throw new IllegalArgumentException("Arguments did not match UseItem regex");
         }
+
+        return this;
     }
 
     public void performAction(GameState state) {

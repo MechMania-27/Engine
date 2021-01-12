@@ -51,26 +51,33 @@ public class PlayerParseUtils {
      * Modify the decision object by parsing the decisionString and putting the necessary
      *
      * information inside the decision object
-     * @param playerID ID of the player who made this decision
+     * @param playerID ID of the player who made this decision (0 for player1, 1 for player2)
      * @param decisionString String to parse
      * @return PlayerDecision object
      */
-    public static PlayerDecision parseDecision(String playerID, String decisionString) throws PlayerDecisionParseException {
-        String[] tokens = decisionString.strip().split("\\s");
-        switch (tokens[0].toLowerCase()) {
+    public static PlayerDecision parseDecision(int playerID, String decisionString) throws PlayerDecisionParseException {
+        int space = decisionString.indexOf(' ');
+        if (space == -1){
+            throw new PlayerDecisionParseException(String.format("Action type not found in string: %s", decisionString));
+        }
+
+        String action = decisionString.substring(0, space);
+        String args = decisionString.substring(space + 1).stripTrailing();
+
+        switch (action.toLowerCase()) {
             case "move":
-                return new MoveAction(playerID, decisionString);
+                return new MoveAction(playerID).parse(args);
             case "plant":
-                return new PlantAction(playerID, decisionString);
+                return new PlantAction(playerID).parse(args);
             case "harvest":
-                return new HarvestAction(playerID, decisionString);
+                return new HarvestAction(playerID).parse(args);
             case "buy":
-                return new BuyAction(playerID, decisionString);
+                return new BuyAction(playerID).parse(args);
             case "useitem": case "use_item":
-                // TODO: Should we support "use item" as well?
-                return new UseItemAction(playerID, decisionString);
+                // TODO: Should we support "use item" as well? In refactoring this code I've removed support for it
+                return new UseItemAction(playerID).parse(args);
             default:
-                throw new PlayerDecisionParseException("Unrecognized action: " + tokens[0]);
+                throw new PlayerDecisionParseException(String.format("Unrecognized action: %s", action));
         }
     }
 }

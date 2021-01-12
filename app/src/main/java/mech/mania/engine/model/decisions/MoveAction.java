@@ -1,26 +1,33 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.Position;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MoveAction extends PlayerDecision {
-    private final String playerID;
-    private final int destX;
-    private final int destY;
+    private Position destination;
 
-    public MoveAction(String playerID, int destX, int destY) {
+    public MoveAction(int playerID) {
         this.playerID = playerID;
-        this.destX = destX;
-        this.destY = destY;
+        this.destination = null;
     }
 
-    public MoveAction(String playerID, String input) {
-        this.playerID = playerID;
-        String[] words = input.split(" ");
-        if (words.length < 2) {
-            throw new IllegalArgumentException("Player ID, destination X, and destination Y all need to be specified");
+    public PlayerDecision parse(String args) {
+        String regex = "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(args);
+
+        if (matcher.find()) {
+            int x = Integer.parseInt(matcher.group("x"));
+            int y = Integer.parseInt(matcher.group("y"));
+            destination = new Position(x, y);
+        } else{
+            throw new IllegalArgumentException("Arguments did not match Move regex");
         }
-        destX = Integer.parseInt(words[0]);
-        destY = Integer.parseInt(words[1]);
+
+        return this;
     }
 
     public void performAction(GameState state) {

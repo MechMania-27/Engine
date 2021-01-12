@@ -2,38 +2,43 @@ package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.CropType;
+import mech.mania.engine.model.Position;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PlantAction extends PlayerDecision {
-    private ArrayList<Integer> xCoords;
-    private ArrayList<Integer> yCoords;
+    private ArrayList<Position> coords;
     private ArrayList<CropType> cropTypes;
 
-    public PlantAction(String playerID, String input) {
+    public PlantAction(int playerID){
         this.playerID = playerID;
+        this.coords = new ArrayList<>();
+        this.cropTypes = new ArrayList<>();
+    }
 
-        String[] words = input.split(";");
-        if (words.length < 2) {
-            throw new IllegalArgumentException("Input is too short");
-        }
-        if (!words[0].equalsIgnoreCase("plant")) {
-            throw new IllegalArgumentException(String.format("Wrong class input, should be %s", words[0]));
-        }
+    public PlayerDecision parse(String args) {
+        String regex = "(?<crop>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(args);
 
-        xCoords = new ArrayList<>();
-        yCoords = new ArrayList<>();
+        coords = new ArrayList<>();
         cropTypes = new ArrayList<>();
 
-        for (int i = 1; i < words.length; i++) {
-            String[] tup = words[i].split(",");
-            if (tup.length != 3) {
-                continue;
-            }
-            xCoords.add(Integer.parseInt(tup[0]));
-            yCoords.add(Integer.parseInt(tup[1]));
-            cropTypes.add(CropType.valueOf(tup[2]));
+        // Command must have at least one result
+        if (!matcher.find()) {
+            throw new IllegalArgumentException("Arguments did not match Plant regex");
         }
+
+        do {
+            int x = Integer.parseInt(matcher.group("x"));
+            int y = Integer.parseInt(matcher.group("y"));
+            coords.add(new Position(x, y));
+            cropTypes.add(CropType.getEnum(matcher.group("crop")));
+        } while (matcher.find());
+
+        return this;
     }
 
     public void performAction(GameState state) {

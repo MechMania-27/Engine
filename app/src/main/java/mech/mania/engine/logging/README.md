@@ -1,5 +1,0 @@
-# Logging
-
-## Notes
-
-## TODO

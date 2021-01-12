@@ -1,8 +1,12 @@
 package mech.mania.engine.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Position {
 
+    @Expose
     private int x;
+    @Expose
     private int y;
 
     public Position(final int x, final int y) {
@@ -14,15 +18,21 @@ public class Position {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (!(obj instanceof Position)) {
+            return false;
+        }
+
+        final Position other = (Position) obj;
+        return other.x == this.x && other.y == this.y;
     }
 }

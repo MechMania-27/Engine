@@ -8,12 +8,15 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    id 'java'
     id 'application'
+    id 'java-library-distribution'
 }
 
 repositories {
     // Use JCenter for resolving dependencies.
-    jcenter()
+    mavenCentral()
+    // jcenter()
 }
 
 dependencies {
@@ -26,9 +29,23 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'commons-cli:commons-cli:1.4'
+
+    implementation 'commons-io:commons-io:2.8.0'
+
+    implementation 'org.apache.commons:commons-configuration2:2.6'
+
+    implementation 'commons-beanutils:commons-beanutils:1.9.4'
+
+    implementation 'com.github.easy-develop:properties:1.0.1'
 }
 
 application {
     // Define the main class for the application.
     mainClass = 'mech.mania.engine.Main'
+}
+
+distributions {
+    main {
+        distributionBaseName = 'engine'
+    }
 }

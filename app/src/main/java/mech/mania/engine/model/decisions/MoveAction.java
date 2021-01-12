@@ -2,18 +2,18 @@ package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
 
-public class PlayerMove {
+public class MoveAction extends PlayerDecision {
     private final String playerID;
     private final int destX;
     private final int destY;
 
-    public PlayerMove(String playerID, int destX, int destY) {
+    public MoveAction(String playerID, int destX, int destY) {
         this.playerID = playerID;
         this.destX = destX;
         this.destY = destY;
     }
 
-    public PlayerMove(String playerID, String input) {
+    public MoveAction(String playerID, String input) {
         this.playerID = playerID;
         String[] words = input.split(" ");
         if (words.length < 2) {
@@ -23,7 +23,7 @@ public class PlayerMove {
         destY = Integer.parseInt(words[1]);
     }
 
-    public void moveToLocation(GameState state) {
+    public void performAction(GameState state) {
         // stub for now
     }
 }

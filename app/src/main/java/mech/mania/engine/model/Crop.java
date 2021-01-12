@@ -1,12 +1,12 @@
 package mech.mania.engine.model;
 
-public class Plant {
-    private PlantType type;
+public class Crop {
+    private CropType type;
     private int growthTimer;
 
-    public Plant(PlantType type, int growthTimer) {
+    public Crop(CropType type) {
         this.type = type;
-        this.growthTimer = growthTimer;
+        this.growthTimer = 0;
     }
 
     public int getGrowthTimer() {
@@ -17,11 +17,11 @@ public class Plant {
         this.growthTimer = growthTimer;
     }
 
-    public PlantType getType() {
+    public CropType getType() {
         return type;
     }
 
-    public void setType(PlantType type) {
+    public void setType(CropType type) {
         this.type = type;
     }
 

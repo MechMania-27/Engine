@@ -1,14 +1,14 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlantType;
+import mech.mania.engine.model.CropType;
 
 import java.util.ArrayList;
 
 public class PlantAction extends PlayerDecision {
     private ArrayList<Integer> xCoords;
     private ArrayList<Integer> yCoords;
-    private ArrayList<PlantType> plantTypes;
+    private ArrayList<CropType> cropTypes;
 
     public PlantAction(String playerID, String input) {
         this.playerID = playerID;
@@ -23,7 +23,7 @@ public class PlantAction extends PlayerDecision {
 
         xCoords = new ArrayList<>();
         yCoords = new ArrayList<>();
-        plantTypes = new ArrayList<>();
+        cropTypes = new ArrayList<>();
 
         for (int i = 1; i < words.length; i++) {
             String[] tup = words[i].split(",");
@@ -32,7 +32,7 @@ public class PlantAction extends PlayerDecision {
             }
             xCoords.add(Integer.parseInt(tup[0]));
             yCoords.add(Integer.parseInt(tup[1]));
-            plantTypes.add(PlantType.valueOf(tup[2]));
+            cropTypes.add(CropType.valueOf(tup[2]));
         }
     }
 

@@ -5,10 +5,14 @@ import mech.mania.engine.model.decisions.PlayerDecision;
 
 public class GameLogic {
     public static boolean isGameOver(GameState gameState) {
-        return false;
+        return gameState.getTurn() == 100;
     }
 
-    public static GameState updateGameState(PlayerDecision player1Decision, PlayerDecision player2Decision) {
-        return null;
+    public static GameState updateGameState(GameState gameState,
+                                            PlayerDecision player1Decision,
+                                            PlayerDecision player2Decision) {
+        GameState newGameState = new GameState(gameState);
+        newGameState.setTurn(gameState.getTurn() + 1);
+        return newGameState;
     }
 }

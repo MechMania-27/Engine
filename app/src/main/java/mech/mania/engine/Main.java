@@ -1,67 +1,137 @@
 package mech.mania.engine;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
+import mech.mania.engine.core.PlayerEndState;
+import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.decisions.PlayerDecision;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
+import mech.mania.engine.util.PlayerDecisionParseException;
 import org.apache.commons.cli.*;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Class that runs the game.
  */
 public class Main {
+
+    /**
+     * The Main function. This will get the command line arguments, create the
+     * players via PlayerCommunicationInfo objects, start the game using gameLoop,
+     * and call writeListToFile to write the resulting log files to their respective
+     * logs (player1, player2, and the game log).
+     * @param args Program arguments
+     */
     public static void main( String[] args ) {
-        CommandLine commandLine;
+        Config gameConfig;
         try {
-            commandLine = getCommandLineArgs(args);
-        } catch (ParseException e) {
-            System.err.println(e.getMessage());
+            gameConfig = new Config();
+        } catch (Exception e) {
+            System.err.println("Config file could not be read: " + e.getMessage());
+            return;
+        }
+        CommandLine commandLine = getCommandLineArgs(args, gameConfig);
+        if (commandLine == null) {
             return;
         }
 
-        // using the information from the command line, package up all necessary
-        // information into a PlayerCommunicationInfo object
+        JsonLogger player1Logger = new JsonLogger(0);
+        JsonLogger player2Logger = new JsonLogger(0);
+        JsonLogger engineLogger = new JsonLogger(0);
+
+        // should the logger print debug statements?
+        player1Logger.setDebug(commandLine.hasOption("d"));
+        player2Logger.setDebug(commandLine.hasOption("d"));
+        engineLogger.setDebug(commandLine.hasOption("d"));
+
+        // using the arguments from the command line, package up all necessary
+        // arguments into a PlayerCommunicationInfo object
         PlayerCommunicationInfo player1 = new PlayerCommunicationInfo(
+                gameConfig, engineLogger, player1Logger,
                 commandLine.getOptionValue("n"),
                 commandLine.getOptionValue("e"));
         PlayerCommunicationInfo player2 = new PlayerCommunicationInfo(
+                gameConfig, engineLogger, player2Logger,
                 commandLine.getOptionValue("N"),
                 commandLine.getOptionValue("E"));
 
-        // TODO: handle startup errors
-        player1.start();
-        player2.start();
+        PlayerEndState player1EndState = null;
+        PlayerEndState player2EndState = null;
 
-        // persistent object that will keep track of all game states that will
-        // be outputted each round.
-        GameLog gameStates = new GameLog();
+        // player process startup
+        try {
+            player1.start();
+            player1.askForStartingItems();
+        } catch (IOException | IllegalThreadStateException e) {
+            engineLogger.severe("Player 1 failed to start", e);
+            player1EndState = PlayerEndState.ERROR;
+        }
 
-        // use the getConfig function to initialize the Config object for game
-        // parameters
-        Config gameConfig = Config.getConfig();
-        GameState gameState = new GameState(gameConfig,
-                player1.getPlayerName(), player2.getPlayerName());
+        try {
+            player2.start();
+            player2.askForStartingItems();
+        } catch (IOException | IllegalThreadStateException e) {
+            engineLogger.severe("Player 2 failed to start", e);
+            player2EndState = PlayerEndState.ERROR;
+        }
 
-        do {
-            // TODO: handle errors gracefully
-            player1.sendGameState(gameState);
-            player2.sendGameState(gameState);
+        // start the game
+        player1Logger.incrementTurn();
+        player2Logger.incrementTurn();
+        engineLogger.incrementTurn();
 
-            assert gameState != null;
-            gameStates.addState(new GameState(gameState));
+        if (player1EndState != null || player2EndState != null) {
+            player1EndState = PlayerEndState.ERROR;
+            player2EndState = PlayerEndState.ERROR;
+        } else {
+            engineLogger.info("Successful player initialization");
 
-            PlayerDecision player1Decision = player1.getPlayerDecision();
-            PlayerDecision player2Decision = player2.getPlayerDecision();
+            GameLog gameLog = new GameLog();
+            gameLoop(gameConfig, gameLog, player1, player2, engineLogger);
 
-            gameState = GameLogic.updateGameState(player1Decision, player2Decision);
-        } while (!GameLogic.isGameOver(gameState));
+            player1EndState = gameLog.getPlayer1EndState();
+            player2EndState = gameLog.getPlayer2EndState();
 
-        // TODO: add command line arguments to determine whether game log should be written to file and specify filename
-        player1.writeLogToFile();
-        player2.writeLogToFile();
-        writeLogToFile(gameStates, "game.log");
+            engineLogger.info("Finished game loop");
+
+            Gson serializer = new GsonBuilder()
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .create();
+            String gameLogJson = serializer.toJson(gameLog, GameLog.class);
+            writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
+        }
+
+        try {
+            player1.stop();
+        } catch (IOException e) {
+            engineLogger.severe("Unable to stop player 1 (check bot logs)", e);
+        }
+        try {
+            player2.stop();
+        } catch (IOException e) {
+            engineLogger.severe("Unable to stop player 2 (check bot logs)", e);
+        }
+
+        player1Logger.incrementTurn();
+        player2Logger.incrementTurn();
+        engineLogger.incrementTurn();
+
+        // finish game by writing all log files and replay files
+        player1Logger.writeToFile(commandLine.getOptionValue("l", player1.getPlayerName() + gameConfig.PLAYERLOG_EXTENSION));
+        player2Logger.writeToFile(commandLine.getOptionValue("L", player2.getPlayerName() + gameConfig.PLAYERLOG_EXTENSION));
+        engineLogger.writeToFile(gameConfig.ENGINELOG_FILENAME);
+
+        System.out.println("Game complete. PLAYER1: " + player1EndState + ", PLAYER2: " + player2EndState);
     }
 
     /**
@@ -71,56 +141,246 @@ public class Main {
      * <code>./engine -n "player1" -e "./bot1.py" -N "player2" -E "./bot2.py"</code>
      *
      * @param args String[] that contains the arguments to the program call
+     * @param gameDefaults Config object that contains the game defaults
      * @return a com.apache.commons.cli.CommandLine object that can be used to read parsed values
-     * @throws ParseException if the command line arguments are not parsed correctly
      */
-    public static CommandLine getCommandLineArgs(String[] args) throws ParseException {
+    private static CommandLine getCommandLineArgs(String[] args, Config gameDefaults) {
         Options options = new Options();
 
+        Options helpOptions = new Options();
+        Option help = Option.builder("h")
+                .longOpt("help")
+                .desc("Show this help message")
+                .build();
+        helpOptions.addOption(help);
+        options.addOption(help);
+
+        // ======================== PLAYER NAMES AND EXECUTABLES =======================
         Option player1Name = Option.builder("n")
                 .longOpt("player1-name")
+                .hasArg()
                 .argName("name")
                 .required()
-                .desc("First player's name")
+                .desc("First player's name (required)")
+                .type(String.class)
                 .build();
         options.addOption(player1Name);
         Option player1Executable = Option.builder("e")
                 .longOpt("player1-executable")
+                .hasArg()
                 .argName("command")
                 .required()
-                .desc("First player's executable as a string")
+                .desc("First player's executable as a string (required)")
+                .type(String.class)
                 .build();
         options.addOption(player1Executable);
 
         Option player2Name = Option.builder("N")
                 .longOpt("player2-name")
+                .hasArg()
                 .argName("name")
                 .required()
-                .desc("Second player's name")
+                .desc("Second player's name (required)")
+                .type(String.class)
                 .build();
         options.addOption(player2Name);
         Option player2Executable = Option.builder("E")
                 .longOpt("player2-executable")
+                .hasArg()
                 .argName("command")
                 .required()
-                .desc("Second player's executable as a string")
+                .desc("Second player's executable as a string (required)")
+                .type(String.class)
                 .build();
         options.addOption(player2Executable);
 
-        CommandLineParser parser = new DefaultParser();
+        // ============================ GAME LOGS =================================
+        Option replayFileName = Option.builder("r")
+                .longOpt("replayfile-name")
+                .hasArg()
+                .argName("filename")
+                .desc("Name of the replay file to be made (for visualizer) " +
+                        "(default=" + gameDefaults.REPLAY_FILENAME + ")")
+                .type(String.class)
+                .build();
+        options.addOption(replayFileName);
 
-        return parser.parse(options, args);
+        Option engineLogFileName = Option.builder("r")
+                .longOpt("enginelogfile-name")
+                .hasArg()
+                .argName("filename")
+                .desc("Name of the engine log file to be made " +
+                        "(default=" + gameDefaults.ENGINELOG_FILENAME + ")")
+                .type(String.class)
+                .build();
+        options.addOption(engineLogFileName);
+
+        Option player1LogFileName = Option.builder("l")
+                .longOpt("player1-logfile-name")
+                .hasArg()
+                .argName("filename")
+                .desc("Name of the player 1 log file to be made (for player) " +
+                        "(default=playername.log)")
+                .type(String.class)
+                .build();
+        options.addOption(player1LogFileName);
+
+        Option player2LogFileName = Option.builder("L")
+                .longOpt("player2-logfile-name")
+                .hasArg()
+                .argName("filename")
+                .desc("Name of the player 2 log file to be made (for player) " +
+                        "(default=playername.log)")
+                .type(String.class)
+                .build();
+        options.addOption(player2LogFileName);
+
+        Option debug = Option.builder("d")
+                .longOpt("debug")
+                .desc("Engine debug statements should be printed out to the log")
+                .type(boolean.class)
+                .build();
+        options.addOption(debug);
+
+        CommandLineParser parser = new DefaultParser();
+        CommandLine commandLine = null;
+        try {
+            CommandLine commandLineHelp = parser.parse(helpOptions, args, true);
+            if (commandLineHelp.hasOption("h") || commandLineHelp.hasOption("help") || commandLineHelp.getArgs().length == 0) {
+                HelpFormatter formatter = new HelpFormatter();
+                formatter.printHelp("Engine <args>", options);
+            } else {
+                commandLine = parser.parse(options, args);
+            }
+        } catch (ParseException e) {
+            System.err.println("Failed to parse command line arguments: " + e.getMessage());
+        }
+
+        return commandLine;
     }
 
     /**
-     * Will write the given GameLog object to the file fileName using GSON serialization
+     * This function will run the game until the game is over and return the winner.
+     * This is mostly an attempt to uncrowd the main function.
      *
-     * @param log the GameLog object to output
-     * @param fileName file to write to
+     * @param gameConfig Config object that contains game default values
+     * @param gameStates GameLog object that contains the running list of GameState objects. Should be empty, will be filled
+     * @param player1 PlayerCommunicationInfo object that keeps information about communication with player 1
+     * @param player2 PlayerCommunicationInfo object that keeps information about communication with player 2
      */
-    public static void writeLogToFile(GameLog log, String fileName) {
-        // write to log file using JSON serialization
+    protected static void gameLoop(Config gameConfig, GameLog gameStates,
+                                   PlayerCommunicationInfo player1,
+                                   PlayerCommunicationInfo player2,
+                                   JsonLogger engineLogger) {
+        GameState gameState = new GameState(gameConfig,
+                player1.getPlayerName(), player1.getStartingItem(), player1.getStartingUpgrade(),
+                player2.getPlayerName(), player2.getStartingItem(), player2.getStartingUpgrade());
+
+        PlayerEndState player1EndState;
+        PlayerEndState player2EndState;
+
+        do {
+            long startTime = System.nanoTime();
+
+            // send game states
+            player1EndState = null;
+            player2EndState = null;
+
+            try {
+                player1.sendGameState(gameState);
+            } catch (IOException | IllegalThreadStateException e) {
+                engineLogger.severe("Error while sending game state to player 1: ", e);
+                player1EndState = PlayerEndState.ERROR;
+            }
+
+            try {
+                player2.sendGameState(gameState);
+            } catch (IOException | IllegalThreadStateException e) {
+                engineLogger.severe("Error while sending game state to player 2", e);
+                player2EndState = PlayerEndState.ERROR;
+            }
+
+            if (player1EndState != null || player2EndState != null) {
+                if (player1EndState == PlayerEndState.ERROR && player2EndState == PlayerEndState.ERROR) {
+                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
+                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
+                } else if (player1EndState == PlayerEndState.ERROR) {
+                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
+                    gameStates.setPlayer2EndState(PlayerEndState.WON);
+                } else {
+                    gameStates.setPlayer1EndState(PlayerEndState.WON);
+                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
+                }
+                return;
+            }
+
+            // add game states to list of total game states
+            gameStates.addState(new GameState(gameState));
+
+            // retrieve decisions from players
+            player1EndState = null;
+            player2EndState = null;
+            PlayerDecision player1Decision = null;
+            PlayerDecision player2Decision = null;
+
+            try {
+                player1Decision = player1.getPlayerDecision();
+            } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
+                engineLogger.severe("Error while getting player decision from player 1", e);
+                player1EndState = PlayerEndState.ERROR;
+            }
+
+            try {
+                player2Decision = player2.getPlayerDecision();
+            } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
+                engineLogger.severe("Error while getting player decision from player 2", e);
+                player2EndState = PlayerEndState.ERROR;
+            }
+
+            if (player1EndState != null || player2EndState != null) {
+                if (player1EndState == PlayerEndState.ERROR && player2EndState == PlayerEndState.ERROR) {
+                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
+                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
+                } else if (player1EndState == PlayerEndState.ERROR) {
+                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
+                    gameStates.setPlayer2EndState(PlayerEndState.WON);
+                } else {
+                    gameStates.setPlayer1EndState(PlayerEndState.WON);
+                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
+                }
+                return;
+            }
+
+            long endTime = System.nanoTime();
+            engineLogger.info(String.format("Turn %d took %.2f milliseconds", gameState.getTurn(), (endTime - startTime) / 1e6));
+
+            player1.getLogger().incrementTurn();
+            player2.getLogger().incrementTurn();
+            engineLogger.incrementTurn();
+
+            // update game state
+            gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision);
+
+        } while (!GameLogic.isGameOver(gameState));
+
+        // TODO: figure out how to get winner and loser from GameLogic
+        gameStates.setPlayer1EndState(player1EndState);
+        gameStates.setPlayer2EndState(player2EndState);
     }
 
-
+    /**
+     * Helper function to write a List of Strings to a file
+     *
+     * @param toWrite List of Strings to write
+     * @param fileName file to write to
+     */
+    private static void writeListToFile(List<String> toWrite, String fileName, JsonLogger engineLogger) {
+        try {
+            Files.write(Paths.get(fileName), toWrite, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            engineLogger.severe(String.format("Wasn't able to write to file (%s), writing to log instead.",
+                    fileName), e);
+            engineLogger.info(String.join(System.getProperty("line.separator"), toWrite));
+        }
+    }
 }

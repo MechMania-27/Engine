@@ -1,17 +1,24 @@
 package mech.mania.engine.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Player {
+    @Expose
     private String name;
+    @Expose
     private Position position;
-    private Item item;
-    private Upgrade upgrade;
+    @Expose
+    private ItemType item;
+    @Expose
+    private UpgradeType upgradeType;
+    @Expose
     private int money;
 
-    public Player(String name, Position position, Item item, Upgrade upgrade, int money) {
+    public Player(String name, Position position, ItemType item, UpgradeType upgradeType, int money) {
         this.name = name;
         this.position = position;
         this.item = item;
-        this.upgrade = upgrade;
+        this.upgradeType = upgradeType;
         this.money = money;
     }
 
@@ -23,19 +30,19 @@ public class Player {
         this.money = money;
     }
 
-    public Upgrade getUpgrade() {
-        return upgrade;
+    public UpgradeType getUpgrade() {
+        return upgradeType;
     }
 
-    public void setUpgrade(Upgrade upgrade) {
-        this.upgrade = upgrade;
+    public void setUpgrade(UpgradeType upgradeType) {
+        this.upgradeType = upgradeType;
     }
 
-    public Item getItem() {
+    public ItemType getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(ItemType item) {
         this.item = item;
     }
 

@@ -104,14 +104,26 @@ public class PlayerCommunicationInfo {
                 }
                 responses.add(response);
             }
-        } catch (IOException | IllegalThreadStateException e) {
-            logger.severe(errorStream.toString());
+        } finally {
+            String[] allMessages = errorStream.toString().split("\n");
+            for (String message : allMessages) {
+                if (!message.contains(":")) {
+                    logger.severe(message);
+                    continue;
+                }
+                switch (message.substring(0, message.indexOf(":"))) {
+                    case "info":
+                        logger.info(message.substring(message.indexOf(":") + 2));
+                        break;
+                    case "debug":
+                        logger.debug(message.substring(message.indexOf(":") + 2));
+                        break;
+                    default:
+                        logger.severe(message);
+                }
+            }
             errorStream.reset();
-            throw(e);
         }
-
-        logger.info(errorStream.toString());
-        errorStream.reset();
 
         engineLogger.debug(String.format("Bot (pid %d): reading", MainUtils.tryGetPid(process)));
         return PlayerParseUtils.decisionFromString(responses);

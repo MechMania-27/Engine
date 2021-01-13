@@ -31,7 +31,7 @@ public class TileMap implements Iterable<Tile> {
                 tiles.get(row).add(new Tile(TileType.SOIL));
             }
         }
-        setFertilityBand(gameConfig.F_BAND_STARTING_TURN);
+        setFertilityBand(1);
 
         this.player1 = player1;
         this.player2 = player2;

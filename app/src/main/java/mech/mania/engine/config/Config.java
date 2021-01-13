@@ -12,7 +12,6 @@ public final class Config {
     public final int F_BAND_INNER_HEIGHT;
     public final int F_BAND_MID_HEIGHT;
     public final int F_BAND_OUTER_HEIGHT;
-    public final int F_BAND_STARTING_TURN;
 
     // =========== GAME CONSTANTS ===============
     public final int STARTING_MONEY;
@@ -42,7 +41,6 @@ public final class Config {
         F_BAND_MID_HEIGHT =      Integer.parseInt(rb.getString("fertilityband.mid.height"));
         F_BAND_OUTER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.outer.height"));
         F_BAND_MOVE_DELAY =      Integer.parseInt(rb.getString("fertilityband.speed"));
-        F_BAND_STARTING_TURN =   Integer.parseInt(rb.getString("fertilityband.startingturn"));
 
         // player props
         CARRYING_CAPACITY =      Integer.parseInt(rb.getString("player.carrycapacity"));

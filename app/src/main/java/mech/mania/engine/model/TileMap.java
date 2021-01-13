@@ -28,10 +28,11 @@ public class TileMap {
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
-                // TODO: check if correct
+                // Actual value irrelevant -- will be set by fertility band afterwards
                 tiles.get(row).add(new Tile(TileType.SOIL_0));
             }
         }
+        setFertilityBand(1);
 
         this.player1 = player1;
         this.player2 = player2;
@@ -51,6 +52,83 @@ public class TileMap {
         this.gameConfig = other.gameConfig;
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
+    }
+
+    /** Sets the fertility of tiles based on the fertility band's position at a specified turn
+     * @param turn The specified turn, where the first turn is 1
+     */
+    public void setFertilityBand(int turn){
+        int shifts = (turn - 1) / gameConfig.F_BAND_MOVE_DELAY;
+
+        for (int row = 0; row < mapHeight; row++) {
+            for (int col = 0; col < mapWidth; col++) {
+                Tile tile = tiles.get(row).get(col);
+
+                // Green Grocer tiles are unaffected by the fertility bands
+                if (tile.getType() == TileType.GREEN_GROCER){
+                    continue;
+                }
+
+                // offset records how far into the fertility zone a row is (negative indicates below)
+                int offset = shifts - row - 1;
+                if(offset < 0){
+                    // Below fertility band
+                    tile.setType(TileType.SOIL_0);
+                    tile.setFertility(0); // TODO: why not add this to game config?
+                }
+                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT){
+                    // Within first outer band
+                    tile.setType(TileType.SOIL_1);
+                    tile.setFertility(gameConfig.F_BAND_OUTER_FERTILITY);
+                }
+                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT){
+                    // Within first mid band
+                    tile.setType(TileType.SOIL_2);
+                    tile.setFertility(gameConfig.F_BAND_MID_FERTILITY);
+                }
+                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT +
+                        gameConfig.F_BAND_INNER_HEIGHT){
+                    // Within inner band
+                    tile.setType(TileType.SOIL_3);
+                    tile.setFertility(gameConfig.F_BAND_INNER_FERTILITY);
+                }
+                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
+                        gameConfig.F_BAND_INNER_HEIGHT){
+                    // Within second mid band
+                    tile.setType(TileType.SOIL_2);
+                    tile.setFertility(gameConfig.F_BAND_MID_FERTILITY);
+                }
+                else if(offset < 2 * gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
+                        gameConfig.F_BAND_INNER_HEIGHT){
+                    // Within second outer band
+                    tile.setType(TileType.SOIL_1);
+                    tile.setFertility(gameConfig.F_BAND_OUTER_FERTILITY);
+                }
+                else{
+                    // Above fertility bands
+                    tile.setType(TileType.ARID);
+                    tile.setFertility(0);
+                }
+            }
+        }
+    }
+
+    /** Grows all crops on this TileMap */
+    public void growCrops(){
+        Iterator<Tile> iter = this.iterator();
+        while(iter.hasNext()){
+            Tile tile = iter.next();
+            Crop crop = tile.getCrop();
+
+            // Only affect crops which are still growing
+            if(crop.getType() != CropType.NONE && crop.getGrowthTimer() > 0) {
+                // Increase value
+                crop.grow(tile.getFertility());
+            }
+
+            // Update tile states
+            tile.setFertilityIdolEffect(false);
+        }
     }
 
     public int getMapHeight() {

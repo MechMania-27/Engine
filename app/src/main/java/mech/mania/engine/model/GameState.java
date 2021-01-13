@@ -16,9 +16,13 @@ public class GameState {
     @Expose
     private TileMap tileMap;
 
+    private Config gameConfig;
+
     public GameState(Config gameConfig,
                      String player1Name, ItemType player1Item, UpgradeType player1UpgradeType,
                      String player2Name, ItemType player2Item, UpgradeType player2UpgradeType) {
+        this.gameConfig = gameConfig;
+
         this.turn = 1;
         int startingMoney = gameConfig.STARTING_MONEY;
         Position player1Position = new Position(0, 0);
@@ -72,4 +76,7 @@ public class GameState {
         this.player2 = player2;
     }
 
+    public Config getGameConfig() {
+        return gameConfig;
+    }
 }

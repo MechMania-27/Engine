@@ -15,6 +15,8 @@ public class Tile {
     @SerializedName("p2_item")
     private ItemType p2Item;
 
+    private double fertility;
+
     private int turnsLeftToGrow;
     private Player planter;
 
@@ -91,4 +93,14 @@ public class Tile {
         this.p2Item = p2Item;
     }
 
+    public double getFertility() {
+        if(isFertilityIdolEffect()){
+            return 2 * fertility;
+        }
+        return fertility;
+    }
+
+    public void setFertility(double fertility) {
+        this.fertility = fertility;
+    }
 }

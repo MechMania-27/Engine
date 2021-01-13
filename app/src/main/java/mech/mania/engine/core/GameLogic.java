@@ -1,14 +1,18 @@
 package mech.mania.engine.core;
 
-import mech.mania.engine.model.GameLog;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.Player;
+import mech.mania.engine.config.Config;
+import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
 
 public class GameLogic {
     public static boolean isGameOver(GameState gameState) {
-        return gameState.getTurn() > 10;
+        Config config = gameState.getGameConfig();
+
+        // Game is over when fertility band is off the map. Equivalent to all soil tiles being ARID
+        return gameState.getTurn() / config.F_BAND_MOVE_DELAY >
+                gameState.getTileMap().getMapHeight() + 2 * config.F_BAND_OUTER_HEIGHT +
+                2 * config.F_BAND_MID_HEIGHT + config.F_BAND_INNER_HEIGHT;
     }
 
     public static void setWinners(GameLog gameLog, GameState finalGameState) {
@@ -42,15 +46,19 @@ public class GameLogic {
         GameState newGameState = new GameState(gameState);
         newGameState.setTurn(gameState.getTurn() + 1);
 
-        // actions
-        player1Decision.performAction(newGameState);
-        player2Decision.performAction(newGameState);
+        // Perform non-movement actions
+        if (! (player1Decision instanceof MoveAction)) {
+            player1Decision.performAction(newGameState);
+        }
+        if (! (player2Decision instanceof MoveAction)) {
+            player2Decision.performAction(newGameState);
+        }
 
-        // growth
+        // Grow crops
+        newGameState.getTileMap().growCrops();
 
-
-        // fertility band movement
-
+        // Fertility band movement
+        newGameState.getTileMap().setFertilityBand(newGameState.getTurn());
 
         return newGameState;
     }

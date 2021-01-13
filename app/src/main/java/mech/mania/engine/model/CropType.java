@@ -22,7 +22,7 @@ public enum CropType {
      * have all of its values taken from the croptype.potato.something
      * properties.
      */
-    private String propsPrefix;
+    private final String propsPrefix;
     CropType(String propsPrefix) {
         this.propsPrefix = propsPrefix;
     }
@@ -49,7 +49,7 @@ public enum CropType {
         return Integer.parseInt(rb.getString(propsPrefix + ".seedprice"));
     }
 
-    public int getGrownPlantSellPrice() {
+    public int getValueGrowth() {
         return Integer.parseInt(rb.getString(propsPrefix + ".valuegrowth"));
     }
 }

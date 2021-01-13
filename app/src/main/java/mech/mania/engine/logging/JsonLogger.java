@@ -56,17 +56,21 @@ public class JsonLogger {
     }
 
     public void info(String log) {
-        infoLogs.addAll(stringLines(log));
+        if (log.length() > 0) {
+            infoLogs.addAll(stringLines(log));
+        }
     }
 
     public void debug(String log) {
-        if (debug) {
+        if (debug && log.length() > 0) {
             debugLogs.addAll(stringLines(log));
         }
     }
 
     public void severe(String log) {
-        exceptionLogs.addAll(stringLines(log));
+        if (log.length() > 0) {
+            exceptionLogs.addAll(stringLines(log));
+        }
     }
 
     public void severe(String message, Exception e) {

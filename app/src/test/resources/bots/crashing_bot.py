@@ -1,6 +1,6 @@
 import sys
-import json
-import os
+from mm27_io import receive_gamestate, send_decision, send_item, send_upgrade
+from mm27_io import Logger
 
 
 def process_decision(game_state):
@@ -8,34 +8,32 @@ def process_decision(game_state):
 
 
 if __name__ == "__main__":
-    # needed to make sure stdin can be read from without buffering
-    sys.stdin = os.fdopen(sys.stdin.fileno(), 'rb', buffering=0)
+    logger = Logger()
 
-    print("Sending \"NONE\" and \"NONE\" for Item and Upgrade", file=sys.stderr, flush=True)
+    logger.info("Sending \"NONE\" and \"NONE\" for Item and Upgrade")
 
     # Item
-    print("NONE")
+    send_item("NONE")
 
     # Upgrade
-    print("NONE")
+    send_upgrade("NONE")
 
     # all logging and errors should be redirected to sys.stderr
     # while all commands sent back to the game engine as decision should
     # be sent in stdout using print
     while True:
-        game_state_string = sys.stdin.readline()
-        game_state = json.loads(game_state_string)
-        # print(f"================ Turn {game_state['turn']} begin ================", file=sys.stderr, flush=True)
-        print(f"I received: {str(game_state):.30s}...", file=sys.stderr, flush=True)
+        game_state = receive_gamestate()
+        logger.debug(f"================ Turn {game_state['turn']} begin ================")
+        logger.info(f"I received: {str(game_state):.40s}...")
 
         if len(sys.argv) > 1:
             if game_state['turn'] == int(sys.argv[1]):
                 a = [1, 2, 3]
-                print(a[4], file=sys.stderr, flush=True)
+                b = a[4]
 
         decision = process_decision(game_state)
 
-        print(f"Sending {decision}", file=sys.stderr, flush=True)
+        logger.info(f"Sending {decision}")
         for move in decision:
-            print(move)
-        # print(f"================ Turn {game_state['turn']} end ==================\n", file=sys.stderr, flush=True)
+            send_decision(move)
+        logger.debug(f"================ Turn {game_state['turn']} end ==================\n")

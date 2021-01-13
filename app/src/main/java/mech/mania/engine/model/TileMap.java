@@ -111,6 +111,11 @@ public class TileMap implements Iterable<Tile> {
         }
     }
 
+    public boolean isGreenGrocer(Position pos) {
+        return isValidPosition(pos) &&
+                tiles.get(pos.getY()).get(pos.getX()).getType() == TileType.GREEN_GROCER;
+    }
+
     /** Grows all crops on this TileMap */
     public void growCrops(){
         for (Tile tile : this) {

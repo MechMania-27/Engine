@@ -35,16 +35,21 @@ public class MoveAction extends PlayerDecision {
     public void performAction(GameState state, JsonLogger engineLogger) {
         // note: destination can be null
         if (destination != null) {
-            // TODO: should this silently fail if invalid?
             if (playerID == 0) {
                 if (state.getTileMap().isValidPosition(destination)) {
                     state.getPlayer1().setPosition(destination);
+                    if (state.getTileMap().isGreenGrocer(destination)) {
+                        state.getPlayer1().sellInventory();
+                    }
                 } else {
                     engineLogger.severe(String.format("Failed to move player 1 to position %s", destination));
                 }
             } else {
                 if (state.getTileMap().isValidPosition(destination)) {
                     state.getPlayer2().setPosition(destination);
+                    if (state.getTileMap().isGreenGrocer(destination)) {
+                        state.getPlayer2().sellInventory();
+                    }
                 } else {
                     engineLogger.severe(String.format("Failed to move player 2 to position %s", destination));
                 }

@@ -72,9 +72,9 @@ public class Main {
         // player process startup
         try {
             player1.start();
-            engineLogger.debug("Started player 1 process");
+            // engineLogger.debug("Started player 1 process");
             player1.askForStartingItems();
-            engineLogger.debug("Finished asking player 1 for starting items");
+            // engineLogger.debug("Finished asking player 1 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 1 failed to start", e);
             player1EndState = PlayerEndState.ERROR;
@@ -82,9 +82,9 @@ public class Main {
 
         try {
             player2.start();
-            engineLogger.debug("Started player 2 process");
+            // engineLogger.debug("Started player 2 process");
             player2.askForStartingItems();
-            engineLogger.debug("Finished asking player 2 for starting items");
+            // engineLogger.debug("Finished asking player 2 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 2 failed to start", e);
             player2EndState = PlayerEndState.ERROR;
@@ -117,9 +117,9 @@ public class Main {
         }
 
         player1.stop();
-        engineLogger.debug("Stopped player 1");
+        // engineLogger.debug("Stopped player 1");
         player2.stop();
-        engineLogger.debug("Stopped player 2");
+        // engineLogger.debug("Stopped player 2");
 
         player1Logger.incrementTurn();
         player2Logger.incrementTurn();
@@ -287,7 +287,7 @@ public class Main {
 
             try {
                 player1.sendGameState(gameState);
-                engineLogger.debug("Sent player 1 a game state");
+                // engineLogger.debug("Sent player 1 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 1: ", e);
                 player1EndState = PlayerEndState.ERROR;
@@ -295,7 +295,7 @@ public class Main {
 
             try {
                 player2.sendGameState(gameState);
-                engineLogger.debug("Sent player 2 a game state");
+                // engineLogger.debug("Sent player 2 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 2", e);
                 player2EndState = PlayerEndState.ERROR;
@@ -313,7 +313,7 @@ public class Main {
 
             try {
                 player1Decision = player1.getPlayerDecision();
-                engineLogger.debug("Got player 1's decision");
+                // engineLogger.debug("Got player 1's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                 engineLogger.severe("Error while getting move action from player 1", e);
                 player1EndState = PlayerEndState.ERROR;
@@ -321,7 +321,7 @@ public class Main {
 
             try {
                 player2Decision = player2.getPlayerDecision();
-                engineLogger.debug("Got player 2's decision");
+                // engineLogger.debug("Got player 2's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                 engineLogger.severe("Error while getting move action from player 2", e);
                 player2EndState = PlayerEndState.ERROR;
@@ -336,20 +336,20 @@ public class Main {
                 engineLogger.debug("Both players submitted a move decision");
                 gameState = GameLogic.movePlayer(gameState,
                         (MoveAction) player1Decision,
-                        (MoveAction) player2Decision);
+                        (MoveAction) player2Decision, engineLogger);
             } else if (player1Decision instanceof MoveAction) {
                 engineLogger.debug("Player 2 did not submit a move decision");
                 // player 2 submitted a non-move decision, so store the decision
                 gameState = GameLogic.movePlayer(gameState,
                         (MoveAction) player1Decision,
-                        new MoveAction(1));
+                        new MoveAction(1), engineLogger);
                 validPlayer2MoveAction = false;
             } else if (player2Decision instanceof MoveAction) {
                 engineLogger.debug("Player 1 did not submit a move decision");
                 // player 1 submitted a non-move decision, so store the decision
                 gameState = GameLogic.movePlayer(gameState,
                         new MoveAction(0),
-                        (MoveAction) player2Decision);
+                        (MoveAction) player2Decision, engineLogger);
                 validPlayer1MoveAction = false;
             } else {
                 engineLogger.debug("Both players did not submit a move decision");
@@ -360,7 +360,7 @@ public class Main {
             // send the players another game state after moving
             try {
                 player1.sendGameState(gameState);
-                engineLogger.debug("Sent player 1 a game state");
+                // engineLogger.debug("Sent player 1 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 1: ", e);
                 player1EndState = PlayerEndState.ERROR;
@@ -368,7 +368,7 @@ public class Main {
 
             try {
                 player2.sendGameState(gameState);
-                engineLogger.debug("Sent player 2 a game state");
+                // engineLogger.debug("Sent player 2 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 2", e);
                 player2EndState = PlayerEndState.ERROR;
@@ -383,7 +383,7 @@ public class Main {
             if (validPlayer1MoveAction) {
                 try {
                     player1Decision = player1.getPlayerDecision();
-                    engineLogger.debug("Got player 1's action decision");
+                    // engineLogger.debug("Got player 1's action decision");
                 } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                     engineLogger.severe("Error while getting player decision from player 1", e);
                     player1EndState = PlayerEndState.ERROR;
@@ -395,7 +395,7 @@ public class Main {
             if (validPlayer2MoveAction) {
                 try {
                     player2Decision = player2.getPlayerDecision();
-                    engineLogger.debug("Got player 2's action decision");
+                    // engineLogger.debug("Got player 2's action decision");
                 } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                     engineLogger.severe("Error while getting player decision from player 2", e);
                     player2EndState = PlayerEndState.ERROR;
@@ -406,19 +406,20 @@ public class Main {
 
             if (badEndState(gameLog, player1EndState, player2EndState)) return;
 
+            // update game state
+            gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision, gameConfig, engineLogger);
+            engineLogger.debug("Updated game state");
+
+            long endTime = System.nanoTime();
+            engineLogger.info(String.format("Turn %d took %.2f milliseconds", gameState.getTurn() - 1, (endTime - startTime) / 1e6));
+
             player1.getLogger().incrementTurn();
             player2.getLogger().incrementTurn();
             engineLogger.incrementTurn();
 
-            // update game state
-            gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision);
+        } while (!GameLogic.isGameOver(gameState, gameConfig));
 
-            long endTime = System.nanoTime();
-            engineLogger.info(String.format("Turn %d took %.2f milliseconds", gameState.getTurn(), (endTime - startTime) / 1e6));
-
-        } while (!GameLogic.isGameOver(gameState));
-
-        GameLogic.setWinners(gameLog, gameState);
+        GameLogic.setWinners(gameLog, gameState, engineLogger);
     }
 
     private static boolean badEndState(GameLog gameStates, PlayerEndState player1EndState, PlayerEndState player2EndState) {

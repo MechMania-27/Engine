@@ -1,5 +1,6 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.Position;
@@ -31,8 +32,23 @@ public class MoveAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state) {
-        // stub for now
+    public void performAction(GameState state, JsonLogger engineLogger) {
         // note: destination can be null
+        if (destination != null) {
+            // TODO: should this silently fail if invalid?
+            if (playerID == 0) {
+                if (state.getTileMap().isValidPosition(destination)) {
+                    state.getPlayer1().setPosition(destination);
+                } else {
+                    engineLogger.severe(String.format("Failed to move player 1 to position %s", destination));
+                }
+            } else {
+                if (state.getTileMap().isValidPosition(destination)) {
+                    state.getPlayer2().setPosition(destination);
+                } else {
+                    engineLogger.severe(String.format("Failed to move player 2 to position %s", destination));
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.CropType;
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.PlayerDecisionParseException;
@@ -37,7 +38,7 @@ public class BuyAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state) {
+    public void performAction(GameState state, JsonLogger engineLogger) {
         // stub for now
     }
 }

@@ -34,10 +34,11 @@ public class GameState {
         this.player1 = player1;
         this.player2 = player2;
 
-        tileMap = new TileMap(gameConfig, player1, player2);
+        this.tileMap = new TileMap(gameConfig, player1, player2);
     }
 
     public GameState(GameState other) {
+        this.gameConfig = other.gameConfig;
         this.turn = other.turn;
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
@@ -56,27 +57,11 @@ public class GameState {
         return tileMap;
     }
 
-    public void setTileMap(TileMap tileMap) {
-        this.tileMap = tileMap;
-    }
-
     public Player getPlayer1() {
         return player1;
     }
 
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
-
     public Player getPlayer2() {
         return player2;
-    }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }
-
-    public Config getGameConfig() {
-        return gameConfig;
     }
 }

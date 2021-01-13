@@ -15,8 +15,6 @@ public class Tile {
     @SerializedName("p2_item")
     private ItemType p2Item;
 
-    private double fertility;
-
     private int turnsLeftToGrow;
     private Player planter;
 
@@ -94,13 +92,14 @@ public class Tile {
     }
 
     public double getFertility() {
-        if(isFertilityIdolEffect()){
-            return 2 * fertility;
+        if (isFertilityIdolEffect()){
+            return 2 * type.getFertility();
         }
-        return fertility;
+        return type.getFertility();
     }
 
-    public void setFertility(double fertility) {
-        this.fertility = fertility;
+    @Override
+    public String toString() {
+        return String.format("Tile[%s,%s]", type, crop);
     }
 }

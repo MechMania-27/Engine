@@ -1,4 +1,5 @@
 import sys
+import random
 from mm27_io import receive_gamestate, send_decision, send_item, send_upgrade
 from mm27_io import Logger
 
@@ -6,25 +7,32 @@ logger = Logger()
 
 
 def get_item() -> str:
-    logger.info("Sending \"SCARECROW\"")
-    return "SCARECROW"
+    logger.info("Sending \"NONE\"")
+    return "NONE"
 
 
 def get_upgrade() -> str:
-    logger.info("Sending \"LONGERSCYTHE\"")
-    return "LONGERSCYTHE"
+    logger.info("Sending \"NONE\"")
+    return "NONE"
 
 
 def get_move_decision(game_state) -> str:
-    logger.info(f"(Before Move) I received: {str(game_state):.40s}...")
-    logger.info("Sending \"move 1 1\"")
-    return "move 1 1"
+    x = random.randint(0, game_state['tileMap']['mapWidth'])
+    y = random.randint(0, game_state['tileMap']['mapHeight'])
+
+    move = f"move {x} {y}"
+    logger.info(f"Sending \"{move}\"")
+    return move
 
 
 def get_action_decision(game_state) -> str:
-    logger.info(f"(After Move) I received: {str(game_state):.40s}...")
-    logger.info(f"Sending \"plant GRAPE 1 1\"")
-    return "plant GRAPE 1 1"
+    x = random.randint(0, game_state['tileMap']['mapWidth'])
+    y = random.randint(0, game_state['tileMap']['mapHeight'])
+    crop = "CORN"
+
+    action = f"plant {crop} {x} {y}"
+    logger.info(f"Sending \"{action}\"")
+    return action
 
 
 def crash_on_turn(curr_turn: int, turn: int) -> None:

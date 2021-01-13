@@ -1,7 +1,11 @@
 package mech.mania.engine.model;
 
+import com.google.gson.annotations.Expose;
+
 public class Crop {
+    @Expose
     private CropType type;
+    @Expose
     private int growthTimer; // This is a down-counter (i.e. 0 means fully grown)
     private double value;
 
@@ -9,6 +13,12 @@ public class Crop {
         this.type = type;
         this.growthTimer = 0;
         this.value = 0;
+    }
+
+    public Crop(Crop other) {
+        this.type = other.type;
+        this.growthTimer = other.growthTimer;
+        this.value = other.value;
     }
 
     /** Increases this crop's value based on the multiplier and decrements the growthTimer if crop is still growing */

@@ -1,8 +1,10 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.Player;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.Position;
+import mech.mania.engine.util.GameUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +34,15 @@ public class MoveAction extends PlayerDecision {
     }
 
     public void performAction(GameState state) {
-        // stub for now
-        // note: destination can be null
+        if (this.destination == null) {
+            return;
+        }
+
+        Player player = state.getPlayer(playerID);
+        if (GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
+            return;
+        }
+
+        player.setPosition(this.destination);
     }
 }

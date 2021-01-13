@@ -79,4 +79,18 @@ public class GameState {
     public Config getGameConfig() {
         return gameConfig;
     }
+
+    public Player getPlayer(int playerID) {
+        if (playerID == 1) {
+            return player1;
+        }
+        return player2;
+    }
+
+    public Player getOpponentPlayer(int playerID) {
+        if (playerID == 1) {
+            return player2;
+        }
+        return player1;
+    }
 }

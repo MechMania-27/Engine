@@ -2,6 +2,8 @@ package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
 
+import java.util.HashMap;
+
 public class Player {
     @Expose
     private String name;
@@ -13,6 +15,8 @@ public class Player {
     private UpgradeType upgrade;
     @Expose
     private int money;
+    @Expose
+    private HashMap<CropType, Integer> seeds;
 
     public Player(String name, Position position, ItemType item, UpgradeType upgrade, int money) {
         this.name = name;
@@ -20,6 +24,10 @@ public class Player {
         this.item = item;
         this.upgrade = upgrade;
         this.money = money;
+        seeds = new HashMap<>();
+        seeds.put(CropType.CORN, 0);
+        seeds.put(CropType.GRAPE, 0);
+        seeds.put(CropType.POTATO, 0);
     }
 
     public Player(Player other) {
@@ -28,6 +36,8 @@ public class Player {
         this.item = other.item;
         this.upgrade = other.upgrade;
         this.money = other.money;
+        seeds = new HashMap<>();
+        seeds.putAll(other.seeds);
     }
 
     public int getMoney() {
@@ -70,8 +80,30 @@ public class Player {
         this.name = name;
     }
 
-    // stub for now
+    // TODO stub for now
     public int getHarvestRadius() {
         return -1;
+    }
+
+    // TODO stub for now
+    public int getPlantingRadius() {
+        return -1;
+    }
+
+    // TODO stub for now
+    public int getSpeed() {
+        return -1;
+    }
+
+    public void addSeeds(CropType type, int numSeeds) {
+        seeds.put(type, seeds.get(type) + numSeeds);
+    }
+
+    public void removeSeeds(CropType type, int numSeeds) {
+        seeds.put(type, seeds.get(type) - numSeeds);
+    }
+
+    public HashMap<CropType, Integer> getSeeds() {
+        return this.seeds;
     }
 }

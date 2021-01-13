@@ -14,7 +14,7 @@ public class TileMap {
     @Expose
     private final int mapWidth;
     @Expose
-    private final List<List<Tile>> tiles;
+    private final ArrayList<ArrayList<Tile>> tiles;
 
     private final Config gameConfig;
     private final Player player1;
@@ -131,6 +131,12 @@ public class TileMap {
         }
     }
 
+    public void plantCrop(Position pos, CropType type) {
+        if (isValidPosition(pos)) {
+            tiles.get(pos.getX()).get(pos.getY()).setCrop(new Crop(type));
+        }
+    }
+
     public int getMapHeight() {
         return mapHeight;
     }
@@ -141,6 +147,10 @@ public class TileMap {
 
     public boolean isValidPosition(Position pos) {
         return pos.getX() >= 0 && pos.getX() < mapWidth && pos.getY() >= 0 && pos.getY() < mapHeight;
+    }
+
+    public TileType getTileType(Position pos) {
+        return tiles.get(pos.getX()).get(pos.getY()).getType();
     }
 
     public void movePlayer1(Position newPos) {

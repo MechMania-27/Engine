@@ -1,6 +1,7 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.Position;
 
 import java.util.regex.Matcher;
@@ -14,7 +15,7 @@ public class MoveAction extends PlayerDecision {
         this.destination = null;
     }
 
-    public PlayerDecision parse(String args) {
+    public PlayerDecision parse(String args) throws PlayerDecisionParseException {
         String regex = "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
@@ -24,7 +25,7 @@ public class MoveAction extends PlayerDecision {
             int y = Integer.parseInt(matcher.group("y"));
             destination = new Position(x, y);
         } else{
-            throw new IllegalArgumentException("Arguments did not match Move regex");
+            throw new PlayerDecisionParseException("Arguments did not match Move regex");
         }
 
         return this;
@@ -32,5 +33,6 @@ public class MoveAction extends PlayerDecision {
 
     public void performAction(GameState state) {
         // stub for now
+        // note: destination can be null
     }
 }

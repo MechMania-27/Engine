@@ -6,7 +6,7 @@ import mech.mania.engine.config.Config;
 
 public class GameState {
     @Expose
-    private int turn = 1;
+    private int turn;
     @Expose
     @SerializedName("p1")
     private Player player1;
@@ -19,6 +19,7 @@ public class GameState {
     public GameState(Config gameConfig,
                      String player1Name, ItemType player1Item, UpgradeType player1UpgradeType,
                      String player2Name, ItemType player2Item, UpgradeType player2UpgradeType) {
+        this.turn = 1;
         int startingMoney = gameConfig.STARTING_MONEY;
         Position player1Position = new Position(0, 0);
         Position player2Position = new Position(gameConfig.BOARD_WIDTH - 1, 0);
@@ -33,9 +34,10 @@ public class GameState {
     }
 
     public GameState(GameState other) {
-        this.player1 = other.getPlayer1();
-        this.player2 = other.getPlayer2();
-        this.tileMap = other.getTileMap();
+        this.turn = other.turn;
+        this.player1 = new Player(other.player1);
+        this.player2 = new Player(other.player2);
+        this.tileMap = new TileMap(other.tileMap);
     }
 
     public int getTurn() {

@@ -8,9 +8,10 @@ import mech.mania.engine.core.PlayerEndState;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.PlayerDecisionParseException;
+import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
-import mech.mania.engine.util.PlayerDecisionParseException;
 import org.apache.commons.cli.*;
 
 import java.io.IOException;
@@ -50,18 +51,18 @@ public class Main {
         JsonLogger engineLogger = new JsonLogger(0);
 
         // should the logger print debug statements?
-        player1Logger.setDebug(commandLine.hasOption("d"));
-        player2Logger.setDebug(commandLine.hasOption("d"));
+        player1Logger.setDebug(true);
+        player2Logger.setDebug(true);
         engineLogger.setDebug(commandLine.hasOption("d"));
 
         // using the arguments from the command line, package up all necessary
         // arguments into a PlayerCommunicationInfo object
         PlayerCommunicationInfo player1 = new PlayerCommunicationInfo(
-                gameConfig, engineLogger, player1Logger,
+                gameConfig, engineLogger, player1Logger, 0,
                 commandLine.getOptionValue("n"),
                 commandLine.getOptionValue("e"));
         PlayerCommunicationInfo player2 = new PlayerCommunicationInfo(
-                gameConfig, engineLogger, player2Logger,
+                gameConfig, engineLogger, player2Logger, 1,
                 commandLine.getOptionValue("N"),
                 commandLine.getOptionValue("E"));
 
@@ -71,7 +72,9 @@ public class Main {
         // player process startup
         try {
             player1.start();
+            engineLogger.debug("Started player 1 process");
             player1.askForStartingItems();
+            engineLogger.debug("Finished asking player 1 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 1 failed to start", e);
             player1EndState = PlayerEndState.ERROR;
@@ -79,7 +82,9 @@ public class Main {
 
         try {
             player2.start();
+            engineLogger.debug("Started player 2 process");
             player2.askForStartingItems();
+            engineLogger.debug("Finished asking player 2 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 2 failed to start", e);
             player2EndState = PlayerEndState.ERROR;
@@ -111,16 +116,10 @@ public class Main {
             writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
         }
 
-        try {
-            player1.stop();
-        } catch (IOException e) {
-            engineLogger.severe("Unable to stop player 1 (check bot logs)", e);
-        }
-        try {
-            player2.stop();
-        } catch (IOException e) {
-            engineLogger.severe("Unable to stop player 2 (check bot logs)", e);
-        }
+        player1.stop();
+        engineLogger.debug("Stopped player 1");
+        player2.stop();
+        engineLogger.debug("Stopped player 2");
 
         player1Logger.incrementTurn();
         player2Logger.incrementTurn();
@@ -264,11 +263,11 @@ public class Main {
      * This is mostly an attempt to uncrowd the main function.
      *
      * @param gameConfig Config object that contains game default values
-     * @param gameStates GameLog object that contains the running list of GameState objects. Should be empty, will be filled
+     * @param gameLog GameLog object that contains the running list of GameState objects. Should be empty, will be filled
      * @param player1 PlayerCommunicationInfo object that keeps information about communication with player 1
      * @param player2 PlayerCommunicationInfo object that keeps information about communication with player 2
      */
-    protected static void gameLoop(Config gameConfig, GameLog gameStates,
+    protected static void gameLoop(Config gameConfig, GameLog gameLog,
                                    PlayerCommunicationInfo player1,
                                    PlayerCommunicationInfo player2,
                                    JsonLogger engineLogger) {
@@ -288,6 +287,7 @@ public class Main {
 
             try {
                 player1.sendGameState(gameState);
+                engineLogger.debug("Sent player 1 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 1: ", e);
                 player1EndState = PlayerEndState.ERROR;
@@ -295,29 +295,17 @@ public class Main {
 
             try {
                 player2.sendGameState(gameState);
+                engineLogger.debug("Sent player 2 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 2", e);
                 player2EndState = PlayerEndState.ERROR;
             }
 
-            if (player1EndState != null || player2EndState != null) {
-                if (player1EndState == PlayerEndState.ERROR && player2EndState == PlayerEndState.ERROR) {
-                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
-                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
-                } else if (player1EndState == PlayerEndState.ERROR) {
-                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
-                    gameStates.setPlayer2EndState(PlayerEndState.WON);
-                } else {
-                    gameStates.setPlayer1EndState(PlayerEndState.WON);
-                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
-                }
-                return;
-            }
+            if (badEndState(gameLog, player1EndState, player2EndState)) return;
 
             // add game states to list of total game states
-            gameStates.addState(new GameState(gameState));
+            gameLog.addState(new GameState(gameState));
 
-            // retrieve decisions from players
             player1EndState = null;
             player2EndState = null;
             PlayerDecision player1Decision = null;
@@ -325,34 +313,98 @@ public class Main {
 
             try {
                 player1Decision = player1.getPlayerDecision();
+                engineLogger.debug("Got player 1's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
-                engineLogger.severe("Error while getting player decision from player 1", e);
+                engineLogger.severe("Error while getting move action from player 1", e);
                 player1EndState = PlayerEndState.ERROR;
             }
 
             try {
                 player2Decision = player2.getPlayerDecision();
+                engineLogger.debug("Got player 2's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
-                engineLogger.severe("Error while getting player decision from player 2", e);
+                engineLogger.severe("Error while getting move action from player 2", e);
                 player2EndState = PlayerEndState.ERROR;
             }
 
-            if (player1EndState != null || player2EndState != null) {
-                if (player1EndState == PlayerEndState.ERROR && player2EndState == PlayerEndState.ERROR) {
-                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
-                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
-                } else if (player1EndState == PlayerEndState.ERROR) {
-                    gameStates.setPlayer1EndState(PlayerEndState.ERROR);
-                    gameStates.setPlayer2EndState(PlayerEndState.WON);
-                } else {
-                    gameStates.setPlayer1EndState(PlayerEndState.WON);
-                    gameStates.setPlayer2EndState(PlayerEndState.ERROR);
-                }
-                return;
+            if (badEndState(gameLog, player1EndState, player2EndState)) return;
+
+            // move the players based on move decisions
+            boolean validPlayer1MoveAction = true;
+            boolean validPlayer2MoveAction = true;
+            if (player1Decision instanceof MoveAction && player2Decision instanceof MoveAction) {
+                engineLogger.debug("Both players submitted a move decision");
+                gameState = GameLogic.movePlayer(gameState,
+                        (MoveAction) player1Decision,
+                        (MoveAction) player2Decision);
+            } else if (player1Decision instanceof MoveAction) {
+                engineLogger.debug("Player 2 did not submit a move decision");
+                // player 2 submitted a non-move decision, so store the decision
+                gameState = GameLogic.movePlayer(gameState,
+                        (MoveAction) player1Decision,
+                        new MoveAction(1));
+                validPlayer2MoveAction = false;
+            } else if (player2Decision instanceof MoveAction) {
+                engineLogger.debug("Player 1 did not submit a move decision");
+                // player 1 submitted a non-move decision, so store the decision
+                gameState = GameLogic.movePlayer(gameState,
+                        new MoveAction(0),
+                        (MoveAction) player2Decision);
+                validPlayer1MoveAction = false;
+            } else {
+                engineLogger.debug("Both players did not submit a move decision");
+                validPlayer1MoveAction = false;
+                validPlayer2MoveAction = false;
             }
 
-            long endTime = System.nanoTime();
-            engineLogger.info(String.format("Turn %d took %.2f milliseconds", gameState.getTurn(), (endTime - startTime) / 1e6));
+            // send the players another game state after moving
+            try {
+                player1.sendGameState(gameState);
+                engineLogger.debug("Sent player 1 a game state");
+            } catch (IOException | IllegalThreadStateException e) {
+                engineLogger.severe("Error while sending game state to player 1: ", e);
+                player1EndState = PlayerEndState.ERROR;
+            }
+
+            try {
+                player2.sendGameState(gameState);
+                engineLogger.debug("Sent player 2 a game state");
+            } catch (IOException | IllegalThreadStateException e) {
+                engineLogger.severe("Error while sending game state to player 2", e);
+                player2EndState = PlayerEndState.ERROR;
+            }
+
+            if (badEndState(gameLog, player1EndState, player2EndState)) return;
+
+            // retrieve action decisions from players
+            player1EndState = null;
+            player2EndState = null;
+
+            if (validPlayer1MoveAction) {
+                try {
+                    player1Decision = player1.getPlayerDecision();
+                    engineLogger.debug("Got player 1's action decision");
+                } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
+                    engineLogger.severe("Error while getting player decision from player 1", e);
+                    player1EndState = PlayerEndState.ERROR;
+                }
+            } else {
+                engineLogger.debug("Player 1 did not submit a move decision (probably an action decision), skipping getting decision");
+            }
+
+            if (validPlayer2MoveAction) {
+                try {
+                    player2Decision = player2.getPlayerDecision();
+                    engineLogger.debug("Got player 2's action decision");
+                } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
+                    engineLogger.severe("Error while getting player decision from player 2", e);
+                    player2EndState = PlayerEndState.ERROR;
+                }
+            } else {
+                engineLogger.debug("Player 2 did not submit a move decision (probably an action decision), skipping getting decision");
+            }
+
+            if (badEndState(gameLog, player1EndState, player2EndState)) return;
 
             player1.getLogger().incrementTurn();
             player2.getLogger().incrementTurn();
@@ -361,11 +413,29 @@ public class Main {
             // update game state
             gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision);
 
+            long endTime = System.nanoTime();
+            engineLogger.info(String.format("Turn %d took %.2f milliseconds", gameState.getTurn(), (endTime - startTime) / 1e6));
+
         } while (!GameLogic.isGameOver(gameState));
 
-        // TODO: figure out how to get winner and loser from GameLogic
-        gameStates.setPlayer1EndState(player1EndState);
-        gameStates.setPlayer2EndState(player2EndState);
+        GameLogic.setWinners(gameLog, gameState);
+    }
+
+    private static boolean badEndState(GameLog gameStates, PlayerEndState player1EndState, PlayerEndState player2EndState) {
+        if (player1EndState != null || player2EndState != null) {
+            if (player1EndState == PlayerEndState.ERROR && player2EndState == PlayerEndState.ERROR) {
+                gameStates.setPlayer1EndState(PlayerEndState.ERROR);
+                gameStates.setPlayer2EndState(PlayerEndState.ERROR);
+            } else if (player1EndState == PlayerEndState.ERROR) {
+                gameStates.setPlayer1EndState(PlayerEndState.ERROR);
+                gameStates.setPlayer2EndState(PlayerEndState.WON);
+            } else {
+                gameStates.setPlayer1EndState(PlayerEndState.WON);
+                gameStates.setPlayer2EndState(PlayerEndState.ERROR);
+            }
+            return true;
+        }
+        return false;
     }
 
     /**

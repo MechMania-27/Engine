@@ -26,7 +26,6 @@ public class PlayerParseUtils {
 
     /**
      * Parse a plant type from a string
-     * TODO
      * @param plant String to parse
      * @return PlantType that was parsed
      */
@@ -46,7 +45,6 @@ public class PlayerParseUtils {
         return gson.toJson(gameState, GameState.class);
     }
 
-
     /**
      * Modify the decision object by parsing the decisionString and putting the necessary
      *
@@ -57,12 +55,13 @@ public class PlayerParseUtils {
      */
     public static PlayerDecision parseDecision(int playerID, String decisionString) throws PlayerDecisionParseException {
         int space = decisionString.indexOf(' ');
-        if (space == -1){
+        if (space == -1) {
             throw new PlayerDecisionParseException(String.format("Action type not found in string: %s", decisionString));
         }
 
         String action = decisionString.substring(0, space);
-        String args = decisionString.substring(space + 1).stripTrailing();
+        // substring from space to end and strip all trailing whitespace
+        String args = decisionString.substring(space + 1).replaceAll("\\s+$", "");
 
         switch (action.toLowerCase()) {
             case "move":
@@ -74,7 +73,6 @@ public class PlayerParseUtils {
             case "buy":
                 return new BuyAction(playerID).parse(args);
             case "useitem": case "use_item":
-                // TODO: Should we support "use item" as well? In refactoring this code I've removed support for it
                 return new UseItemAction(playerID).parse(args);
             default:
                 throw new PlayerDecisionParseException(String.format("Unrecognized action: %s", action));

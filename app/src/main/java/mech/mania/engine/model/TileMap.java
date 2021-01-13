@@ -38,6 +38,21 @@ public class TileMap {
         this.gameConfig = gameConfig;
     }
 
+    public TileMap(TileMap other) {
+        this.mapHeight = other.mapHeight;
+        this.mapWidth = other.mapWidth;
+        this.tiles = new ArrayList<>();
+        for (int row = 0; row < mapHeight; row++) {
+            tiles.add(new ArrayList<>());
+            for (int col = 0; col < mapWidth; col++) {
+                tiles.get(row).add(other.tiles.get(row).get(col));
+            }
+        }
+        this.gameConfig = other.gameConfig;
+        this.player1 = new Player(other.player1);
+        this.player2 = new Player(other.player2);
+    }
+
     public int getMapHeight() {
         return mapHeight;
     }

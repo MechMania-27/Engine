@@ -1,6 +1,7 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.Position;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class HarvestAction extends PlayerDecision {
         this.coords = new ArrayList<>();
     }
 
-    public PlayerDecision parse(String args) {
+    public PlayerDecision parse(String args) throws PlayerDecisionParseException {
         String regex = "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
@@ -24,7 +25,7 @@ public class HarvestAction extends PlayerDecision {
 
         // Command must have at least one result
         if (!matcher.find()) {
-            throw new IllegalArgumentException("Arguments did not match Harvest regex");
+            throw new PlayerDecisionParseException("Arguments did not match Harvest regex");
         }
 
         do {

@@ -2,6 +2,7 @@ package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.ItemType;
+import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.Position;
 
 import java.util.regex.Matcher;
@@ -17,7 +18,7 @@ public class UseItemAction extends PlayerDecision {
         this.actionPosition = null;
     }
 
-    public PlayerDecision parse(String args) {
+    public PlayerDecision parse(String args) throws PlayerDecisionParseException {
         String regex = "(?<item>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
@@ -29,7 +30,7 @@ public class UseItemAction extends PlayerDecision {
             actionPosition = new Position(x, y);
             item = ItemType.getEnum(matcher.group("item"));
         } else{
-            throw new IllegalArgumentException("Arguments did not match UseItem regex");
+            throw new PlayerDecisionParseException("Arguments did not match UseItem regex");
         }
 
         return this;

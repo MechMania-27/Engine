@@ -10,16 +10,24 @@ public class Player {
     @Expose
     private ItemType item;
     @Expose
-    private UpgradeType upgradeType;
+    private UpgradeType upgrade;
     @Expose
     private int money;
 
-    public Player(String name, Position position, ItemType item, UpgradeType upgradeType, int money) {
+    public Player(String name, Position position, ItemType item, UpgradeType upgrade, int money) {
         this.name = name;
         this.position = position;
         this.item = item;
-        this.upgradeType = upgradeType;
+        this.upgrade = upgrade;
         this.money = money;
+    }
+
+    public Player(Player other) {
+        this.name = other.name;
+        this.position = new Position(other.position);
+        this.item = other.item;
+        this.upgrade = other.upgrade;
+        this.money = other.money;
     }
 
     public int getMoney() {
@@ -31,11 +39,11 @@ public class Player {
     }
 
     public UpgradeType getUpgrade() {
-        return upgradeType;
+        return upgrade;
     }
 
     public void setUpgrade(UpgradeType upgradeType) {
-        this.upgradeType = upgradeType;
+        this.upgrade = upgradeType;
     }
 
     public ItemType getItem() {

@@ -1,9 +1,8 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlayerDecisionParseException;
-import mech.mania.engine.model.Position;
+import mech.mania.engine.model.*;
+import mech.mania.engine.util.GameUtils;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -39,6 +38,23 @@ public class HarvestAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
-        // stub for now
+        // will use playerID to get the Player object from state and then validate each planting action
+        Player player = state.getPlayer(playerID);
+
+        for (Position coord : coords) {
+            if (GameUtils.distance(player.getPosition(), coord) > player.getHarvestRadius()) {
+                engineLogger.severe(String.format("Player %d attempted to harvest plant from outside harvest radius: %s", playerID + 1, coord));
+                return;
+            }
+        }
+
+        for (Position coord : coords) {
+            Tile tile = state.getTileMap().get(coord);
+            if (tile.getCrop().getType() == CropType.NONE) {
+                engineLogger.info(String.format("Player %d attempted to harvest where no crop was found: %s", playerID + 1, coord));
+            } else {
+                player.harvest(tile);
+            }
+        }
     }
 }

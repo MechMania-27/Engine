@@ -7,11 +7,12 @@ public class Crop {
     private CropType type;
     @Expose
     private int growthTimer; // This is a down-counter (i.e. 0 means fully grown)
+    @Expose
     private double value;
 
     public Crop(CropType type) {
         this.type = type;
-        this.growthTimer = 0;
+        this.growthTimer = type.getTimeToGrow();
         this.value = 0;
     }
 
@@ -41,4 +42,7 @@ public class Crop {
         return type;
     }
 
+    public void setValue(double value) {
+        this.value = value;
+    }
 }

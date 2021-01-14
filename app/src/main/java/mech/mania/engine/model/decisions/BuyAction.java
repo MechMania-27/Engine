@@ -50,12 +50,10 @@ public class BuyAction extends PlayerDecision {
         }
 
         if (runningCost > player.getMoney()) {
-            engineLogger.severe(
-                                String.format(
-                                                "Player %d failed to purchase, price %d higher than budget %d",
-                                                playerID + 1,
-                                                runningCost,
-                                                player.getMoney()));
+            engineLogger.severe(String.format("Player %d failed to purchase, price %d higher than budget %.2f",
+                                              playerID + 1,
+                                              runningCost,
+                                              player.getMoney()));
             return;
         }
 

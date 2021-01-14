@@ -44,15 +44,13 @@ public class PlantAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
-        // stub for now
         // will use playerID to get the Player object from state and then validate each planting action
-
         Player player = state.getPlayer(playerID);
 
         HashMap<CropType, Integer> cropsToPlant = new HashMap<>();
-        cropsToPlant.put(CropType.POTATO, 0);
-        cropsToPlant.put(CropType.GRAPE, 0);
-        cropsToPlant.put(CropType.CORN, 0);
+        for (CropType type : CropType.values()) {
+            cropsToPlant.put(type, 0);
+        }
 
         for (int i = 0; i < cropTypes.size(); i++) {
             if (GameUtils.distance(player.getPosition(), coords.get(i)) > player.getPlantingRadius()) {
@@ -69,6 +67,7 @@ public class PlantAction extends PlayerDecision {
 
         for (int i = 0; i < cropTypes.size(); i++) {
             state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
+            player.removeSeeds(cropTypes.get(i), 1);
         }
     }
 }

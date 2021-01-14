@@ -2,9 +2,7 @@ package mech.mania.engine.core;
 
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.GameLog;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.Player;
+import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
 
@@ -23,12 +21,15 @@ public class GameLogic {
         if (player1.getMoney() > player2.getMoney()) {
             gameLog.setPlayer1EndState(PlayerEndState.WON);
             gameLog.setPlayer2EndState(PlayerEndState.LOST);
+            engineLogger.info(String.format("Player 1 has won due to having more money (%.2f > %.2f)", player1.getMoney(), player2.getMoney()));
         } else if (player1.getMoney() < player2.getMoney()) {
             gameLog.setPlayer1EndState(PlayerEndState.LOST);
             gameLog.setPlayer2EndState(PlayerEndState.WON);
+            engineLogger.info(String.format("Player 2 has won due to having more money (%.2f > %.2f)", player2.getMoney(), player1.getMoney()));
         } else {
             gameLog.setPlayer1EndState(PlayerEndState.TIED);
             gameLog.setPlayer2EndState(PlayerEndState.TIED);
+            engineLogger.info(String.format("Both players ended up with the same amount of money: %.2f", player1.getMoney()));
         }
     }
 
@@ -63,6 +64,13 @@ public class GameLogic {
 
         // Fertility band movement
         newGameState.getTileMap().setFertilityBand(newGameState.getTurn());
+
+        // Wither crops in ARID land
+        for (Tile tile : newGameState.getTileMap()) {
+            if (tile.getType() == TileType.ARID) {
+                tile.getCrop().setValue(0);
+            }
+        }
 
         return newGameState;
     }

@@ -2,7 +2,6 @@ package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
 import mech.mania.engine.config.Config;
-import mech.mania.engine.util.GameUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -121,11 +120,6 @@ public class TileMap implements Iterable<Tile> {
         }
     }
 
-    public boolean isGreenGrocer(Position pos) {
-        return isValidPosition(pos) &&
-                tiles.get(pos.getY()).get(pos.getX()).getType() == TileType.GREEN_GROCER;
-    }
-
     /** Grows all crops on this TileMap */
     public void growCrops(){
         for (Tile tile : this) {
@@ -144,7 +138,7 @@ public class TileMap implements Iterable<Tile> {
 
     public void plantCrop(Position pos, CropType type) {
         if (isValidPosition(pos)) {
-            tiles.get(pos.getX()).get(pos.getY()).setCrop(new Crop(type));
+            get(pos).setCrop(new Crop(type));
         }
     }
 
@@ -156,41 +150,21 @@ public class TileMap implements Iterable<Tile> {
         return mapWidth;
     }
 
+    public Tile get(Position pos) {
+        if (!isValidPosition(pos)) {
+            return null;
+        }
+        return tiles.get(pos.getY()).get(pos.getX());
+    }
+
     public boolean isValidPosition(Position pos) {
         return pos.getX() >= 0 && pos.getX() < mapWidth && pos.getY() >= 0 && pos.getY() < mapHeight;
     }
 
     public TileType getTileType(Position pos) {
-        return tiles.get(pos.getX()).get(pos.getY()).getType();
+        return get(pos).getType();
     }
 
-    public void movePlayer1(Position newPos) {
-        if (isValidPosition(newPos)) {
-            // error handling/notification for invalid position
-
-        }
-
-        if (GameUtils.distance(player1.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
-            // error handling/notification for moving too far
-
-        }
-
-        player1.setPosition(newPos);
-    }
-
-    public void movePlayer2(Position newPos) {
-        if (isValidPosition(newPos)) {
-            // error handling/notification for invalid position
-
-        }
-
-        if (GameUtils.distance(player2.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
-            // error handling/notification for moving too far
-
-        }
-
-        player2.setPosition(newPos);
-    }
 
     @Override
     public Iterator<Tile> iterator() {

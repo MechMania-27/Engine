@@ -15,6 +15,8 @@ public class GameState {
     private Player player2;
     @Expose
     private TileMap tileMap;
+    @Expose
+    private int playerNum;
 
     private Config gameConfig;
 
@@ -28,8 +30,8 @@ public class GameState {
         Position player1Position = new Position(0, 0);
         Position player2Position = new Position(gameConfig.BOARD_WIDTH - 1, 0);
 
-        Player player1 = new Player(player1Name, player1Position, player1Item, player1UpgradeType, startingMoney);
-        Player player2 = new Player(player2Name, player2Position, player2Item, player2UpgradeType, startingMoney);
+        Player player1 = new Player(player1Name, player1Position, player1Item, player1UpgradeType, startingMoney, gameConfig);
+        Player player2 = new Player(player2Name, player2Position, player2Item, player2UpgradeType, startingMoney, gameConfig);
 
         this.player1 = player1;
         this.player2 = player2;
@@ -65,14 +67,6 @@ public class GameState {
         return player2;
     }
 
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }
-
-    public Config getGameConfig() {
-        return gameConfig;
-    }
-
     public Player getPlayer(int playerID) {
         if (playerID == 0) {
             return player1;
@@ -87,4 +81,7 @@ public class GameState {
         return player1;
     }
 
+    public void setPlayerNum(int playerNum) {
+        this.playerNum = playerNum;
+    }
 }

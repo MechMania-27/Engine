@@ -85,6 +85,10 @@ public class Tile {
         this.crop = crop;
     }
 
+    public void clearCrop() {
+        this.crop = new Crop(CropType.NONE);
+    }
+
     public ItemType getP1Item() {
         return p1Item;
     }

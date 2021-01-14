@@ -1,9 +1,9 @@
 import sys
 import json
 
+
 def receive_gamestate():
-    # gamestate_bytes = sys.stdin.readline()
-    gamestate_bytes = input()
+    gamestate_bytes = sys.stdin.readline()
     return json.loads(gamestate_bytes)
 
 

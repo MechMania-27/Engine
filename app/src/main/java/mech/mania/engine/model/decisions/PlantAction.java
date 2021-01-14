@@ -1,12 +1,12 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.model.*;
+import mech.mania.engine.util.GameUtils;
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.CropType;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlayerDecisionParseException;
-import mech.mania.engine.model.Position;
+
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,5 +46,29 @@ public class PlantAction extends PlayerDecision {
     public void performAction(GameState state, JsonLogger engineLogger) {
         // stub for now
         // will use playerID to get the Player object from state and then validate each planting action
+
+        Player player = state.getPlayer(playerID);
+
+        HashMap<CropType, Integer> cropsToPlant = new HashMap<>();
+        cropsToPlant.put(CropType.POTATO, 0);
+        cropsToPlant.put(CropType.GRAPE, 0);
+        cropsToPlant.put(CropType.CORN, 0);
+
+        for (int i = 0; i < cropTypes.size(); i++) {
+            if (GameUtils.distance(player.getPosition(), coords.get(i)) > player.getPlantingRadius()) {
+                return;
+            }
+            cropsToPlant.put(cropTypes.get(i), cropsToPlant.get(cropTypes.get(i)) + 1);
+        }
+
+        for (CropType type : cropsToPlant.keySet()) {
+            if (cropsToPlant.get(type) > player.getSeeds().get(type)) {
+                return;
+            }
+        }
+
+        for (int i = 0; i < cropTypes.size(); i++) {
+            state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
+        }
     }
 }

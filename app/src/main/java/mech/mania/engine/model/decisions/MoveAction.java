@@ -2,8 +2,10 @@ package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.Player;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.Position;
+import mech.mania.engine.util.GameUtils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,27 +35,18 @@ public class MoveAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
-        // note: destination can be null
-        if (destination != null) {
-            if (playerID == 0) {
-                if (state.getTileMap().isValidPosition(destination)) {
-                    state.getPlayer1().setPosition(destination);
-                    if (state.getTileMap().isGreenGrocer(destination)) {
-                        state.getPlayer1().sellInventory();
-                    }
-                } else {
-                    engineLogger.severe(String.format("Failed to move player 1 to position %s", destination));
-                }
-            } else {
-                if (state.getTileMap().isValidPosition(destination)) {
-                    state.getPlayer2().setPosition(destination);
-                    if (state.getTileMap().isGreenGrocer(destination)) {
-                        state.getPlayer2().sellInventory();
-                    }
-                } else {
-                    engineLogger.severe(String.format("Failed to move player 2 to position %s", destination));
-                }
-            }
+        if (this.destination == null) {
+            engineLogger.severe(String.format("Failed to move player %d to null position", playerID + 1));
         }
+
+        Player player = state.getPlayer(playerID);
+
+        if (!state.getTileMap().isValidPosition(destination)
+                || GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
+            engineLogger.severe(String.format("Failed to move player %d to position %s", playerID + 1, destination));
+            return;
+        }
+
+        player.setPosition(this.destination);
     }
 }

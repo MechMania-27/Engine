@@ -64,4 +64,27 @@ public class GameState {
     public Player getPlayer2() {
         return player2;
     }
+
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
+    }
+
+    public Config getGameConfig() {
+        return gameConfig;
+    }
+
+    public Player getPlayer(int playerID) {
+        if (playerID == 0) {
+            return player1;
+        }
+        return player2;
+    }
+
+    public Player getOpponentPlayer(int playerID) {
+        if (playerID == 0) {
+            return player2;
+        }
+        return player1;
+    }
+
 }

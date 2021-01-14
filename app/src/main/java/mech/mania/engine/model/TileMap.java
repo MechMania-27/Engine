@@ -2,10 +2,10 @@ package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
 import mech.mania.engine.config.Config;
+import mech.mania.engine.util.GameUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class TileMap implements Iterable<Tile> {
     @Expose
@@ -13,7 +13,7 @@ public class TileMap implements Iterable<Tile> {
     @Expose
     private final int mapWidth;
     @Expose
-    private final List<List<Tile>> tiles;
+    private final ArrayList<ArrayList<Tile>> tiles;
 
     private final Config gameConfig;
     private final Player player1;
@@ -136,6 +136,12 @@ public class TileMap implements Iterable<Tile> {
         }
     }
 
+    public void plantCrop(Position pos, CropType type) {
+        if (isValidPosition(pos)) {
+            tiles.get(pos.getX()).get(pos.getY()).setCrop(new Crop(type));
+        }
+    }
+
     public int getMapHeight() {
         return mapHeight;
     }
@@ -146,6 +152,38 @@ public class TileMap implements Iterable<Tile> {
 
     public boolean isValidPosition(Position pos) {
         return pos.getX() >= 0 && pos.getX() < mapWidth && pos.getY() >= 0 && pos.getY() < mapHeight;
+    }
+
+    public TileType getTileType(Position pos) {
+        return tiles.get(pos.getX()).get(pos.getY()).getType();
+    }
+
+    public void movePlayer1(Position newPos) {
+        if (isValidPosition(newPos)) {
+            // error handling/notification for invalid position
+
+        }
+
+        if (GameUtils.distance(player1.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
+            // error handling/notification for moving too far
+
+        }
+
+        player1.setPosition(newPos);
+    }
+
+    public void movePlayer2(Position newPos) {
+        if (isValidPosition(newPos)) {
+            // error handling/notification for invalid position
+
+        }
+
+        if (GameUtils.distance(player2.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
+            // error handling/notification for moving too far
+
+        }
+
+        player2.setPosition(newPos);
     }
 
     @Override

@@ -1,9 +1,7 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.CropType;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlayerDecisionParseException;
+import mech.mania.engine.model.*;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -39,6 +37,32 @@ public class BuyAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
-        // stub for now
+        Player player = state.getPlayer(playerID);
+        TileType curTile = state.getTileMap().getTileType(player.getPosition());
+        if (curTile != TileType.GREEN_GROCER) {
+            engineLogger.severe(String.format("Player %d failed to purchase, not on Green Grocer tile", playerID + 1));
+            return;
+        }
+
+        int runningCost = 0;
+        for (int i = 0; i < seeds.size(); i++) {
+            runningCost += seeds.get(i).getSeedBuyPrice() * quantities.get(i);
+        }
+
+        if (runningCost > player.getMoney()) {
+            engineLogger.severe(
+                                String.format(
+                                                "Player %d failed to purchase, price %d higher than budget %d",
+                                                playerID + 1,
+                                                runningCost,
+                                                player.getMoney()));
+            return;
+        }
+
+        for (int i = 0; i < seeds.size(); i++) {
+            player.addSeeds(seeds.get(i), quantities.get(i));
+        }
+
+        player.setMoney(player.getMoney() - runningCost);
     }
 }

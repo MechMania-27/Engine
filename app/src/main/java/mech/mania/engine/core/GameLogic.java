@@ -27,8 +27,8 @@ public class GameLogic {
             gameLog.setPlayer1EndState(PlayerEndState.LOST);
             gameLog.setPlayer2EndState(PlayerEndState.WON);
         } else {
-            gameLog.setPlayer1EndState(PlayerEndState.TIE);
-            gameLog.setPlayer2EndState(PlayerEndState.TIE);
+            gameLog.setPlayer1EndState(PlayerEndState.TIED);
+            gameLog.setPlayer2EndState(PlayerEndState.TIED);
         }
     }
 

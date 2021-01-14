@@ -28,7 +28,11 @@ public class TileMap implements Iterable<Tile> {
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
-                tiles.get(row).add(new Tile(TileType.SOIL));
+                if (row == 0) {
+                    tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
+                } else {
+                    tiles.get(row).add(new Tile(TileType.SOIL));
+                }
             }
         }
         setFertilityBand(1);
@@ -44,7 +48,7 @@ public class TileMap implements Iterable<Tile> {
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
-                tiles.get(row).add(other.tiles.get(row).get(col));
+                tiles.get(row).add(new Tile(other.tiles.get(row).get(col)));
             }
         }
         this.gameConfig = other.gameConfig;
@@ -59,49 +63,57 @@ public class TileMap implements Iterable<Tile> {
         int shifts = (turn - 1) / gameConfig.F_BAND_MOVE_DELAY;
 
         for (int row = 0; row < mapHeight; row++) {
-            for (int col = 0; col < mapWidth; col++) {
-                Tile tile = tiles.get(row).get(col);
-
-                // Green Grocer tiles are unaffected by the fertility bands
-                if (tile.getType() == TileType.GREEN_GROCER){
-                    continue;
-                }
-
-                // offset records how far into the fertility zone a row is (negative indicates below)
-                int offset = shifts - row - 1;
-                if(offset < 0){
-                    // Below fertility band
-                    tile.setType(TileType.SOIL);
-                }
-                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT){
-                    // Within first outer band
-                    tile.setType(TileType.F_BAND_OUTER);
-                }
-                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT){
-                    // Within first mid band
-                    tile.setType(TileType.F_BAND_MID);
-                }
-                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT +
-                        gameConfig.F_BAND_INNER_HEIGHT){
-                    // Within inner band
-                    tile.setType(TileType.F_BAND_INNER);
-                }
-                else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
-                        gameConfig.F_BAND_INNER_HEIGHT){
-                    // Within second mid band
-                    tile.setType(TileType.F_BAND_MID);
-                }
-                else if(offset < 2 * gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
-                        gameConfig.F_BAND_INNER_HEIGHT){
-                    // Within second outer band
-                    tile.setType(TileType.F_BAND_OUTER);
-                }
-                else{
-                    // Above fertility bands
-                    tile.setType(TileType.ARID);
-                }
+            // Green Grocer tiles are unaffected by the fertility bands
+            // if (tile.getType() == TileType.GREEN_GROCER){
+            //     continue;
+            // }
+            if (row == 0) {
+                continue;
             }
+
+            TileType tileType;
+
+            // offset records how far into the fertility zone a row is (negative indicates below)
+            int offset = shifts - row - 1;
+            if(offset < 0){
+                // Below fertility band
+                tileType = TileType.SOIL;
+            }
+            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT){
+                // Within first outer band
+                tileType = TileType.F_BAND_OUTER;
+            }
+            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT){
+                // Within first mid band
+                tileType = TileType.F_BAND_MID;
+            }
+            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT +
+                    gameConfig.F_BAND_INNER_HEIGHT){
+                // Within inner band
+                tileType = TileType.F_BAND_INNER;
+            }
+            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
+                    gameConfig.F_BAND_INNER_HEIGHT){
+                // Within second mid band
+                tileType = TileType.F_BAND_MID;
+            }
+            else if(offset < 2 * gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
+                    gameConfig.F_BAND_INNER_HEIGHT){
+                // Within second outer band
+                tileType = TileType.F_BAND_OUTER;
+            }
+            else{
+                // Above fertility bands
+                tileType = TileType.ARID;
+            }
+
+            tiles.get(row).forEach(tile -> tile.setType(tileType));
         }
+    }
+
+    public boolean isGreenGrocer(Position pos) {
+        return isValidPosition(pos) &&
+                tiles.get(pos.getY()).get(pos.getX()).getType() == TileType.GREEN_GROCER;
     }
 
     /** Grows all crops on this TileMap */

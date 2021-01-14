@@ -25,6 +25,16 @@ public class Tile {
 
     public Tile(TileType type) {
         this.type = type;
+        this.crop = new Crop(CropType.NONE);
+        this.p1Item = ItemType.NONE;
+        this.p2Item = ItemType.NONE;
+    }
+
+    public Tile(Tile other) {
+        this.type = other.type;
+        this.crop = new Crop(other.crop);
+        this.p1Item = other.p1Item;
+        this.p2Item = other.p2Item;
     }
 
     public TileType getType() {

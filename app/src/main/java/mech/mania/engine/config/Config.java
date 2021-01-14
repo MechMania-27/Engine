@@ -8,6 +8,8 @@ public final class Config {
     public final int BOARD_HEIGHT;
     public final int BOARD_WIDTH;
 
+    public final int F_BAND_INIT_POSITION;
+    public final int F_BAND_INIT_DELAY;
     public final int F_BAND_MOVE_DELAY;
     public final int F_BAND_INNER_HEIGHT;
     public final int F_BAND_MID_HEIGHT;
@@ -41,6 +43,8 @@ public final class Config {
         F_BAND_MID_HEIGHT =      Integer.parseInt(rb.getString("fertilityband.mid.height"));
         F_BAND_OUTER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.outer.height"));
         F_BAND_MOVE_DELAY =      Integer.parseInt(rb.getString("fertilityband.speed"));
+        F_BAND_INIT_DELAY =      Integer.parseInt(rb.getString("fertilityband.delay"));
+        F_BAND_INIT_POSITION =   Integer.parseInt(rb.getString("fertilityband.start"));
 
         // player props
         CARRYING_CAPACITY =      Integer.parseInt(rb.getString("player.carrycapacity"));

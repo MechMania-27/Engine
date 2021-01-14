@@ -1,5 +1,6 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.Player;
 import mech.mania.engine.model.PlayerDecisionParseException;
@@ -33,13 +34,16 @@ public class MoveAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state) {
+    public void performAction(GameState state, JsonLogger engineLogger) {
         if (this.destination == null) {
-            return;
+            engineLogger.severe(String.format("Failed to move player %d to null position", playerID + 1));
         }
 
         Player player = state.getPlayer(playerID);
-        if (GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
+
+        if (!state.getTileMap().isValidPosition(destination)
+                || GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
+            engineLogger.severe(String.format("Failed to move player %d to position %s", playerID + 1, destination));
             return;
         }
 

@@ -6,9 +6,8 @@ import mech.mania.engine.util.GameUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
-public class TileMap {
+public class TileMap implements Iterable<Tile> {
     @Expose
     private final int mapHeight;
     @Expose
@@ -21,6 +20,7 @@ public class TileMap {
     private final Player player2;
 
     public TileMap(final Config gameConfig, final Player player1, final Player player2) {
+        this.gameConfig = gameConfig;
         mapHeight = gameConfig.BOARD_HEIGHT;
         mapWidth = gameConfig.BOARD_WIDTH;
 
@@ -28,15 +28,13 @@ public class TileMap {
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
-                // Actual value irrelevant -- will be set by fertility band afterwards
-                tiles.get(row).add(new Tile(TileType.SOIL_0));
+                tiles.get(row).add(new Tile(TileType.SOIL));
             }
         }
         setFertilityBand(1);
 
         this.player1 = player1;
         this.player2 = player2;
-        this.gameConfig = gameConfig;
     }
 
     public TileMap(TileMap other) {
@@ -57,7 +55,7 @@ public class TileMap {
     /** Sets the fertility of tiles based on the fertility band's position at a specified turn
      * @param turn The specified turn, where the first turn is 1
      */
-    public void setFertilityBand(int turn){
+    public void setFertilityBand(int turn) {
         int shifts = (turn - 1) / gameConfig.F_BAND_MOVE_DELAY;
 
         for (int row = 0; row < mapHeight; row++) {
@@ -73,41 +71,34 @@ public class TileMap {
                 int offset = shifts - row - 1;
                 if(offset < 0){
                     // Below fertility band
-                    tile.setType(TileType.SOIL_0);
-                    tile.setFertility(0); // TODO: why not add this to game config?
+                    tile.setType(TileType.SOIL);
                 }
                 else if(offset < gameConfig.F_BAND_OUTER_HEIGHT){
                     // Within first outer band
-                    tile.setType(TileType.SOIL_1);
-                    tile.setFertility(gameConfig.F_BAND_OUTER_FERTILITY);
+                    tile.setType(TileType.F_BAND_OUTER);
                 }
                 else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT){
                     // Within first mid band
-                    tile.setType(TileType.SOIL_2);
-                    tile.setFertility(gameConfig.F_BAND_MID_FERTILITY);
+                    tile.setType(TileType.F_BAND_MID);
                 }
                 else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT +
                         gameConfig.F_BAND_INNER_HEIGHT){
                     // Within inner band
-                    tile.setType(TileType.SOIL_3);
-                    tile.setFertility(gameConfig.F_BAND_INNER_FERTILITY);
+                    tile.setType(TileType.F_BAND_INNER);
                 }
                 else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
                         gameConfig.F_BAND_INNER_HEIGHT){
                     // Within second mid band
-                    tile.setType(TileType.SOIL_2);
-                    tile.setFertility(gameConfig.F_BAND_MID_FERTILITY);
+                    tile.setType(TileType.F_BAND_MID);
                 }
                 else if(offset < 2 * gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
                         gameConfig.F_BAND_INNER_HEIGHT){
                     // Within second outer band
-                    tile.setType(TileType.SOIL_1);
-                    tile.setFertility(gameConfig.F_BAND_OUTER_FERTILITY);
+                    tile.setType(TileType.F_BAND_OUTER);
                 }
                 else{
                     // Above fertility bands
                     tile.setType(TileType.ARID);
-                    tile.setFertility(0);
                 }
             }
         }
@@ -115,13 +106,15 @@ public class TileMap {
 
     /** Grows all crops on this TileMap */
     public void growCrops(){
-        Iterator<Tile> iter = this.iterator();
-        while(iter.hasNext()){
-            Tile tile = iter.next();
+        for (Tile tile : this) {
             Crop crop = tile.getCrop();
 
+            if (crop == null) {
+                continue;
+            }
+
             // Only affect crops which are still growing
-            if(crop.getType() != CropType.NONE && crop.getGrowthTimer() > 0) {
+            if (crop.getType() != CropType.NONE && crop.getGrowthTimer() > 0) {
                 // Increase value
                 crop.grow(tile.getFertility());
             }
@@ -181,6 +174,7 @@ public class TileMap {
         player2.setPosition(newPos);
     }
 
+    @Override
     public Iterator<Tile> iterator() {
         return new TileMapIterator();
     }

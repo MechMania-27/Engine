@@ -9,11 +9,8 @@ public final class Config {
     public final int BOARD_WIDTH;
 
     public final int F_BAND_MOVE_DELAY;
-    public final double F_BAND_INNER_FERTILITY;
     public final int F_BAND_INNER_HEIGHT;
-    public final double F_BAND_MID_FERTILITY;
     public final int F_BAND_MID_HEIGHT;
-    public final double F_BAND_OUTER_FERTILITY;
     public final int F_BAND_OUTER_HEIGHT;
 
     // =========== GAME CONSTANTS ===============
@@ -30,24 +27,19 @@ public final class Config {
     public final int PLAYER_TIMEOUT;
     public final String PLAYERLOG_EXTENSION;
 
-    private ResourceBundle rb;
-
     public Config() throws MissingResourceException {
         this("mm27");
     }
 
     public Config(String resourceName) throws MissingResourceException {
-        rb = ResourceBundle.getBundle(resourceName);
+        ResourceBundle rb = ResourceBundle.getBundle(resourceName);
 
         // board props
         BOARD_HEIGHT =           Integer.parseInt(rb.getString("board.height"));
         BOARD_WIDTH =            Integer.parseInt(rb.getString("board.width"));
         F_BAND_INNER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.inner.height"));
-        F_BAND_INNER_FERTILITY = Double.parseDouble(rb.getString("fertilityband.inner.fertility"));
         F_BAND_MID_HEIGHT =      Integer.parseInt(rb.getString("fertilityband.mid.height"));
-        F_BAND_MID_FERTILITY =   Double.parseDouble(rb.getString("fertilityband.mid.fertility"));
         F_BAND_OUTER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.outer.height"));
-        F_BAND_OUTER_FERTILITY = Double.parseDouble(rb.getString("fertilityband.outer.fertility"));
         F_BAND_MOVE_DELAY =      Integer.parseInt(rb.getString("fertilityband.speed"));
 
         // player props

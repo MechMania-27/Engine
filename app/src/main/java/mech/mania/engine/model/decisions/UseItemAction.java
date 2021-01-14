@@ -1,5 +1,6 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 
 import java.util.regex.Matcher;
@@ -33,9 +34,8 @@ public class UseItemAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state) {
-        Player player = state.getPlayer(playerID);
-
-
+    public void performAction(GameState state, JsonLogger engineLogger) {
+        // stub for now
+//        Player player = state.getPlayer(playerID);
     }
 }

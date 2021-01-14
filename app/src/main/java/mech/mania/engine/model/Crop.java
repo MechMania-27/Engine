@@ -19,27 +19,16 @@ public class Crop {
         }
     }
 
-    public int getGrowthTimer() {
-        return growthTimer;
+    public double getValue() {
+        return value;
     }
 
-    public void setGrowthTimer(int growthTimer) {
-        this.growthTimer = growthTimer;
+    public int getGrowthTimer() {
+        return growthTimer;
     }
 
     public CropType getType() {
         return type;
     }
 
-    public void setType(CropType type) {
-        this.type = type;
-    }
-
-    public double getValue() {
-        return value;
-    }
-
-    public void setValue(double value) {
-        this.value = value;
-    }
 }

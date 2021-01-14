@@ -2,6 +2,8 @@ package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.model.*;
 import mech.mania.engine.util.GameUtils;
+import mech.mania.engine.logging.JsonLogger;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +43,7 @@ public class PlantAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state) {
+    public void performAction(GameState state, JsonLogger engineLogger) {
         // stub for now
         // will use playerID to get the Player object from state and then validate each planting action
 

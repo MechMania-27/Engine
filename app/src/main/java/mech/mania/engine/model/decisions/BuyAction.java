@@ -1,5 +1,6 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 
 import java.util.ArrayList;
@@ -35,10 +36,11 @@ public class BuyAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state) {
+    public void performAction(GameState state, JsonLogger engineLogger) {
         Player player = state.getPlayer(playerID);
         TileType curTile = state.getTileMap().getTileType(player.getPosition());
         if (curTile != TileType.GREEN_GROCER) {
+            engineLogger.severe(String.format("Player %d failed to purchase, not on Green Grocer tile", playerID + 1));
             return;
         }
 
@@ -48,6 +50,12 @@ public class BuyAction extends PlayerDecision {
         }
 
         if (runningCost > player.getMoney()) {
+            engineLogger.severe(
+                                String.format(
+                                                "Player %d failed to purchase, price %d higher than budget %d",
+                                                playerID + 1,
+                                                runningCost,
+                                                player.getMoney()));
             return;
         }
 

@@ -28,9 +28,13 @@ def get_move_decision(game_state) -> str:
 def get_action_decision(game_state) -> str:
     x = random.randint(0, game_state['tileMap']['mapWidth'])
     y = random.randint(0, game_state['tileMap']['mapHeight'])
-    crop = "CORN"
 
-    action = f"plant {crop} {x} {y}"
+    crop = "CORN"
+    if random.random() < 0.5:
+        action = f"plant {crop} {x} {y}"
+    else:
+        action = f"buy {crop} 1"
+
     logger.info(f"Sending \"{action}\"")
     return action
 

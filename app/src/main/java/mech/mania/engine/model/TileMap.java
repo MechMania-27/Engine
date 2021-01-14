@@ -28,8 +28,14 @@ public class TileMap implements Iterable<Tile> {
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
-                if (row == 0) {
-                    tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
+                if (row < gameConfig.GRASS_ROWS) {
+                    // Green Grocer tiles are at the top center
+                    if (row == 0 && Math.abs(col - mapWidth / 2) <= gameConfig.GREENGROCER_LENGTH / 2) {
+                        tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
+                    } else {
+                        tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
+                        // tiles.get(row).add(new Tile(TileType.GRASS));
+                    }
                 } else {
                     tiles.get(row).add(new Tile(TileType.SOIL));
                 }
@@ -42,6 +48,7 @@ public class TileMap implements Iterable<Tile> {
     }
 
     public TileMap(TileMap other) {
+        this.gameConfig = other.gameConfig;
         this.mapHeight = other.mapHeight;
         this.mapWidth = other.mapWidth;
         this.tiles = new ArrayList<>();
@@ -51,7 +58,6 @@ public class TileMap implements Iterable<Tile> {
                 tiles.get(row).add(new Tile(other.tiles.get(row).get(col)));
             }
         }
-        this.gameConfig = other.gameConfig;
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
     }

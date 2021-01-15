@@ -59,6 +59,8 @@ public class BuyAction extends PlayerDecision {
 
         for (int i = 0; i < seeds.size(); i++) {
             player.addSeeds(seeds.get(i), quantities.get(i));
+            engineLogger.info(String.format("Player %d bought %d %s(s)",
+                    playerID + 1, quantities.get(i), seeds.get(i)));
         }
 
         player.setMoney(player.getMoney() - runningCost);

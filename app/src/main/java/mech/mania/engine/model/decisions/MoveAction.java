@@ -50,6 +50,8 @@ public class MoveAction extends PlayerDecision {
         player.setPosition(this.destination);
 
         if (state.getTileMap().get(this.destination).getType() == TileType.GREEN_GROCER) {
+            engineLogger.info(String.format("Player %d is at a GREEN_GROCER, selling inventory",
+                    playerID + 1));
             player.sellInventory();
         }
     }

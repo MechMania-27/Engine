@@ -51,9 +51,12 @@ public class HarvestAction extends PlayerDecision {
         for (Position coord : coords) {
             Tile tile = state.getTileMap().get(coord);
             if (tile.getCrop().getType() == CropType.NONE) {
+                // TODO: should this be an error (failed action)?
                 engineLogger.info(String.format("Player %d attempted to harvest where no crop was found: %s", playerID + 1, coord));
             } else {
                 player.harvest(tile);
+                engineLogger.info(String.format("Player %d harvested %s from %s",
+                        playerID + 1, tile.getCrop().getType(), coord));
             }
         }
     }

@@ -54,6 +54,9 @@ public class PlantAction extends PlayerDecision {
 
         for (int i = 0; i < cropTypes.size(); i++) {
             if (GameUtils.distance(player.getPosition(), coords.get(i)) > player.getPlantingRadius()) {
+                engineLogger.severe(String.format("Player %d is trying to plant at a position (%s) farther than planting radius (%d > %d)",
+                        playerID + 1, coords.get(i), GameUtils.distance(player.getPosition(), coords.get(i)),
+                        player.getPlantingRadius()));
                 return;
             }
             cropsToPlant.put(cropTypes.get(i), cropsToPlant.get(cropTypes.get(i)) + 1);
@@ -61,13 +64,24 @@ public class PlantAction extends PlayerDecision {
 
         for (CropType type : cropsToPlant.keySet()) {
             if (cropsToPlant.get(type) > player.getSeeds().get(type)) {
+                engineLogger.severe(String.format("Player %d is trying to plant more seeds (%d, %s) than they have in their inventory (%d)",
+                        playerID + 1, cropsToPlant.get(type), type, player.getSeeds().get(type)));
                 return;
             }
         }
 
         for (int i = 0; i < cropTypes.size(); i++) {
-            state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
-            player.removeSeeds(cropTypes.get(i), 1);
+            if (state.getTileMap().get(coords.get(i)).getCrop().getType() == CropType.NONE) {
+                state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
+                player.removeSeeds(cropTypes.get(i), 1);
+
+                engineLogger.info(String.format("Planted %s at %s",
+                        cropTypes.get(i), coords.get(i)));
+            } else {
+                engineLogger.severe(String.format("Player %d attempted to plant on tile with plant, rejecting",
+                        playerID + 1));
+            }
+
         }
     }
 }

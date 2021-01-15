@@ -68,6 +68,7 @@ public class GameLogic {
         // Wither crops in ARID land
         for (Tile tile : newGameState.getTileMap()) {
             if (tile.getType() == TileType.ARID) {
+                tile.getCrop().setGrowthTimer(0);
                 tile.getCrop().setValue(0);
             }
         }

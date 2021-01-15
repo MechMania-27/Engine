@@ -60,15 +60,6 @@ public class Player {
         }
     }
 
-    public void buySeed(CropType seed) throws InvalidBalanceException {
-        if (money < seed.getSeedBuyPrice()) {
-            throw new InvalidBalanceException(money, seed.getSeedBuyPrice());
-        } else {
-            money -= seed.getSeedBuyPrice();
-            seedInventory.put(seed, seedInventory.get(seed) + 1);
-        }
-    }
-
     public double getMoney() {
         return money;
     }

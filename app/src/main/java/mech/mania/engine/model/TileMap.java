@@ -32,8 +32,7 @@ public class TileMap implements Iterable<Tile> {
                     if (row == 0 && Math.abs(col - mapWidth / 2) <= gameConfig.GREENGROCER_LENGTH / 2) {
                         tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
                     } else {
-                        tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
-                        // tiles.get(row).add(new Tile(TileType.GRASS));
+                        tiles.get(row).add(new Tile(TileType.GRASS));
                     }
                 } else {
                     tiles.get(row).add(new Tile(TileType.SOIL));

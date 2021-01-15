@@ -24,12 +24,12 @@ def get_move_decision(game_state) -> str:
     logger.info(f"Currently at ({pos['x']},{pos['y']})")
 
     if random.random() < 0.5 and \
-            (game_state[f"p{player_num}"]["seedInventory"]["CORN"] == 0 or
+            (sum(game_state[f"p{player_num}"]["seedInventory"].values()) == 0 or
              len(game_state[f'p{player_num}']['harvestedInventory']) > 0):
-        move = f"move {pos['x']} {max(2, pos['y'] - 10)}"
+        move = f"move {game_state['tileMap']['mapWidth'] // 2} {max(0, pos['y'] - 10)}"
     else:
-        x = min(max(0, random.randint(pos['x'] - 5, pos['x'] + 5)), game_state["tileMap"]["mapWidth"] - 1)
-        y = min(max(0, random.randint(pos['y'] - 5, pos['y'] + 5)), game_state["tileMap"]["mapHeight"] - 1)
+        x = min(max(0, random.randint(pos['x'] - 7, pos['x'] + 7)), game_state["tileMap"]["mapWidth"] - 1)
+        y = min(max(0, random.randint(pos['y'] - 7, pos['y'] + 7)), game_state["tileMap"]["mapHeight"] - 1)
         move = f"move {x} {y}"
 
     logger.info(f"Sending \"{move}\"")
@@ -43,22 +43,24 @@ def get_action_decision(game_state) -> str:
     pos = game_state[f"p{player_num}"]["position"]
     logger.info(f"Currently at ({pos['x']},{pos['y']}), Harvested: {game_state[f'p{player_num}']['harvestedInventory']}")
 
-    crop = "CORN"
+    crop = random.choice(["POTATO", "CORN", "GRAPE"])
     pos = game_state[f"p{player_num}"]["position"]
-    if game_state[f"p{player_num}"]["seedInventory"]["CORN"] > 0 and \
-            game_state["tileMap"]["tiles"][pos["y"]][pos["x"]]["type"] != "GREEN_GROCER":
+    if game_state[f"p{player_num}"]["seedInventory"][crop] > 0 and \
+            game_state["tileMap"]["tiles"][pos["y"]][pos["x"]]["type"] != "GREEN_GROCER" and \
+            game_state["tileMap"]["tiles"][pos["y"]][pos["x"]]["type"].startswith("F_BAND"):
         action = f"plant {crop} {pos['x']} {pos['y']}"
     elif game_state[f"p{player_num}"]["money"] >= 15 and \
             game_state["tileMap"]["tiles"][pos["y"]][pos["x"]]["type"] == "GREEN_GROCER":
         action = f"buy {crop} 1"
     else:
-        action = f"harvest "
+        harvest_radius = 1
+        action = f"harvest"
         for x in range(max(0, pos['x'] - 1), min(pos['x'] + 1, game_state["tileMap"]["mapHeight"] - 1)):
             for y in range(max(0, pos['y'] - 1), min(pos['y'] + 1, game_state["tileMap"]["mapWidth"] - 1)):
-                if abs(x - pos['x']) + abs(y - pos['y']) == 1:
-                    action += f"{x} {y} "
-        if action == "harvest ":
-            action += f"{pos['x']} {pos['y']}"
+                if abs(x - pos['x']) + abs(y - pos['y']) <= harvest_radius:
+                    action += f" {x} {y}"
+        if action == "harvest":
+            action += f" {pos['x']} {pos['y']}"
 
     logger.info(f"Sending \"{action:.30s}\"")
     return action

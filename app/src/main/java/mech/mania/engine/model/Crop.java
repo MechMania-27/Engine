@@ -45,4 +45,8 @@ public class Crop {
     public void setValue(double value) {
         this.value = value;
     }
+
+    public void setGrowthTimer(int growthTimer) {
+        this.growthTimer = growthTimer;
+    }
 }

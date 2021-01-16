@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MoveAction extends PlayerDecision {
-    private Position destination;
+    protected Position destination;
 
     public MoveAction(int playerID) {
         this.playerID = playerID;
@@ -21,10 +21,15 @@ public class MoveAction extends PlayerDecision {
         Matcher matcher = pattern.matcher(args);
 
         if (matcher.find()) {
-            int x = Integer.parseInt(matcher.group("x"));
-            int y = Integer.parseInt(matcher.group("y"));
-            destination = new Position(x, y);
-        } else{
+            try {
+                int x = Integer.parseInt(matcher.group("x"));
+                int y = Integer.parseInt(matcher.group("y"));
+                destination = new Position(x, y);
+            } catch (NumberFormatException e) {
+                // will occur if input can't be parsed into an int (ex: Integer.MAX_VALUE + 1)
+                throw new PlayerDecisionParseException("Arguments did not match Move regex (did you pass too big an int?)");
+            }
+        } else {
             throw new PlayerDecisionParseException("Arguments did not match Move regex");
         }
 
@@ -43,7 +48,8 @@ public class MoveAction extends PlayerDecision {
             return;
         }
         if (GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
-            engineLogger.severe(String.format("Player %d failed to move to position %s, greater than allowed movement", playerID + 1, destination));
+            engineLogger.severe(String.format("Player %d failed to move to position %s, greater than allowed movement (%d > %d)",
+                    playerID + 1, destination, GameUtils.distance(this.destination, player.getPosition()), player.getSpeed()));
             return;
         }
 

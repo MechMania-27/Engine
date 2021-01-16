@@ -51,6 +51,18 @@ public class JsonLogger {
         turn++;
     }
 
+    public List<String> getInfoLogs() {
+        return infoLogs;
+    }
+
+    public List<String> getDebugLogs() {
+        return debugLogs;
+    }
+
+    public List<String> getExceptionLogs() {
+        return exceptionLogs;
+    }
+
     public void setDebug(boolean debug) {
         this.debug = debug;
     }

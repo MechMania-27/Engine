@@ -7,7 +7,7 @@ import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 import mech.mania.engine.util.MainUtils;
 import mech.mania.engine.model.PlayerDecisionParseException;
-import mech.mania.engine.util.PlayerParseUtils;
+import mech.mania.engine.util.PlayerCommunicationUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -125,7 +125,7 @@ public class PlayerCommunicationInfo {
                 MainUtils.tryGetPid(process), response.length(), response));
 
         try {
-            return PlayerParseUtils.parseDecision(playerNum, response);
+            return PlayerCommunicationUtils.parseDecision(playerNum, response);
         } catch (PlayerDecisionParseException e){
             throw(e);
         }
@@ -139,7 +139,7 @@ public class PlayerCommunicationInfo {
      */
     public void sendGameState(GameState gameState) throws IOException {
         // send player turn to stdin
-        String message = PlayerParseUtils.sendInfoFromGameState(gameState, playerNum);
+        String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum);
         engineLogger.debug(String.format("Bot (pid %d): writing (len:%d): %.30s",
                 MainUtils.tryGetPid(process), message.length(), message));
         writer.append(message);
@@ -153,9 +153,9 @@ public class PlayerCommunicationInfo {
      */
     public void askForStartingItems() throws IOException, IllegalThreadStateException {
         String itemResponse = inputReader.readLine();
-        this.startingItem = PlayerParseUtils.itemFromString(itemResponse);
+        this.startingItem = PlayerCommunicationUtils.itemFromString(itemResponse);
         String upgradeResponse = inputReader.readLine();
-        this.startingUpgradeType = PlayerParseUtils.upgradeFromString(upgradeResponse);
+        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString(upgradeResponse);
     }
 
     public String getPlayerName() {

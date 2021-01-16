@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.*;
 
-public class PlayerParseUtils {
+public class PlayerCommunicationUtils {
     /**
      * Parse an item object from a string
      * @param item String to parse

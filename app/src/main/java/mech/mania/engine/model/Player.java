@@ -19,7 +19,7 @@ public class Player {
     @Expose
     private Map<CropType, Integer> seedInventory = new HashMap<>();
     @Expose
-    private List<Crop> harvestedInventory = new ArrayList<>();
+    private ArrayList<Crop> harvestedInventory = new ArrayList<>();
 
     private Config gameConfig;
 
@@ -30,6 +30,7 @@ public class Player {
         this.item = item;
         this.upgrade = upgrade;
         this.money = money;
+
         for (CropType type : CropType.values()) {
             seedInventory.put(type, 0);
         }
@@ -64,6 +65,10 @@ public class Player {
         return money;
     }
 
+    public void changeBalance(double delta) {
+        this.money += delta;
+    }
+
     public UpgradeType getUpgrade() {
         return upgrade;
     }
@@ -96,19 +101,33 @@ public class Player {
         this.name = name;
     }
 
-    // TODO stub for now
+    // TODO factor item
     public int getHarvestRadius() {
         return gameConfig.HARVEST_RADIUS;
     }
 
-    // TODO stub for now
+    // TODO factor item
     public int getPlantingRadius() {
         return gameConfig.PLANT_RADIUS;
     }
 
-    // TODO stub for now
+    // TODO factor item
     public int getSpeed() {
         return gameConfig.MAX_MOVEMENT;
+    }
+
+    // TODO factor item
+    public int getCarryingCapacity() {
+        return -1;
+    }
+
+    // TODO stub for now
+    public int getProtectionRadius() {
+        return -1;
+    }
+
+    public ArrayList<Crop> getHarvestedCrops() {
+        return harvestedInventory;
     }
 
     public void addSeeds(CropType type, int numSeeds) {

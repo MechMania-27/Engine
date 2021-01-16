@@ -38,26 +38,77 @@ public class HarvestAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
-        // will use playerID to get the Player object from state and then validate each planting action
         Player player = state.getPlayer(playerID);
+        Player opponent = state.getOpponentPlayer(playerID);
+        Position curPosition = player.getPosition();
+
+        int curCropCount = player.getHarvestedCrops().size();
 
         for (Position coord : coords) {
-            if (GameUtils.distance(player.getPosition(), coord) > player.getHarvestRadius()) {
-                engineLogger.severe(String.format("Player %d attempted to harvest plant from outside harvest radius: %s", playerID + 1, coord));
-                return;
+            if (GameUtils.distance(curPosition, coord) > player.getHarvestRadius()) {
+                engineLogger.severe(
+                                    String.format(
+                                            "Player %d failed to harvest at %s outside of harvest radius %d",
+                                            playerID + 1,
+                                            coord,
+                                            player.getHarvestRadius()));
             }
-        }
 
-        for (Position coord : coords) {
-            Tile tile = state.getTileMap().get(coord);
-            if (tile.getCrop().getType() == CropType.NONE) {
-                // TODO: should this be an error (failed action)?
-                engineLogger.info(String.format("Player %d attempted to harvest where no crop was found: %s", playerID + 1, coord));
-            } else {
-                player.harvest(tile);
-                engineLogger.info(String.format("Player %d harvested %s from %s",
-                        playerID + 1, tile.getCrop().getType(), coord));
+            if (curCropCount == player.getCarryingCapacity()) {
+                engineLogger.severe(
+                                    String.format(
+                                                "Player %d attempted to harvest at %s, more crops than carrying capacity %d",
+                                                playerID + 1,
+                                                coord,
+                                                player.getCarryingCapacity()));
+                break;
             }
+
+            Tile target = state.getTileMap().getTile(coord);
+            if (target.getCrop().getType() == CropType.NONE) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest where no crop was found at %s",
+                                playerID + 1,
+                                coord
+                        )
+                );
+                continue;
+            }
+
+            if (target.getCrop().getGrowthTimer() > 0) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest an unripe crop at %s",
+                                playerID + 1,
+                                coord
+                        )
+                );
+                continue;
+            }
+
+            if (GameUtils.distance(opponent.getPosition(), coord) <= opponent.getProtectionRadius()) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest at inside opponent's protection radius",
+                                playerID + 1
+                        )
+                );
+                continue;
+            }
+
+            engineLogger.info(
+                    String.format(
+                            "Player %d harvested crop %s from %s",
+                            playerID + 1,
+                            target.getCrop().getType(),
+                            coord
+                    )
+            );
+
+            player.harvest(target);
+            curCropCount++;
+
         }
     }
 }

@@ -6,7 +6,6 @@ import mech.mania.engine.logging.JsonLogger;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,41 +50,57 @@ public class PlantAction extends PlayerDecision {
     public void performAction(GameState state, JsonLogger engineLogger) {
         // will use playerID to get the Player object from state and then validate each planting action
         Player player = state.getPlayer(playerID);
-
-        HashMap<CropType, Integer> cropsToPlant = new HashMap<>();
-        for (CropType type : CropType.values()) {
-            cropsToPlant.put(type, 0);
-        }
+        Player opponent = state.getOpponentPlayer(playerID);
 
         for (int i = 0; i < cropTypes.size(); i++) {
             if (GameUtils.distance(player.getPosition(), coords.get(i)) > player.getPlantingRadius()) {
-                engineLogger.severe(String.format("Player %d is trying to plant at a position (%s) farther than planting radius (%d > %d)",
-                        playerID + 1, coords.get(i), GameUtils.distance(player.getPosition(), coords.get(i)),
-                        player.getPlantingRadius()));
-                return;
+                engineLogger.severe(
+                                String.format(
+                                        "Player %d is trying to plant at a position (%s) farther than planting radius (%d > %d)",
+                                        playerID + 1,
+                                        coords.get(i),
+                                        GameUtils.distance(player.getPosition(), coords.get(i)),
+                                        player.getPlantingRadius()));
+                continue;
             }
-            cropsToPlant.put(cropTypes.get(i), cropsToPlant.get(cropTypes.get(i)) + 1);
-        }
 
-        for (CropType type : cropsToPlant.keySet()) {
-            if (cropsToPlant.get(type) > player.getSeeds().get(type)) {
-                engineLogger.severe(String.format("Player %d is trying to plant more seeds (%d, %s) than they have in their inventory (%d)",
-                        playerID + 1, cropsToPlant.get(type), type, player.getSeeds().get(type)));
-                return;
+            if (player.getSeeds().get(cropTypes.get(i)) == 0) {
+                engineLogger.severe(
+                                String.format(
+                                        "Player %d failed to plant %s string at %s, not enough",
+                                        playerID + 1,
+                                        cropTypes.get(i),
+                                        coords.get(i)));
+                continue;
+
             }
-        }
 
-        for (int i = 0; i < cropTypes.size(); i++) {
-            if (state.getTileMap().get(coords.get(i)).getCrop().getType() == CropType.NONE) {
-                state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
-                player.removeSeeds(cropTypes.get(i), 1);
-
-                engineLogger.info(String.format("Planted %s at %s",
-                        cropTypes.get(i), coords.get(i)));
-            } else {
-                engineLogger.severe(String.format("Player %d attempted to plant on tile with plant, rejecting",
-                        playerID + 1));
+            if (state.getTileMap().get(coords.get(i)).getCrop().getType() != CropType.NONE) {
+                engineLogger.severe(
+                                String.format(
+                                            "Player %d attempted to plant at %s with plant, rejecting",
+                                            playerID + 1,
+                                            coords.get(i)));
+                continue;
             }
+
+            if (GameUtils.distance(opponent.getPosition(), coords.get(i)) <= opponent.getProtectionRadius()) {
+                engineLogger.severe(
+                                String.format(
+                                            "Player %d attempted to plant at %s inside opponent's protection radius",
+                                            playerID + 1,
+                                            coords.get(i)));
+                continue;
+            }
+
+            state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
+            player.removeSeeds(cropTypes.get(i), 1);
+
+            engineLogger.info(
+                            String.format(
+                                        "Player %d planted %s at %s",
+                                        playerID + 1,
+                                        cropTypes.get(i), coords.get(i)));
         }
     }
 }

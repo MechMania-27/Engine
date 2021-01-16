@@ -44,25 +44,26 @@ public class BuyAction extends PlayerDecision {
             return;
         }
 
-        int runningCost = 0;
         for (int i = 0; i < seeds.size(); i++) {
-            runningCost += seeds.get(i).getSeedBuyPrice() * quantities.get(i);
-        }
-
-        if (runningCost > player.getMoney()) {
-            engineLogger.severe(String.format("Player %d failed to purchase, price %d higher than budget %.2f",
-                                              playerID + 1,
-                                              runningCost,
-                                              player.getMoney()));
-            return;
-        }
-
-        for (int i = 0; i < seeds.size(); i++) {
+            int cost = seeds.get(i).getSeedBuyPrice() * quantities.get(i);
+            if (cost > player.getMoney()) {
+                engineLogger.severe(
+                                String.format(
+                                                "Player %d failed to purchase %d %s seeds, budget %.2f, cost %d",
+                                                playerID + 1,
+                                                quantities.get(i),
+                                                seeds.get(i),
+                                                player.getMoney(),
+                                                cost)
+                );
+                continue;
+            }
             player.addSeeds(seeds.get(i), quantities.get(i));
-            engineLogger.info(String.format("Player %d bought %d %s(s)",
+            player.changeBalance(-cost);
+            engineLogger.info(String.format("Player %d bought %d %s seeds",
                     playerID + 1, quantities.get(i), seeds.get(i)));
+
         }
 
-        player.setMoney(player.getMoney() - runningCost);
     }
 }

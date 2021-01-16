@@ -38,18 +38,29 @@ public class MoveAction extends PlayerDecision {
 
     public void performAction(GameState state, JsonLogger engineLogger) {
         if (this.destination == null) {
-            engineLogger.severe(String.format("Failed to move player %d to null position", playerID + 1));
+            engineLogger.severe(
+                            String.format(
+                                    "Failed to move player %d to null position",
+                                    playerID + 1));
         }
 
         Player player = state.getPlayer(playerID);
 
         if (!state.getTileMap().isValidPosition(this.destination)) {
-            engineLogger.severe(String.format("Player %d failed to move to position %s, invalid destination", playerID + 1, destination));
+            engineLogger.severe(
+                            String.format(
+                                    "Player %d failed to move to position %s, invalid destination",
+                                    playerID + 1,
+                                    destination));
             return;
         }
         if (GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
-            engineLogger.severe(String.format("Player %d failed to move to position %s, greater than allowed movement (%d > %d)",
-                    playerID + 1, destination, GameUtils.distance(this.destination, player.getPosition()), player.getSpeed()));
+            engineLogger.severe(
+                    String.format("Player %d failed to move to position %s, greater than allowed movement (%d > %d)",
+                            playerID + 1,
+                            destination,
+                            GameUtils.distance(this.destination, player.getPosition()),
+                            player.getSpeed()));
             return;
         }
 

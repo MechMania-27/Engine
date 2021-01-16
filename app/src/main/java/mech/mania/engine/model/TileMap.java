@@ -2,6 +2,7 @@ package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
 import mech.mania.engine.config.Config;
+import mech.mania.engine.util.GameUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -164,6 +165,40 @@ public class TileMap implements Iterable<Tile> {
         return get(pos).getType();
     }
 
+    public Tile getTile(Position pos) {
+        if (isValidPosition(pos)) {
+            return tiles.get(pos.getX()).get(pos.getY());
+        }
+        return null;
+    }
+
+    public void movePlayer1(Position newPos) {
+        if (isValidPosition(newPos)) {
+            // error handling/notification for invalid position
+
+        }
+
+        if (GameUtils.distance(player1.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
+            // error handling/notification for moving too far
+
+        }
+
+        player1.setPosition(newPos);
+    }
+
+    public void movePlayer2(Position newPos) {
+        if (isValidPosition(newPos)) {
+            // error handling/notification for invalid position
+
+        }
+
+        if (GameUtils.distance(player2.getPosition(), newPos) < gameConfig.MAX_MOVEMENT) {
+            // error handling/notification for moving too far
+
+        }
+
+        player2.setPosition(newPos);
+    }
 
     @Override
     public Iterator<Tile> iterator() {

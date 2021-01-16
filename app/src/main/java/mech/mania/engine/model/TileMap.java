@@ -158,6 +158,13 @@ public class TileMap implements Iterable<Tile> {
         return tiles.get(pos.getX()).get(pos.getY()).getType();
     }
 
+    public Tile getTile(Position pos) {
+        if (isValidPosition(pos)) {
+            return tiles.get(pos.getX()).get(pos.getY());
+        }
+        return null;
+    }
+
     public void movePlayer1(Position newPos) {
         if (isValidPosition(newPos)) {
             // error handling/notification for invalid position

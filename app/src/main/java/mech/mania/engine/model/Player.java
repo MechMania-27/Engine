@@ -18,6 +18,8 @@ public class Player {
     private int money;
     @Expose
     private HashMap<CropType, Integer> seeds;
+    @Expose
+    private ArrayList<Crop> harvestedCrops;
 
     private Map<CropType, Integer> seedInventory = new HashMap<>();
     private List<Crop> harvestedInventory = new ArrayList<>();
@@ -28,10 +30,15 @@ public class Player {
         this.item = item;
         this.upgrade = upgrade;
         this.money = money;
+
         seeds = new HashMap<>();
+        // TODO need a better way to initialize this
         seeds.put(CropType.CORN, 0);
         seeds.put(CropType.GRAPE, 0);
         seeds.put(CropType.POTATO, 0);
+
+        harvestedCrops = new ArrayList<>();
+
 
         for (CropType type : CropType.values()) {
             seedInventory.put(type, 0);
@@ -68,8 +75,12 @@ public class Player {
         }
     }
 
-    public double getMoney() {
+    public int getMoney() {
         return money;
+    }
+
+    public void changeBalance(double delta) {
+        this.money += delta;
     }
 
     public UpgradeType getUpgrade() {
@@ -117,6 +128,15 @@ public class Player {
     // TODO stub for now
     public int getSpeed() {
         return -1;
+    }
+
+    // TODO stub for now
+    public int getCarryingCapacity() {
+        return -1;
+    }
+
+    public ArrayList<Crop> getHarvestedCrops() {
+        return harvestedCrops;
     }
 
     public void addSeeds(CropType type, int numSeeds) {

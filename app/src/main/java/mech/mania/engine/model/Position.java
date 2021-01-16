@@ -40,4 +40,9 @@ public class Position {
         final Position other = (Position) obj;
         return other.x == this.x && other.y == this.y;
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
+    }
 }

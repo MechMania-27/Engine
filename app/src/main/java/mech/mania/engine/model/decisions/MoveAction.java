@@ -1,10 +1,7 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.Player;
-import mech.mania.engine.model.PlayerDecisionParseException;
-import mech.mania.engine.model.Position;
+import mech.mania.engine.model.*;
 import mech.mania.engine.util.GameUtils;
 
 import java.util.regex.Matcher;
@@ -43,10 +40,21 @@ public class MoveAction extends PlayerDecision {
 
         if (!state.getTileMap().isValidPosition(destination)
                 || GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
-            engineLogger.severe(String.format("Failed to move player %d to position %s", playerID + 1, destination));
+            engineLogger.severe(
+                                String.format(
+                                                "Failed to move player %d to position %s",
+                                                playerID + 1,
+                                                destination));
             return;
         }
 
         player.setPosition(this.destination);
+
+        if (state.getTileMap().isGreenGrocer(this.destination)) {
+            for (Crop crop : player.getHarvestedCrops()) {
+                player.changeBalance(crop.getValue());
+            }
+            player.getHarvestedCrops().clear();
+        }
     }
 }

@@ -49,23 +49,22 @@ public class PlantAction extends PlayerDecision {
 
         Player player = state.getPlayer(playerID);
 
-        HashMap<CropType, Integer> cropsToPlant = new HashMap<>();
-        cropsToPlant.put(CropType.POTATO, 0);
-        cropsToPlant.put(CropType.GRAPE, 0);
-        cropsToPlant.put(CropType.CORN, 0);
-
         for (int i = 0; i < cropTypes.size(); i++) {
-            if (GameUtils.distance(player.getPosition(), coords.get(i)) > player.getPlantingRadius()) {
-                return;
+            if (GameUtils.distance(player.getPosition(), coords.get(i)) > player.getPlantingRadius()
+                || player.getSeeds().get(cropTypes.get(i)) == 0) {
+                engineLogger.severe(
+                                    String.format(
+                                                    "Player %d failed to plant %s string at %s",
+                                                    playerID + 1,
+                                                    cropTypes.get(i),
+                                                    coords.get(i)));
+                continue;
             }
-            cropsToPlant.put(cropTypes.get(i), cropsToPlant.get(cropTypes.get(i)) + 1);
+
+            state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
+            player.getSeeds().put(cropTypes.get(i), player.getSeeds().get(cropTypes.get(i)) - 1);
         }
 
-        for (CropType type : cropsToPlant.keySet()) {
-            if (cropsToPlant.get(type) > player.getSeeds().get(type)) {
-                return;
-            }
-        }
 
         for (int i = 0; i < cropTypes.size(); i++) {
             state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));

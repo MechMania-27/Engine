@@ -1,9 +1,8 @@
 package mech.mania.engine.model.decisions;
 
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.PlayerDecisionParseException;
-import mech.mania.engine.model.Position;
+import mech.mania.engine.model.*;
+import mech.mania.engine.util.GameUtils;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -39,6 +38,33 @@ public class HarvestAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
-        // stub for now
+        Player player = state.getPlayer(playerID);
+        Position curPosition = player.getPosition();
+
+        int curCropCount = player.getHarvestedCrops().size();
+
+        for (Position coord : coords) {
+            if (GameUtils.distance(curPosition, coord) > player.getHarvestRadius()) {
+                engineLogger.severe(
+                                    String.format(
+                                                "Player %d failed to harvest at location %s, too far!",
+                                                playerID + 1,
+                                                coord));
+            }
+
+            if (curCropCount == player.getCarryingCapacity()) {
+                break;
+            }
+
+            Tile target = state.getTileMap().getTile(coord);
+            if (target.getCrop().getType() == CropType.NONE || target.getCrop().getGrowthTimer() > 0) {
+                continue;
+            }
+
+            player.getHarvestedCrops().add(target.getCrop());
+            curCropCount++;
+
+            target.setCrop(new Crop(CropType.NONE));
+        }
     }
 }

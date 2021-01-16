@@ -36,12 +36,14 @@ public class PlayerParseUtils {
     /**
      * Function that generates the String to be sent to the bot given the GameState
      * @param gameState GameState to use
+     * @param playerNum player number to set for the game state (0 or 1)
      * @return String to give to bot
      */
-    public static String sendInfoFromGameState(GameState gameState) {
+    public static String sendInfoFromGameState(GameState gameState, int playerNum) {
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
+        gameState.setPlayerNum(playerNum + 1);
         return gson.toJson(gameState, GameState.class);
     }
 

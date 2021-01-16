@@ -24,7 +24,7 @@ public class MoveAction extends PlayerDecision {
             int x = Integer.parseInt(matcher.group("x"));
             int y = Integer.parseInt(matcher.group("y"));
             destination = new Position(x, y);
-        } else{
+        } else {
             throw new PlayerDecisionParseException("Arguments did not match Move regex");
         }
 
@@ -33,28 +33,37 @@ public class MoveAction extends PlayerDecision {
 
     public void performAction(GameState state, JsonLogger engineLogger) {
         if (this.destination == null) {
-            engineLogger.severe(String.format("Failed to move player %d to null position", playerID + 1));
+            engineLogger.severe(
+                            String.format(
+                                    "Failed to move player %d to null position",
+                                    playerID + 1));
         }
 
         Player player = state.getPlayer(playerID);
 
-        if (!state.getTileMap().isValidPosition(destination)
-                || GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
+        if (!state.getTileMap().isValidPosition(this.destination)) {
             engineLogger.severe(
-                                String.format(
-                                                "Failed to move player %d to position %s",
-                                                playerID + 1,
-                                                destination));
+                            String.format(
+                                    "Player %d failed to move to position %s, invalid destination",
+                                    playerID + 1,
+                                    destination));
+            return;
+        }
+        if (GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
+            engineLogger.severe(
+                            String.format(
+                                    "Player %d failed to move to position %s, greater than allowed movement",
+                                    playerID + 1,
+                                    destination));
             return;
         }
 
         player.setPosition(this.destination);
 
-        if (state.getTileMap().isGreenGrocer(this.destination)) {
-            for (Crop crop : player.getHarvestedCrops()) {
-                player.changeBalance(crop.getValue());
-            }
-            player.getHarvestedCrops().clear();
+        if (state.getTileMap().get(this.destination).getType() == TileType.GREEN_GROCER) {
+            engineLogger.info(String.format("Player %d is at a GREEN_GROCER, selling inventory",
+                    playerID + 1));
+            player.sellInventory();
         }
     }
 }

@@ -121,8 +121,8 @@ public class PlayerCommunicationInfo {
             errorStream.reset();
         }
 
-        engineLogger.debug(String.format("Bot (pid %d): reading: %.30s",
-                MainUtils.tryGetPid(process), response));
+        engineLogger.debug(String.format("Bot (pid %d): reading (len:%d): %.30s",
+                MainUtils.tryGetPid(process), response.length(), response));
 
         try {
             return PlayerParseUtils.parseDecision(playerNum, response);
@@ -139,9 +139,9 @@ public class PlayerCommunicationInfo {
      */
     public void sendGameState(GameState gameState) throws IOException {
         // send player turn to stdin
-        String message = PlayerParseUtils.sendInfoFromGameState(gameState);
-        engineLogger.debug(String.format("Bot (pid %d): writing: %.30s",
-                MainUtils.tryGetPid(process), message));
+        String message = PlayerParseUtils.sendInfoFromGameState(gameState, playerNum);
+        engineLogger.debug(String.format("Bot (pid %d): writing (len:%d): %.30s",
+                MainUtils.tryGetPid(process), message.length(), message));
         writer.append(message);
         writer.newLine();
         writer.flush();

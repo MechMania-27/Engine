@@ -28,8 +28,13 @@ public class TileMap implements Iterable<Tile> {
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
-                if (row == 0) {
-                    tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
+                if (row < gameConfig.GRASS_ROWS) {
+                    // Green Grocer tiles are at the top center
+                    if (row == 0 && Math.abs(col - mapWidth / 2) <= gameConfig.GREENGROCER_LENGTH / 2) {
+                        tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
+                    } else {
+                        tiles.get(row).add(new Tile(TileType.GRASS));
+                    }
                 } else {
                     tiles.get(row).add(new Tile(TileType.SOIL));
                 }
@@ -42,6 +47,7 @@ public class TileMap implements Iterable<Tile> {
     }
 
     public TileMap(TileMap other) {
+        this.gameConfig = other.gameConfig;
         this.mapHeight = other.mapHeight;
         this.mapWidth = other.mapWidth;
         this.tiles = new ArrayList<>();
@@ -51,7 +57,6 @@ public class TileMap implements Iterable<Tile> {
                 tiles.get(row).add(new Tile(other.tiles.get(row).get(col)));
             }
         }
-        this.gameConfig = other.gameConfig;
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
     }
@@ -60,60 +65,59 @@ public class TileMap implements Iterable<Tile> {
      * @param turn The specified turn, where the first turn is 1
      */
     public void setFertilityBand(int turn) {
-        int shifts = (turn - 1) / gameConfig.F_BAND_MOVE_DELAY;
+        int shifts = (turn - 1 - gameConfig.F_BAND_INIT_DELAY) / gameConfig.F_BAND_MOVE_DELAY;
+        shifts = Math.max(0, shifts);
 
         for (int row = 0; row < mapHeight; row++) {
-            // Green Grocer tiles are unaffected by the fertility bands
-            // if (tile.getType() == TileType.GREEN_GROCER){
-            //     continue;
-            // }
-            if (row == 0) {
-                continue;
-            }
-
-            TileType tileType;
+            TileType newType;
 
             // offset records how far into the fertility zone a row is (negative indicates below)
-            int offset = shifts - row - 1;
-            if(offset < 0){
+            // init position indicates the first row that will *become* part of a band after the first shift
+            // e.g. 0 => fertility band starts off the map while 1 => fertility band starts with 1 row on the map
+            int offset = shifts - row - 1 + gameConfig.F_BAND_INIT_POSITION;
+            if (offset < 0){
                 // Below fertility band
-                tileType = TileType.SOIL;
+                newType = TileType.SOIL;
             }
-            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT){
+            else if (offset < gameConfig.F_BAND_OUTER_HEIGHT){
                 // Within first outer band
-                tileType = TileType.F_BAND_OUTER;
+                newType = TileType.F_BAND_OUTER;
             }
-            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT){
+            else if (offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT){
                 // Within first mid band
-                tileType = TileType.F_BAND_MID;
+                newType = TileType.F_BAND_MID;
             }
-            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT +
+            else if (offset < gameConfig.F_BAND_OUTER_HEIGHT + gameConfig.F_BAND_MID_HEIGHT +
                     gameConfig.F_BAND_INNER_HEIGHT){
                 // Within inner band
-                tileType = TileType.F_BAND_INNER;
+                newType = TileType.F_BAND_INNER;
             }
-            else if(offset < gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
+            else if (offset < gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
                     gameConfig.F_BAND_INNER_HEIGHT){
                 // Within second mid band
-                tileType = TileType.F_BAND_MID;
+                newType = TileType.F_BAND_MID;
             }
-            else if(offset < 2 * gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
+            else if (offset < 2 * gameConfig.F_BAND_OUTER_HEIGHT + 2 * gameConfig.F_BAND_MID_HEIGHT +
                     gameConfig.F_BAND_INNER_HEIGHT){
                 // Within second outer band
-                tileType = TileType.F_BAND_OUTER;
+                newType = TileType.F_BAND_OUTER;
             }
-            else{
+            else {
                 // Above fertility bands
-                tileType = TileType.ARID;
+                newType = TileType.ARID;
             }
 
-            tiles.get(row).forEach(tile -> tile.setType(tileType));
+            // Only soil-type tiles can be affected
+            tiles.get(row).forEach(tile -> {
+                if (tile.getType() == TileType.ARID ||
+                        tile.getType() == TileType.SOIL ||
+                        tile.getType() == TileType.F_BAND_OUTER ||
+                        tile.getType() == TileType.F_BAND_MID ||
+                        tile.getType() == TileType.F_BAND_INNER){
+                    tile.setType(newType);
+                }
+            });
         }
-    }
-
-    public boolean isGreenGrocer(Position pos) {
-        return isValidPosition(pos) &&
-                tiles.get(pos.getY()).get(pos.getX()).getType() == TileType.GREEN_GROCER;
     }
 
     /** Grows all crops on this TileMap */
@@ -121,12 +125,8 @@ public class TileMap implements Iterable<Tile> {
         for (Tile tile : this) {
             Crop crop = tile.getCrop();
 
-            if (crop == null) {
-                continue;
-            }
-
             // Only affect crops which are still growing
-            if (crop.getType() != CropType.NONE && crop.getGrowthTimer() > 0) {
+            if (crop != null && crop.getType() != CropType.NONE && crop.getGrowthTimer() > 0) {
                 // Increase value
                 crop.grow(tile.getFertility());
             }
@@ -138,7 +138,7 @@ public class TileMap implements Iterable<Tile> {
 
     public void plantCrop(Position pos, CropType type) {
         if (isValidPosition(pos)) {
-            tiles.get(pos.getX()).get(pos.getY()).setCrop(new Crop(type));
+            get(pos).setCrop(new Crop(type));
         }
     }
 
@@ -150,12 +150,19 @@ public class TileMap implements Iterable<Tile> {
         return mapWidth;
     }
 
+    public Tile get(Position pos) {
+        if (!isValidPosition(pos)) {
+            return null;
+        }
+        return tiles.get(pos.getY()).get(pos.getX());
+    }
+
     public boolean isValidPosition(Position pos) {
         return pos.getX() >= 0 && pos.getX() < mapWidth && pos.getY() >= 0 && pos.getY() < mapHeight;
     }
 
     public TileType getTileType(Position pos) {
-        return tiles.get(pos.getX()).get(pos.getY()).getType();
+        return get(pos).getType();
     }
 
     public Tile getTile(Position pos) {

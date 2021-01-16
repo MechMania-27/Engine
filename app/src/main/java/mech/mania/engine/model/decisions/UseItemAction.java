@@ -35,7 +35,6 @@ public class UseItemAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
-        // stub for now
-//        Player player = state.getPlayer(playerID);
+        Player player = state.getPlayer(playerID);
     }
 }

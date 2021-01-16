@@ -1,5 +1,7 @@
 package mech.mania.engine;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import mech.mania.engine.config.Config;
@@ -111,6 +113,17 @@ public class Main {
 
             Gson serializer = new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
+                    .addSerializationExclusionStrategy(new ExclusionStrategy() {
+                        @Override
+                        public boolean shouldSkipField(FieldAttributes f) {
+                            return f.getName().equals("playerNum");
+                        }
+
+                        @Override
+                        public boolean shouldSkipClass(Class<?> clazz) {
+                            return false;
+                        }
+                    })
                     .create();
             String gameLogJson = serializer.toJson(gameLog, GameLog.class);
             writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
@@ -419,6 +432,8 @@ public class Main {
 
         } while (!GameLogic.isGameOver(gameState, gameConfig));
 
+        System.out.printf("Player 1: $%.2f, Player 2: $%.2f\n",
+                gameState.getPlayer1().getMoney(), gameState.getPlayer2().getMoney());
         GameLogic.setWinners(gameLog, gameState, engineLogger);
     }
 

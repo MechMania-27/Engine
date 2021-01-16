@@ -39,6 +39,7 @@ public class HarvestAction extends PlayerDecision {
 
     public void performAction(GameState state, JsonLogger engineLogger) {
         Player player = state.getPlayer(playerID);
+        Player opponent = state.getOpponentPlayer(playerID);
         Position curPosition = player.getPosition();
 
         int curCropCount = player.getHarvestedCrops().size();
@@ -47,24 +48,67 @@ public class HarvestAction extends PlayerDecision {
             if (GameUtils.distance(curPosition, coord) > player.getHarvestRadius()) {
                 engineLogger.severe(
                                     String.format(
-                                                "Player %d failed to harvest at location %s, too far!",
-                                                playerID + 1,
-                                                coord));
+                                            "Player %d failed to harvest at %s outside of harvest radius %d",
+                                            playerID + 1,
+                                            coord,
+                                            player.getHarvestRadius()));
             }
 
             if (curCropCount == player.getCarryingCapacity()) {
+                engineLogger.severe(
+                                    String.format(
+                                                "Player %d attempted to harvest at %s, more crops than carrying capacity %d",
+                                                playerID + 1,
+                                                coord,
+                                                player.getCarryingCapacity()));
                 break;
             }
 
             Tile target = state.getTileMap().getTile(coord);
-            if (target.getCrop().getType() == CropType.NONE || target.getCrop().getGrowthTimer() > 0) {
+            if (target.getCrop().getType() == CropType.NONE) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest where no crop was found at %s",
+                                playerID + 1,
+                                coord
+                        )
+                );
                 continue;
             }
 
-            player.getHarvestedCrops().add(target.getCrop());
+            if (target.getCrop().getGrowthTimer() > 0) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest an unripe crop at %s",
+                                playerID + 1,
+                                coord
+                        )
+                );
+                continue;
+            }
+
+            if (GameUtils.distance(opponent.getPosition(), coord) <= opponent.getProtectionRadius()) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest at inside opponent's protection radius",
+                                playerID + 1
+                        )
+                );
+                continue;
+            }
+
+            engineLogger.info(
+                    String.format(
+                            "Player %d harvested crop %s from %s",
+                            playerID + 1,
+                            target.getCrop().getType(),
+                            coord
+                    )
+            );
+
+            player.harvest(target);
             curCropCount++;
 
-            target.setCrop(new Crop(CropType.NONE));
         }
     }
 }

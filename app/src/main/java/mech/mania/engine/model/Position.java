@@ -43,6 +43,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ")";
+        return String.format("(%d,%d)", x, y);
     }
 }

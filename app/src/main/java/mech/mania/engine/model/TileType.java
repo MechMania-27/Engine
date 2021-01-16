@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 
 public enum TileType {
     GREEN_GROCER("tiletype.greengrocer"),
+    GRASS("tiletype.grass"),  // unused until Visualizer implements
     ARID("tiletype.arid"),
     SOIL("tiletype.soil"),
     F_BAND_OUTER("tiletype.fband_outer"),

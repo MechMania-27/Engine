@@ -7,7 +7,11 @@ public final class Config {
     // =========== BOARD CONSTANTS ===============
     public final int BOARD_HEIGHT;
     public final int BOARD_WIDTH;
+    public final int GRASS_ROWS;
+    public final int GREENGROCER_LENGTH;
 
+    public final int F_BAND_INIT_POSITION;
+    public final int F_BAND_INIT_DELAY;
     public final int F_BAND_MOVE_DELAY;
     public final int F_BAND_INNER_HEIGHT;
     public final int F_BAND_MID_HEIGHT;
@@ -37,10 +41,14 @@ public final class Config {
         // board props
         BOARD_HEIGHT =           Integer.parseInt(rb.getString("board.height"));
         BOARD_WIDTH =            Integer.parseInt(rb.getString("board.width"));
+        GRASS_ROWS =             Integer.parseInt(rb.getString("board.grass.rows"));
+        GREENGROCER_LENGTH =     Integer.parseInt(rb.getString("board.greengrocer.length"));
         F_BAND_INNER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.inner.height"));
         F_BAND_MID_HEIGHT =      Integer.parseInt(rb.getString("fertilityband.mid.height"));
         F_BAND_OUTER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.outer.height"));
         F_BAND_MOVE_DELAY =      Integer.parseInt(rb.getString("fertilityband.speed"));
+        F_BAND_INIT_DELAY =      Integer.parseInt(rb.getString("fertilityband.delay"));
+        F_BAND_INIT_POSITION =   Integer.parseInt(rb.getString("fertilityband.start"));
 
         // player props
         CARRYING_CAPACITY =      Integer.parseInt(rb.getString("player.carrycapacity"));

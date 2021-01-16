@@ -49,7 +49,7 @@ public class BuyAction extends PlayerDecision {
             if (cost > player.getMoney()) {
                 engineLogger.severe(
                                 String.format(
-                                                "Player %d failed to purchase %d %s seeds, budget %d, cost %d",
+                                                "Player %d failed to purchase %d %s seeds, budget %.2f, cost %d",
                                                 playerID + 1,
                                                 quantities.get(i),
                                                 seeds.get(i),
@@ -60,6 +60,9 @@ public class BuyAction extends PlayerDecision {
             }
             player.addSeeds(seeds.get(i), quantities.get(i));
             player.changeBalance(-cost);
+            engineLogger.info(String.format("Player %d bought %d %s seeds",
+                    playerID + 1, quantities.get(i), seeds.get(i)));
+
         }
 
     }

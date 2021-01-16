@@ -20,7 +20,7 @@ public class MoveActionTest {
 
     @Test
     public void moveActionParseDecisionTest() throws PlayerDecisionParseException {
-        MoveAction action = new MoveAction(1);
+        MoveAction action = new MoveAction(MY_PLAYER_ID);
 
         String regularDecision = "move 1 1";
         action.parse(regularDecision);

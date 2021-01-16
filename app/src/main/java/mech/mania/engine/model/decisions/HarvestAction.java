@@ -29,9 +29,14 @@ public class HarvestAction extends PlayerDecision {
         }
 
         do {
-            int x = Integer.parseInt(matcher.group("x"));
-            int y = Integer.parseInt(matcher.group("y"));
-            coords.add(new Position(x, y));
+            try {
+                int x = Integer.parseInt(matcher.group("x"));
+                int y = Integer.parseInt(matcher.group("y"));
+                coords.add(new Position(x, y));
+            } catch (NumberFormatException e) {
+                // will occur if input can't be parsed into an int (ex: Integer.MAX_VALUE + 1)
+                throw new PlayerDecisionParseException("Arguments did not match Harvest regex (did you pass too big an int?)");
+            }
         } while (matcher.find());
 
         return this;

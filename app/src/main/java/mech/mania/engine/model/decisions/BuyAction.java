@@ -8,8 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BuyAction extends PlayerDecision {
-    private ArrayList<CropType> seeds;
-    private ArrayList<Integer> quantities;
+    protected ArrayList<CropType> seeds;
+    protected ArrayList<Integer> quantities;
 
     public BuyAction(int playerID) {
         this.playerID = playerID;

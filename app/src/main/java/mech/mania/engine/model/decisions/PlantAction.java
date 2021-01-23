@@ -93,6 +93,19 @@ public class PlantAction extends PlayerDecision {
                 continue;
             }
 
+            Tile target = state.getTileMap().getTile(coords.get(i));
+            if (target.isScarecrowEffect() >= 0 && target.isScarecrowEffect() != playerID) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest at %s inside opponent's scarecrow radius",
+                                playerID + 1,
+                                coords.get(i)
+                        )
+                );
+                continue;
+            }
+
+
             state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
             player.removeSeeds(cropTypes.get(i), 1);
 

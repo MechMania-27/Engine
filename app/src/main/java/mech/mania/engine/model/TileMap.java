@@ -129,10 +129,16 @@ public class TileMap implements Iterable<Tile> {
             if (crop != null && crop.getType() != CropType.NONE && crop.getGrowthTimer() > 0) {
                 // Increase value
                 crop.grow(tile.getFertility());
+                
+                if (tile.isRainTotemEffect()) {
+                    crop.grow(tile.getFertility());
+                    crop.grow(tile.getFertility());
+                }
             }
-
             // Update tile states
             tile.setFertilityIdolEffect(false);
+            tile.setRainTotemEffect(false);
+            tile.setPesticideEffect(false);
         }
     }
 
@@ -151,14 +157,23 @@ public class TileMap implements Iterable<Tile> {
     }
 
     public Tile get(Position pos) {
-        if (!isValidPosition(pos)) {
+        return get(pos.getX(), pos.getY());
+    }
+
+    public Tile get(int x, int y) {
+        if (!isValidPosition(x, y)) {
             return null;
         }
-        return tiles.get(pos.getY()).get(pos.getX());
+
+        return tiles.get(x).get(y);
     }
 
     public boolean isValidPosition(Position pos) {
-        return pos.getX() >= 0 && pos.getX() < mapWidth && pos.getY() >= 0 && pos.getY() < mapHeight;
+        return isValidPosition(pos.getX(), pos.getY());
+    }
+
+    public boolean isValidPosition(int x, int y) {
+        return x >= 0 && x < mapWidth && y >= 0 && y < mapHeight;
     }
 
     public TileType getTileType(Position pos) {

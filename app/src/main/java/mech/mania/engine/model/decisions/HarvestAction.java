@@ -95,8 +95,20 @@ public class HarvestAction extends PlayerDecision {
             if (GameUtils.distance(opponent.getPosition(), coord) <= opponent.getProtectionRadius()) {
                 engineLogger.severe(
                         String.format(
-                                "Player %d attempted to harvest at inside opponent's protection radius",
-                                playerID + 1
+                                "Player %d attempted to harvest at %s inside opponent's protection radius",
+                                playerID + 1,
+                                coord
+                        )
+                );
+                continue;
+            }
+
+            if (target.isScarecrowEffect() >= 0 && target.isScarecrowEffect() != playerID) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest at %s inside opponent's scarecrow radius",
+                                playerID + 1,
+                                coord
                         )
                 );
                 continue;

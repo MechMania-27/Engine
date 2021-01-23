@@ -46,6 +46,10 @@ public class Crop {
         this.value = value;
     }
 
+    public void applyPesticide() {
+        this.value *= 0.8;
+    }
+
     public void setGrowthTimer(int growthTimer) {
         this.growthTimer = growthTimer;
     }

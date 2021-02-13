@@ -1,22 +1,39 @@
 import sys
-import json
-import os
+from mm27_io import receive_gamestate, send_decision, send_item, send_upgrade
+from mm27_io import Logger
 
-sys.stdin = os.fdopen(sys.stdin.fileno(), 'rb', buffering=0)
 
-turn = 1
-while True:
-    game_state_string = sys.stdin.readline()
-    game_state = json.loads(game_state_string)
-    print(f"Turn {turn}", file=sys.stderr, flush=True)
+def process_decision(game_state):
+    return ["move 1 1", "done"]
 
-    if len(sys.argv) > 1:
-        # uses command line argument to determine when to crash
-        if turn == int(sys.argv[1]):
-            a = [1, 2, 3]
-            b = a[4]  # index out of bounds exception
 
-    # sending decision
-    print("move 1 1", flush=True)
+if __name__ == "__main__":
+    logger = Logger()
 
-    turn += 1
+    logger.info("Sending \"NONE\" and \"NONE\" for Item and Upgrade")
+
+    # Item
+    send_item("NONE")
+
+    # Upgrade
+    send_upgrade("NONE")
+
+    # all logging and errors should be redirected to sys.stderr
+    # while all commands sent back to the game engine as decision should
+    # be sent in stdout using print
+    while True:
+        game_state = receive_gamestate()
+        logger.debug(f"================ Turn {game_state['turn']} begin ================")
+        logger.info(f"I received: {str(game_state):.40s}...")
+
+        if len(sys.argv) > 1:
+            if game_state['turn'] == int(sys.argv[1]):
+                a = [1, 2, 3]
+                b = a[4]
+
+        decision = process_decision(game_state)
+
+        logger.info(f"Sending {decision}")
+        for move in decision:
+            send_decision(move)
+        logger.debug(f"================ Turn {game_state['turn']} end ==================\n")

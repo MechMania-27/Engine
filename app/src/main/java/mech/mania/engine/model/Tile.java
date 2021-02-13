@@ -1,16 +1,30 @@
 package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Tile {
     @Expose
     private TileType type;
     @Expose
-    private int fertility;
+    private Crop crop;
+    @Expose
+    @SerializedName("p1_item")
+    private ItemType p1Item;
+    @Expose
+    @SerializedName("p2_item")
+    private ItemType p2Item;
 
-    public Tile(TileType type, int fertility) {
+    private int turnsLeftToGrow;
+    private Player planter;
+
+    private boolean rainTotemEffect = false;
+    private boolean fertilityIdolEffect = false;
+    private boolean pesticideEffect = false;
+    private boolean scarecrowEffect = false;
+
+    public Tile(TileType type) {
         this.type = type;
-        this.fertility = fertility;
     }
 
     public TileType getType() {
@@ -21,11 +35,60 @@ public class Tile {
         this.type = type;
     }
 
-    public int getFertility() {
-        return fertility;
+    public boolean isRainTotemEffect() {
+        return rainTotemEffect;
     }
 
-    public void setFertility(int fertility) {
-        this.fertility = fertility;
+    public void setRainTotemEffect(boolean rainTotemEffect) {
+        this.rainTotemEffect = rainTotemEffect;
     }
+
+    public boolean isFertilityIdolEffect() {
+        return fertilityIdolEffect;
+    }
+
+    public void setFertilityIdolEffect(boolean fertilityIdolEffect) {
+        this.fertilityIdolEffect = fertilityIdolEffect;
+    }
+
+    public boolean isPesticideEffect() {
+        return pesticideEffect;
+    }
+
+    public void setPesticideEffect(boolean pesticideEffect) {
+        this.pesticideEffect = pesticideEffect;
+    }
+
+    public boolean isScarecrowEffect() {
+        return scarecrowEffect;
+    }
+
+    public void setScarecrowEffect(boolean scarecrowEffect) {
+        this.scarecrowEffect = scarecrowEffect;
+    }
+
+    public Crop getCrop() {
+        return crop;
+    }
+
+    public void setCrop(Crop crop) {
+        this.crop = crop;
+    }
+
+    public ItemType getP1Item() {
+        return p1Item;
+    }
+
+    public void setP1Item(ItemType p1Item) {
+        this.p1Item = p1Item;
+    }
+
+    public ItemType getP2Item() {
+        return p2Item;
+    }
+
+    public void setP2Item(ItemType p2Item) {
+        this.p2Item = p2Item;
+    }
+
 }

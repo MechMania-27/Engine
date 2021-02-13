@@ -1,107 +1,69 @@
 package mech.mania.engine.config;
 
-import org.apache.commons.configuration2.XMLConfiguration;
-import org.apache.commons.configuration2.builder.fluent.Configurations;
-import org.apache.commons.configuration2.ex.ConfigurationException;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
-import java.util.NoSuchElementException;
+public final class Config {
+    // =========== BOARD CONSTANTS ===============
+    public final int BOARD_HEIGHT;
+    public final int BOARD_WIDTH;
 
-public class Config {
+    public final int F_BAND_MOVE_DELAY;
+    public final double F_BAND_INNER_FERTILITY;
+    public final int F_BAND_INNER_HEIGHT;
+    public final double F_BAND_MID_FERTILITY;
+    public final int F_BAND_MID_HEIGHT;
+    public final double F_BAND_OUTER_FERTILITY;
+    public final int F_BAND_OUTER_HEIGHT;
+
     // =========== GAME CONSTANTS ===============
-    private int boardHeight;
-    private int boardWidth;
-    private int fBandMoveDelay;
-    private double fBandInnerFertility;
-    private int fBandInnerHeight;
-    private double fBandMidFertility;
-    private int fBandMidHeight;
-    private double fBandOuterFertility;
-    private int fBandOuterHeight;
-
-    private int startingSeedQuality;
-    private int startingMoney;
-    private int maxMovement;
-    private int plantRadius;
-    private int harvestRadius;
-    private int carryingCapacity;
-    private int protectionRadius;
-    private String defaultReplayFileName;
+    public final int STARTING_MONEY;
+    public final int MAX_MOVEMENT;
+    public final int PLANT_RADIUS;
+    public final int HARVEST_RADIUS;
+    public final int CARRYING_CAPACITY;
+    public final int PROTECTION_RADIUS;
 
     // ========== OTHER CONSTANTS ===============
+    public final String REPLAY_FILENAME;
+    public final String ENGINELOG_FILENAME;
+    public final int PLAYER_TIMEOUT;
+    public final String PLAYERLOG_EXTENSION;
 
-    public int getBoardHeight() { return boardHeight; }
+    private ResourceBundle rb;
 
-    public int getBoardWidth() { return boardWidth; }
-
-    public int getfBandMoveDelay() { return fBandMoveDelay; }
-
-    public double getfBandInnerFertility() { return fBandInnerFertility; }
-
-    public int getfBandInnerHeight() { return fBandInnerHeight; }
-
-    public double getfBandMidFertility() { return fBandMidFertility; }
-
-    public int getfBandMidHeight() { return fBandMidHeight; }
-
-    public double getfBandOuterFertility() { return fBandOuterFertility; }
-
-    public int getfBandOuterHeight() { return fBandOuterHeight; }
-
-    public int getStartingSeedQuality() { return startingSeedQuality; }
-
-    public int getStartingMoney() { return startingMoney; }
-
-    public int getMaxMovement() { return maxMovement; }
-
-    public int getPlantRadius() { return plantRadius; }
-
-    public int getHarvestRadius() { return harvestRadius; }
-
-    public int getCarryingCapacity() { return carryingCapacity; }
-
-    public int getProtectionRadius() { return protectionRadius; }
-
-    public String getDefaultReplayFileName() { return defaultReplayFileName; }
-
-    public Config() throws ConfigurationException {
-        this("mm27.xml");
+    public Config() throws MissingResourceException {
+        this("mm27");
     }
 
-    public Config(String configFileName) throws ConfigurationException {
-        // read file
-        Configurations configurations = new Configurations();
+    public Config(String resourceName) throws MissingResourceException {
+        rb = ResourceBundle.getBundle(resourceName);
 
-        XMLConfiguration configRead = configurations.xml(configFileName);
+        // board props
+        BOARD_HEIGHT =           Integer.parseInt(rb.getString("board.height"));
+        BOARD_WIDTH =            Integer.parseInt(rb.getString("board.width"));
+        F_BAND_INNER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.inner.height"));
+        F_BAND_INNER_FERTILITY = Double.parseDouble(rb.getString("fertilityband.inner.fertility"));
+        F_BAND_MID_HEIGHT =      Integer.parseInt(rb.getString("fertilityband.mid.height"));
+        F_BAND_MID_FERTILITY =   Double.parseDouble(rb.getString("fertilityband.mid.fertility"));
+        F_BAND_OUTER_HEIGHT =    Integer.parseInt(rb.getString("fertilityband.outer.height"));
+        F_BAND_OUTER_FERTILITY = Double.parseDouble(rb.getString("fertilityband.outer.fertility"));
+        F_BAND_MOVE_DELAY =      Integer.parseInt(rb.getString("fertilityband.speed"));
 
-        try {
-            // board props
-            boardHeight = configRead.getInt("appSettings.board.add(0)[@value]");
-            boardWidth = configRead.getInt("appSettings.board.add(1)[@value]");
-            fBandInnerHeight = configRead.getInt("appSettings.board.add(2)[@value]");
-            fBandInnerFertility = configRead.getDouble("appSettings.board.add(3)[@value]");
-            fBandMidHeight = configRead.getInt("appSettings.board.add(4)[@value]");
-            fBandMidFertility = configRead.getDouble("appSettings.board.add(5)[@value]");
-            fBandOuterHeight = configRead.getInt("appSettings.board.add(6)[@value]");
-            fBandOuterFertility = configRead.getDouble("appSettings.board.add(7)[@value]");
-            fBandMoveDelay = configRead.getInt("appSettings.board.add(8)[@value]");
+        // player props
+        CARRYING_CAPACITY =      Integer.parseInt(rb.getString("player.carrycapacity"));
+        MAX_MOVEMENT =           Integer.parseInt(rb.getString("player.maxmovement"));
+        PLANT_RADIUS =           Integer.parseInt(rb.getString("player.plantradius"));
+        HARVEST_RADIUS =         Integer.parseInt(rb.getString("player.harvestradius"));
+        PROTECTION_RADIUS =      Integer.parseInt(rb.getString("player.protectionradius"));
+        STARTING_MONEY =         Integer.parseInt(rb.getString("player.startingmoney"));
 
-            // player props
-            carryingCapacity = configRead.getInt("appSettings.player.add(0)[@value]");
-            maxMovement = configRead.getInt("appSettings.player.add(1)[@value]");
-            plantRadius = configRead.getInt("appSettings.player.add(2)[@value]");
-            harvestRadius = configRead.getInt("appSettings.player.add(3)[@value]");
-            protectionRadius = configRead.getInt("appSettings.player.add(4)[@value]");
-            startingSeedQuality = 0;  // configRead.getInt("");
-            startingMoney = 0;  // configRead.getInt("");
+        PLAYER_TIMEOUT =         Integer.parseInt(rb.getString("networking.timeout"));
 
-            // crops props
-
-            // other props
-            defaultReplayFileName = "game.log";
-
-        } catch (NoSuchElementException e) {
-            throw new ConfigurationException("NoSuchElementException: " + e.getMessage());
-        }
+        // other props
+        REPLAY_FILENAME =        rb.getString("replayfile.name");
+        ENGINELOG_FILENAME =     rb.getString("enginelogfile.name");
+        PLAYERLOG_EXTENSION =    rb.getString("playerlogfile.extension");
     }
 
 }

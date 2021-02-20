@@ -35,7 +35,7 @@ public class Main {
      * logs (player1, player2, and the game log).
      * @param args Program arguments
      */
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         Config gameConfig;
         try {
             gameConfig = new Config();

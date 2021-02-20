@@ -66,10 +66,9 @@ def get_action_decision(game_state) -> str:
     return action
 
 
-def crash_on_turn(curr_turn: int, turn: int) -> None:
-    if curr_turn == turn:
-        a = [1, 2, 3]
-        b = a[4]
+def crash() -> None:
+    a = [1, 2, 3]
+    b = a[4]
 
 
 if __name__ == "__main__":
@@ -95,7 +94,8 @@ if __name__ == "__main__":
         duration = time.perf_counter_ns() - start_time
         logger.info(f"Send move decision took {duration // 1e6} ms")
 
-        crash_on_turn(game_state['turn'], int(sys.argv[1]))
+        if game_state['turn'] == int(sys.argv[1]):
+            crash()
 
         start_time = time.perf_counter_ns()
         game_state = receive_gamestate()

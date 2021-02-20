@@ -165,7 +165,7 @@ public class TileMap implements Iterable<Tile> {
             return null;
         }
 
-        return tiles.get(x).get(y);
+        return tiles.get(y).get(x);
     }
 
     public boolean isValidPosition(Position pos) {
@@ -182,7 +182,7 @@ public class TileMap implements Iterable<Tile> {
 
     public Tile getTile(Position pos) {
         if (isValidPosition(pos)) {
-            return tiles.get(pos.getX()).get(pos.getY());
+            return tiles.get(pos.getY()).get(pos.getX());
         }
         return null;
     }

@@ -3,6 +3,7 @@ package mech.mania.engine.model.decisions;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
+import org.junit.Before;
 import org.junit.Test;
 
 public class HarvestActionTest {
@@ -13,6 +14,31 @@ public class HarvestActionTest {
 
     private final static Config GAME_CONFIG = new Config("debug");
     private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
+
+    HarvestAction action;
+    GameState state;
+
+    @Before
+    public void setup() {
+        action = new HarvestAction(MY_PLAYER_ID);
+        ItemType myPlayerItem = ItemType.NONE;
+        UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+        ItemType opponentPlayerItem = ItemType.NONE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.NONE;
+
+        GameState state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
+                OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
+
+        int width = GAME_CONFIG.BOARD_WIDTH;
+        int height = GAME_CONFIG.BOARD_HEIGHT;
+
+        for (int i = width / 4; i < 3 * width / 4; i++) {
+            for (int j = height / 4; j < 3 * height / 4; j++) {
+                CropType curCrop = CropType.values()[(i + j) % CropType.values().length];
+                state.getTileMap().plantCrop(new Position(i, j), curCrop);
+            }
+        }
+    }
 
     @Test
     public void buyActionParseDecisionTest() throws PlayerDecisionParseException {

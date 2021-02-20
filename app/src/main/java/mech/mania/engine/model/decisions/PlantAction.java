@@ -105,7 +105,6 @@ public class PlantAction extends PlayerDecision {
                 continue;
             }
 
-
             state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
             player.removeSeeds(cropTypes.get(i), 1);
 

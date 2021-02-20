@@ -14,6 +14,8 @@ public class TileMap implements Iterable<Tile> {
     private final int mapWidth;
     @Expose
     private final ArrayList<ArrayList<Tile>> tiles;
+    @Expose
+    private final ArrayList<Position> greenGrocerTiles;
 
     private final Config gameConfig;
     private final Player player1;
@@ -25,12 +27,15 @@ public class TileMap implements Iterable<Tile> {
         mapWidth = gameConfig.BOARD_WIDTH;
 
         tiles = new ArrayList<>();
+        greenGrocerTiles = new ArrayList<>();
+
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
                 if (row < gameConfig.GRASS_ROWS) {
                     // Green Grocer tiles are at the top center
                     if (row == 0 && Math.abs(col - mapWidth / 2) <= gameConfig.GREENGROCER_LENGTH / 2) {
+                        greenGrocerTiles.add(new Position(row, col));
                         tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
                     } else {
                         tiles.get(row).add(new Tile(TileType.GRASS));
@@ -51,12 +56,18 @@ public class TileMap implements Iterable<Tile> {
         this.mapHeight = other.mapHeight;
         this.mapWidth = other.mapWidth;
         this.tiles = new ArrayList<>();
+        this.greenGrocerTiles = new ArrayList<>();
         for (int row = 0; row < mapHeight; row++) {
             tiles.add(new ArrayList<>());
             for (int col = 0; col < mapWidth; col++) {
                 tiles.get(row).add(new Tile(other.tiles.get(row).get(col)));
             }
         }
+
+        for (Position p : other.greenGrocerTiles) {
+            this.greenGrocerTiles.add(new Position(p));
+        }
+
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
     }
@@ -146,6 +157,10 @@ public class TileMap implements Iterable<Tile> {
         if (isValidPosition(pos)) {
             get(pos).setCrop(new Crop(type));
         }
+    }
+
+    public ArrayList<Position> getGreenGrocer() {
+        return this.greenGrocerTiles;
     }
 
     public int getMapHeight() {

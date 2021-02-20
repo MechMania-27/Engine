@@ -43,7 +43,7 @@ def get_action_decision(game_state) -> str:
     pos = game_state[f"p{player_num}"]["position"]
     logger.info(f"Currently at ({pos['x']},{pos['y']}), Harvested: {game_state[f'p{player_num}']['harvestedInventory']}")
 
-    crop = random.choice(["POTATO", "CORN", "GRAPE"])
+    crop = random.choice(["POTATO", "CORN", "GRAPES"])
     pos = game_state[f"p{player_num}"]["position"]
     if game_state[f"p{player_num}"]["seedInventory"][crop] > 0 and \
             game_state["tileMap"]["tiles"][pos["y"]][pos["x"]]["type"] != "GREEN_GROCER" and \

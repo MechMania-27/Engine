@@ -2,13 +2,14 @@ package mech.mania.engine.model;
 
 
 import java.util.ResourceBundle;
+import java.util.function.BiFunction;
 
 public enum ItemType {
-    RAIN_TOTEM("itemtype.raintotem"),
-    FERTILITY_IDOL("itemtype.fertilityidol"),
-    PESTICIDE("itemtype.pesticide"),
-    SCARECROW("itemtype.scarecrow"),
-    NONE("itemtype.none");
+    RAIN_TOTEM("itemtype.raintotem", ItemType::rainTotemProcess),
+    FERTILITY_IDOL("itemtype.fertilityidol", ItemType::fertilityIdolProcess),
+    PESTICIDE("itemtype.pesticide", ItemType::pesticideProcess),
+    SCARECROW("itemtype.scarecrow", ItemType::scarecrowProcess),
+    NONE("itemtype.none", ItemType::nothing);
 
     /**
      * ResourceBundle to get properties file values from
@@ -25,8 +26,10 @@ public enum ItemType {
      * properties.
      */
     private String propsPrefix;
-    ItemType(String propsPrefix) {
+    BiFunction<Player, TileMap, Boolean> applyProcess;
+    ItemType(String propsPrefix, BiFunction<Player, TileMap, Boolean> process) {
         this.propsPrefix = propsPrefix;
+        this.applyProcess = process;
     }
 
     public String getDescription() {
@@ -49,6 +52,22 @@ public enum ItemType {
         }
 
         return ItemType.valueOf(item);
+    }
+
+    private static boolean rainTotemProcess(Player player, TileMap tilemap){
+        return false;
+    }
+    private static boolean fertilityIdolProcess(Player player, TileMap tilemap){
+        return false;
+    }
+    private static boolean pesticideProcess(Player player, TileMap tilemap){
+        return false;
+    }
+    private static boolean scarecrowProcess(Player player, TileMap tilemap){
+        return false;
+    }
+    private static boolean nothing(Player player, TileMap tilemap){
+        return true;
     }
 }
 

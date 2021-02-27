@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 public enum CropType {
     NONE("croptype.none"),
-    GRAPES("croptype.grapes"),
+    GRAPE("croptype.grapes"),
     CORN("croptype.corn"),
     POTATO("croptype.potato"),
     JOGANFRUIT("croptype.joganfruit"),

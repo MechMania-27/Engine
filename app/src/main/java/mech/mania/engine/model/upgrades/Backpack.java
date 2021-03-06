@@ -4,14 +4,14 @@ import mech.mania.engine.config.Config;
 import mech.mania.engine.model.Player;
 import mech.mania.engine.model.Upgrade;
 
-public class LongerScythe extends Upgrade {
+public class Backpack extends Upgrade {
 
-    public LongerScythe(Config config) {
+    public Backpack(Config config) {
         super(config);
     }
 
     @Override
     public void applyUpgrade(Player player) {
-        player.setHarvestRadius(config.LONGER_SCYTHE_HARVEST_RADIUS);
+        player.setCarryingCapacity(config.BACKPACK_CARRYING_CAPACITY);
     }
 }

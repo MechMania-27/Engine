@@ -28,10 +28,6 @@ public enum UpgradeType {
         this.propsPrefix = propsPrefix;
     }
 
-    public String getBenefit() {
-        return rb.getString(propsPrefix + ".benefit");
-    }
-
     public static UpgradeType getEnum(String upgrade) {
         if (upgrade == null || upgrade.length() == 0) {
             return UpgradeType.NONE;

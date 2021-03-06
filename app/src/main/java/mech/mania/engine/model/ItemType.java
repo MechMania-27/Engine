@@ -32,6 +32,10 @@ public enum ItemType {
         this.applyProcess = process;
     }
 
+    public BiFunction<Player, TileMap, Boolean> getApplyProcess() {
+        return applyProcess;
+    }
+
     public String getDescription() {
         return rb.getString(propsPrefix + ".description");
     }

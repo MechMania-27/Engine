@@ -29,7 +29,7 @@ public class JsonLogger {
     private List<String> exceptionLogs = new ArrayList<>();
 
     /** Print debug statements? */
-    private boolean debug;
+    private boolean debug = true;
 
     public JsonLogger(int startingTurn) {
         turn = startingTurn;
@@ -49,6 +49,18 @@ public class JsonLogger {
         debugLogs.clear();
         exceptionLogs.clear();
         turn++;
+    }
+
+    public List<String> getInfoLogs() {
+        return infoLogs;
+    }
+
+    public List<String> getDebugLogs() {
+        return debugLogs;
+    }
+
+    public List<String> getExceptionLogs() {
+        return exceptionLogs;
     }
 
     public void setDebug(boolean debug) {
@@ -78,7 +90,7 @@ public class JsonLogger {
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
 
-        String res = String.format("%s: %s\nStackTrace: %s",
+        String res = String.format("%s: %s\nStack Trace: %s",
                 e.getClass().getSimpleName(), message, sw.toString());
         exceptionLogs.addAll(stringLines(res));
     }

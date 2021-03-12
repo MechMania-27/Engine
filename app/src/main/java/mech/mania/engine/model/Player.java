@@ -20,6 +20,8 @@ public class Player {
     private Map<CropType, Integer> seedInventory = new HashMap<>();
     @Expose
     private ArrayList<Crop> harvestedInventory = new ArrayList<>();
+    @Expose
+    private Achievements achievements;
 
     private Config gameConfig;
 
@@ -30,6 +32,7 @@ public class Player {
         this.item = item;
         this.upgrade = upgrade;
         this.money = money;
+        this.achievements = new Achievements();
 
         for (CropType type : CropType.values()) {
             seedInventory.put(type, 0);
@@ -47,6 +50,7 @@ public class Player {
         seedInventory.putAll(other.seedInventory);
         this.seedInventory = new HashMap<>(other.seedInventory);
         this.harvestedInventory = new ArrayList<>(other.harvestedInventory);
+        this.achievements = new Achievements();
     }
 
     public void sellInventory() {
@@ -149,5 +153,9 @@ public class Player {
     public void harvest(Tile tile) {
         harvestedInventory.add(new Crop(tile.getCrop()));
         tile.clearCrop();
+    }
+
+    public Achievements getAchievements() {
+        return achievements;
     }
 }

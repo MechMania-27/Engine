@@ -23,6 +23,10 @@ public class Player {
     private int maxMovement;
     private double doubleDropChance;
 
+    private boolean hasDeliveryDrone = false;
+    private boolean useCoffeeThermos = false;
+
+
     public Player(String name, Position position, ItemType item, UpgradeType upgradeType, int money) {
         this.name = name;
         this.position = position;
@@ -119,5 +123,21 @@ public class Player {
 
     public void setPlantRadius(int plantRadius) {
         this.plantRadius = plantRadius;
+    }
+
+    public boolean getDeliveryDrone() {
+        return hasDeliveryDrone;
+    }
+
+    public void setDeliveryDrone(boolean hasDeliveryDrone) {
+        this.hasDeliveryDrone = hasDeliveryDrone;
+    }
+
+    public boolean getUseCoffeeThermos() {
+        return useCoffeeThermos;
+    }
+
+    public void setUseCoffeeThermos(boolean useCoffeeThermos) {
+        this.useCoffeeThermos = useCoffeeThermos;
     }
 }

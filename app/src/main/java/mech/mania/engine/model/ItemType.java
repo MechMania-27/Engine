@@ -59,18 +59,66 @@ public enum ItemType {
     }
 
     private static boolean rainTotemProcess(Player player, TileMap tilemap){
-        return false;
+        if (!tilemap.isValidPosition(player.getPosition())) return false;
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j){
+                Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
+                if (tile != null){
+                    tile.setRainTotemEffect(true);
+                }
+            }
+        }
+        return true;
     }
     private static boolean fertilityIdolProcess(Player player, TileMap tilemap){
-        return false;
+        if (!tilemap.isValidPosition(player.getPosition())) return false;
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j){
+                Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
+                if (tile != null){
+                    tile.setFertilityIdolEffect(true);
+                }
+            }
+        }
+        return true;
     }
     private static boolean pesticideProcess(Player player, TileMap tilemap){
-        return false;
+        if (!tilemap.isValidPosition(player.getPosition())) return false;
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j){
+                Tile tile = tilemap.getTile(new Position(i - 1, j - 1));
+                if (tile != null){
+                    tile.setPesticideEffect(true);
+                }
+            }
+        }
+        return true;
     }
     private static boolean scarecrowProcess(Player player, TileMap tilemap){
-        return false;
+        if (!tilemap.isValidPosition(player.getPosition())) return false;
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j){
+                Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
+                if (tile != null){
+                    tile.setScarecrowEffect(true);
+                }
+            }
+        }
+        return true;
     }
+
+    private static boolean deliveryDroneProcess(Player player, TileMap tilemap) {
+        player.setDeliveryDrone(true);
+        return true;
+    }
+
+    private static boolean coffeeThermosProcess(Player player, TileMap tilemap) {
+        player.setUseCoffeeThermos(true);
+        return true;
+    }
+
     private static boolean nothing(Player player, TileMap tilemap){
+        // do nothing
         return true;
     }
 }

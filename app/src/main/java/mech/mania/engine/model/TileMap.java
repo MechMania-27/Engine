@@ -103,5 +103,13 @@ public class TileMap {
         }
     }
 
+    // TODO: fix this with the correct coordinate values
+    public Tile getTile(Position pos){
+        if (isValidPosition(pos)){
+            return tiles.get(mapHeight - pos.getY() - 1).get(pos.getX());
+        }
+        return null;
+    }
+
 }
 

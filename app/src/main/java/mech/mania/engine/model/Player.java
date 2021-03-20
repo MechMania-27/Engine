@@ -118,12 +118,12 @@ public class Player {
 
     // TODO factor item
     public int getCarryingCapacity() {
-        return -1;
+        return gameConfig.CARRYING_CAPACITY;
     }
 
     // TODO stub for now
     public int getProtectionRadius() {
-        return -1;
+        return gameConfig.PROTECTION_RADIUS;
     }
 
     public ArrayList<Crop> getHarvestedCrops() {

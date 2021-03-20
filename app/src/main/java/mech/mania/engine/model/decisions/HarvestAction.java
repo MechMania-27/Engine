@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HarvestAction extends PlayerDecision {
-    private ArrayList<Position> coords;
+    protected ArrayList<Position> coords;
 
     public HarvestAction(int playerID){
         this.playerID = playerID;

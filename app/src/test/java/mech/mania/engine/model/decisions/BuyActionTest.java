@@ -29,7 +29,7 @@ public class BuyActionTest {
         ItemType opponentPlayerItem = ItemType.NONE;
         UpgradeType opponentPlayerUpgrade = UpgradeType.NONE;
 
-        GameState state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
+        state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
 
         state.getPlayer(MY_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
@@ -37,7 +37,7 @@ public class BuyActionTest {
 
     @Test
     public void buySingleCrop() throws PlayerDecisionParseException {
-        String regularDecision = "buy corn 10";
+        String regularDecision = "corn 10";
         action.parse(regularDecision);
 
         Assert.assertEquals(1, action.seeds.size());
@@ -48,7 +48,7 @@ public class BuyActionTest {
 
     @Test
     public void buyMultipleCrops() throws PlayerDecisionParseException {
-        String multipleCropsBuyDecision = "buy corn 10 potato 20";
+        String multipleCropsBuyDecision = "corn 10 potato 20";
         action.parse(multipleCropsBuyDecision);
 
         Assert.assertEquals(2, action.seeds.size());
@@ -59,23 +59,23 @@ public class BuyActionTest {
 
     @Test
     public void buyNegativeQuantity() {
-        String negativeBuyDecision = "buy corn -1";
+        String negativeBuyDecision = "corn -1";
 
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(negativeBuyDecision));
     }
 
     @Test
     public void buyOverMax() {
-        String bigIntBuyDecision = String.format("buy corn %d", (long) Integer.MAX_VALUE + 1);
+        String bigIntBuyDecision = "corn 2147483648";
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(bigIntBuyDecision));
     }
 
     @Test
     public void buyInvalidString() {
-        String noCropDecision = "buy";
+        String noCropDecision = "";
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(noCropDecision));
 
-        String invalidFormatDecision = "buy corn";
+        String invalidFormatDecision = "corn";
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(invalidFormatDecision));
     }
 
@@ -84,7 +84,7 @@ public class BuyActionTest {
         state.getPlayer(MY_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice() * 10);
 
         BuyAction action = new BuyAction(MY_PLAYER_ID);
-        String decision = "buy corn 10";
+        String decision = "corn 10";
         action.parse(decision);
         action.performAction(state, BOT_LOGGER);
 
@@ -101,7 +101,7 @@ public class BuyActionTest {
                                             + 5);
 
         BuyAction action = new BuyAction(MY_PLAYER_ID);
-        String decision = "buy corn 10 potato 20";
+        String decision = "corn 10 potato 20";
         action.parse(decision);
         action.performAction(state, BOT_LOGGER);
 
@@ -116,7 +116,7 @@ public class BuyActionTest {
         state.getPlayer(MY_PLAYER_ID).setMoney(2);
 
         BuyAction action = new BuyAction(MY_PLAYER_ID);
-        String decision = "buy corn 2";
+        String decision = "corn 2";
         action.parse(decision);
         action.performAction(state, BOT_LOGGER);
 
@@ -130,7 +130,7 @@ public class BuyActionTest {
         state.getPlayer(MY_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice() * 10 + 3);
 
         BuyAction action = new BuyAction(MY_PLAYER_ID);
-        String decision = "buy corn 10 potato 20";
+        String decision = "corn 10 potato 20";
         action.parse(decision);
         action.performAction(state, BOT_LOGGER);
 
@@ -144,10 +144,10 @@ public class BuyActionTest {
     public void notOnGreenGrocerMoneyBuyActionPerformActionTest() throws PlayerDecisionParseException {
         state.getPlayer(MY_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice() * 10);
         // one row below the green grocer rows
-        state.getPlayer(MY_PLAYER_ID).setPosition(new Position(GAME_CONFIG.GRASS_ROWS, 0));
+        state.getPlayer(MY_PLAYER_ID).setPosition(new Position(0, GAME_CONFIG.GRASS_ROWS));
 
         BuyAction action = new BuyAction(MY_PLAYER_ID);
-        String decision = "buy corn 10 potato 20";
+        String decision = "corn 10 potato 20";
         action.parse(decision);
         action.performAction(state, BOT_LOGGER);
 

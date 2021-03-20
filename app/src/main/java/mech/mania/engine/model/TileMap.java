@@ -35,7 +35,7 @@ public class TileMap implements Iterable<Tile> {
                 if (row < gameConfig.GRASS_ROWS) {
                     // Green Grocer tiles are at the top center
                     if (row == 0 && Math.abs(col - mapWidth / 2) <= gameConfig.GREENGROCER_LENGTH / 2) {
-                        greenGrocerTiles.add(new Position(row, col));
+                        greenGrocerTiles.add(new Position(col, row));
                         tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
                     } else {
                         tiles.get(row).add(new Tile(TileType.GRASS));
@@ -181,7 +181,7 @@ public class TileMap implements Iterable<Tile> {
             return null;
         }
 
-        return tiles.get(x).get(y);
+        return tiles.get(y).get(x);
     }
 
     public boolean isValidPosition(Position pos) {

@@ -22,18 +22,18 @@ public class MoveActionTest {
     public void moveActionParseDecisionTest() throws PlayerDecisionParseException {
         MoveAction action = new MoveAction(MY_PLAYER_ID);
 
-        String regularDecision = "move 1 1";
+        String regularDecision = "1 1";
         action.parse(regularDecision);
         Assert.assertEquals(new Position(1, 1), action.destination);
 
-        String negativeMoveDecision = "move -1 -1";
+        String negativeMoveDecision = "-1 -1";
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(negativeMoveDecision));
 
-        String bigIntMoveDecision = String.format("move %d %d", (long) Integer.MAX_VALUE + 1, (long) Integer.MAX_VALUE + 1);
+        String bigIntMoveDecision = String.format("%d %d", (long) Integer.MAX_VALUE + 1, (long) Integer.MAX_VALUE + 1);
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(bigIntMoveDecision));
 
         // should parse, but is invalid to move to
-        String outOfBoundsMoveDecision = String.format("move %d %d", GAME_CONFIG.BOARD_WIDTH, GAME_CONFIG.BOARD_HEIGHT);
+        String outOfBoundsMoveDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH, GAME_CONFIG.BOARD_HEIGHT);
         action.parse(outOfBoundsMoveDecision);
         Assert.assertEquals(new Position(GAME_CONFIG.BOARD_WIDTH, GAME_CONFIG.BOARD_HEIGHT), action.destination);
     }
@@ -48,14 +48,14 @@ public class MoveActionTest {
         GameState state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
 
-        String player1Decision = "move 1 1";
+        String player1Decision = "1 1";
         MoveAction player1Action = new MoveAction(MY_PLAYER_ID);
         player1Action.parse(player1Decision);
         player1Action.performAction(state, BOT_LOGGER);
 
         Assert.assertEquals(new Position(1, 1), state.getPlayer(MY_PLAYER_ID).getPosition());
 
-        String player2Decision = String.format("move %d %d",
+        String player2Decision = String.format("%d %d",
                 GAME_CONFIG.BOARD_WIDTH - 2,
                 GAME_CONFIG.BOARD_HEIGHT - 2);
         MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID);
@@ -80,7 +80,7 @@ public class MoveActionTest {
 
         // top left to bottom right
         Position player1Destination = new Position(9, 9);
-        String player1Decision = String.format("move %d %d", player1Destination.getX(), player1Destination.getY());
+        String player1Decision = String.format("%d %d", player1Destination.getX(), player1Destination.getY());
         MoveAction player1Action = new MoveAction(MY_PLAYER_ID);
         player1Action.parse(player1Decision);
         player1Action.performAction(state, BOT_LOGGER);
@@ -95,7 +95,7 @@ public class MoveActionTest {
 
         // top right to bottom left
         Position player2Destination = new Position(0, 9);
-        String player2Decision = String.format("move %d %d", player2Destination.getX(), player2Destination.getY());
+        String player2Decision = String.format("%d %d", player2Destination.getX(), player2Destination.getY());
         MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID);
         player2Action.parse(player2Decision);
         player2Action.performAction(state, BOT_LOGGER);
@@ -136,7 +136,7 @@ public class MoveActionTest {
 
         // green grocer move (x = 3, 4, 5, 6 are green grocers, see debug.properties)
         Position destination = new Position(4, 0);
-        String decision = String.format("move %d %d", destination.getX(), destination.getY());
+        String decision = String.format("%d %d", destination.getX(), destination.getY());
         MoveAction action = new MoveAction(MY_PLAYER_ID);
         action.parse(decision);
         action.performAction(state, BOT_LOGGER);

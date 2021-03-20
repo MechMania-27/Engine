@@ -57,6 +57,7 @@ public class HarvestAction extends PlayerDecision {
                                             playerID + 1,
                                             coord,
                                             player.getHarvestRadius()));
+                continue;
             }
 
             if (curCropCount == player.getCarryingCapacity()) {

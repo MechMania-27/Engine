@@ -7,6 +7,12 @@ public enum CropType {
     GRAPE("croptype.grape"),
     CORN("croptype.corn"),
     POTATO("croptype.potato");
+    JORGANFRUIT("croptype.jorganfruit");
+    PEANUTS("croptype.peanuts");
+    QUADROTRITICALE("croptype.quadrotriticale");
+    DUCHAMFRUIT("croptype.duchamfruit");
+    GOLDENCORN("croptype.goldencorn");
+
 
     /**
      * ResourceBundle to get properties file values from
@@ -52,4 +58,5 @@ public enum CropType {
     public int getValueGrowth() {
         return Integer.parseInt(rb.getString(propsPrefix + ".valuegrowth"));
     }
+
 }

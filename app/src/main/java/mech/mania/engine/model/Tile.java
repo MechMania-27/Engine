@@ -74,7 +74,7 @@ public class Tile {
         return scarecrowEffect;
     }
 
-    public void setScarecrowEffect(int scarecrowEffect) {
+    public void setScarecroEffect(int scarecrowEffect) {
         this.scarecrowEffect = scarecrowEffect;
     }
 
@@ -117,4 +117,8 @@ public class Tile {
     public String toString() {
         return String.format("Tile[%s,%s]", type, crop);
     }
+    public Player getPlanter() {
+        return planter;
+    }
+
 }

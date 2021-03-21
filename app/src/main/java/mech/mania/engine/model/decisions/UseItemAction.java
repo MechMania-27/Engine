@@ -28,6 +28,7 @@ public class UseItemAction extends PlayerDecision {
         Position loc = state.getPlayer(playerID).getPosition();
         ItemType item = state.getPlayer(playerID).getItem();
         TileMap map = state.getTileMap();
+        Player player = state.getPlayer(playerID);
 
         switch (item) {
             case NONE:
@@ -78,6 +79,9 @@ public class UseItemAction extends PlayerDecision {
                 for (int i = -2; i <= 2; i++) {
                     for (int j = -2; j <= 2; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
+                            if(map.get(loc.getX() + i, loc.getY() + j).isScarecrowEffect != playerID) {
+                                player.getAchievements().addAchievements("Ornithophobia");
+                            }
                             map.get(loc.getX() + i, loc.getY() + j).setScarecrowEffect(playerID);
                         }
                     }

@@ -435,6 +435,18 @@ public class Main {
         System.out.printf("Player 1: $%.2f, Player 2: $%.2f\n",
                 gameState.getPlayer1().getMoney(), gameState.getPlayer2().getMoney());
         GameLogic.setWinners(gameLog, gameState, engineLogger);
+        //Display achievements
+        boolean p1win = gameState.getPlayer1().getMoney() > gameState.getPlayer2().getMoney();
+        ArrayList<string> p1achievements = gameState.getPlayer1().getAchievements().getFinalAchievements(p1win, gameConfig.STARTING_MONEY, gameState.getPlayer1().getMoney());
+        ArrayList<string> p2achievements = gameState.getPlayer2().getAchievements().getFinalAchievements(!p1win, gameConfig.STARTING_MONEY, gameState.getPlayer2().getMoney());
+        System.out.printf("Player 1 has unlocked the following achievements:")
+        for(int i = 0; i < p1achievements.length;i++) {
+            System.out.printf(p1achievements.get(i));
+        }
+        System.out.printf("Player 2 has unlocked the following achievements:")
+        for(int i = 0; i < p2achievements.length;i++) {
+            System.out.printf(p2achievements.get(i));
+        }
     }
 
     private static boolean badEndState(GameLog gameStates, PlayerEndState player1EndState, PlayerEndState player2EndState) {

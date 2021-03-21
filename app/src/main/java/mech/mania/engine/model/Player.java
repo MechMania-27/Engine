@@ -57,9 +57,23 @@ public class Player {
         if (harvestedInventory.isEmpty()) {
             return;
         }
+        if(achievements.hasStolen()) {
+            achievements.addAchievement("Seedy Business");
+        }
+        if(achievements.hasStolen5Grapes()) {
+            achievements.addAchievement("Grapes of Mild Displeasure");
+        }
         Iterator<Crop> inventoryIter = harvestedInventory.iterator();
         while (inventoryIter.hasNext()) {
             Crop crop = inventoryIter.next();
+
+            //store the sold CropType to achievements
+            if(crop.getType() != CropType.GOLDENCORN && crop.getType() != CropType.PEANUTS) {
+                achievements.addCropType(crop.getType());
+            }
+            if(crop.getType() == CropType.GOLDENCORN) {
+                achievements.addAchievement("Stalks and Bonds");
+            }
             money += crop.getValue();
             inventoryIter.remove();
         }

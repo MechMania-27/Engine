@@ -106,6 +106,10 @@ public class PlantAction extends PlayerDecision {
             }
 
             state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
+            //update achievements
+            if(cropTypes.get(i) != CropType.JORGANFRUIT && cropTypes.get(i) != CropType.DUCHAMFRUIT) {
+                player.getAchievements().fruit();
+            }
             player.removeSeeds(cropTypes.get(i), 1);
 
             engineLogger.info(

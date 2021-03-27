@@ -162,20 +162,18 @@ public class HarvestActionTest {
 
     }
 
-    @Test
-    public void unripeCropHarvestActionPerformActionTest() throws PlayerDecisionParseException {
-        // corn at this location- should not be grown
-        String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4);
-        action.parse(regularDecision);
-        state.getPlayer(MY_PLAYER_ID).setPosition(
-                new Position(GAME_CONFIG.BOARD_WIDTH / 4,
-                        GAME_CONFIG.BOARD_HEIGHT / 4));
+    // @Test
+    // public void unripeCropHarvestActionPerformActionTest() throws PlayerDecisionParseException {
+    //     // corn at this location- should not be grown
+    //     String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4);
+    //     action.parse(regularDecision);
+    //     state.getPlayer(MY_PLAYER_ID).setPosition(
+    //             new Position(GAME_CONFIG.BOARD_WIDTH / 4,
+    //                     GAME_CONFIG.BOARD_HEIGHT / 4));
 
-        action.performAction(state, BOT_LOGGER);
-        Assert.assertEquals(0, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
-//        Assert.assertEquals(CropType.CORN, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().get(0).getType());
-
-    }
+    //     action.performAction(state, BOT_LOGGER);
+    //     Assert.assertEquals(0, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
+    // }
 
     @Test
     public void insideProtectionRadiusHarvestActionPerformActionTest() throws PlayerDecisionParseException {

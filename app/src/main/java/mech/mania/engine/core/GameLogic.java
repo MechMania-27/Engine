@@ -51,14 +51,6 @@ public class GameLogic {
         GameState newGameState = new GameState(gameState);
         newGameState.setTurn(gameState.getTurn() + 1);
 
-        // Perform non-movement actions
-        if (! (player1Decision instanceof MoveAction)) {
-            player1Decision.performAction(newGameState, engineLogger);
-        }
-        if (! (player2Decision instanceof MoveAction)) {
-            player2Decision.performAction(newGameState, engineLogger);
-        }
-
         // Grow crops
         newGameState.getTileMap().growCrops();
 
@@ -71,6 +63,14 @@ public class GameLogic {
                 tile.getCrop().setGrowthTimer(0);
                 tile.getCrop().setValue(0);
             }
+        }
+
+        // Perform non-movement actions
+        if (! (player1Decision instanceof MoveAction)) {
+            player1Decision.performAction(newGameState, engineLogger);
+        }
+        if (! (player2Decision instanceof MoveAction)) {
+            player2Decision.performAction(newGameState, engineLogger);
         }
 
         return newGameState;

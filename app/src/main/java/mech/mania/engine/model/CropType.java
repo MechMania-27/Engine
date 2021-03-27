@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 public enum CropType {
     NONE("croptype.none"),
-    GRAPES("croptype.grapes"),
+    GRAPE("croptype.grapes"),
     CORN("croptype.corn"),
     POTATO("croptype.potato"),
     JOGANFRUIT("croptype.joganfruit"),
@@ -47,7 +47,7 @@ public enum CropType {
     }
 
     public double getFertilitySensitivity() {
-        return Double.parseDouble(rb.getString(propsPrefix + ".feritilitysens"));
+        return Double.parseDouble(rb.getString(propsPrefix + ".fertilitysens"));
     }
 
     public int getGrowthTime() {
@@ -58,7 +58,7 @@ public enum CropType {
         return Integer.parseInt(rb.getString(propsPrefix + ".seedprice"));
     }
 
-    public int getGrowthValuePerTurn() {
-        return Integer.parseInt(rb.getString(propsPrefix + ".growthvalue"));
+    public double getGrowthValuePerTurn() {
+        return Double.parseDouble(rb.getString(propsPrefix + ".growthvalue"));
     }
 }

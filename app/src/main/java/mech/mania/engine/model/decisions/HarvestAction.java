@@ -82,16 +82,16 @@ public class HarvestAction extends PlayerDecision {
                 continue;
             }
 
-            // if (target.getCrop().getGrowthTimer() > 0) {
-            //     engineLogger.severe(
-            //             String.format(
-            //                     "Player %d attempted to harvest an unripe crop at %s",
-            //                     playerID + 1,
-            //                     coord
-            //             )
-            //     );
-            //     continue;
-            // }
+            if (target.getCrop().getGrowthTimer() > 0) {
+                engineLogger.severe(
+                        String.format(
+                                "Player %d attempted to harvest an unripe crop at %s",
+                                playerID + 1,
+                                coord
+                        )
+                );
+                continue;
+            }
 
             if (GameUtils.distance(opponent.getPosition(), coord) <= opponent.getProtectionRadius()) {
                 engineLogger.severe(

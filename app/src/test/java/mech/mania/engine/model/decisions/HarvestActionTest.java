@@ -55,13 +55,14 @@ public class HarvestActionTest {
 
     @Test
     public void regularHarvestActionPerformActionTest() throws PlayerDecisionParseException {
-        // corn at this location- should be grown
+        // potato at this location- should be grown
         String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4);
         action.parse(regularDecision);
         state.getPlayer(MY_PLAYER_ID).setPosition(
                                 new Position(GAME_CONFIG.BOARD_WIDTH / 4,
                                             GAME_CONFIG.BOARD_HEIGHT / 4));
 
+        state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();

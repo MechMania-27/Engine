@@ -115,6 +115,6 @@ public class Tile {
 
     @Override
     public String toString() {
-        return String.format("Tile[%s,%s]", type, crop);
+        return String.format("Tile[type=%s,crop=%s]", type, crop);
     }
 }

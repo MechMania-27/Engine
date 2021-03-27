@@ -22,6 +22,11 @@ public class Crop {
         this.value = other.value;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Crop[type=%s,timer=%d,value=%f]", type, growthTimer, value);
+    }
+
     /** Increases this crop's value based on the tile fertility and decrements the growthTimer if crop is still growing */
     public void grow(double tileFertility) {
         if (growthTimer > 0) {

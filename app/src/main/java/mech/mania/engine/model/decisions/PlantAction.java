@@ -93,7 +93,7 @@ public class PlantAction extends PlayerDecision {
                 continue;
             }
 
-            Tile target = state.getTileMap().getTile(coords.get(i));
+            Tile target = state.getTileMap().get(coords.get(i));
             if (target.isScarecrowEffect() >= 0 && target.isScarecrowEffect() != playerID) {
                 engineLogger.severe(
                         String.format(

@@ -169,6 +169,11 @@ public class Player {
         tile.clearCrop();
     }
 
+
+    public void addToHarvestInventory(Crop crop) {
+        harvestedInventory.add(crop);
+    }
+
     public Achievements getAchievements() {
         return achievements;
     }

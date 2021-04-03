@@ -35,7 +35,8 @@ public class HarvestActionTest {
         for (int i = width / 4; i < 3 * width / 4; i++) {
             for (int j = height / 4; j < 3 * height / 4; j++) {
                 CropType curCrop = CropType.values()[(i + j) % CropType.values().length];
-                state.getTileMap().plantCrop(new Position(i, j), curCrop);
+                Player player = state.getPlayer(MY_PLAYER_ID);
+                state.getTileMap().plantCrop(new Position(i, j), curCrop, player);
             }
         }
     }

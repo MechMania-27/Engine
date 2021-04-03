@@ -1,5 +1,8 @@
 package mech.mania.engine.model;
-
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
 public class Achievements {
     private Set<String> achievements;
     private double moneySpent;
@@ -11,12 +14,12 @@ public class Achievements {
     private int cropsDestroyed;
 
     public Achievements() {
-        achievements = Set<String>();
+        achievements = new HashSet<>();
         moneySpent = 0;
-        cropsSold = Set<String>();
+        cropsSold = new HashSet<>();
         cropsDestroyed = 0;
         grapesStolen = 0;
-        stolen = false;
+        stole = false;
         cropsPlant = false;
         fruitOnly = true;
         cropsDestroyed = 0;
@@ -30,6 +33,7 @@ public class Achievements {
     public void destroyCrops(int amount) {
         cropsDestroyed += amount;
     }
+    public int getCropsDestroyed() {return cropsDestroyed;}
     public void stealGrapes(int amount) {
         grapesStolen += amount;
     }
@@ -40,7 +44,7 @@ public class Achievements {
         stole = true;
     }
     public boolean hasStolen() {
-        return stolen;
+        return stole;
     }
     public void plant() {
         cropsPlant = true;
@@ -54,7 +58,7 @@ public class Achievements {
     public void addAchievement(String achievement) {
         achievements.add(achievement);
     }
-    public ArrayList<String> getFinalAchievements(boolean win, double starting_money, double money) {
+    public List<String> getFinalAchievements(boolean win, double starting_money, double money) {
         if(cropsDestroyed >= 10) {
             achievements.add("Dust Bowl");
         }
@@ -74,7 +78,7 @@ public class Achievements {
             achievements.add("A Worthy Heir");
 
             if (stole == false) {
-                achievements.add("It Ain’t Much, but It’s Honest Work");
+                achievements.add("It Ain't Much, but It's Honest Work");
             }
             if (cropsPlant == false) {
                 achievements.add("Botanical Burglary");
@@ -83,6 +87,10 @@ public class Achievements {
                 achievements.add("Fruits of our Labor");
             }
         }
-        return achievements;
+        List<String> ret = new ArrayList<>();
+        for(String e : achievements) {
+            ret.add(e);
+        }
+        return ret;
     }
 }

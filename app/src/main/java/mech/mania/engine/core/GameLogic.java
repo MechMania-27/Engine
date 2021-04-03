@@ -70,7 +70,10 @@ public class GameLogic {
             if (tile.getType() == TileType.ARID) {
                 tile.getCrop().setGrowthTimer(0);
                 tile.getCrop().setValue(0);
-                tile.getPlanter().getAchievements().destroyCrop();
+                if(tile.getCrop().getType() != CropType.NONE) {
+                    tile.getPlanter().getAchievements().destroyCrops(1);
+                }
+
             }
         }
 

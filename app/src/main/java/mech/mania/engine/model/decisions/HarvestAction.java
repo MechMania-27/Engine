@@ -7,6 +7,7 @@ import mech.mania.engine.util.GameUtils;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.List;
 
 public class HarvestAction extends PlayerDecision {
     private ArrayList<Position> coords;
@@ -124,14 +125,15 @@ public class HarvestAction extends PlayerDecision {
             );
 
             //update achievements
-            achievements = player.getAchievements();
+            Achievements achievements = player.getAchievements();
             if(target.getPlanter() != player) {
                 achievements.steal();
+                //System.out.println("debug");
             }
             if(target.getCrop().getType() == CropType.GRAPE) {
-                achievements.stealGrapes();
+                achievements.stealGrapes(1);
             }
-            if(target.getCrop().getType() != CropType.JORGANFRUIT && target.getCrop().getType() != CropType.DUCHAMFRUIT) {
+            if(target.getCrop().getType() != CropType.JOGANFRUIT && target.getCrop().getType() != CropType.DUCHAMFRUIT&& target.getCrop().getType() != CropType.GRAPE) {
                 achievements.fruit();
             }
             player.harvest(target);

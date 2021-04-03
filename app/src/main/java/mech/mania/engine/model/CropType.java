@@ -4,13 +4,13 @@ import java.util.ResourceBundle;
 
 public enum CropType {
     NONE("croptype.none"),
-    GRAPE("croptype.grape"),
+    GRAPE("croptype.grapes"),
     CORN("croptype.corn"),
-    POTATO("croptype.potato");
-    JORGANFRUIT("croptype.jorganfruit");
-    PEANUTS("croptype.peanuts");
-    QUADROTRITICALE("croptype.quadrotriticale");
-    DUCHAMFRUIT("croptype.duchamfruit");
+    POTATO("croptype.potato"),
+    JOGANFRUIT("croptype.joganfruit"),
+    PEANUTS("croptype.peanuts"),
+    QUADROTRITICALE("croptype.quadrotriticale"),
+    DUCHAMFRUIT("croptype.duchamfruit"),
     GOLDENCORN("croptype.goldencorn");
 
 

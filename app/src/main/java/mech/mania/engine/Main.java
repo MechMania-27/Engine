@@ -437,15 +437,21 @@ public class Main {
         GameLogic.setWinners(gameLog, gameState, engineLogger);
         //Display achievements
         boolean p1win = gameState.getPlayer1().getMoney() > gameState.getPlayer2().getMoney();
-        ArrayList<string> p1achievements = gameState.getPlayer1().getAchievements().getFinalAchievements(p1win, gameConfig.STARTING_MONEY, gameState.getPlayer1().getMoney());
-        ArrayList<string> p2achievements = gameState.getPlayer2().getAchievements().getFinalAchievements(!p1win, gameConfig.STARTING_MONEY, gameState.getPlayer2().getMoney());
-        System.out.printf("Player 1 has unlocked the following achievements:")
-        for(int i = 0; i < p1achievements.length;i++) {
-            System.out.printf(p1achievements.get(i));
+        List<String> p1achievements = gameState.getPlayer1().getAchievements().getFinalAchievements(p1win, gameConfig.STARTING_MONEY, gameState.getPlayer1().getMoney());
+        List<String> p2achievements = gameState.getPlayer2().getAchievements().getFinalAchievements(!p1win, gameConfig.STARTING_MONEY, gameState.getPlayer2().getMoney());
+        engineLogger.info("Player 1 has unlocked the following achievements:");
+        if(p1achievements.size() == 0) {
+            engineLogger.info("Player 1 does not unlock any achievements");
         }
-        System.out.printf("Player 2 has unlocked the following achievements:")
-        for(int i = 0; i < p2achievements.length;i++) {
-            System.out.printf(p2achievements.get(i));
+        for(int i = 0; i < p1achievements.size();i++) {
+            engineLogger.info(p1achievements.get(i));
+        }
+        engineLogger.info("Player 2 has unlocked the following achievements:");
+        if(p2achievements.size() == 0) {
+            engineLogger.info("Player 2 does not unlock any achievements");
+        }
+        for(int i = 0; i < p2achievements.size();i++) {
+            engineLogger.info(p2achievements.get(i));
         }
     }
 

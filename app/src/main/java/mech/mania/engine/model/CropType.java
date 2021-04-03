@@ -55,8 +55,8 @@ public enum CropType {
         return Integer.parseInt(rb.getString(propsPrefix + ".seedprice"));
     }
 
-    public int getValueGrowth() {
-        return Integer.parseInt(rb.getString(propsPrefix + ".valuegrowth"));
+    public double getValueGrowth() {
+        return Double.parseDouble(rb.getString(propsPrefix + ".valuegrowth"));
     }
 
 }

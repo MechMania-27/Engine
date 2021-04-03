@@ -1,14 +1,8 @@
 package mech.mania.engine.model;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
-import mech.mania.engine.core.PlayerEndState;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.decisions.*;
-import mech.mania.engine.networking.PlayerCommunicationInfo;
-import mech.mania.engine.util.PlayerCommunicationUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,13 +24,14 @@ public class AchievementsTest {
         greenGrocer = gameState.getTileMap().getGreenGrocer().get(0);
         engineLogger = new JsonLogger(0);
     }
-    @Test
+
     /**
      * Test for the achievement "Not Worth the Dirt He Sows", "A Worthy Heir", "It Ain’t Much, but It’s Honest Work"
      */
+    @Test
     public void Achievement1and7and8() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("buy corn 10");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("move %d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision buyAction = new BuyAction(0).parse("corn 10");
+        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         moveToGrocer.performAction(gameState, engineLogger);
         buyAction.performAction(gameState, engineLogger);
         String achievement1 = "Not Worth the Dirt He Sows";
@@ -51,13 +46,14 @@ public class AchievementsTest {
         Assert.assertTrue(p2achievements.contains(achievement2));
         Assert.assertTrue(p2achievements.contains(achievement3));
     }
-    @Test
+
     /**
      * Test for the achievement "My Favorite Customer", "Botanical Burglary"
      */
+    @Test
     public void achievement2() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("buy corn 200");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("move %d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision buyAction = new BuyAction(0).parse("corn 200");
+        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         gameState.getPlayer1().setMoney(10000);
         moveToGrocer.performAction(gameState, engineLogger);
         buyAction.performAction(gameState, engineLogger);
@@ -70,19 +66,20 @@ public class AchievementsTest {
         Assert.assertFalse(p2achievements.contains(achievement));
         Assert.assertTrue(p2achievements.contains(achievement2));
     }
-    @Test
+
     /**
      * Test for the achievement "Dust Bowl"
      */
+    @Test
     public void achievement3() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("buy corn 200");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("move %d %d", greenGrocer.getX(), greenGrocer.getY()));
-        PlayerDecision player2Decision = new MoveAction(1).parse("move 5 5");
+        PlayerDecision buyAction = new BuyAction(0).parse("corn 200");
+        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision player2Decision = new MoveAction(1).parse("5 5");
         gameState.getPlayer1().setMoney(10000);
         moveToGrocer.performAction(gameState, engineLogger);
         buyAction.performAction(gameState, engineLogger);
         for(int i = 0; i < 10; i++) {
-            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("move %d %d", 3, i));
+            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", 3, i));
             moveToTile.performAction(gameState, engineLogger);
             PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", 3, i));
             plant.performAction(gameState, engineLogger);
@@ -103,25 +100,26 @@ public class AchievementsTest {
         Assert.assertFalse(p2achievements.contains(achievement));
     }
 
-    @Test
     /**
      * Test for the achievement "Seedy Business"
      */
+    @Test
     public void achievement4() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("buy corn 200");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("move %d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision buyAction = new BuyAction(0).parse("corn 200");
+        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         gameState.getPlayer1().setMoney(10000);
         moveToGrocer.performAction(gameState, engineLogger);
         buyAction.performAction(gameState, engineLogger);
-        PlayerDecision moveToTile = new MoveAction(0).parse(String.format("move %d %d", 3, 1));
+        PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", 3, 1));
         moveToTile.performAction(gameState, engineLogger);
         PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", 3, 1));
         plant.performAction(gameState, engineLogger);
         Position p = new Position(3, 1);
         gameState.getTileMap().getTile(p).getCrop().setGrowthTimer(0);
+        player2.setPosition(new Position(3, 2));
         PlayerDecision harvest = new HarvestAction(1).parse("3 1");
         harvest.performAction(gameState, engineLogger);
-        PlayerDecision moveToGrocer2 = new MoveAction(1).parse(String.format("move %d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision moveToGrocer2 = new MoveAction(1).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         moveToGrocer2.performAction(gameState, engineLogger);
         player2.sellInventory();
 
@@ -132,10 +130,11 @@ public class AchievementsTest {
         List<String> p2achievements = player2.getAchievements().getFinalAchievements(true, gameConfig.STARTING_MONEY, player2.getMoney());
         Assert.assertTrue(p2achievements.contains(achievement));
     }
-    @Test
+
     /**
      * Test for the achievement "Omni-Agriculturalist"
      */
+    @Test
     public void achievement5() throws IOException, PlayerDecisionParseException {
         player1.addToHarvestInventory(new Crop(CropType.DUCHAMFRUIT));
         player1.addToHarvestInventory(new Crop(CropType.GRAPE));
@@ -151,15 +150,15 @@ public class AchievementsTest {
         Assert.assertFalse(p2achievements.contains(achievement));
     }
 
-    @Test
     /**
      * Test for the achievement "Grapes of Mild Displeasure", "Richer than Phineas Himself", "Fruits of our Labor"
      */
+    @Test
     public void achievement6and9and13() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("buy grape 200");
-        PlayerDecision buyAction2 = new BuyAction(0).parse("buy corn 1");
+        PlayerDecision buyAction = new BuyAction(0).parse("grape 200");
+        PlayerDecision buyAction2 = new BuyAction(0).parse("corn 1");
         PlayerDecision plantCorn = new PlantAction(0).parse("corn 2 3");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("move %d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         gameState.getPlayer1().setMoney(10000);
         moveToGrocer.performAction(gameState, engineLogger);
         buyAction.performAction(gameState, engineLogger);
@@ -167,7 +166,7 @@ public class AchievementsTest {
         plantCorn.performAction(gameState, engineLogger);
 
         for(int i = 0; i < 5; i++) {
-            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("move %d %d", 3, i));
+            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", 3, i));
             moveToTile.performAction(gameState, engineLogger);
             PlayerDecision plant = new PlantAction(0).parse(String.format("grape %d %d", 3, i));
             plant.performAction(gameState, engineLogger);
@@ -177,7 +176,7 @@ public class AchievementsTest {
             harvest.performAction(gameState, engineLogger);
         }
 
-        PlayerDecision moveToGrocer2 = new MoveAction(1).parse(String.format("move %d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision moveToGrocer2 = new MoveAction(1).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         moveToGrocer2.performAction(gameState, engineLogger);
         player2.sellInventory();
 
@@ -194,10 +193,11 @@ public class AchievementsTest {
         Assert.assertFalse(p2achievements.contains(achievement2));
         Assert.assertTrue(p2achievements.contains(achievement3));
     }
-    @Test
+
     /**
      * Test for the achievement "Ornithophobia"
      */
+    @Test
     public void achievement10() throws IOException, PlayerDecisionParseException {
         player1.setItem(ItemType.SCARECROW);
         player2.setItem(ItemType.SCARECROW);
@@ -218,10 +218,10 @@ public class AchievementsTest {
         Assert.assertTrue(p2achievements.contains(achievement));
     }
 
-    @Test
     /**
      * Test for the achievement "Stalks and Bonds"
      */
+    @Test
     public void achievement11() throws IOException, PlayerDecisionParseException {
         player1.addToHarvestInventory(new Crop(CropType.GOLDENCORN));
         player1.sellInventory();

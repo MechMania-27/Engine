@@ -10,6 +10,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CropTest {
     private final static int MY_PLAYER_ID = 0;
     private final static String MY_PLAYER_NAME = "bot1";
@@ -34,14 +37,35 @@ public class CropTest {
     }
 
     @Test
-    public void growthValueTest() throws PlayerDecisionParseException {
+    public void profitMarginTest() throws PlayerDecisionParseException {
         JsonLogger engineLogger = new JsonLogger(0);
+
+        Map<CropType, Double> expectedProfitMargin = new HashMap<>();
+        expectedProfitMargin.put(CropType.POTATO, 1.1);
+        expectedProfitMargin.put(CropType.CORN, 1.0);
+        expectedProfitMargin.put(CropType.GRAPE, 1.1);
+        expectedProfitMargin.put(CropType.JOGANFRUIT, 1.0);
+        expectedProfitMargin.put(CropType.PEANUTS, 1.0);
+        expectedProfitMargin.put(CropType.QUADROTRITICALE, 1.3);
+        expectedProfitMargin.put(CropType.DUCHAMFRUIT, 1.0);
+        expectedProfitMargin.put(CropType.GOLDENCORN, 1.5);
+
+        for (Map.Entry<CropType, Double> entry : expectedProfitMargin.entrySet()) {
+            int growthTime = entry.getKey().getGrowthTime();
+            double growthValue = getGrowthValueAfterNTurns(entry.getKey(), growthTime, engineLogger);
+            double originalPrice = entry.getKey().getSeedBuyPrice();
+            double margin = (growthValue - originalPrice) / originalPrice;
+            Assert.assertEquals(entry.getValue(), margin, 1e-3);
+        }
+    }
+
+    private double getGrowthValueAfterNTurns(CropType type, int turns, JsonLogger engineLogger) throws PlayerDecisionParseException {
         // give player ability to plant
-        state.getPlayer(MY_PLAYER_ID).addSeeds(CropType.POTATO, 1);
+        state.getPlayer(MY_PLAYER_ID).addSeeds(type, 1);
 
         // plant crop
         PlayerDecision player1Decision = new PlantAction(MY_PLAYER_ID);
-        player1Decision.parse("potato 3 3");
+        player1Decision.parse(String.format("%s 3 3", type));
         PlayerDecision player2Decision = new MoveAction(OPPONENT_PLAYER_ID);
         player2Decision.parse("6 3");  // move to the same position (no action)
         GameState newState = GameLogic.updateGameState(state, player1Decision,
@@ -50,24 +74,24 @@ public class CropTest {
 
         // check growth value
         Crop plantedCrop = newState.getTileMap().getTile(new Position(3, 3)).getCrop();
-        Assert.assertEquals(CropType.POTATO, plantedCrop.getType());
+        Assert.assertEquals(type, plantedCrop.getType());
         Assert.assertEquals(0, plantedCrop.getValue(), 1e-3);
-        Assert.assertEquals(4, plantedCrop.getGrowthTimer());
 
-        // advance turn
-        player1Decision = new MoveAction(MY_PLAYER_ID);
-        player1Decision.parse("3 3");  // move to the same position (no action)
-        player2Decision = new MoveAction(OPPONENT_PLAYER_ID);
-        player2Decision.parse("6 3");  // move to the same position (no action)
-        newState = GameLogic.updateGameState(newState, player1Decision,
-                player2Decision, GAME_CONFIG, engineLogger);
-        engineLogger.incrementTurn();
+        for (int i = 0; i < turns; i++) {
+            // advance turn
+            player1Decision = new MoveAction(MY_PLAYER_ID);
+            player1Decision.parse("3 3");  // move to the same position (no action)
+            player2Decision = new MoveAction(OPPONENT_PLAYER_ID);
+            player2Decision.parse("6 3");  // move to the same position (no action)
+            newState = GameLogic.updateGameState(newState, player1Decision,
+                    player2Decision, GAME_CONFIG, engineLogger);
+            engineLogger.incrementTurn();
+        }
 
         // check growth value
         plantedCrop = newState.getTileMap().getTile(new Position(3, 3)).getCrop();
-        Assert.assertEquals(CropType.POTATO, plantedCrop.getType());
+        Assert.assertEquals(type, plantedCrop.getType());
         // growth formula: GVT * [(1 * (1 - FS)) + (TF * FS)]
-        Assert.assertEquals(1.375 * ((1 * (1 - 0)) + 1 * 0), plantedCrop.getValue(), 1e-3);
-        Assert.assertEquals(3, plantedCrop.getGrowthTimer());
+        return plantedCrop.getValue();
     }
 }

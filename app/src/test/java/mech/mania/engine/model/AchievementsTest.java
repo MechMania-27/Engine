@@ -79,9 +79,9 @@ public class AchievementsTest {
         moveToGrocer.performAction(gameState, engineLogger);
         buyAction.performAction(gameState, engineLogger);
         for(int i = 0; i < 10; i++) {
-            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", 3, i));
+            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", i, 3));
             moveToTile.performAction(gameState, engineLogger);
-            PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", 3, i));
+            PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", i, 3));
             plant.performAction(gameState, engineLogger);
             //gameState = GameLogic.updateGameState(gameState, plant, player2Decision, gameConfig, engineLogger);
         }

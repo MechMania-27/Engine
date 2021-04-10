@@ -30,7 +30,12 @@ public class BuyAction extends PlayerDecision {
 
         do {
             seeds.add(CropType.getEnum(matcher.group("seed")));
-            quantities.add(Integer.parseInt(matcher.group("quantity")));
+            try {
+                quantities.add(Integer.parseInt(matcher.group("quantity")));
+            } catch (NumberFormatException e) {
+                throw new PlayerDecisionParseException("Value was of incorrect format");
+            }
+
         } while (matcher.find());
 
         return this;

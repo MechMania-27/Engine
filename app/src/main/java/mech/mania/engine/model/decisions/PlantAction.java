@@ -10,8 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PlantAction extends PlayerDecision {
-    private ArrayList<Position> coords;
-    private ArrayList<CropType> cropTypes;
+    protected ArrayList<Position> coords;
+    protected ArrayList<CropType> cropTypes;
 
     public PlantAction(int playerID){
         this.playerID = playerID;

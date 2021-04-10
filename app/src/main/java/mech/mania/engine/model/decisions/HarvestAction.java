@@ -124,6 +124,18 @@ public class HarvestAction extends PlayerDecision {
                     )
             );
 
+            //update achievements
+            Achievements achievements = player.getAchievements();
+            if(target.getPlanter() != player) {
+                achievements.steal();
+                //System.out.println("debug");
+            }
+            if(target.getCrop().getType() == CropType.GRAPE) {
+                achievements.stealGrapes(1);
+            }
+            if(target.getCrop().getType() != CropType.JOGANFRUIT && target.getCrop().getType() != CropType.DUCHAMFRUIT&& target.getCrop().getType() != CropType.GRAPE) {
+                achievements.fruit();
+            }
             player.harvest(target);
             curCropCount++;
 

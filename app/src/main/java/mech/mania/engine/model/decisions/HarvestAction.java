@@ -70,7 +70,7 @@ public class HarvestAction extends PlayerDecision {
                 break;
             }
 
-            Tile target = state.getTileMap().getTile(coord);
+            Tile target = state.getTileMap().get(coord);
             if (target.getCrop().getType() == CropType.NONE) {
                 engineLogger.severe(
                         String.format(

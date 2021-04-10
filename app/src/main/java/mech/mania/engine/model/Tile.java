@@ -20,11 +20,22 @@ public class Tile {
 
     private boolean rainTotemEffect = false;
     private boolean fertilityIdolEffect = false;
+    // TODO this is duplicated, maybe remove?
     private boolean pesticideEffect = false;
-    private boolean scarecrowEffect = false;
+    private int scarecrowEffect = -1;
 
     public Tile(TileType type) {
         this.type = type;
+        this.crop = new Crop(CropType.NONE);
+        this.p1Item = ItemType.NONE;
+        this.p2Item = ItemType.NONE;
+    }
+
+    public Tile(Tile other) {
+        this.type = other.type;
+        this.crop = new Crop(other.crop);
+        this.p1Item = other.p1Item;
+        this.p2Item = other.p2Item;
     }
 
     public TileType getType() {
@@ -59,11 +70,11 @@ public class Tile {
         this.pesticideEffect = pesticideEffect;
     }
 
-    public boolean isScarecrowEffect() {
+    public int isScarecrowEffect() {
         return scarecrowEffect;
     }
 
-    public void setScarecrowEffect(boolean scarecrowEffect) {
+    public void setScarecrowEffect(int scarecrowEffect) {
         this.scarecrowEffect = scarecrowEffect;
     }
 
@@ -73,6 +84,10 @@ public class Tile {
 
     public void setCrop(Crop crop) {
         this.crop = crop;
+    }
+
+    public void clearCrop() {
+        this.crop = new Crop(CropType.NONE);
     }
 
     public ItemType getP1Item() {
@@ -91,4 +106,15 @@ public class Tile {
         this.p2Item = p2Item;
     }
 
+    public double getFertility() {
+        if (isFertilityIdolEffect()){
+            return 2 * type.getFertility();
+        }
+        return type.getFertility();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Tile[%s,%s]", type, crop);
+    }
 }

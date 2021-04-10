@@ -90,7 +90,7 @@ public class PlantActionTest {
         String regularDecision = "corn 5 5";
         action.parse(regularDecision);
 
-        state.getTileMap().plantCrop(new Position(5, 5), CropType.POTATO);
+        state.getTileMap().plantCrop(new Position(5, 5), CropType.POTATO, state.getPlayer(1));
 
         state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5));

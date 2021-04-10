@@ -7,7 +7,6 @@ import mech.mania.engine.util.GameUtils;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.List;
 
 public class HarvestAction extends PlayerDecision {
     private ArrayList<Position> coords;
@@ -70,7 +69,7 @@ public class HarvestAction extends PlayerDecision {
                 break;
             }
 
-            Tile target = state.getTileMap().getTile(coord);
+            Tile target = state.getTileMap().get(coord);
             if (target.getCrop().getType() == CropType.NONE) {
                 engineLogger.severe(
                         String.format(

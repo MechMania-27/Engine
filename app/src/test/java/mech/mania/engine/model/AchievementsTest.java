@@ -115,7 +115,7 @@ public class AchievementsTest {
         PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", 3, 1));
         plant.performAction(gameState, engineLogger);
         Position p = new Position(3, 1);
-        gameState.getTileMap().getTile(p).getCrop().setGrowthTimer(0);
+        gameState.getTileMap().get(p).getCrop().setGrowthTimer(0);
         player2.setPosition(new Position(3, 2));
         PlayerDecision harvest = new HarvestAction(1).parse("3 1");
         harvest.performAction(gameState, engineLogger);
@@ -171,7 +171,7 @@ public class AchievementsTest {
             PlayerDecision plant = new PlantAction(0).parse(String.format("grape %d %d", 3, i));
             plant.performAction(gameState, engineLogger);
             Position p = new Position(3, i);
-            gameState.getTileMap().getTile(p).getCrop().setGrowthTimer(0);
+            gameState.getTileMap().get(p).getCrop().setGrowthTimer(0);
             PlayerDecision harvest = new HarvestAction(1).parse(String.format("grape %d %d", 3, i));
             harvest.performAction(gameState, engineLogger);
         }

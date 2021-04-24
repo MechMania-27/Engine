@@ -61,4 +61,5 @@ public enum CropType {
     public double getGrowthValuePerTurn() {
         return Double.parseDouble(rb.getString(propsPrefix + ".growthvalue"));
     }
+
 }

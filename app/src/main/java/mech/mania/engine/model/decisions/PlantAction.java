@@ -93,7 +93,7 @@ public class PlantAction extends PlayerDecision {
                 continue;
             }
 
-            Tile target = state.getTileMap().getTile(coords.get(i));
+            Tile target = state.getTileMap().get(coords.get(i));
             if (target.isScarecrowEffect() >= 0 && target.isScarecrowEffect() != playerID) {
                 engineLogger.severe(
                         String.format(
@@ -105,7 +105,11 @@ public class PlantAction extends PlayerDecision {
                 continue;
             }
 
-            state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i));
+            state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i), player);
+            //update achievements
+            if(cropTypes.get(i) != CropType.JOGANFRUIT && cropTypes.get(i) != CropType.DUCHAMFRUIT&& cropTypes.get(i) != CropType.GRAPE) {
+                player.getAchievements().fruit();
+            }
             player.removeSeeds(cropTypes.get(i), 1);
 
             engineLogger.info(

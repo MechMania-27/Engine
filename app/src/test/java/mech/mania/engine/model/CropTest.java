@@ -76,7 +76,7 @@ public class CropTest {
         engineLogger.incrementTurn();
 
         // check growth value
-        Crop plantedCrop = newState.getTileMap().getTile(new Position(3, 3)).getCrop();
+        Crop plantedCrop = newState.getTileMap().get(new Position(3, 3)).getCrop();
         Assert.assertEquals(type, plantedCrop.getType());
         Assert.assertEquals(0, plantedCrop.getValue(), 1e-3);
 
@@ -86,16 +86,16 @@ public class CropTest {
             player1Decision.parse("3 3");  // move to the same position (no action)
             player2Decision = new MoveAction(OPPONENT_PLAYER_ID);
             player2Decision.parse("6 3");  // move to the same position (no action)
-            double oldvalue = newState.getTileMap().getTile(new Position(3, 3)).getCrop().getValue();
+            double oldvalue = newState.getTileMap().get(new Position(3, 3)).getCrop().getValue();
             newState = GameLogic.updateGameState(newState, player1Decision,
                     player2Decision, GAME_CONFIG, engineLogger);
             engineLogger.incrementTurn();
-            double newvalue = newState.getTileMap().getTile(new Position(3, 3)).getCrop().getValue();
+            double newvalue = newState.getTileMap().get(new Position(3, 3)).getCrop().getValue();
             System.err.printf("Crop: %s, Price after %d turns: %.2f (grew %.2f)\n", type, i, newvalue, newvalue - oldvalue);
         }
 
         // check growth value
-        plantedCrop = newState.getTileMap().getTile(new Position(3, 3)).getCrop();
+        plantedCrop = newState.getTileMap().get(new Position(3, 3)).getCrop();
         Assert.assertEquals(type, plantedCrop.getType());
         // growth formula: GVT * [(1 * (1 - FS)) + (TF * FS)]
         return plantedCrop.getValue();

@@ -1,5 +1,6 @@
 package mech.mania.engine.model;
 
+import javafx.util.Pair;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
 import mech.mania.engine.logging.JsonLogger;
@@ -40,30 +41,34 @@ public class CropTest {
     public void profitMarginTest() throws PlayerDecisionParseException {
         JsonLogger engineLogger = new JsonLogger(0);
 
-        Map<CropType, Double> expectedProfitMargin = new HashMap<>();
-        expectedProfitMargin.put(CropType.POTATO, 1.1);
-        expectedProfitMargin.put(CropType.CORN, 1.0);
-        // expectedProfitMargin.put(CropType.GRAPE, 1.1); // ended with 16.83 after starting at turn 13
-        expectedProfitMargin.put(CropType.JOGANFRUIT, 1.0);
-        // expectedProfitMargin.put(CropType.PEANUTS, 1.0); // ended with 0 (since 30 turns is too long)
-        // expectedProfitMargin.put(CropType.QUADROTRITICALE, 1.3); // ended with 40.50 after starting at turn 13
-        expectedProfitMargin.put(CropType.DUCHAMFRUIT, 1.0);
-        expectedProfitMargin.put(CropType.GOLDENCORN, 1.5);
+        // type, expected profit, start turn (first turn of growing area is 13)
+        Map<CropType, Pair<Double, Integer>> expectedProfitMargin = new HashMap<>();
+        expectedProfitMargin.put(CropType.POTATO, new Pair<>(1.1, 13));
+        expectedProfitMargin.put(CropType.CORN, new Pair<>(1.0, 13));
+        expectedProfitMargin.put(CropType.GRAPE, new Pair<>(1.1, 13)); // ended with 16.83 after starting at turn 13
+        expectedProfitMargin.put(CropType.JOGANFRUIT, new Pair<>(1.0, 13));
+        expectedProfitMargin.put(CropType.PEANUTS, new Pair<>(1.0, 13)); // ended with 0 (since 30 turns is too long)
+        expectedProfitMargin.put(CropType.QUADROTRITICALE, new Pair<>(1.3, 13)); // ended with 40.50 after starting at turn 13
+        expectedProfitMargin.put(CropType.DUCHAMFRUIT, new Pair<>(1.0, 13));
+        expectedProfitMargin.put(CropType.GOLDENCORN, new Pair<>(1.5, 13));
 
-        for (Map.Entry<CropType, Double> entry : expectedProfitMargin.entrySet()) {
-            int growthTime = entry.getKey().getGrowthTime();
-            double growthValue = getGrowthValueAfterNTurns(entry.getKey(), growthTime, engineLogger);
-            System.err.printf("Crop: %s, Original Price: %d, Final Price after %d turns: %.2f\n", entry.getKey(), entry.getKey().getSeedBuyPrice(), entry.getKey().getGrowthTime(), growthValue);
-            double originalPrice = entry.getKey().getSeedBuyPrice();
+        for (Map.Entry<CropType, Pair<Double, Integer>> entry : expectedProfitMargin.entrySet()) {
+            CropType type = entry.getKey();
+            double expectedProfit = entry.getValue().getKey();
+            int startTurn = entry.getValue().getValue();
+            int growthTime = type.getGrowthTime();
+            double growthValue = getGrowthValueAfterNTurns(type, growthTime, startTurn, engineLogger);
+            System.err.printf("Crop: %s, Original Price: %d, Final Price after %d turns: %.2f\n", type, type.getSeedBuyPrice(), type.getGrowthTime(), growthValue);
+            double originalPrice = type.getSeedBuyPrice();
             Assert.assertTrue(growthValue >= originalPrice);
             double margin = growthValue / originalPrice;
-            Assert.assertEquals(entry.getValue(), margin, 1e-3);
+            Assert.assertEquals(expectedProfit, margin, 1e-3);
         }
     }
 
-    private double getGrowthValueAfterNTurns(CropType type, int turns, JsonLogger engineLogger) throws PlayerDecisionParseException {
+    private double getGrowthValueAfterNTurns(CropType type, int turns, int startTurn, JsonLogger engineLogger) throws PlayerDecisionParseException {
         // give player ability to plant
-        state.setTurn(13);
+        state.setTurn(startTurn);
         state.getPlayer(MY_PLAYER_ID).addSeeds(type, 1);
 
         // plant crop

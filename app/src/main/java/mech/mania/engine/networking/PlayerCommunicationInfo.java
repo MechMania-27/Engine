@@ -51,7 +51,11 @@ public class PlayerCommunicationInfo {
     public void start() throws IOException {
         // use executable string to start process, initialize streams to communicate
         ProcessBuilder pb = new ProcessBuilder(playerExecutable);
-        process = pb.start();
+        try {
+            process = pb.start();
+        } catch (Exception e) {
+            engineLogger.severe("Failed to start process for bot", e);
+        }
 
         // be constantly catching the error stream to keep the buffer clear
         // whenever we are reading the inputstream as well as for properly
@@ -97,9 +101,12 @@ public class PlayerCommunicationInfo {
      * @throws PlayerDecisionParseException if the engine fails to parse the player's decision
      */
     public PlayerDecision getPlayerDecision() throws IOException, IllegalThreadStateException, PlayerDecisionParseException {
-        String response;
+        String response = null;
         try {
             response = inputReader.readLine();
+        } catch (Exception e) {
+            engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
+                    MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
         } finally {
             String[] allMessages = errorStream.toString().split("\n");
             for (String message : allMessages) {

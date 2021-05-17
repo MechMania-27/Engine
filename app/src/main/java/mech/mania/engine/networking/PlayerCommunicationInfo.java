@@ -24,7 +24,7 @@ public class PlayerCommunicationInfo {
     private final String playerName;
     private final String[] playerExecutable;
     private Process process;
-    private SafeBufferedReader inputReader;
+    private BufferedInputStream inputReader;
     private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
     private BufferedWriter writer;
 
@@ -68,7 +68,7 @@ public class PlayerCommunicationInfo {
         // since inputstream will be needed every turn and will need to be blocking, these
         // other two will be started on the main thread
         engineLogger.debug(String.format("Bot (pid %d): creating", MainUtils.tryGetPid(process)));
-        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.PLAYER_TIMEOUT);
+        inputReader = new BufferedInputStream(process.getInputStream());
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
     }
 

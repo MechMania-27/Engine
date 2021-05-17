@@ -49,3 +49,6 @@ distributions {
         distributionBaseName = 'engine'
     }
 }
+tasks.withType(JavaCompile) {
+    options.encoding = 'SHIFTJIS'
+}

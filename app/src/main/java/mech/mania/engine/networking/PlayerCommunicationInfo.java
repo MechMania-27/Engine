@@ -1,15 +1,16 @@
 package mech.mania.engine.networking;
 
+import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.decisions.PlayerDecision;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 import mech.mania.engine.util.MainUtils;
-import mech.mania.engine.util.PlayerParseUtils;
+import mech.mania.engine.model.PlayerDecisionParseException;
+import mech.mania.engine.util.PlayerCommunicationUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A class that will hold information about communication with the player, including
@@ -21,10 +22,11 @@ public class PlayerCommunicationInfo {
 
     private final Config gameConfig;
 
+    private final int playerNum;
     private final String playerName;
     private final String[] playerExecutable;
     private Process process;
-    private BufferedInputStream inputReader;
+    private SafeBufferedReader inputReader;
     private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
     private BufferedWriter writer;
 
@@ -32,10 +34,11 @@ public class PlayerCommunicationInfo {
     private UpgradeType startingUpgradeType;
 
     public PlayerCommunicationInfo(Config gameConfig, JsonLogger engineLogger, JsonLogger logger,
-                                   String playerName, String playerExecutable) {
+                                   int playerNum, String playerName, String playerExecutable) {
         this.engineLogger = engineLogger;
         this.logger = logger;
         this.gameConfig = gameConfig;
+        this.playerNum = playerNum;
         this.playerName = playerName;
         this.playerExecutable = MainUtils.translateCommandline(playerExecutable);
     }
@@ -48,7 +51,11 @@ public class PlayerCommunicationInfo {
     public void start() throws IOException {
         // use executable string to start process, initialize streams to communicate
         ProcessBuilder pb = new ProcessBuilder(playerExecutable);
-        process = pb.start();
+        try {
+            process = pb.start();
+        } catch (Exception e) {
+            engineLogger.severe("Failed to start process for bot", e);
+        }
 
         // be constantly catching the error stream to keep the buffer clear
         // whenever we are reading the inputstream as well as for properly
@@ -65,22 +72,24 @@ public class PlayerCommunicationInfo {
         });
         errorStreamCatchProcess.start();
 
-        // since inputstream will be needed every turn and will need to be blocking, these
-        // other two will be started on the main thread
-        engineLogger.debug(String.format("Bot (pid %d): creating", MainUtils.tryGetPid(process)));
-        inputReader = new BufferedInputStream(process.getInputStream());
+        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.PLAYER_TIMEOUT);
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
+        engineLogger.debug(String.format("Bot (pid %d): started", MainUtils.tryGetPid(process)));
     }
 
     /**
      * Stops the player's process. Will cause subsequent calls to getPlayerDecision and sendGameState to fail
-     *
-     * @throws IOException if there is an error closing the streams to the process
      */
-    public void stop() throws IOException {
-        engineLogger.debug(String.format("Bot (pid %d): closing", MainUtils.tryGetPid(process)));
-        inputReader.close();
-        writer.close();
+    public void stop() {
+        try {
+            inputReader.close();
+            writer.close();
+        } catch (IOException e) {
+            engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
+                    MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
+            return;
+        }
+        engineLogger.debug(String.format("Bot (pid %d): closed without error", MainUtils.tryGetPid(process)));
     }
 
     /**
@@ -92,18 +101,12 @@ public class PlayerCommunicationInfo {
      * @throws PlayerDecisionParseException if the engine fails to parse the player's decision
      */
     public PlayerDecision getPlayerDecision() throws IOException, IllegalThreadStateException, PlayerDecisionParseException {
-        // capture any stderr in log
-        // capture all stdout as PlayerDecision
-        List<String> responses = new ArrayList<>();
-        String response;
+        String response = null;
         try {
-            while (true) {
-                response = inputReader.readLine();
-                if (response.equalsIgnoreCase("done")) {
-                    break;
-                }
-                responses.add(response);
-            }
+            response = inputReader.readLine();
+        } catch (Exception e) {
+            engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
+                    MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
         } finally {
             String[] allMessages = errorStream.toString().split("\n");
             for (String message : allMessages) {
@@ -125,8 +128,14 @@ public class PlayerCommunicationInfo {
             errorStream.reset();
         }
 
-        engineLogger.debug(String.format("Bot (pid %d): reading", MainUtils.tryGetPid(process)));
-        return PlayerParseUtils.decisionFromString(responses);
+        engineLogger.debug(String.format("Bot (pid %d): reading (len:%d): %.30s",
+                MainUtils.tryGetPid(process), response.length(), response));
+
+        try {
+            return PlayerCommunicationUtils.parseDecision(playerNum, response);
+        } catch (PlayerDecisionParseException e){
+            throw(e);
+        }
     }
 
     /**
@@ -137,9 +146,11 @@ public class PlayerCommunicationInfo {
      */
     public void sendGameState(GameState gameState) throws IOException {
         // send player turn to stdin
-        String message = PlayerParseUtils.sendInfoFromGameState(gameState);
-        engineLogger.debug(String.format("Bot (pid %d): writing", MainUtils.tryGetPid(process)));
-        writer.append(message).append(System.getProperty("line.separator"));
+        String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum);
+        engineLogger.debug(String.format("Bot (pid %d): writing (len:%d): %.30s",
+                MainUtils.tryGetPid(process), message.length(), message));
+        writer.append(message);
+        writer.newLine();
         writer.flush();
     }
 
@@ -149,9 +160,9 @@ public class PlayerCommunicationInfo {
      */
     public void askForStartingItems() throws IOException, IllegalThreadStateException {
         String itemResponse = inputReader.readLine();
-        this.startingItem = PlayerParseUtils.itemFromString(itemResponse);
+        this.startingItem = PlayerCommunicationUtils.itemFromString(itemResponse);
         String upgradeResponse = inputReader.readLine();
-        this.startingUpgradeType = PlayerParseUtils.upgradeFromString(upgradeResponse);
+        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString(upgradeResponse);
     }
 
     public String getPlayerName() {

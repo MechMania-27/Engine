@@ -10,6 +10,7 @@ import mech.mania.engine.core.PlayerEndState;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.Tile;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
@@ -22,6 +23,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 
 /**
  * Class that runs the game.
@@ -33,9 +37,10 @@ public class Main {
      * players via PlayerCommunicationInfo objects, start the game using gameLoop,
      * and call writeListToFile to write the resulting log files to their respective
      * logs (player1, player2, and the game log).
+     *
      * @param args Program arguments
      */
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         Config gameConfig;
         try {
             gameConfig = new Config();
@@ -113,18 +118,28 @@ public class Main {
 
             Gson serializer = new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
-                    .addSerializationExclusionStrategy(new ExclusionStrategy() {
-                        @Override
-                        public boolean shouldSkipField(FieldAttributes f) {
-                            return f.getName().equals("playerNum");
-                        }
-
-                        @Override
-                        public boolean shouldSkipClass(Class<?> clazz) {
-                            return false;
-                        }
-                    })
+                    .registerTypeAdapter(GameLog.class, new ExcludeDefaultSerializerGame())
                     .create();
+//                    .addSerializationExclusionStrategy(new ExclusionStrategy() {
+//
+//                        @Override
+//                        public boolean shouldSkipField(FieldAttributes f) {
+//                            if (f.getDeclaringClass() == Tile.class) {
+//                                if (f.getName())
+//                            } return false;
+////                            return false;
+//                        }
+//
+//                        @Override
+//                        public boolean shouldSkipClass(Class<?> clazz) {
+//                            return false;
+////                            return clazz.getFields()[0].getName().equals("tiles");
+//                        }
+//                    })
+//                    .create();
+
+            // TODO
+
             String gameLogJson = serializer.toJson(gameLog, GameLog.class);
             writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
         }
@@ -152,7 +167,7 @@ public class Main {
      * Example program arguments (lowercase corresponds to player1, uppercase to player2)
      * <code>./engine -n "player1" -e "./bot1.py" -N "player2" -E "./bot2.py"</code>
      *
-     * @param args String[] that contains the arguments to the program call
+     * @param args         String[] that contains the arguments to the program call
      * @param gameDefaults Config object that contains the game defaults
      * @return a com.apache.commons.cli.CommandLine object that can be used to read parsed values
      */
@@ -276,9 +291,9 @@ public class Main {
      * This is mostly an attempt to uncrowd the main function.
      *
      * @param gameConfig Config object that contains game default values
-     * @param gameLog GameLog object that contains the running list of GameState objects. Should be empty, will be filled
-     * @param player1 PlayerCommunicationInfo object that keeps information about communication with player 1
-     * @param player2 PlayerCommunicationInfo object that keeps information about communication with player 2
+     * @param gameLog    GameLog object that contains the running list of GameState objects. Should be empty, will be filled
+     * @param player1    PlayerCommunicationInfo object that keeps information about communication with player 1
+     * @param player2    PlayerCommunicationInfo object that keeps information about communication with player 2
      */
     protected static void gameLoop(Config gameConfig, GameLog gameLog,
                                    PlayerCommunicationInfo player1,
@@ -440,17 +455,17 @@ public class Main {
         List<String> p1achievements = gameState.getPlayer1().getAchievements().getFinalAchievements(p1win, gameConfig.STARTING_MONEY, gameState.getPlayer1().getMoney());
         List<String> p2achievements = gameState.getPlayer2().getAchievements().getFinalAchievements(!p1win, gameConfig.STARTING_MONEY, gameState.getPlayer2().getMoney());
         engineLogger.info("Player 1 has unlocked the following achievements:");
-        if(p1achievements.size() == 0) {
+        if (p1achievements.size() == 0) {
             engineLogger.info("Player 1 does not unlock any achievements");
         }
-        for(int i = 0; i < p1achievements.size();i++) {
+        for (int i = 0; i < p1achievements.size(); i++) {
             engineLogger.info(p1achievements.get(i));
         }
         engineLogger.info("Player 2 has unlocked the following achievements:");
-        if(p2achievements.size() == 0) {
+        if (p2achievements.size() == 0) {
             engineLogger.info("Player 2 does not unlock any achievements");
         }
-        for(int i = 0; i < p2achievements.size();i++) {
+        for (int i = 0; i < p2achievements.size(); i++) {
             engineLogger.info(p2achievements.get(i));
         }
     }
@@ -475,7 +490,7 @@ public class Main {
     /**
      * Helper function to write a List of Strings to a file
      *
-     * @param toWrite List of Strings to write
+     * @param toWrite  List of Strings to write
      * @param fileName file to write to
      */
     private static void writeListToFile(List<String> toWrite, String fileName, JsonLogger engineLogger) {

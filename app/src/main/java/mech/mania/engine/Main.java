@@ -118,8 +118,9 @@ public class Main {
 
             Gson serializer = new GsonBuilder()
                     .excludeFieldsWithoutExposeAnnotation()
-                    .registerTypeAdapter(GameLog.class, new ExcludeDefaultSerializerGame())
                     .create();
+//                    .registerTypeAdapter(GameLog.class, new CustomSerializerGame())
+
 //                    .addSerializationExclusionStrategy(new ExclusionStrategy() {
 //
 //                        @Override

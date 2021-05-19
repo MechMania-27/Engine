@@ -8,6 +8,7 @@ import mech.mania.engine.model.*;
 import mech.mania.engine.util.MainUtils;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.util.PlayerCommunicationUtils;
+
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;

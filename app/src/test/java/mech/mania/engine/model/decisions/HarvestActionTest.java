@@ -110,7 +110,6 @@ public class HarvestActionTest {
     @Test
     public void carryingCapacityHarvestActionPerformActionTest() throws PlayerDecisionParseException {
         StringBuilder builder = new StringBuilder();
-//        builder.append("");
 
         for (int i = GAME_CONFIG.BOARD_WIDTH / 4; i < GAME_CONFIG.BOARD_WIDTH / 4 + 5; i++) {
             for (int j = GAME_CONFIG.BOARD_HEIGHT / 4; j < GAME_CONFIG.BOARD_HEIGHT / 4 + 5; j++) {

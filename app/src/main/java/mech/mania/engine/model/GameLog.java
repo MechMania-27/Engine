@@ -19,6 +19,8 @@ public class GameLog {
 
     public GameLog() {
         this.states = new ArrayList<>();
+        this.player1EndState = PlayerEndState.ERROR;
+        this.player2EndState = PlayerEndState.ERROR;
     }
 
     public GameLog(List<GameState> states) {

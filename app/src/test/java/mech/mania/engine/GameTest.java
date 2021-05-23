@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import mech.mania.engine.config.Config;
+import mech.mania.engine.core.Game;
 import mech.mania.engine.core.PlayerEndState;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameLog;
@@ -13,12 +14,10 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static mech.mania.engine.Main.gameLoop;
-
 /**
  * Unit test for Main function (gameLoop, writeListToFile, and main).
  */
-public class MainTest {
+public class GameTest {
 
     /**
      * Takes in one integer argument that denotes which turn the bot will crash on
@@ -28,7 +27,7 @@ public class MainTest {
 
     private final Config gameConfig;
 
-    public MainTest() {
+    public GameTest() {
         gameConfig = new Config("debug");
     }
 
@@ -76,8 +75,8 @@ public class MainTest {
         player2Logger.incrementTurn();
         engineLogger.incrementTurn();
 
-        GameLog gameLog = new GameLog();
-        gameLoop(gameConfig, gameLog, bot1, bot2, engineLogger);
+        Game game = new Game(gameConfig, bot1, bot2, engineLogger);
+        GameLog gameLog = game.run();
 
         bot1.stop();
         bot2.stop();

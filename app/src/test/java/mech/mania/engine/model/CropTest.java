@@ -1,6 +1,5 @@
 package mech.mania.engine.model;
 
-import javafx.util.Pair;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
 import mech.mania.engine.logging.JsonLogger;
@@ -10,6 +9,7 @@ import mech.mania.engine.model.decisions.PlayerDecision;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import mech.mania.engine.Pair;
 
 import java.util.HashMap;
 import java.util.Map;

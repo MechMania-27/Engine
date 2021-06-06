@@ -9,6 +9,8 @@ public enum ItemType {
     FERTILITY_IDOL("itemtype.fertilityidol", ItemType::fertilityIdolProcess),
     PESTICIDE("itemtype.pesticide", ItemType::pesticideProcess),
     SCARECROW("itemtype.scarecrow", ItemType::scarecrowProcess),
+    DELIVERY_DRONE("itemtype.deliverydrone", ItemType::deliveryDroneProcess),
+    COFFEE_THERMOS("itemtype.coffeethermos", ItemType::coffeeThermosProcess),
     NONE("itemtype.none", ItemType::nothing);
 
     /**
@@ -100,7 +102,7 @@ public enum ItemType {
             for (int j = 0; j < 5; ++j){
                 Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
                 if (tile != null){
-                    tile.setScarecrowEffect(1);
+                    tile.setScarecrowEffect(player.getPlayerID());
                 }
             }
         }

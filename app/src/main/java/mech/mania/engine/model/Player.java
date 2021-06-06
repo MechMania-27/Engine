@@ -22,6 +22,7 @@ public class Player {
     private ArrayList<Crop> harvestedInventory = new ArrayList<>();
 
     private double discount;
+    private int playerID;
     private int amountSpent;
     private int protectionRadius;
     private int harvestRadius;
@@ -35,9 +36,10 @@ public class Player {
 
     private Config gameConfig;
 
-    public Player(String name, Position position, ItemType item, UpgradeType upgrade, int money, Config gameConfig) {
+    public Player(String name, int playerID, Position position, ItemType item, UpgradeType upgrade, int money, Config gameConfig) {
         this.gameConfig = gameConfig;
         this.name = name;
+        this.playerID = playerID;
         this.position = position;
         this.item = item;
         this.upgrade = upgrade;
@@ -46,9 +48,48 @@ public class Player {
         for (CropType type : CropType.values()) {
             seedInventory.put(type, 0);
         }
+
+        if (upgrade != UpgradeType.BACKPACK) {
+            this.carryingCapacity = gameConfig.CARRYING_CAPACITY;
+        } else {
+            this.carryingCapacity = gameConfig.BACKPACK_CARRYING_CAPACITY;
+        }
+
+        if (upgrade != UpgradeType.LONGER_SCYTHE) {
+            this.harvestRadius = gameConfig.HARVEST_RADIUS;
+        } else {
+            this.harvestRadius = gameConfig.LONGER_SCYTHE_HARVEST_RADIUS;
+        }
+
+        // don't need to do anything for loyalty card yet
+
+        if (upgrade != UpgradeType.LONGER_LEGS) {
+            this.maxMovement = gameConfig.MAX_MOVEMENT;
+        } else {
+            this.maxMovement = gameConfig.LONGER_LEGS_MAX_MOVEMENT;
+        }
+
+        if (upgrade != UpgradeType.RABBITS_FOOT) {
+            this.doubleDropChance = 0;
+        } else {
+            this.doubleDropChance = gameConfig.RABBITS_FOOT_DOUBLE_DROP_CHANCE;
+        }
+
+        if (upgrade != UpgradeType.SEED_A_PULT) {
+            this.plantRadius = gameConfig.PLANT_RADIUS;
+        } else {
+            this.plantRadius = gameConfig.SEED_A_PULT_PLANT_RADIUS;
+        }
+
+        if (upgrade != UpgradeType.SPYGLASS) {
+            this.protectionRadius = gameConfig.PROTECTION_RADIUS;
+        } else {
+            this.protectionRadius = gameConfig.SPYGLASS_PROTECTION_RADIUS;
+        }
     }
 
     public Player(Player other) {
+        this.playerID = other.playerID;
         this.gameConfig = other.gameConfig;
         this.name = other.name;
         this.position = new Position(other.position);
@@ -59,6 +100,18 @@ public class Player {
         seedInventory.putAll(other.seedInventory);
         this.seedInventory = new HashMap<>(other.seedInventory);
         this.harvestedInventory = new ArrayList<>(other.harvestedInventory);
+
+        this.discount = other.discount;
+        this.amountSpent = other.amountSpent;
+        this.protectionRadius = other.protectionRadius;
+        this.plantRadius = other.plantRadius;
+        this.doubleDropChance = other.doubleDropChance;
+        this.harvestRadius = other.harvestRadius;
+        this.maxMovement = other.maxMovement;
+        this.carryingCapacity = other.carryingCapacity;
+
+        this.hasDeliveryDrone = other.hasDeliveryDrone;
+        this.useCoffeeThermos = other.useCoffeeThermos;
     }
 
     public void sellInventory() {
@@ -80,11 +133,26 @@ public class Player {
             this.money = money;
     }
     public void changeBalance(double delta) {
-        this.money += delta;
+        if (delta < 0) {
+            if (this.discount != 0) {
+                this.money += delta * (1 - this.discount);
+                this.amountSpent -= delta * (1 - this.discount);
+            } else {
+                this.money += delta;
+                this.amountSpent -= delta;
+            }
+
+        } else {
+            this.money += delta;
+        }
+        if (this.upgrade == UpgradeType.LOYALTY_CARD && this.amountSpent >= 25) {
+            this.discount = gameConfig.GREEN_GROCER_LOYALTY_CARD_DISCOUNT;
+        }
     }
     public UpgradeType getUpgrade() {
         return upgrade;
     }
+
     public void setUpgrade(UpgradeType upgradeType) {
         this.upgrade = upgradeType;
     }
@@ -107,15 +175,17 @@ public class Player {
         this.name = name;
     }
 
+    public int getPlayerID() {
+        return this.playerID;
+    }
+
     public double getDiscount() {
         return discount;
     }
     public void setDiscount(double discount) {
         this.discount = discount;
     }
-    public void setAmountSpent(int amountSpent) {
-        this.amountSpent = amountSpent;
-    }
+
     public int getAmountSpent() {
         return amountSpent;
     }
@@ -179,19 +249,16 @@ public class Player {
         this.useCoffeeThermos = useCoffeeThermos;
     }
 
-    // TODO factor item
     public int getPlantingRadius() {
-        return gameConfig.PLANT_RADIUS;
+        return this.plantRadius;
     }
 
-    // TODO factor item
     public int getSpeed() {
-        return gameConfig.MAX_MOVEMENT;
+        return this.maxMovement;
     }
 
-    // TODO factor item
     public int getCarryingCapacity() {
-        return gameConfig.CARRYING_CAPACITY;
+        return this.carryingCapacity;
     }
 
     public ArrayList<Crop> getHarvestedCrops() {
@@ -216,6 +283,14 @@ public class Player {
 
     public void harvest(Tile tile) {
         harvestedInventory.add(new Crop(tile.getCrop()));
+
+        if (this.doubleDropChance > 0 && harvestedInventory.size() < this.carryingCapacity) {
+            Random r = new Random();
+            if (r.nextDouble() < this.doubleDropChance) {
+                harvestedInventory.add(new Crop(tile.getCrop()));
+            }
+        }
+
         tile.clearCrop();
     }
 }

@@ -59,6 +59,22 @@ public class GameLogic {
             player2Decision.performAction(newGameState, engineLogger);
         }
 
+        if (gameState.getPlayer1().getDeliveryDrone()) {
+            newGameState.getPlayer1().setDeliveryDrone(false);
+        }
+
+        if (gameState.getPlayer2().getDeliveryDrone()) {
+            newGameState.getPlayer2().setDeliveryDrone(false);
+        }
+
+        if (gameState.getPlayer1().getUseCoffeeThermos()) {
+            newGameState.getPlayer1().setUseCoffeeThermos(false);
+        }
+
+        if (gameState.getPlayer2().getUseCoffeeThermos()) {
+            newGameState.getPlayer2().setUseCoffeeThermos(false);
+        }
+
         // Grow crops
         newGameState.getTileMap().growCrops();
 
@@ -72,6 +88,8 @@ public class GameLogic {
                 tile.getCrop().setValue(0);
             }
         }
+
+
 
         return newGameState;
     }

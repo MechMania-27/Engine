@@ -60,19 +60,41 @@ public class GameLogic {
         }
 
         if (gameState.getPlayer1().getDeliveryDrone()) {
-            newGameState.getPlayer1().setDeliveryDrone(false);
+            if (gameState.getPlayer1().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer1().setDeliveryDrone(false);
+            } else {
+                // just activated drone
+                newGameState.getPlayer1().setItemTimeExpired();
+            }
         }
 
         if (gameState.getPlayer2().getDeliveryDrone()) {
-            newGameState.getPlayer2().setDeliveryDrone(false);
+            if (gameState.getPlayer2().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer2().setDeliveryDrone(false);
+            } else {
+                newGameState.getPlayer2().setItemTimeExpired();
+            }
         }
 
         if (gameState.getPlayer1().getUseCoffeeThermos()) {
-            newGameState.getPlayer1().setUseCoffeeThermos(false);
+            if (gameState.getPlayer1().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer1().setUseCoffeeThermos(false);
+            } else {
+                // just activated drone
+                newGameState.getPlayer1().setItemTimeExpired();
+            }
         }
 
         if (gameState.getPlayer2().getUseCoffeeThermos()) {
-            newGameState.getPlayer2().setUseCoffeeThermos(false);
+            if (gameState.getPlayer2().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer2().setUseCoffeeThermos(false);
+            } else {
+                newGameState.getPlayer2().setItemTimeExpired();
+            }
         }
 
         // Grow crops

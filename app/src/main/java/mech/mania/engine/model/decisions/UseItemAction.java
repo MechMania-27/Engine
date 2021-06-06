@@ -25,6 +25,14 @@ public class UseItemAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
+        if (state.getPlayer(playerID).getUsedItem()) {
+            engineLogger.severe(String.format(
+                                        "Item was already used by player %d",
+                                        playerID + 1
+            ));
+            return;
+        }
+
         Position loc = state.getPlayer(playerID).getPosition();
         ItemType item = state.getPlayer(playerID).getItem();
         TileMap map = state.getTileMap();
@@ -96,6 +104,8 @@ public class UseItemAction extends PlayerDecision {
         } else {
             map.get(loc).setP2Item(item);
         }
+
+        state.getPlayer(playerID).setUsedItem();
 
         engineLogger.info(
                         String.format(

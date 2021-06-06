@@ -31,8 +31,10 @@ public class Player {
     private int maxMovement;
     private double doubleDropChance;
 
+    private boolean usedItem = false;
     private boolean hasDeliveryDrone = false;
     private boolean useCoffeeThermos = false;
+    private boolean itemTimeExpired = false;
 
     private Config gameConfig;
 
@@ -110,8 +112,10 @@ public class Player {
         this.maxMovement = other.maxMovement;
         this.carryingCapacity = other.carryingCapacity;
 
+        this.usedItem = other.usedItem;
         this.hasDeliveryDrone = other.hasDeliveryDrone;
         this.useCoffeeThermos = other.useCoffeeThermos;
+        this.itemTimeExpired = other.itemTimeExpired;
     }
 
     public void sellInventory() {
@@ -233,6 +237,22 @@ public class Player {
         this.plantRadius = plantRadius;
     }
 
+    public boolean getUsedItem() {
+        return usedItem;
+    }
+
+    public void setUsedItem() {
+        this.usedItem = true;
+    }
+
+    public boolean getItemTimeExpired() {
+        return this.itemTimeExpired;
+    }
+
+    public void setItemTimeExpired() {
+        this.itemTimeExpired = true;
+    }
+
     public boolean getDeliveryDrone() {
         return hasDeliveryDrone;
     }
@@ -254,6 +274,9 @@ public class Player {
     }
 
     public int getSpeed() {
+        if (this.getUseCoffeeThermos()) {
+            return this.maxMovement * 3;
+        }
         return this.maxMovement;
     }
 

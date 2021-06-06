@@ -5,7 +5,6 @@ import mech.mania.engine.model.decisions.PlayerDecision;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
-import mech.mania.engine.util.MainUtils;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.util.PlayerCommunicationUtils;
 import org.apache.commons.io.IOUtils;
@@ -40,7 +39,7 @@ public class PlayerCommunicationInfo {
         this.gameConfig = gameConfig;
         this.playerNum = playerNum;
         this.playerName = playerName;
-        this.playerExecutable = MainUtils.translateCommandline(playerExecutable);
+        this.playerExecutable = PlayerCommunicationUtils.translateCommandline(playerExecutable);
     }
 
     /**
@@ -70,7 +69,7 @@ public class PlayerCommunicationInfo {
 
         inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.PLAYER_TIMEOUT);
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-        engineLogger.debug(String.format("Bot (pid %d): started", MainUtils.tryGetPid(process)));
+        engineLogger.debug(String.format("Bot (pid %d): started", PlayerCommunicationUtils.tryGetPid(process)));
     }
 
     /**
@@ -82,10 +81,10 @@ public class PlayerCommunicationInfo {
             writer.close();
         } catch (IOException e) {
             engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
-                    MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
+                    PlayerCommunicationUtils.tryGetPid(process), e.getClass(), e.getMessage()));
             return;
         }
-        engineLogger.debug(String.format("Bot (pid %d): closed without error", MainUtils.tryGetPid(process)));
+        engineLogger.debug(String.format("Bot (pid %d): closed without error", PlayerCommunicationUtils.tryGetPid(process)));
     }
 
     /**
@@ -122,7 +121,7 @@ public class PlayerCommunicationInfo {
         }
 
         engineLogger.debug(String.format("Bot (pid %d): reading (len:%d): %.30s",
-                MainUtils.tryGetPid(process), response.length(), response));
+                PlayerCommunicationUtils.tryGetPid(process), response.length(), response));
 
         try {
             return PlayerCommunicationUtils.parseDecision(playerNum, response);
@@ -141,7 +140,7 @@ public class PlayerCommunicationInfo {
         // send player turn to stdin
         String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum);
         engineLogger.debug(String.format("Bot (pid %d): writing (len:%d): %.30s",
-                MainUtils.tryGetPid(process), message.length(), message));
+                PlayerCommunicationUtils.tryGetPid(process), message.length(), message));
         writer.append(message);
         writer.newLine();
         writer.flush();

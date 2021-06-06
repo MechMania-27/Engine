@@ -1,6 +1,6 @@
 package mech.mania.engine.model;
 import mech.mania.engine.config.Config;
-import mech.mania.engine.core.GameLogic;
+import mech.mania.engine.core.Game;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.decisions.*;
 import org.junit.Assert;
@@ -86,7 +86,7 @@ public class AchievementsTest {
             //gameState = GameLogic.updateGameState(gameState, plant, player2Decision, gameConfig, engineLogger);
         }
         gameState.setTurn(155);
-        gameState = GameLogic.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig, engineLogger);
+        gameState = Game.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig, engineLogger);
         //Position p = new Position(3, 0);
         //Tile t = gameState.getTileMap().getTile(p);
         //System.out.println(t.getType());

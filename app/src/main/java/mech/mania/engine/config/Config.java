@@ -74,13 +74,13 @@ public final class Config {
         ENGINELOG_FILENAME =     rb.getString("enginelogfile.name");
         PLAYERLOG_EXTENSION =    rb.getString("playerlogfile.extension");
 
-        GREEN_GROCER_LOYALTY_CARD_DISCOUNT  = Double.parseDouble(rb.getString(""));
-        RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString(""));
-        LONGER_LEGS_MAX_MOVEMENT            = Integer.parseInt(rb.getString(""));
-        SEED_A_PULT_PLANT_RADIUS            = Integer.parseInt(rb.getString(""));
-        LONGER_SCYTHE_HARVEST_RADIUS        = Integer.parseInt(rb.getString(""));
-        BACKPACK_CARRYING_CAPACITY          = Integer.parseInt(rb.getString(""));
-        SPYGLASS_PROTECTION_RADIUS          = Integer.parseInt(rb.getString(""));
+        GREEN_GROCER_LOYALTY_CARD_DISCOUNT  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_discount"));
+        RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString("upgrades.rabbits_foot_double_drop_chance"));
+        LONGER_LEGS_MAX_MOVEMENT            = Integer.parseInt(rb.getString("upgrades.longer_legs_max_movement"));
+        SEED_A_PULT_PLANT_RADIUS            = Integer.parseInt(rb.getString("upgrades.seed_a_pult_plant_radius"));
+        LONGER_SCYTHE_HARVEST_RADIUS        = Integer.parseInt(rb.getString("upgrades.longer_scythe_harvest_radius"));
+        BACKPACK_CARRYING_CAPACITY          = Integer.parseInt(rb.getString("upgrades.backpack_carrying_capacity"));
+        SPYGLASS_PROTECTION_RADIUS          = Integer.parseInt(rb.getString("upgrades.spyglass_protection_radius"));
     }
 
 }

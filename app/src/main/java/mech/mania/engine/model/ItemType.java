@@ -100,7 +100,7 @@ public enum ItemType {
             for (int j = 0; j < 5; ++j){
                 Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
                 if (tile != null){
-                    tile.setScarecrowEffect(true);
+                    tile.setScarecrowEffect(1);
                 }
             }
         }

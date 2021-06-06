@@ -35,7 +35,7 @@ public class HarvestActionTest {
         int height = GAME_CONFIG.BOARD_HEIGHT;
 
         for (int i = width / 4; i < 3 * width / 4; i++) {
-            for (int j = height / 4; j < 3 * height / 4; j++) {
+            for (int j = GAME_CONFIG.GRASS_ROWS; j < 3 * height / 4; j++) {
                 CropType curCrop = CropType.values()[(i + j) % CropType.values().length];
                 Player player = state.getPlayer(MY_PLAYER_ID);
                 state.getTileMap().plantCrop(new Position(i, j), curCrop, player);
@@ -56,20 +56,24 @@ public class HarvestActionTest {
 
     @Test
     public void regularHarvestActionPerformActionTest() throws PlayerDecisionParseException {
-        // corn at this location- should be grown
+        // should be joganfruit as long as the setup loop contains all the crops and
+        // the number of grass rows as specified by debug.properties is 2 not 3
         String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4);
         action.parse(regularDecision);
         state.getPlayer(MY_PLAYER_ID).setPosition(
                                 new Position(GAME_CONFIG.BOARD_WIDTH / 4,
                                             GAME_CONFIG.BOARD_HEIGHT / 4));
 
+        // joganfruit requires 5 time steps to grow
+        state.getTileMap().growCrops();
+        state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
 
         action.performAction(state, BOT_LOGGER);
         Assert.assertEquals(1, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
-        Assert.assertEquals(CropType.POTATO, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().get(0).getType());
+        Assert.assertEquals(CropType.JOGANFRUIT, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().get(0).getType());
 
         Assert.assertEquals(
                 CropType.NONE,
@@ -100,7 +104,7 @@ public class HarvestActionTest {
         Assert.assertEquals(0, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
 
         Assert.assertEquals(
-                CropType.POTATO,
+                CropType.JOGANFRUIT,
                 state.getTileMap()
                         .get(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4)
                         .getCrop()
@@ -118,7 +122,8 @@ public class HarvestActionTest {
             }
         }
 
-        for (int i = 0; i < 10; i++) {
+        // take enough turns to grow even the peanut (30 turns)
+        for (int i = 0; i < 30; i++) {
             state.getTileMap().growCrops();
         }
 

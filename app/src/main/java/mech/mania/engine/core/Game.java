@@ -85,7 +85,7 @@ public class Game {
 
         try {
             player1.sendGameState(gameState);
-            // engineLogger.debug("Sent player 1 a game state");
+            engineLogger.debug("Sent player 1 the game state");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Error while sending game state to player 1: ", e);
             player1EndState = PlayerEndState.ERROR;
@@ -93,7 +93,7 @@ public class Game {
 
         try {
             player2.sendGameState(gameState);
-            // engineLogger.debug("Sent player 2 a game state");
+            engineLogger.debug("Sent player 2 the game state");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Error while sending game state to player 2", e);
             player2EndState = PlayerEndState.ERROR;
@@ -182,7 +182,7 @@ public class Game {
         // send the players another game state after moving
         try {
             player1.sendGameState(gameState);
-            // engineLogger.debug("Sent player 1 a game state");
+            engineLogger.debug("Sent player 1 the game state");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Error while sending game state to player 1: ", e);
             player1EndState = PlayerEndState.ERROR;
@@ -190,7 +190,7 @@ public class Game {
 
         try {
             player2.sendGameState(gameState);
-            // engineLogger.debug("Sent player 2 a game state");
+            engineLogger.debug("Sent player 2 the game state");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Error while sending game state to player 2", e);
             player2EndState = PlayerEndState.ERROR;

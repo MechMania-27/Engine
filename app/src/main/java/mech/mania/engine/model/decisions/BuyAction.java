@@ -66,6 +66,9 @@ public class BuyAction extends PlayerDecision {
             }
             player.addSeeds(seeds.get(i), quantities.get(i));
             player.changeBalance(-cost);
+            Achievements achievements = player.getAchievements();
+            achievements.spendMoney(cost);
+
             engineLogger.info(String.format("Player %d bought %d %s seeds",
                     playerID + 1, quantities.get(i), seeds.get(i)));
 

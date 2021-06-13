@@ -4,9 +4,15 @@ import java.util.ResourceBundle;
 
 public enum CropType {
     NONE("croptype.none"),
-    GRAPE("croptype.grape"),
+    GRAPE("croptype.grapes"),
     CORN("croptype.corn"),
-    POTATO("croptype.potato");
+    POTATO("croptype.potato"),
+    JOGANFRUIT("croptype.joganfruit"),
+    PEANUTS("croptype.peanuts"),
+    QUADROTRITICALE("croptype.quadrotriticale"),
+    DUCHAMFRUIT("croptype.duchamfruit"),
+    GOLDENCORN("croptype.goldencorn");
+
 
     /**
      * ResourceBundle to get properties file values from
@@ -49,7 +55,8 @@ public enum CropType {
         return Integer.parseInt(rb.getString(propsPrefix + ".seedprice"));
     }
 
-    public int getValueGrowth() {
-        return Integer.parseInt(rb.getString(propsPrefix + ".valuegrowth"));
+    public double getValueGrowth() {
+        return Double.parseDouble(rb.getString(propsPrefix + ".valuegrowth"));
     }
+
 }

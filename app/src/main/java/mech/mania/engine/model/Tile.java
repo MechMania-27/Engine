@@ -36,6 +36,7 @@ public class Tile {
         this.crop = new Crop(other.crop);
         this.p1Item = other.p1Item;
         this.p2Item = other.p2Item;
+        this.planter = other.planter;
     }
 
     public TileType getType() {
@@ -112,9 +113,15 @@ public class Tile {
         }
         return type.getFertility();
     }
-
+    public void setPlanter(Player p) {
+        planter = p;
+    }
     @Override
     public String toString() {
         return String.format("Tile[%s,%s]", type, crop);
     }
+    public Player getPlanter() {
+        return planter;
+    }
+
 }

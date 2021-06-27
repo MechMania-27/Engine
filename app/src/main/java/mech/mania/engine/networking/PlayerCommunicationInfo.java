@@ -8,7 +8,6 @@ import mech.mania.engine.model.*;
 import mech.mania.engine.util.MainUtils;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.util.PlayerCommunicationUtils;
-
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -129,6 +128,11 @@ public class PlayerCommunicationInfo {
             errorStream.reset();
         }
 
+        while (response.startsWith(" ")) {
+            response = inputReader.readLine();
+            logger.debug(response);
+        }
+
         engineLogger.debug(String.format("Bot (pid %d): reading (len:%d): %.30s",
                 MainUtils.tryGetPid(process), response.length(), response));
 
@@ -161,9 +165,18 @@ public class PlayerCommunicationInfo {
      */
     public void askForStartingItems() throws IOException, IllegalThreadStateException {
         String itemResponse = inputReader.readLine();
-        this.startingItem = PlayerCommunicationUtils.itemFromString(itemResponse);
+        while (itemResponse.startsWith(" ")) {
+            itemResponse = inputReader.readLine();
+            logger.debug(itemResponse);
+        }
+        this.startingItem = PlayerCommunicationUtils.itemFromString("NONE");
         String upgradeResponse = inputReader.readLine();
-        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString(upgradeResponse);
+        while (upgradeResponse.startsWith(" ")) {
+            upgradeResponse = inputReader.readLine();
+            logger.debug(itemResponse);
+        }
+
+        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString("NONE");
     }
 
     public String getPlayerName() {

@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.*;
+import mech.mania.engine.CustomSerializerGameStates;
+
 
 public class PlayerCommunicationUtils {
     /**
@@ -40,11 +42,16 @@ public class PlayerCommunicationUtils {
      * @return String to give to bot
      */
     public static String sendInfoFromGameState(GameState gameState, int playerNum) {
+//        Gson gson = new GsonBuilder()
+//                .registerTypeAdapter(GameState.class, new CustomSerializerGameStates())
+//                .create();
+
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
         gameState.setPlayerNum(playerNum + 1);
-        return gson.toJson(gameState, GameState.class);
+        String s = gson.toJson(gameState, GameState.class);
+        return s;
     }
 
     /**

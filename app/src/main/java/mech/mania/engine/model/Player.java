@@ -213,24 +213,12 @@ public class Player {
         this.carryingCapacity = carryingCapacity;
     }
 
-    public int getMaxMovement() {
-        return maxMovement;
-    }
-
     public void setMaxMovement(int maxMovement) {
         this.maxMovement = maxMovement;
     }
 
-    public double getDoubleDropChance() {
-        return doubleDropChance;
-    }
-
     public void setDoubleDropChance(double doubleDropChance) {
         this.doubleDropChance = doubleDropChance;
-    }
-
-    public int getPlantRadius() {
-        return plantRadius;
     }
 
     public void setPlantRadius(int plantRadius) {

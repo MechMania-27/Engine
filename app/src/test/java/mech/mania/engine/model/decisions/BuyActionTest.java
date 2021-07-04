@@ -27,7 +27,7 @@ public class BuyActionTest {
         ItemType myPlayerItem = ItemType.NONE;
         UpgradeType myPlayerUpgrade = UpgradeType.NONE;
         ItemType opponentPlayerItem = ItemType.NONE;
-        UpgradeType opponentPlayerUpgrade = UpgradeType.NONE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.LOYALTY_CARD;
 
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
@@ -155,5 +155,51 @@ public class BuyActionTest {
         Assert.assertEquals(0, (int) seedInventory.get(CropType.CORN));
         Assert.assertEquals(0, (int) seedInventory.get(CropType.POTATO));
         Assert.assertEquals(CropType.CORN.getSeedBuyPrice() * 10, state.getPlayer(MY_PLAYER_ID).getMoney(), 0.01);
+    }
+
+    @Test
+    public void smallPurchaseNoDiscount() throws PlayerDecisionParseException {
+        state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice());
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
+
+        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID);
+        String decision = "corn 1";
+        action.parse(decision);
+        action.performAction(state, BOT_LOGGER);
+
+        Assert.assertEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getDiscount(), 0.001);
+    }
+
+    @Test
+    public void largePurchaseNewDiscount() throws PlayerDecisionParseException {
+        state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * 20);
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
+
+        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID);
+        String decision = "grape 20";
+        action.parse(decision);
+        action.performAction(state, BOT_LOGGER);
+
+        Assert.assertEquals(
+                GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_DISCOUNT,
+                state.getPlayer(OPPONENT_PLAYER_ID).getDiscount(),
+                0.001);
+    }
+
+    @Test
+    public void discountApplied() throws PlayerDecisionParseException {
+        state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * 20);
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
+
+        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID);
+        String decision = "grape 20";
+        action.parse(decision);
+        action.performAction(state, BOT_LOGGER);
+
+        Assert.assertEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getMoney(), 0.001);
+
+        state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * 20);
+        action.performAction(state, BOT_LOGGER);
+        Assert.assertNotEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getMoney(), 0.001);
     }
 }

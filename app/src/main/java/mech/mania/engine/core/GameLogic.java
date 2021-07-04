@@ -5,6 +5,7 @@ import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
+import mech.mania.engine.model.decisions.UseItemAction;
 
 public class GameLogic {
     public static boolean isGameOver(GameState gameState, Config gameConfig) {

@@ -151,5 +151,45 @@ public class MoveActionTest {
                 infoLogs.get(infoLogs.size() - 1));
     }
 
+    @Test
+    public void upgradeMoveDistanceTest() throws PlayerDecisionParseException {
+        ItemType myPlayerItem = ItemType.NONE;
+        UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+        ItemType opponentPlayerItem = ItemType.NONE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.LONGER_LEGS;
+
+        GameState state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
+                OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
+
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(1, GAME_CONFIG.MAX_MOVEMENT + 2));
+
+        String playerDecision = "1 1";
+        MoveAction playerAction = new MoveAction(OPPONENT_PLAYER_ID);
+        playerAction.parse(playerDecision);
+        playerAction.performAction(state, BOT_LOGGER);
+
+        Assert.assertEquals(new Position(1, 1), state.getPlayer(MY_PLAYER_ID).getPosition());
+    }
+
+    @Test
+    public void outsideUpgradeMoveDistanceTest() throws PlayerDecisionParseException {
+        ItemType myPlayerItem = ItemType.NONE;
+        UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+        ItemType opponentPlayerItem = ItemType.NONE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.LONGER_LEGS;
+
+        GameState state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
+                OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
+
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(1, GAME_CONFIG.LONGER_LEGS_MAX_MOVEMENT + 2));
+
+        String playerDecision = "1 1";
+        MoveAction playerAction = new MoveAction(OPPONENT_PLAYER_ID);
+        playerAction.parse(playerDecision);
+        playerAction.performAction(state, BOT_LOGGER);
+
+        Assert.assertNotEquals(new Position(1, 1), state.getPlayer(MY_PLAYER_ID).getPosition());
+    }
+
     // TODO: do we need to test null destinations? this will only occur if we forget to call parse(String)
 }

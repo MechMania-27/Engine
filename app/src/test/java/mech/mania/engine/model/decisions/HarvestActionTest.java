@@ -17,7 +17,7 @@ public class HarvestActionTest {
     private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
 
     private final ItemType myPlayerItem = ItemType.NONE;
-    private final UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+    private final UpgradeType myPlayerUpgrade = UpgradeType.SPYGLASS;
     private final ItemType opponentPlayerItem = ItemType.NONE;
     private final UpgradeType opponentPlayerUpgrade = UpgradeType.LONGER_SCYTHE;
 
@@ -237,5 +237,27 @@ public class HarvestActionTest {
                         .get(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4)
                         .getCrop()
                         .getType());
+    }
+
+    @Test
+    public void insideOpponentProtectionRadiusTest() throws PlayerDecisionParseException {
+        String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4 + GAME_CONFIG.PROTECTION_RADIUS + 1,
+                                                GAME_CONFIG.BOARD_HEIGHT / 4);
+        action.parse(regularDecision);
+
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(
+                new Position(GAME_CONFIG.BOARD_WIDTH / 4 + GAME_CONFIG.PROTECTION_RADIUS + 1,
+                        GAME_CONFIG.BOARD_HEIGHT / 4));
+
+        state.getPlayer(MY_PLAYER_ID).setPosition(
+                new Position(GAME_CONFIG.BOARD_WIDTH / 4 + GAME_CONFIG.PROTECTION_RADIUS + GAME_CONFIG.HARVEST_RADIUS,
+                        GAME_CONFIG.BOARD_HEIGHT / 4));
+
+        state.getTileMap().growCrops();
+        state.getTileMap().growCrops();
+        state.getTileMap().growCrops();
+
+        action.performAction(state, BOT_LOGGER);
+        Assert.assertEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getHarvestedCrops().size());
     }
 }

@@ -109,6 +109,10 @@ public class GameLogic {
             if (tile.getType() == TileType.ARID) {
                 tile.getCrop().setGrowthTimer(0);
                 tile.getCrop().setValue(0);
+                if(tile.getCrop().getType() != CropType.NONE) {
+                    tile.getPlanter().getAchievements().destroyCrops(1);
+                }
+
             }
         }
 

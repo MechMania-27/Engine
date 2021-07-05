@@ -20,6 +20,8 @@ public class Player {
     private Map<CropType, Integer> seedInventory = new HashMap<>();
     @Expose
     private ArrayList<Crop> harvestedInventory = new ArrayList<>();
+    @Expose
+    private Achievements achievements;
 
     private double discount;
     private int playerID;
@@ -46,6 +48,7 @@ public class Player {
         this.item = item;
         this.upgrade = upgrade;
         this.money = money;
+        this.achievements = new Achievements();
 
         for (CropType type : CropType.values()) {
             seedInventory.put(type, 0);
@@ -122,9 +125,23 @@ public class Player {
         if (harvestedInventory.isEmpty()) {
             return;
         }
+        if(achievements.hasStolen()) {
+            achievements.addAchievement("Seedy Business");
+        }
+        if(achievements.hasStolen5Grapes()) {
+            achievements.addAchievement("Grapes of Mild Displeasure");
+        }
         Iterator<Crop> inventoryIter = harvestedInventory.iterator();
         while (inventoryIter.hasNext()) {
             Crop crop = inventoryIter.next();
+
+            //store the sold CropType to achievements
+            if(crop.getType() != CropType.GOLDENCORN && crop.getType() != CropType.PEANUTS) {
+                achievements.addCropType(crop.getType());
+            }
+            if(crop.getType() == CropType.GOLDENCORN) {
+                achievements.addAchievement("Stalks and Bonds");
+            }
             money += crop.getValue();
             inventoryIter.remove();
         }
@@ -303,5 +320,14 @@ public class Player {
         }
 
         tile.clearCrop();
+    }
+
+
+    public void addToHarvestInventory(Crop crop) {
+        harvestedInventory.add(crop);
+    }
+
+    public Achievements getAchievements() {
+        return achievements;
     }
 }

@@ -92,21 +92,15 @@ public class PlayerCommunicationInfo {
         engineLogger.debug(String.format("Bot (pid %d): closed without error", MainUtils.tryGetPid(process)));
     }
 
-    /**
-     * Gets the player's decision using the inputReader
-     *
-     * @return PlayerDecision object containing all of the information about the player's decision
-     * @throws IOException if there is an error in communicating with the player
-     * @throws IllegalThreadStateException if the player times out while sending decision
-     * @throws PlayerDecisionParseException if the engine fails to parse the player's decision
-     */
-    public PlayerDecision getPlayerDecision() throws IOException, IllegalThreadStateException, PlayerDecisionParseException {
+    private String safeGetLine() throws IOException {
         String response = null;
         try {
             response = inputReader.readLine();
         } catch (Exception e) {
             engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
                     MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
+
+            throw(e);
         } finally {
             String[] allMessages = errorStream.toString().split("\n");
             for (String message : allMessages) {
@@ -127,6 +121,20 @@ public class PlayerCommunicationInfo {
             }
             errorStream.reset();
         }
+
+        return response;
+    }
+
+    /**
+     * Gets the player's decision using the inputReader
+     *
+     * @return PlayerDecision object containing all of the information about the player's decision
+     * @throws IOException if there is an error in communicating with the player
+     * @throws IllegalThreadStateException if the player times out while sending decision
+     * @throws PlayerDecisionParseException if the engine fails to parse the player's decision
+     */
+    public PlayerDecision getPlayerDecision() throws IOException, IllegalThreadStateException, PlayerDecisionParseException {
+        String response = safeGetLine();
 
         while (response.startsWith(" ")) {
             response = inputReader.readLine();
@@ -164,7 +172,7 @@ public class PlayerCommunicationInfo {
      * for Item and Upgrade that will be used.
      */
     public void askForStartingItems() throws IOException, IllegalThreadStateException {
-        String itemResponse = inputReader.readLine();
+        String itemResponse = safeGetLine();
         while (itemResponse.startsWith(" ")) {
             itemResponse = inputReader.readLine();
             logger.debug(itemResponse);

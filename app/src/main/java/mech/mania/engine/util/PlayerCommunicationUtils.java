@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.*;
-import mech.mania.engine.CustomSerializerGameStates;
 
 
 public class PlayerCommunicationUtils {

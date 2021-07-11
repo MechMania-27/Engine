@@ -3,7 +3,6 @@ package mech.mania.engine.networking;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.nio.CharBuffer;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -39,46 +38,6 @@ public class SafeBufferedReader extends BufferedReader {
         return super.readLine();
     }
 
-    @Override
-    public int read() throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return -2; // I'd throw a runtime here, as some people may just be checking if int < 0 to consider EOS
-        }
-        return super.read();
-    }
-
-    @Override
-    public int read(char[] cbuf) throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return -2;  // I'd throw a runtime here, as some people may just be checking if int < 0 to consider EOS
-        }
-        return super.read(cbuf);
-    }
-
-    @Override
-    public int read(char[] cbuf, int off, int len) throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return 0;
-        }
-        return super.read(cbuf, off, len);
-    }
-
-    @Override
-    public int read(CharBuffer target) throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return 0;
-        }
-        return super.read(target);
-    }
-
     public long getMillisTimeout() {
         return millisTimeout;
     }
@@ -111,17 +70,16 @@ public class SafeBufferedReader extends BufferedReader {
      */
     protected void waitReadyLine() throws IllegalThreadStateException, IOException {
         long timeout = System.currentTimeMillis() + millisTimeout;
-        waitReady();
+        // waitReady();
 
         // https://stackoverflow.com/questions/45578725/java-io-ioexception-mark-invalid
         super.mark(1);
         try {
             while(System.currentTimeMillis() < timeout) {
-                while(ready()) {
-                    int charInt = super.read();
-                    if(charInt==-1) return; // EOS reached
+                int charInt;
+                while((charInt = super.read()) != -1) {
                     char character = (char) charInt;
-                    if(character == '\n' || character == '\r' ) return;
+                    if (character == '\n' || character == '\r') return;
                 }
                 try {
                     Thread.sleep(millisInterval);
@@ -134,23 +92,6 @@ public class SafeBufferedReader extends BufferedReader {
             super.reset();
         }
         throw new IllegalThreadStateException("readLine timed out");
-
-    }
-
-    protected void waitReady() throws IllegalThreadStateException, IOException {
-        if(ready()) return;
-        long timeout = System.currentTimeMillis() + millisTimeout;
-        while(System.currentTimeMillis() < timeout) {
-            if(ready()) return;
-            try {
-                Thread.sleep(millisInterval);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Restore flag
-                break;
-            }
-        }
-        if(ready()) return; // Just in case.
-        throw new IllegalThreadStateException("read timed out");
     }
 
 }

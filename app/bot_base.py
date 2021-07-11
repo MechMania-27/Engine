@@ -1,10 +1,9 @@
-import sys
-import random
-import time
 import json
-
-from flask import Flask, render_template, request
+import sys
 import threading
+import time
+from flask import Flask, render_template, request
+
 
 def receive_gamestate():
     gamestate_bytes = sys.stdin.readline()
@@ -33,6 +32,7 @@ class Logger:
     def debug(self, message: str) -> None:
         print(f"debug: {message}", file=sys.stderr, flush=True)
 
+
 logger = Logger()
 
 
@@ -49,7 +49,6 @@ def get_upgrade() -> str:
 
 
 def get_move_decision(game_state) -> str:
-
     player_num = game_state['playerNum']
     pos = game_state[f"p{player_num}"]["position"]
     logger.info(f"Currently at ({pos['x']},{pos['y']})")
@@ -70,12 +69,14 @@ def get_action_decision(game_state) -> str:
     logger.info(f"Sending \"{action:.30s}\"")
     return action
 
+
 cli = sys.modules['flask.cli']
 cli.show_server_banner = lambda *x: None
 
 app = Flask(__name__)
 
-@app.route('/test', methods =["GET", "POST"])
+
+@app.route('/test', methods=["GET", "POST"])
 def test():
     if request.method == "POST":
         input = request.form['input_command']
@@ -87,7 +88,7 @@ def test():
 
 
 if __name__ == "__main__":
-    threading.Thread(target = app.run).start()
+    threading.Thread(target=app.run).start()
     logger.info(f"About to send item and upgrade")
     send_item(get_item())
     send_upgrade(get_upgrade())
@@ -126,6 +127,3 @@ if __name__ == "__main__":
     # all logging and errors should be redirected to sys.stderr
     # while all commands sent back to the game engine as decision should
     # be sent in stdout using print
-
-
-

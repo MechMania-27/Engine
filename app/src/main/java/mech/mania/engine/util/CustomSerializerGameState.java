@@ -1,32 +1,13 @@
 package mech.mania.engine;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import mech.mania.engine.config.Config;
-import mech.mania.engine.core.GameLogic;
-import mech.mania.engine.core.PlayerEndState;
-import mech.mania.engine.logging.JsonLogger;
+import com.google.gson.*;
 import mech.mania.engine.model.GameLog;
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.Tile;
-import mech.mania.engine.model.PlayerDecisionParseException;
-import mech.mania.engine.model.decisions.MoveAction;
-import mech.mania.engine.model.decisions.PlayerDecision;
-import mech.mania.engine.networking.PlayerCommunicationInfo;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
 import java.lang.reflect.Type;
 
 
 
-public class CustomSerializerGame implements JsonSerializer<GameLog>{
+public class CustomSerializerGameState implements JsonSerializer<GameLog>{
     public JsonElement serialize(GameLog gameLog, Type t, JsonSerializationContext jsc) {
         Gson serializer = new Gson();
         JsonObject gameLogJson = (JsonObject)serializer.toJsonTree(gameLog);

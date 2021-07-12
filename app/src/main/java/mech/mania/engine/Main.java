@@ -1,7 +1,5 @@
 package mech.mania.engine;
 
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import mech.mania.engine.config.Config;
@@ -10,7 +8,6 @@ import mech.mania.engine.core.PlayerEndState;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.Tile;
 import mech.mania.engine.model.PlayerDecisionParseException;
 import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
@@ -23,8 +20,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 
 
 /**
@@ -76,12 +71,14 @@ public class Main {
         PlayerEndState player1EndState = null;
         PlayerEndState player2EndState = null;
 
+        System.out.println("hello!");
+
         // player process startup
         try {
             player1.start();
-            // engineLogger.debug("Started player 1 process");
+            engineLogger.debug("Started player 1 process");
             player1.askForStartingItems();
-            // engineLogger.debug("Finished asking player 1 for starting items");
+            engineLogger.debug("Finished asking player 1 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 1 failed to start", e);
             player1EndState = PlayerEndState.ERROR;
@@ -89,9 +86,9 @@ public class Main {
 
         try {
             player2.start();
-            // engineLogger.debug("Started player 2 process");
+            engineLogger.debug("Started player 2 process");
             player2.askForStartingItems();
-            // engineLogger.debug("Finished asking player 2 for starting items");
+            engineLogger.debug("Finished asking player 2 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 2 failed to start", e);
             player2EndState = PlayerEndState.ERROR;
@@ -316,7 +313,7 @@ public class Main {
 
             try {
                 player1.sendGameState(gameState);
-                // engineLogger.debug("Sent player 1 a game state");
+                engineLogger.debug("Sent player 1 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 1: ", e);
                 player1EndState = PlayerEndState.ERROR;
@@ -324,7 +321,7 @@ public class Main {
 
             try {
                 player2.sendGameState(gameState);
-                // engineLogger.debug("Sent player 2 a game state");
+                engineLogger.debug("Sent player 2 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 2", e);
                 player2EndState = PlayerEndState.ERROR;
@@ -342,7 +339,7 @@ public class Main {
 
             try {
                 player1Decision = player1.getPlayerDecision();
-                // engineLogger.debug("Got player 1's decision");
+                engineLogger.debug("Got player 1's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                 engineLogger.severe("Error while getting move action from player 1", e);
                 player1EndState = PlayerEndState.ERROR;
@@ -350,7 +347,7 @@ public class Main {
 
             try {
                 player2Decision = player2.getPlayerDecision();
-                // engineLogger.debug("Got player 2's decision");
+                engineLogger.debug("Got player 2's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                 engineLogger.severe("Error while getting move action from player 2", e);
                 player2EndState = PlayerEndState.ERROR;
@@ -389,7 +386,7 @@ public class Main {
             // send the players another game state after moving
             try {
                 player1.sendGameState(gameState);
-                // engineLogger.debug("Sent player 1 a game state");
+                engineLogger.debug("Sent player 1 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 1: ", e);
                 player1EndState = PlayerEndState.ERROR;
@@ -397,7 +394,7 @@ public class Main {
 
             try {
                 player2.sendGameState(gameState);
-                // engineLogger.debug("Sent player 2 a game state");
+                engineLogger.debug("Sent player 2 a game state");
             } catch (IOException | IllegalThreadStateException e) {
                 engineLogger.severe("Error while sending game state to player 2", e);
                 player2EndState = PlayerEndState.ERROR;
@@ -412,7 +409,7 @@ public class Main {
             if (validPlayer1MoveAction) {
                 try {
                     player1Decision = player1.getPlayerDecision();
-                    // engineLogger.debug("Got player 1's action decision");
+                    engineLogger.debug("Got player 1's action decision");
                 } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                     engineLogger.severe("Error while getting player decision from player 1", e);
                     player1EndState = PlayerEndState.ERROR;
@@ -424,7 +421,7 @@ public class Main {
             if (validPlayer2MoveAction) {
                 try {
                     player2Decision = player2.getPlayerDecision();
-                    // engineLogger.debug("Got player 2's action decision");
+                    engineLogger.debug("Got player 2's action decision");
                 } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
                     engineLogger.severe("Error while getting player decision from player 2", e);
                     player2EndState = PlayerEndState.ERROR;

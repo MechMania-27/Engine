@@ -1,1 +1,2363 @@
-{"Logs":[{"Turn":0,"Info":[],"Exception":[]},{"Turn":1,"Info":["Successful player initialization","Turn 1 took 482.56 milliseconds"],"Exception":["Player 1 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (0,0)","Player 2 attempted to harvest where no crop was found at (28,4)","Player 2 attempted to harvest where no crop was found at (29,3)","Player 2 attempted to harvest where no crop was found at (29,4)"]},{"Turn":2,"Info":["Turn 2 took 254.93 milliseconds"],"Exception":["Player 1 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (0,0)","Player 2 attempted to harvest where no crop was found at (28,1)","Player 2 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (29,1)"]},{"Turn":3,"Info":["Turn 3 took 252.53 milliseconds"],"Exception":["Player 1 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (0,0)","Player 2 attempted to harvest where no crop was found at (28,1)","Player 2 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (29,1)"]},{"Turn":4,"Info":["Turn 4 took 253.30 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (3,0)","Player 1 attempted to harvest where no crop was found at (4,0)","Player 2 attempted to harvest where no crop was found at (28,1)","Player 2 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (29,1)"]},{"Turn":5,"Info":["Turn 5 took 246.54 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (6,2)","Player 1 attempted to harvest where no crop was found at (7,1)","Player 1 attempted to harvest where no crop was found at (7,2)","Player 2 attempted to harvest where no crop was found at (28,1)","Player 2 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (29,1)"]},{"Turn":6,"Info":["Player 1 is at a GREEN_GROCER, selling inventory","Player 1 bought 1 CORN seeds","Turn 6 took 143.05 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 2 attempted to harvest where no crop was found at (28,1)","Player 2 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (29,1)"]},{"Turn":7,"Info":["Player 1 is at a GREEN_GROCER, selling inventory","Player 1 bought 1 POTATO seeds","Turn 7 took 245.09 milliseconds"],"Exception":["Player 2 attempted to harvest where no crop was found at (24,0)","Player 2 attempted to harvest where no crop was found at (25,0)"]},{"Turn":8,"Info":["Turn 8 took 249.56 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (17,2)","Player 1 attempted to harvest where no crop was found at (18,1)","Player 1 attempted to harvest where no crop was found at (18,2)","Player 2 attempted to harvest where no crop was found at (25,0)","Player 2 attempted to harvest where no crop was found at (26,0)"]},{"Turn":9,"Info":["Turn 9 took 249.91 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)","Player 1 attempted to harvest where no crop was found at (14,1)","Player 1 attempted to harvest where no crop was found at (15,0)","Player 1 attempted to harvest where no crop was found at (15,1)","Player 2 attempted to harvest where no crop was found at (25,0)","Player 2 attempted to harvest where no crop was found at (26,0)"]},{"Turn":10,"Info":["Turn 10 took 246.46 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (17,1)","Player 1 attempted to harvest where no crop was found at (18,0)","Player 1 attempted to harvest where no crop was found at (18,1)","Player 2 attempted to harvest where no crop was found at (25,2)","Player 2 attempted to harvest where no crop was found at (26,1)","Player 2 attempted to harvest where no crop was found at (26,2)"]},{"Turn":11,"Info":["Turn 11 took 246.30 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (19,3)","Player 1 attempted to harvest where no crop was found at (20,2)","Player 1 attempted to harvest where no crop was found at (20,3)","Player 2 attempted to harvest where no crop was found at (24,3)","Player 2 attempted to harvest where no crop was found at (25,2)","Player 2 attempted to harvest where no crop was found at (25,3)"]},{"Turn":12,"Info":["Turn 12 took 246.72 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (22,6)","Player 1 attempted to harvest where no crop was found at (23,5)","Player 1 attempted to harvest where no crop was found at (23,6)","Player 2 attempted to harvest where no crop was found at (21,4)","Player 2 attempted to harvest where no crop was found at (22,3)","Player 2 attempted to harvest where no crop was found at (22,4)"]},{"Turn":13,"Info":["Turn 13 took 250.62 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)","Player 1 attempted to harvest where no crop was found at (24,10)","Player 1 attempted to harvest where no crop was found at (25,9)","Player 1 attempted to harvest where no crop was found at (25,10)","Player 2 attempted to harvest where no crop was found at (21,4)","Player 2 attempted to harvest where no crop was found at (22,3)","Player 2 attempted to harvest where no crop was found at (22,4)"]},{"Turn":14,"Info":["Turn 14 took 246.88 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)","Player 1 attempted to harvest where no crop was found at (24,8)","Player 1 attempted to harvest where no crop was found at (25,7)","Player 1 attempted to harvest where no crop was found at (25,8)","Player 2 attempted to harvest where no crop was found at (21,4)","Player 2 attempted to harvest where no crop was found at (22,3)","Player 2 attempted to harvest where no crop was found at (22,4)"]},{"Turn":15,"Info":["Turn 15 took 248.29 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)","Player 1 attempted to harvest where no crop was found at (20,11)","Player 1 attempted to harvest where no crop was found at (21,10)","Player 1 attempted to harvest where no crop was found at (21,11)","Player 2 attempted to harvest where no crop was found at (21,4)","Player 2 attempted to harvest where no crop was found at (22,3)","Player 2 attempted to harvest where no crop was found at (22,4)"]},{"Turn":16,"Info":["Turn 16 took 248.94 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (19,8)","Player 1 attempted to harvest where no crop was found at (20,7)","Player 1 attempted to harvest where no crop was found at (20,8)","Player 2 attempted to harvest where no crop was found at (24,5)","Player 2 attempted to harvest where no crop was found at (25,4)","Player 2 attempted to harvest where no crop was found at (25,5)"]},{"Turn":17,"Info":["Turn 17 took 252.99 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (18,12)","Player 1 attempted to harvest where no crop was found at (19,11)","Player 1 attempted to harvest where no crop was found at (19,12)","Player 2 attempted to harvest where no crop was found at (24,5)","Player 2 attempted to harvest where no crop was found at (25,4)","Player 2 attempted to harvest where no crop was found at (25,5)"]},{"Turn":18,"Info":["Turn 18 took 249.05 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (20,12)","Player 1 attempted to harvest where no crop was found at (21,11)","Player 1 attempted to harvest where no crop was found at (21,12)","Player 2 attempted to harvest where no crop was found at (24,5)","Player 2 attempted to harvest where no crop was found at (25,4)","Player 2 attempted to harvest where no crop was found at (25,5)"]},{"Turn":19,"Info":["Turn 19 took 248.01 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (18,8)","Player 1 attempted to harvest where no crop was found at (19,7)","Player 1 attempted to harvest where no crop was found at (19,8)","Player 2 attempted to harvest where no crop was found at (24,5)","Player 2 attempted to harvest where no crop was found at (25,4)","Player 2 attempted to harvest where no crop was found at (25,5)"]},{"Turn":20,"Info":["Turn 20 took 249.84 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (16,11)","Player 1 attempted to harvest where no crop was found at (17,10)","Player 1 attempted to harvest where no crop was found at (17,11)","Player 2 attempted to harvest where no crop was found at (24,5)","Player 2 attempted to harvest where no crop was found at (25,4)","Player 2 attempted to harvest where no crop was found at (25,5)"]},{"Turn":21,"Info":["Turn 21 took 248.22 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (16,7)","Player 1 attempted to harvest where no crop was found at (17,6)","Player 1 attempted to harvest where no crop was found at (17,7)","Player 2 attempted to harvest where no crop was found at (24,5)","Player 2 attempted to harvest where no crop was found at (25,4)","Player 2 attempted to harvest where no crop was found at (25,5)"]},{"Turn":22,"Info":["Turn 22 took 237.38 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (19,3)","Player 1 attempted to harvest where no crop was found at (20,2)","Player 1 attempted to harvest where no crop was found at (20,3)","Player 2 attempted to harvest where no crop was found at (24,5)","Player 2 attempted to harvest where no crop was found at (25,4)","Player 2 attempted to harvest where no crop was found at (25,5)"]},{"Turn":23,"Info":["Turn 23 took 249.71 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (21,4)","Player 1 attempted to harvest where no crop was found at (22,3)","Player 1 attempted to harvest where no crop was found at (22,4)","Player 2 attempted to harvest where no crop was found at (28,1)","Player 2 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (29,1)"]},{"Turn":24,"Info":["Turn 24 took 248.67 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (23,8)","Player 1 attempted to harvest where no crop was found at (24,7)","Player 1 attempted to harvest where no crop was found at (24,8)","Player 2 attempted to harvest where no crop was found at (28,0)","Player 2 attempted to harvest where no crop was found at (29,0)"]},{"Turn":25,"Info":["Turn 25 took 251.10 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (14 > 10)","Player 1 attempted to harvest where no crop was found at (26,4)","Player 1 attempted to harvest where no crop was found at (27,3)","Player 1 attempted to harvest where no crop was found at (27,4)","Player 2 attempted to harvest where no crop was found at (28,0)","Player 2 attempted to harvest where no crop was found at (29,0)"]},{"Turn":26,"Info":["Turn 26 took 249.05 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (14 > 10)","Player 1 attempted to harvest where no crop was found at (28,8)","Player 1 attempted to harvest where no crop was found at (29,7)","Player 1 attempted to harvest where no crop was found at (29,8)","Player 2 attempted to harvest where no crop was found at (28,0)","Player 2 attempted to harvest where no crop was found at (29,0)"]},{"Turn":27,"Info":["Player 1 planted CORN at (29,4)","Turn 27 took 252.29 milliseconds"],"Exception":["Player 2 attempted to harvest where no crop was found at (27,0)","Player 2 attempted to harvest where no crop was found at (28,0)"]},{"Turn":28,"Info":["Turn 28 took 251.63 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (27,4)","Player 1 attempted to harvest where no crop was found at (28,3)","Player 1 attempted to harvest where no crop was found at (28,4)","Player 2 attempted to harvest where no crop was found at (23,0)","Player 2 attempted to harvest where no crop was found at (24,0)"]},{"Turn":29,"Info":["Player 2 is at a GREEN_GROCER, selling inventory","Player 2 bought 1 GRAPE seeds","Turn 29 took 251.91 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (28,1)","Player 1 attempted to harvest where no crop was found at (29,0)","Player 1 attempted to harvest where no crop was found at (29,1)"]},{"Turn":30,"Info":["Player 2 is at a GREEN_GROCER, selling inventory","Player 2 bought 1 GRAPE seeds","Turn 30 took 250.66 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (28,0)","Player 1 attempted to harvest where no crop was found at (29,0)"]},{"Turn":31,"Info":["Turn 31 took 254.50 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (24,0)","Player 1 attempted to harvest where no crop was found at (25,0)","Player 2 attempted to harvest where no crop was found at (8,0)","Player 2 attempted to harvest where no crop was found at (9,0)"]},{"Turn":32,"Info":["Player 2 planted GRAPE at (7,4)","Turn 32 took 286.04 milliseconds"],"Exception":["Player 1 attempted to plant at (29,4) with plant, rejecting"]},{"Turn":33,"Info":["Turn 33 took 246.40 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (28,2)","Player 1 attempted to harvest where no crop was found at (29,1)","Player 1 attempted to harvest where no crop was found at (29,2)","Player 2 attempted to harvest where no crop was found at (6,0)","Player 2 attempted to harvest where no crop was found at (7,0)"]},{"Turn":34,"Info":["Turn 34 took 308.50 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (27,0)","Player 1 attempted to harvest where no crop was found at (28,0)","Player 2 attempted to harvest where no crop was found at (7,0)","Player 2 attempted to harvest where no crop was found at (8,0)"]},{"Turn":35,"Info":["Turn 35 took 324.73 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (28,0)","Player 1 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (4,0)","Player 2 attempted to harvest where no crop was found at (5,0)"]},{"Turn":36,"Info":["Turn 36 took 296.57 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (28,0)","Player 1 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (0,0)","Player 2 attempted to harvest where no crop was found at (1,0)"]},{"Turn":37,"Info":["Turn 37 took 244.36 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (28,0)","Player 1 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (4,1)","Player 2 attempted to harvest where no crop was found at (5,0)","Player 2 attempted to harvest where no crop was found at (5,1)"]},{"Turn":38,"Info":["Turn 38 took 250.36 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (28,0)","Player 1 attempted to harvest where no crop was found at (29,0)","Player 2 attempted to harvest where no crop was found at (7,0)","Player 2 attempted to harvest where no crop was found at (8,0)"]},{"Turn":39,"Info":["Turn 39 took 246.74 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (25,0)","Player 1 attempted to harvest where no crop was found at (26,0)","Player 2 attempted to harvest where no crop was found at (11,0)","Player 2 attempted to harvest where no crop was found at (12,0)"]},{"Turn":40,"Info":["Turn 40 took 250.10 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (21,0)","Player 1 attempted to harvest where no crop was found at (22,0)","Player 2 attempted to harvest where no crop was found at (10,0)","Player 2 attempted to harvest where no crop was found at (11,0)"]},{"Turn":41,"Info":["Player 2 is at a GREEN_GROCER, selling inventory","Player 2 bought 1 CORN seeds","Turn 41 took 236.67 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (25,2)","Player 1 attempted to harvest where no crop was found at (26,1)","Player 1 attempted to harvest where no crop was found at (26,2)"]},{"Turn":42,"Info":["Turn 42 took 222.29 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (21,0)","Player 1 attempted to harvest where no crop was found at (22,0)","Player 2 attempted to harvest where no crop was found at (13,3)","Player 2 attempted to harvest where no crop was found at (14,2)","Player 2 attempted to harvest where no crop was found at (14,3)"]},{"Turn":43,"Info":["Turn 43 took 247.41 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (20,1)","Player 1 attempted to harvest where no crop was found at (21,0)","Player 1 attempted to harvest where no crop was found at (21,1)","Player 2 attempted to harvest where no crop was found at (13,2)","Player 2 attempted to harvest where no crop was found at (14,1)","Player 2 attempted to harvest where no crop was found at (14,2)"]},{"Turn":44,"Info":["Player 2 is at a GREEN_GROCER, selling inventory","Player 2 bought 1 CORN seeds","Turn 44 took 248.10 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (16,2)","Player 1 attempted to harvest where no crop was found at (17,1)","Player 1 attempted to harvest where no crop was found at (17,2)"]},{"Turn":45,"Info":["Player 1 is at a GREEN_GROCER, selling inventory","Player 1 bought 1 POTATO seeds","Turn 45 took 251.13 milliseconds"],"Exception":["Player 2 attempted to harvest where no crop was found at (16,4)","Player 2 attempted to harvest where no crop was found at (17,3)","Player 2 attempted to harvest where no crop was found at (17,4)"]},{"Turn":46,"Info":["Player 1 is at a GREEN_GROCER, selling inventory","Player 1 bought 1 GRAPE seeds","Player 2 planted GRAPE at (16,7)","Turn 46 took 247.64 milliseconds"],"Exception":[]},{"Turn":47,"Info":["Player 2 planted CORN at (17,7)","Turn 47 took 251.21 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (13,2)","Player 1 attempted to harvest where no crop was found at (14,1)","Player 1 attempted to harvest where no crop was found at (14,2)"]},{"Turn":48,"Info":["Turn 48 took 274.50 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (11,3)","Player 1 attempted to harvest where no crop was found at (12,2)","Player 1 attempted to harvest where no crop was found at (12,3)","Player 2 attempted to harvest an unripe crop at (17,7)","Player 2 attempted to harvest where no crop was found at (18,6)","Player 2 attempted to harvest where no crop was found at (18,7)"]},{"Turn":49,"Info":["Turn 49 took 255.52 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (11,5)","Player 1 attempted to harvest where no crop was found at (12,4)","Player 1 attempted to harvest where no crop was found at (12,5)","Player 2 attempted to harvest where no crop was found at (14,6)","Player 2 attempted to harvest where no crop was found at (15,5)","Player 2 attempted to harvest where no crop was found at (15,6)"]},{"Turn":50,"Info":["Player 2 planted CORN at (14,8)","Turn 50 took 261.71 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,3)","Player 1 attempted to harvest where no crop was found at (9,2)","Player 1 attempted to harvest where no crop was found at (9,3)"]},{"Turn":51,"Info":["Turn 51 took 232.85 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (7,2)","Player 1 attempted to harvest where no crop was found at (8,1)","Player 1 attempted to harvest where no crop was found at (8,2)","Player 2 attempted to harvest where no crop was found at (9,8)","Player 2 attempted to harvest where no crop was found at (10,7)","Player 2 attempted to harvest where no crop was found at (10,8)"]},{"Turn":52,"Info":["Player 2 harvested crop GRAPE from (7,4)","Turn 52 took 249.72 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (10,6)","Player 1 attempted to harvest where no crop was found at (11,5)","Player 1 attempted to harvest where no crop was found at (11,6)","Player 2 attempted to harvest where no crop was found at (6,4)","Player 2 attempted to harvest where no crop was found at (7,3)"]},{"Turn":53,"Info":["Turn 53 took 233.47 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (6,7)","Player 1 attempted to harvest where no crop was found at (7,6)","Player 1 attempted to harvest where no crop was found at (7,7)","Player 2 attempted to harvest where no crop was found at (9,6)","Player 2 attempted to harvest where no crop was found at (10,5)","Player 2 attempted to harvest where no crop was found at (10,6)"]},{"Turn":54,"Info":["Turn 54 took 236.66 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)","Player 1 attempted to harvest where no crop was found at (2,6)","Player 1 attempted to harvest where no crop was found at (3,5)","Player 1 attempted to harvest where no crop was found at (3,6)","Player 2 attempted to harvest where no crop was found at (9,6)","Player 2 attempted to harvest where no crop was found at (10,5)","Player 2 attempted to harvest where no crop was found at (10,6)"]},{"Turn":55,"Info":["Turn 55 took 231.02 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (5,7)","Player 1 attempted to harvest where no crop was found at (6,6)","Player 1 attempted to harvest where no crop was found at (6,7)","Player 2 attempted to harvest where no crop was found at (5,3)","Player 2 attempted to harvest where no crop was found at (6,2)","Player 2 attempted to harvest where no crop was found at (6,3)"]},{"Turn":56,"Info":["Turn 56 took 247.91 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (12 > 10)","Player 1 attempted to harvest where no crop was found at (1,11)","Player 1 attempted to harvest where no crop was found at (2,10)","Player 1 attempted to harvest where no crop was found at (2,11)","Player 2 attempted to harvest where no crop was found at (5,3)","Player 2 attempted to harvest where no crop was found at (6,2)","Player 2 attempted to harvest where no crop was found at (6,3)"]},{"Turn":57,"Info":["Player 1 planted GRAPE at (0,12)","Turn 57 took 250.42 milliseconds"],"Exception":["Player 2 attempted to harvest where no crop was found at (4,7)","Player 2 attempted to harvest where no crop was found at (5,6)","Player 2 attempted to harvest where no crop was found at (5,7)"]},{"Turn":58,"Info":["Turn 58 took 248.25 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (0,8)","Player 1 attempted to harvest where no crop was found at (0,9)","Player 2 attempted to harvest where no crop was found at (4,7)","Player 2 attempted to harvest where no crop was found at (5,6)","Player 2 attempted to harvest where no crop was found at (5,7)"]},{"Turn":59,"Info":["Turn 59 took 245.85 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (0,5)","Player 1 attempted to harvest where no crop was found at (0,6)","Player 2 attempted to harvest where no crop was found at (4,7)","Player 2 attempted to harvest where no crop was found at (5,6)","Player 2 attempted to harvest where no crop was found at (5,7)"]},{"Turn":60,"Info":["Turn 60 took 248.52 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (1,7)","Player 1 attempted to harvest where no crop was found at (2,6)","Player 1 attempted to harvest where no crop was found at (2,7)","Player 2 attempted to harvest where no crop was found at (8,9)","Player 2 attempted to harvest where no crop was found at (9,8)","Player 2 attempted to harvest where no crop was found at (9,9)"]},{"Turn":61,"Info":["Turn 61 took 233.15 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (4,7)","Player 1 attempted to harvest where no crop was found at (5,6)","Player 1 attempted to harvest where no crop was found at (5,7)","Player 2 attempted to harvest where no crop was found at (8,9)","Player 2 attempted to harvest where no crop was found at (9,8)","Player 2 attempted to harvest where no crop was found at (9,9)"]},{"Turn":62,"Info":["Turn 62 took 238.45 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (8,3)","Player 1 attempted to harvest where no crop was found at (9,2)","Player 1 attempted to harvest where no crop was found at (9,3)","Player 2 attempted to harvest where no crop was found at (8,9)","Player 2 attempted to harvest where no crop was found at (9,8)","Player 2 attempted to harvest where no crop was found at (9,9)"]},{"Turn":63,"Info":["Turn 63 took 234.72 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (9,5)","Player 1 attempted to harvest where no crop was found at (10,4)","Player 1 attempted to harvest where no crop was found at (10,5)","Player 2 attempted to harvest where no crop was found at (8,9)","Player 2 attempted to harvest where no crop was found at (9,8)","Player 2 attempted to harvest where no crop was found at (9,9)"]},{"Turn":64,"Info":["Turn 64 took 236.84 milliseconds"],"Exception":["Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (10,6)","Player 1 attempted to harvest where no crop was found at (11,5)","Player 1 attempted to harvest where no crop was found at (11,6)","Player 2 attempted to harvest where no crop was found at (8,9)","Player 2 attempted to harvest where no crop was found at (9,8)","Player 2 attempted to harvest where no crop was found at (9,9)"]},{"Turn":65,"Info":["Turn 65 took 248.28 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (11,3)","Player 1 attempted to harvest where no crop was found at (12,2)","Player 1 attempted to harvest where no crop was found at (12,3)","Player 2 attempted to harvest where no crop was found at (9,13)","Player 2 attempted to harvest where no crop was found at (10,12)","Player 2 attempted to harvest where no crop was found at (10,13)"]},{"Turn":66,"Info":["Turn 66 took 251.68 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (15,4)","Player 1 attempted to harvest where no crop was found at (16,3)","Player 1 attempted to harvest where no crop was found at (16,4)","Player 2 attempted to harvest where no crop was found at (11,15)","Player 2 attempted to harvest where no crop was found at (12,14)","Player 2 attempted to harvest where no crop was found at (12,15)"]},{"Turn":67,"Info":["Player 1 is at a GREEN_GROCER, selling inventory","Player 1 bought 1 GRAPE seeds","Turn 67 took 248.71 milliseconds"],"Exception":["Player 2 attempted to harvest where no crop was found at (8,12)","Player 2 attempted to harvest where no crop was found at (9,11)","Player 2 attempted to harvest where no crop was found at (9,12)"]},{"Turn":68,"Info":["Turn 68 took 255.25 milliseconds"],"Exception":["Player 2 failed to move to position (15,2), greater than allowed movement (16 > 10)","Player 1 attempted to harvest where no crop was found at (9,0)","Player 1 attempted to harvest where no crop was found at (10,0)","Player 2 attempted to harvest where no crop was found at (8,12)","Player 2 attempted to harvest where no crop was found at (9,11)","Player 2 attempted to harvest where no crop was found at (9,12)"]},{"Turn":69,"Info":["Player 1 is at a GREEN_GROCER, selling inventory","Player 1 bought 1 POTATO seeds","Turn 69 took 250.49 milliseconds"],"Exception":["Player 2 attempted to harvest where no crop was found at (12,15)","Player 2 attempted to harvest where no crop was found at (13,14)","Player 2 attempted to harvest where no crop was found at (13,15)"]},{"Turn":70,"Info":["Turn 70 took 244.71 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (9,4)","Player 1 attempted to harvest where no crop was found at (10,3)","Player 1 attempted to harvest where no crop was found at (10,4)","Player 2 attempted to harvest where no crop was found at (16,17)","Player 2 attempted to harvest where no crop was found at (17,16)","Player 2 attempted to harvest where no crop was found at (17,17)"]},{"Turn":71,"Info":["Turn 71 took 253.05 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,6)","Player 1 attempted to harvest where no crop was found at (9,5)","Player 1 attempted to harvest where no crop was found at (9,6)","Player 2 attempted to harvest where no crop was found at (18,21)","Player 2 attempted to harvest where no crop was found at (19,20)","Player 2 attempted to harvest where no crop was found at (19,21)"]},{"Turn":72,"Info":["Turn 72 took 261.79 milliseconds"],"Exception":["Player 2 failed to move to position (15,11), greater than allowed movement (14 > 10)","Player 1 attempted to harvest where no crop was found at (11,6)","Player 1 attempted to harvest where no crop was found at (12,5)","Player 1 attempted to harvest where no crop was found at (12,6)","Player 2 attempted to harvest where no crop was found at (18,21)","Player 2 attempted to harvest where no crop was found at (19,20)","Player 2 attempted to harvest where no crop was found at (19,21)"]},{"Turn":73,"Info":["Turn 73 took 248.54 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,9)","Player 1 attempted to harvest where no crop was found at (9,8)","Player 1 attempted to harvest where no crop was found at (9,9)","Player 2 attempted to harvest where no crop was found at (22,21)","Player 2 attempted to harvest where no crop was found at (23,20)","Player 2 attempted to harvest where no crop was found at (23,21)"]},{"Turn":74,"Info":["Turn 74 took 235.47 milliseconds"],"Exception":["Player 2 failed to move to position (15,11), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (6,8)","Player 1 attempted to harvest where no crop was found at (7,7)","Player 1 attempted to harvest where no crop was found at (7,8)","Player 2 attempted to harvest where no crop was found at (22,21)","Player 2 attempted to harvest where no crop was found at (23,20)","Player 2 attempted to harvest where no crop was found at (23,21)"]},{"Turn":75,"Info":["Turn 75 took 220.31 milliseconds"],"Exception":["Player 2 failed to move to position (15,11), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (7,4)","Player 1 attempted to harvest where no crop was found at (8,3)","Player 1 attempted to harvest where no crop was found at (8,4)","Player 2 attempted to harvest where no crop was found at (22,21)","Player 2 attempted to harvest where no crop was found at (23,20)","Player 2 attempted to harvest where no crop was found at (23,21)"]},{"Turn":76,"Info":["Turn 76 took 248.23 milliseconds"],"Exception":["Player 2 failed to move to position (15,11), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (4,8)","Player 1 attempted to harvest where no crop was found at (5,7)","Player 1 attempted to harvest where no crop was found at (5,8)","Player 2 attempted to harvest where no crop was found at (22,21)","Player 2 attempted to harvest where no crop was found at (23,20)","Player 2 attempted to harvest where no crop was found at (23,21)"]},{"Turn":77,"Info":["Turn 77 took 248.61 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (7,8)","Player 1 attempted to harvest where no crop was found at (8,7)","Player 1 attempted to harvest where no crop was found at (8,8)","Player 2 attempted to harvest where no crop was found at (22,19)","Player 2 attempted to harvest where no crop was found at (23,18)","Player 2 attempted to harvest where no crop was found at (23,19)"]},{"Turn":78,"Info":["Turn 78 took 233.90 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (6,4)","Player 1 attempted to harvest where no crop was found at (7,3)","Player 1 attempted to harvest where no crop was found at (7,4)","Player 2 attempted to harvest where no crop was found at (22,19)","Player 2 attempted to harvest where no crop was found at (23,18)","Player 2 attempted to harvest where no crop was found at (23,19)"]},{"Turn":79,"Info":["Turn 79 took 236.01 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (3,8)","Player 1 attempted to harvest where no crop was found at (4,7)","Player 1 attempted to harvest where no crop was found at (4,8)","Player 2 attempted to harvest where no crop was found at (22,19)","Player 2 attempted to harvest where no crop was found at (23,18)","Player 2 attempted to harvest where no crop was found at (23,19)"]},{"Turn":80,"Info":["Turn 80 took 247.86 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (4,7)","Player 1 attempted to harvest where no crop was found at (5,6)","Player 1 attempted to harvest where no crop was found at (5,7)","Player 2 attempted to harvest where no crop was found at (22,19)","Player 2 attempted to harvest where no crop was found at (23,18)","Player 2 attempted to harvest where no crop was found at (23,19)"]},{"Turn":81,"Info":["Turn 81 took 241.54 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (1,5)","Player 1 attempted to harvest where no crop was found at (2,4)","Player 1 attempted to harvest where no crop was found at (2,5)","Player 2 attempted to harvest where no crop was found at (19,19)","Player 2 attempted to harvest where no crop was found at (20,18)","Player 2 attempted to harvest where no crop was found at (20,19)"]},{"Turn":82,"Info":["Turn 82 took 246.57 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (15 > 10)","Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 2 attempted to harvest where no crop was found at (19,19)","Player 2 attempted to harvest where no crop was found at (20,18)","Player 2 attempted to harvest where no crop was found at (20,19)"]},{"Turn":83,"Info":["Turn 83 took 230.65 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,10)","Player 1 attempted to harvest where no crop was found at (0,11)","Player 2 attempted to harvest where no crop was found at (18,19)","Player 2 attempted to harvest where no crop was found at (19,18)","Player 2 attempted to harvest where no crop was found at (19,19)"]},{"Turn":84,"Info":["Turn 84 took 247.48 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (2,9)","Player 1 attempted to harvest where no crop was found at (3,8)","Player 1 attempted to harvest where no crop was found at (3,9)","Player 2 attempted to harvest where no crop was found at (15,19)","Player 2 attempted to harvest where no crop was found at (16,18)","Player 2 attempted to harvest where no crop was found at (16,19)"]},{"Turn":85,"Info":["Turn 85 took 248.47 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,9)","Player 1 attempted to harvest where no crop was found at (0,10)","Player 2 attempted to harvest where no crop was found at (11,15)","Player 2 attempted to harvest where no crop was found at (12,14)","Player 2 attempted to harvest where no crop was found at (12,15)"]},{"Turn":86,"Info":["Turn 86 took 246.53 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,8)","Player 1 attempted to harvest where no crop was found at (0,9)","Player 2 attempted to harvest where no crop was found at (7,19)","Player 2 attempted to harvest where no crop was found at (8,18)","Player 2 attempted to harvest where no crop was found at (8,19)"]},{"Turn":87,"Info":["Turn 87 took 265.85 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 1 attempted to harvest where no crop was found at (0,8)","Player 2 attempted to harvest where no crop was found at (7,19)","Player 2 attempted to harvest where no crop was found at (8,18)","Player 2 attempted to harvest where no crop was found at (8,19)"]},{"Turn":88,"Info":["Turn 88 took 249.57 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 1 attempted to harvest where no crop was found at (0,8)","Player 2 attempted to harvest where no crop was found at (7,19)","Player 2 attempted to harvest where no crop was found at (8,18)","Player 2 attempted to harvest where no crop was found at (8,19)"]},{"Turn":89,"Info":["Turn 89 took 234.29 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (1,5)","Player 1 attempted to harvest where no crop was found at (1,6)","Player 2 attempted to harvest where no crop was found at (7,19)","Player 2 attempted to harvest where no crop was found at (8,18)","Player 2 attempted to harvest where no crop was found at (8,19)"]},{"Turn":90,"Info":["Turn 90 took 220.87 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (2,7)","Player 1 attempted to harvest where no crop was found at (3,6)","Player 1 attempted to harvest where no crop was found at (3,7)","Player 2 attempted to harvest where no crop was found at (7,19)","Player 2 attempted to harvest where no crop was found at (8,18)","Player 2 attempted to harvest where no crop was found at (8,19)"]},{"Turn":91,"Info":["Turn 91 took 233.55 milliseconds"],"Exception":["Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (5,11)","Player 1 attempted to harvest where no crop was found at (6,10)","Player 1 attempted to harvest where no crop was found at (6,11)","Player 2 attempted to harvest where no crop was found at (7,19)","Player 2 attempted to harvest where no crop was found at (8,18)","Player 2 attempted to harvest where no crop was found at (8,19)"]},{"Turn":92,"Info":["Turn 92 took 234.41 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (1,7)","Player 1 attempted to harvest where no crop was found at (2,6)","Player 1 attempted to harvest where no crop was found at (2,7)","Player 2 attempted to harvest where no crop was found at (3,21)","Player 2 attempted to harvest where no crop was found at (4,20)","Player 2 attempted to harvest where no crop was found at (4,21)"]},{"Turn":93,"Info":["Turn 93 took 252.12 milliseconds"],"Exception":["Player 2 failed to move to position (15,11), greater than allowed movement (21 > 10)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 1 attempted to harvest where no crop was found at (0,8)","Player 2 attempted to harvest where no crop was found at (3,21)","Player 2 attempted to harvest where no crop was found at (4,20)","Player 2 attempted to harvest where no crop was found at (4,21)"]},{"Turn":94,"Info":["Turn 94 took 250.58 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,7)","Player 1 attempted to harvest where no crop was found at (0,8)","Player 2 attempted to harvest where no crop was found at (1,24)","Player 2 attempted to harvest where no crop was found at (2,23)","Player 2 attempted to harvest where no crop was found at (2,24)"]},{"Turn":95,"Info":["Turn 95 took 233.46 milliseconds"],"Exception":["Player 2 failed to move to position (15,14), greater than allowed movement (23 > 10)","Player 1 attempted to harvest where no crop was found at (0,10)","Player 1 attempted to harvest where no crop was found at (0,11)","Player 2 attempted to harvest where no crop was found at (1,24)","Player 2 attempted to harvest where no crop was found at (2,23)","Player 2 attempted to harvest where no crop was found at (2,24)"]},{"Turn":96,"Info":["Turn 96 took 249.40 milliseconds"],"Exception":["Player 2 failed to move to position (15,14), greater than allowed movement (23 > 10)","Player 1 attempted to harvest where no crop was found at (1,11)","Player 1 attempted to harvest where no crop was found at (2,10)","Player 1 attempted to harvest where no crop was found at (2,11)","Player 2 attempted to harvest where no crop was found at (1,24)","Player 2 attempted to harvest where no crop was found at (2,23)","Player 2 attempted to harvest where no crop was found at (2,24)"]},{"Turn":97,"Info":["Turn 97 took 234.18 milliseconds"],"Exception":["Player 2 failed to move to position (15,14), greater than allowed movement (23 > 10)","Player 1 attempted to harvest where no crop was found at (0,9)","Player 1 attempted to harvest where no crop was found at (0,10)","Player 2 attempted to harvest where no crop was found at (1,24)","Player 2 attempted to harvest where no crop was found at (2,23)","Player 2 attempted to harvest where no crop was found at (2,24)"]},{"Turn":98,"Info":["Turn 98 took 235.17 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 2 attempted to harvest where no crop was found at (0,25)","Player 2 attempted to harvest where no crop was found at (0,26)"]},{"Turn":99,"Info":["Turn 99 took 235.47 milliseconds"],"Exception":["Player 2 failed to move to position (15,16), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (1,6)","Player 1 attempted to harvest where no crop was found at (2,5)","Player 1 attempted to harvest where no crop was found at (2,6)","Player 2 attempted to harvest where no crop was found at (0,25)","Player 2 attempted to harvest where no crop was found at (0,26)"]},{"Turn":100,"Info":["Turn 100 took 230.02 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (4,2)","Player 1 attempted to harvest where no crop was found at (5,1)","Player 1 attempted to harvest where no crop was found at (5,2)","Player 2 attempted to harvest where no crop was found at (0,25)","Player 2 attempted to harvest where no crop was found at (0,26)"]},{"Turn":101,"Info":["Turn 101 took 222.23 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (3,0)","Player 1 attempted to harvest where no crop was found at (4,0)","Player 2 attempted to harvest where no crop was found at (0,28)"]},{"Turn":102,"Info":["Turn 102 took 234.26 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (1,3)","Player 1 attempted to harvest where no crop was found at (2,2)","Player 1 attempted to harvest where no crop was found at (2,3)","Player 2 attempted to harvest where no crop was found at (0,25)","Player 2 attempted to harvest where no crop was found at (1,24)","Player 2 attempted to harvest where no crop was found at (1,25)"]},{"Turn":103,"Info":["Turn 103 took 247.04 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,2)","Player 1 attempted to harvest where no crop was found at (0,3)","Player 2 attempted to harvest where no crop was found at (3,26)","Player 2 attempted to harvest where no crop was found at (4,25)","Player 2 attempted to harvest where no crop was found at (4,26)"]},{"Turn":104,"Info":["Turn 104 took 248.87 milliseconds"],"Exception":["Player 2 failed to move to position (15,16), greater than allowed movement (21 > 10)","Player 1 attempted to harvest where no crop was found at (0,3)","Player 1 attempted to harvest where no crop was found at (0,4)","Player 2 attempted to harvest where no crop was found at (3,26)","Player 2 attempted to harvest where no crop was found at (4,25)","Player 2 attempted to harvest where no crop was found at (4,26)"]},{"Turn":105,"Info":["Turn 105 took 264.34 milliseconds"],"Exception":["Player 2 failed to move to position (15,16), greater than allowed movement (21 > 10)","Player 1 attempted to harvest where no crop was found at (2,6)","Player 1 attempted to harvest where no crop was found at (3,5)","Player 1 attempted to harvest where no crop was found at (3,6)","Player 2 attempted to harvest where no crop was found at (3,26)","Player 2 attempted to harvest where no crop was found at (4,25)","Player 2 attempted to harvest where no crop was found at (4,26)"]},{"Turn":106,"Info":["Turn 106 took 244.05 milliseconds"],"Exception":["Player 2 failed to move to position (15,16), greater than allowed movement (21 > 10)","Player 1 attempted to harvest where no crop was found at (0,8)","Player 1 attempted to harvest where no crop was found at (0,9)","Player 2 attempted to harvest where no crop was found at (3,26)","Player 2 attempted to harvest where no crop was found at (4,25)","Player 2 attempted to harvest where no crop was found at (4,26)"]},{"Turn":107,"Info":["Turn 107 took 248.46 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (1,5)","Player 1 attempted to harvest where no crop was found at (1,6)","Player 2 attempted to harvest where no crop was found at (7,30)"]},{"Turn":108,"Info":["Turn 108 took 248.33 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,7)","Player 1 attempted to harvest where no crop was found at (1,6)","Player 1 attempted to harvest where no crop was found at (1,7)","Player 2 attempted to harvest where no crop was found at (4,26)","Player 2 attempted to harvest where no crop was found at (5,25)","Player 2 attempted to harvest where no crop was found at (5,26)"]},{"Turn":109,"Info":["Turn 109 took 243.84 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (1,9)","Player 1 attempted to harvest where no crop was found at (2,8)","Player 1 attempted to harvest where no crop was found at (2,9)","Player 2 attempted to harvest where no crop was found at (8,30)"]},{"Turn":110,"Info":["Turn 110 took 250.70 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,7)","Player 1 attempted to harvest where no crop was found at (1,6)","Player 1 attempted to harvest where no crop was found at (1,7)","Player 2 attempted to harvest where no crop was found at (5,33)"]},{"Turn":111,"Info":["Turn 111 took 250.14 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 2 attempted to harvest where no crop was found at (9,33)"]},{"Turn":112,"Info":["Turn 112 took 252.90 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,3)","Player 1 attempted to harvest where no crop was found at (1,2)","Player 1 attempted to harvest where no crop was found at (1,3)","Player 2 attempted to harvest where no crop was found at (7,35)"]},{"Turn":113,"Info":["Turn 113 took 233.25 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (4,0)","Player 1 attempted to harvest where no crop was found at (5,0)","Player 2 attempted to harvest where no crop was found at (4,35)"]},{"Turn":114,"Info":["Turn 114 took 248.29 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (3,0)","Player 1 attempted to harvest where no crop was found at (4,0)","Player 2 attempted to harvest where no crop was found at (0,37)"]},{"Turn":115,"Info":["Turn 115 took 219.64 milliseconds"],"Exception":["Player 2 failed to move to position (15,27), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (2,0)","Player 1 attempted to harvest where no crop was found at (3,0)","Player 2 attempted to harvest where no crop was found at (0,37)"]},{"Turn":116,"Info":["Turn 116 took 248.63 milliseconds"],"Exception":["Player 2 failed to move to position (15,27), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (3,0)","Player 1 attempted to harvest where no crop was found at (4,0)","Player 2 attempted to harvest where no crop was found at (0,37)"]},{"Turn":117,"Info":["Turn 117 took 234.03 milliseconds"],"Exception":["Player 2 failed to move to position (15,27), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (2,4)","Player 1 attempted to harvest where no crop was found at (3,3)","Player 1 attempted to harvest where no crop was found at (3,4)","Player 2 attempted to harvest where no crop was found at (0,37)"]},{"Turn":118,"Info":["Turn 118 took 233.32 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 2 attempted to harvest where no crop was found at (2,41)"]},{"Turn":119,"Info":["Turn 119 took 246.11 milliseconds"],"Exception":["Player 2 failed to move to position (15,31), greater than allowed movement (23 > 10)","Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 2 attempted to harvest where no crop was found at (2,41)"]},{"Turn":120,"Info":["Turn 120 took 220.66 milliseconds"],"Exception":["Player 2 failed to move to position (15,31), greater than allowed movement (23 > 10)","Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 2 attempted to harvest where no crop was found at (2,41)"]},{"Turn":121,"Info":["Turn 121 took 233.10 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (2,3)","Player 1 attempted to harvest where no crop was found at (3,2)","Player 1 attempted to harvest where no crop was found at (3,3)","Player 2 attempted to harvest where no crop was found at (4,42)"]},{"Turn":122,"Info":["Turn 122 took 245.12 milliseconds"],"Exception":["Player 2 failed to move to position (15,32), greater than allowed movement (21 > 10)","Player 1 attempted to harvest where no crop was found at (0,0)","Player 2 attempted to harvest where no crop was found at (4,42)"]},{"Turn":123,"Info":["Turn 123 took 248.37 milliseconds"],"Exception":["Player 2 failed to move to position (15,32), greater than allowed movement (21 > 10)","Player 1 attempted to harvest where no crop was found at (0,0)","Player 2 attempted to harvest where no crop was found at (4,42)"]},{"Turn":124,"Info":["Turn 124 took 234.10 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,0)","Player 2 attempted to harvest where no crop was found at (1,46)"]},{"Turn":125,"Info":["Turn 125 took 236.35 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (1,3)","Player 1 attempted to harvest where no crop was found at (2,2)","Player 1 attempted to harvest where no crop was found at (2,3)","Player 2 attempted to harvest where no crop was found at (2,42)"]},{"Turn":126,"Info":["Turn 126 took 251.28 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,5)","Player 1 attempted to harvest where no crop was found at (0,6)","Player 2 attempted to harvest where no crop was found at (0,46)"]},{"Turn":127,"Info":["Turn 127 took 250.11 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,6)","Player 1 attempted to harvest where no crop was found at (0,7)","Player 2 attempted to harvest where no crop was found at (0,42)"]},{"Turn":128,"Info":["Turn 128 took 248.29 milliseconds"],"Exception":["Player 2 failed to move to position (15,32), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (1,8)","Player 1 attempted to harvest where no crop was found at (2,7)","Player 1 attempted to harvest where no crop was found at (2,8)","Player 2 attempted to harvest where no crop was found at (0,42)"]},{"Turn":129,"Info":["Turn 129 took 250.64 milliseconds"],"Exception":["Player 2 failed to move to position (15,32), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (4,12)","Player 1 attempted to harvest where no crop was found at (5,11)","Player 1 attempted to harvest where no crop was found at (5,12)","Player 2 attempted to harvest where no crop was found at (0,42)"]},{"Turn":130,"Info":["Turn 130 took 235.24 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (5,9)","Player 1 attempted to harvest where no crop was found at (6,8)","Player 1 attempted to harvest where no crop was found at (6,9)","Player 2 attempted to harvest where no crop was found at (3,41)"]},{"Turn":131,"Info":["Turn 131 took 231.96 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (6,13)","Player 1 attempted to harvest where no crop was found at (7,12)","Player 1 attempted to harvest where no crop was found at (7,13)","Player 2 attempted to harvest where no crop was found at (1,38)"]},{"Turn":132,"Info":["Turn 132 took 232.22 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (6,15)","Player 1 attempted to harvest where no crop was found at (7,14)","Player 1 attempted to harvest where no crop was found at (7,15)","Player 2 attempted to harvest where no crop was found at (3,34)"]},{"Turn":133,"Info":["Turn 133 took 233.40 milliseconds"],"Exception":["Player 2 failed to move to position (15,24), greater than allowed movement (22 > 10)","Player 1 attempted to harvest where no crop was found at (4,13)","Player 1 attempted to harvest where no crop was found at (5,12)","Player 1 attempted to harvest where no crop was found at (5,13)","Player 2 attempted to harvest where no crop was found at (3,34)"]},{"Turn":134,"Info":["Turn 134 took 219.57 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,12)","Player 1 attempted to harvest where no crop was found at (9,11)","Player 1 attempted to harvest where no crop was found at (9,12)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":135,"Info":["Turn 135 took 247.34 milliseconds"],"Exception":["Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (9,12)","Player 1 attempted to harvest where no crop was found at (10,11)","Player 1 attempted to harvest where no crop was found at (10,12)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":136,"Info":["Turn 136 took 234.64 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (11,13)","Player 1 attempted to harvest where no crop was found at (12,12)","Player 1 attempted to harvest where no crop was found at (12,13)","Player 2 attempted to harvest where no crop was found at (3,32)"]},{"Turn":137,"Info":["Turn 137 took 248.08 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (7,13)","Player 1 attempted to harvest where no crop was found at (8,12)","Player 1 attempted to harvest where no crop was found at (8,13)","Player 2 attempted to harvest where no crop was found at (7,32)"]},{"Turn":138,"Info":["Turn 138 took 233.60 milliseconds"],"Exception":["Player 2 failed to move to position (15,22), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (7,11)","Player 1 attempted to harvest where no crop was found at (8,10)","Player 1 attempted to harvest where no crop was found at (8,11)","Player 2 attempted to harvest where no crop was found at (7,32)"]},{"Turn":139,"Info":["Turn 139 took 236.28 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (6,12)","Player 1 attempted to harvest where no crop was found at (7,11)","Player 1 attempted to harvest where no crop was found at (7,12)","Player 2 attempted to harvest where no crop was found at (3,33)"]},{"Turn":140,"Info":["Turn 140 took 233.41 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (7,12)","Player 1 attempted to harvest where no crop was found at (8,11)","Player 1 attempted to harvest where no crop was found at (8,12)","Player 2 attempted to harvest where no crop was found at (0,33)"]},{"Turn":141,"Info":["Turn 141 took 233.99 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (3,9)","Player 1 attempted to harvest where no crop was found at (4,8)","Player 1 attempted to harvest where no crop was found at (4,9)","Player 2 attempted to harvest where no crop was found at (2,37)"]},{"Turn":142,"Info":["Turn 142 took 233.70 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (7,12)","Player 1 attempted to harvest where no crop was found at (8,11)","Player 1 attempted to harvest where no crop was found at (8,12)","Player 2 attempted to harvest where no crop was found at (5,36)"]},{"Turn":143,"Info":["Turn 143 took 220.83 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (6,14)","Player 1 attempted to harvest where no crop was found at (7,13)","Player 1 attempted to harvest where no crop was found at (7,14)","Player 2 attempted to harvest where no crop was found at (8,35)"]},{"Turn":144,"Info":["Turn 144 took 233.65 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (3,17)","Player 1 attempted to harvest where no crop was found at (4,16)","Player 1 attempted to harvest where no crop was found at (4,17)","Player 2 attempted to harvest where no crop was found at (7,31)"]},{"Turn":145,"Info":["Turn 145 took 219.85 milliseconds"],"Exception":["Player 2 failed to move to position (15,21), greater than allowed movement (18 > 10)","Player 1 attempted to harvest where no crop was found at (2,16)","Player 1 attempted to harvest where no crop was found at (3,15)","Player 1 attempted to harvest where no crop was found at (3,16)","Player 2 attempted to harvest where no crop was found at (7,31)"]},{"Turn":146,"Info":["Turn 146 took 221.21 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (0,20)","Player 1 attempted to harvest where no crop was found at (1,19)","Player 1 attempted to harvest where no crop was found at (1,20)","Player 2 attempted to harvest where no crop was found at (6,35)"]},{"Turn":147,"Info":["Turn 147 took 220.21 milliseconds"],"Exception":["Player 2 failed to move to position (15,25), greater than allowed movement (19 > 10)","Player 1 attempted to harvest where no crop was found at (3,21)","Player 1 attempted to harvest where no crop was found at (4,20)","Player 1 attempted to harvest where no crop was found at (4,21)","Player 2 attempted to harvest where no crop was found at (6,35)"]},{"Turn":148,"Info":["Turn 148 took 222.75 milliseconds"],"Exception":["Player 2 failed to move to position (15,25), greater than allowed movement (19 > 10)","Player 1 attempted to harvest where no crop was found at (1,25)","Player 1 attempted to harvest where no crop was found at (2,24)","Player 1 attempted to harvest where no crop was found at (2,25)","Player 2 attempted to harvest where no crop was found at (6,35)"]},{"Turn":149,"Info":["Turn 149 took 234.99 milliseconds"],"Exception":["Player 2 failed to move to position (15,25), greater than allowed movement (19 > 10)","Player 1 attempted to harvest where no crop was found at (5,28)","Player 2 attempted to harvest where no crop was found at (6,35)"]},{"Turn":150,"Info":["Turn 150 took 236.69 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (5,27)","Player 1 attempted to harvest where no crop was found at (6,26)","Player 1 attempted to harvest where no crop was found at (6,27)","Player 2 attempted to harvest where no crop was found at (8,37)"]},{"Turn":151,"Info":["Turn 151 took 232.65 milliseconds"],"Exception":["Player 2 failed to move to position (15,27), greater than allowed movement (17 > 10)","Player 1 attempted to harvest where no crop was found at (9,25)","Player 1 attempted to harvest where no crop was found at (10,24)","Player 1 attempted to harvest where no crop was found at (10,25)","Player 2 attempted to harvest where no crop was found at (8,37)"]},{"Turn":152,"Info":["Turn 152 took 219.22 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (13,21)","Player 1 attempted to harvest where no crop was found at (14,20)","Player 1 attempted to harvest where no crop was found at (14,21)","Player 2 attempted to harvest where no crop was found at (9,35)"]},{"Turn":153,"Info":["Turn 153 took 234.17 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (10,25)","Player 1 attempted to harvest where no crop was found at (11,24)","Player 1 attempted to harvest where no crop was found at (11,25)","Player 2 attempted to harvest where no crop was found at (7,38)"]},{"Turn":154,"Info":["Turn 154 took 219.75 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (9,22)","Player 1 attempted to harvest where no crop was found at (10,21)","Player 1 attempted to harvest where no crop was found at (10,22)","Player 2 attempted to harvest where no crop was found at (3,38)"]},{"Turn":155,"Info":["Turn 155 took 234.06 milliseconds"],"Exception":["Player 2 failed to move to position (15,28), greater than allowed movement (22 > 10)","Player 1 attempted to harvest where no crop was found at (13,23)","Player 1 attempted to harvest where no crop was found at (14,22)","Player 1 attempted to harvest where no crop was found at (14,23)","Player 2 attempted to harvest where no crop was found at (3,38)"]},{"Turn":156,"Info":["Turn 156 took 220.62 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (10,22)","Player 1 attempted to harvest where no crop was found at (11,21)","Player 1 attempted to harvest where no crop was found at (11,22)","Player 2 attempted to harvest where no crop was found at (0,41)"]},{"Turn":157,"Info":["Turn 157 took 219.34 milliseconds"],"Exception":["Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (7,23)","Player 1 attempted to harvest where no crop was found at (8,22)","Player 1 attempted to harvest where no crop was found at (8,23)","Player 2 attempted to harvest where no crop was found at (0,41)"]},{"Turn":158,"Info":["Turn 158 took 234.22 milliseconds"],"Exception":["Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (5,20)","Player 1 attempted to harvest where no crop was found at (6,19)","Player 1 attempted to harvest where no crop was found at (6,20)","Player 2 attempted to harvest where no crop was found at (0,41)"]},{"Turn":159,"Info":["Turn 159 took 220.29 milliseconds"],"Exception":["Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (7,20)","Player 1 attempted to harvest where no crop was found at (8,19)","Player 1 attempted to harvest where no crop was found at (8,20)","Player 2 attempted to harvest where no crop was found at (0,41)"]},{"Turn":160,"Info":["Turn 160 took 220.35 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,19)","Player 1 attempted to harvest where no crop was found at (9,18)","Player 1 attempted to harvest where no crop was found at (9,19)","Player 2 attempted to harvest where no crop was found at (0,39)"]},{"Turn":161,"Info":["Turn 161 took 232.83 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,15)","Player 1 attempted to harvest where no crop was found at (9,14)","Player 1 attempted to harvest where no crop was found at (9,15)","Player 2 attempted to harvest where no crop was found at (2,38)"]},{"Turn":162,"Info":["Turn 162 took 218.78 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (5,15)","Player 1 attempted to harvest where no crop was found at (6,14)","Player 1 attempted to harvest where no crop was found at (6,15)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":163,"Info":["Turn 163 took 249.31 milliseconds"],"Exception":["Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (4,19)","Player 1 attempted to harvest where no crop was found at (5,18)","Player 1 attempted to harvest where no crop was found at (5,19)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":164,"Info":["Turn 164 took 233.43 milliseconds"],"Exception":["Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (7,15)","Player 1 attempted to harvest where no crop was found at (8,14)","Player 1 attempted to harvest where no crop was found at (8,15)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":165,"Info":["Turn 165 took 232.94 milliseconds"],"Exception":["Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (11,14)","Player 1 attempted to harvest where no crop was found at (12,13)","Player 1 attempted to harvest where no crop was found at (12,14)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":166,"Info":["Turn 166 took 231.85 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (10,10)","Player 1 attempted to harvest where no crop was found at (11,9)","Player 1 attempted to harvest where no crop was found at (11,10)","Player 2 attempted to harvest where no crop was found at (4,33)"]},{"Turn":167,"Info":["Turn 167 took 234.60 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (7,11)","Player 1 attempted to harvest where no crop was found at (8,10)","Player 1 attempted to harvest where no crop was found at (8,11)","Player 2 attempted to harvest where no crop was found at (1,34)"]},{"Turn":168,"Info":["Turn 168 took 233.00 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,15)","Player 1 attempted to harvest where no crop was found at (9,14)","Player 1 attempted to harvest where no crop was found at (9,15)","Player 2 attempted to harvest where no crop was found at (0,35)"]},{"Turn":169,"Info":["Turn 169 took 220.38 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (6,14)","Player 1 attempted to harvest where no crop was found at (7,13)","Player 1 attempted to harvest where no crop was found at (7,14)","Player 2 attempted to harvest where no crop was found at (0,31)"]},{"Turn":170,"Info":["Turn 170 took 222.56 milliseconds"],"Exception":["Player 2 failed to move to position (15,21), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (2,17)","Player 1 attempted to harvest where no crop was found at (3,16)","Player 1 attempted to harvest where no crop was found at (3,17)","Player 2 attempted to harvest where no crop was found at (0,31)"]},{"Turn":171,"Info":["Turn 171 took 221.03 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (6,21)","Player 1 attempted to harvest where no crop was found at (7,20)","Player 1 attempted to harvest where no crop was found at (7,21)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":172,"Info":["Turn 172 took 233.45 milliseconds"],"Exception":["Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (7,24)","Player 1 attempted to harvest where no crop was found at (8,23)","Player 1 attempted to harvest where no crop was found at (8,24)","Player 2 attempted to harvest where no crop was found at (0,34)"]},{"Turn":173,"Info":["Turn 173 took 222.30 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (7,23)","Player 1 attempted to harvest where no crop was found at (8,22)","Player 1 attempted to harvest where no crop was found at (8,23)","Player 2 attempted to harvest where no crop was found at (1,37)"]},{"Turn":174,"Info":["Turn 174 took 236.06 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (8,22)","Player 1 attempted to harvest where no crop was found at (9,21)","Player 1 attempted to harvest where no crop was found at (9,22)","Player 2 attempted to harvest where no crop was found at (0,41)"]},{"Turn":175,"Info":["Turn 175 took 220.40 milliseconds"],"Exception":["Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (10,24)","Player 1 attempted to harvest where no crop was found at (11,23)","Player 1 attempted to harvest where no crop was found at (11,24)","Player 2 attempted to harvest where no crop was found at (0,41)"]},{"Turn":176,"Info":["Turn 176 took 232.47 milliseconds"],"Exception":["Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (14,24)","Player 1 attempted to harvest where no crop was found at (15,23)","Player 1 attempted to harvest where no crop was found at (15,24)","Player 2 attempted to harvest where no crop was found at (0,41)"]},{"Turn":177,"Info":["Turn 177 took 233.64 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (15,28)","Player 1 attempted to harvest where no crop was found at (16,27)","Player 1 attempted to harvest where no crop was found at (16,28)","Player 2 attempted to harvest where no crop was found at (0,44)"]},{"Turn":178,"Info":["Turn 178 took 245.96 milliseconds"],"Exception":["Player 2 failed to move to position (15,34), greater than allowed movement (25 > 10)","Player 1 attempted to harvest where no crop was found at (20,32)","Player 2 attempted to harvest where no crop was found at (0,44)"]},{"Turn":179,"Info":["Turn 179 took 234.86 milliseconds"],"Exception":["Player 1 attempted to harvest where no crop was found at (20,34)","Player 2 attempted to harvest where no crop was found at (4,46)"]},{"Turn":180,"Info":["Player 2 has won due to having more money (260.00 > 250.00)","Player 1 has unlocked the following achievements:","Not Worth the Dirt He Sows","Player 2 has unlocked the following achievements:","Botanical Burglary","Not Worth the Dirt He Sows","Fruits of our Labor","A Worthy Heir","It Ain't Much, but It's Honest Work","Finished game loop"],"Exception":[]}]}
+{
+  "Logs": [
+    {
+      "Turn": 0,
+      "Info": [],
+      "Exception": []
+    },
+    {
+      "Turn": 1,
+      "Info": [
+        "Successful player initialization",
+        "Turn 1 took 482.56 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,0)",
+        "Player 2 attempted to harvest where no crop was found at (28,4)",
+        "Player 2 attempted to harvest where no crop was found at (29,3)",
+        "Player 2 attempted to harvest where no crop was found at (29,4)"
+      ]
+    },
+    {
+      "Turn": 2,
+      "Info": [
+        "Turn 2 took 254.93 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,0)",
+        "Player 2 attempted to harvest where no crop was found at (28,1)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,1)"
+      ]
+    },
+    {
+      "Turn": 3,
+      "Info": [
+        "Turn 3 took 252.53 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,0)",
+        "Player 2 attempted to harvest where no crop was found at (28,1)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,1)"
+      ]
+    },
+    {
+      "Turn": 4,
+      "Info": [
+        "Turn 4 took 253.30 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (3,0)",
+        "Player 1 attempted to harvest where no crop was found at (4,0)",
+        "Player 2 attempted to harvest where no crop was found at (28,1)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,1)"
+      ]
+    },
+    {
+      "Turn": 5,
+      "Info": [
+        "Turn 5 took 246.54 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (6,2)",
+        "Player 1 attempted to harvest where no crop was found at (7,1)",
+        "Player 1 attempted to harvest where no crop was found at (7,2)",
+        "Player 2 attempted to harvest where no crop was found at (28,1)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,1)"
+      ]
+    },
+    {
+      "Turn": 6,
+      "Info": [
+        "Player 1 is at a GREEN_GROCER, selling inventory",
+        "Player 1 bought 1 CORN seeds",
+        "Turn 6 took 143.05 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 2 attempted to harvest where no crop was found at (28,1)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,1)"
+      ]
+    },
+    {
+      "Turn": 7,
+      "Info": [
+        "Player 1 is at a GREEN_GROCER, selling inventory",
+        "Player 1 bought 1 POTATO seeds",
+        "Turn 7 took 245.09 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 attempted to harvest where no crop was found at (24,0)",
+        "Player 2 attempted to harvest where no crop was found at (25,0)"
+      ]
+    },
+    {
+      "Turn": 8,
+      "Info": [
+        "Turn 8 took 249.56 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (17,2)",
+        "Player 1 attempted to harvest where no crop was found at (18,1)",
+        "Player 1 attempted to harvest where no crop was found at (18,2)",
+        "Player 2 attempted to harvest where no crop was found at (25,0)",
+        "Player 2 attempted to harvest where no crop was found at (26,0)"
+      ]
+    },
+    {
+      "Turn": 9,
+      "Info": [
+        "Turn 9 took 249.91 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (14,1)",
+        "Player 1 attempted to harvest where no crop was found at (15,0)",
+        "Player 1 attempted to harvest where no crop was found at (15,1)",
+        "Player 2 attempted to harvest where no crop was found at (25,0)",
+        "Player 2 attempted to harvest where no crop was found at (26,0)"
+      ]
+    },
+    {
+      "Turn": 10,
+      "Info": [
+        "Turn 10 took 246.46 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (17,1)",
+        "Player 1 attempted to harvest where no crop was found at (18,0)",
+        "Player 1 attempted to harvest where no crop was found at (18,1)",
+        "Player 2 attempted to harvest where no crop was found at (25,2)",
+        "Player 2 attempted to harvest where no crop was found at (26,1)",
+        "Player 2 attempted to harvest where no crop was found at (26,2)"
+      ]
+    },
+    {
+      "Turn": 11,
+      "Info": [
+        "Turn 11 took 246.30 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (19,3)",
+        "Player 1 attempted to harvest where no crop was found at (20,2)",
+        "Player 1 attempted to harvest where no crop was found at (20,3)",
+        "Player 2 attempted to harvest where no crop was found at (24,3)",
+        "Player 2 attempted to harvest where no crop was found at (25,2)",
+        "Player 2 attempted to harvest where no crop was found at (25,3)"
+      ]
+    },
+    {
+      "Turn": 12,
+      "Info": [
+        "Turn 12 took 246.72 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (22,6)",
+        "Player 1 attempted to harvest where no crop was found at (23,5)",
+        "Player 1 attempted to harvest where no crop was found at (23,6)",
+        "Player 2 attempted to harvest where no crop was found at (21,4)",
+        "Player 2 attempted to harvest where no crop was found at (22,3)",
+        "Player 2 attempted to harvest where no crop was found at (22,4)"
+      ]
+    },
+    {
+      "Turn": 13,
+      "Info": [
+        "Turn 13 took 250.62 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (24,10)",
+        "Player 1 attempted to harvest where no crop was found at (25,9)",
+        "Player 1 attempted to harvest where no crop was found at (25,10)",
+        "Player 2 attempted to harvest where no crop was found at (21,4)",
+        "Player 2 attempted to harvest where no crop was found at (22,3)",
+        "Player 2 attempted to harvest where no crop was found at (22,4)"
+      ]
+    },
+    {
+      "Turn": 14,
+      "Info": [
+        "Turn 14 took 246.88 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (24,8)",
+        "Player 1 attempted to harvest where no crop was found at (25,7)",
+        "Player 1 attempted to harvest where no crop was found at (25,8)",
+        "Player 2 attempted to harvest where no crop was found at (21,4)",
+        "Player 2 attempted to harvest where no crop was found at (22,3)",
+        "Player 2 attempted to harvest where no crop was found at (22,4)"
+      ]
+    },
+    {
+      "Turn": 15,
+      "Info": [
+        "Turn 15 took 248.29 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (20,11)",
+        "Player 1 attempted to harvest where no crop was found at (21,10)",
+        "Player 1 attempted to harvest where no crop was found at (21,11)",
+        "Player 2 attempted to harvest where no crop was found at (21,4)",
+        "Player 2 attempted to harvest where no crop was found at (22,3)",
+        "Player 2 attempted to harvest where no crop was found at (22,4)"
+      ]
+    },
+    {
+      "Turn": 16,
+      "Info": [
+        "Turn 16 took 248.94 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (19,8)",
+        "Player 1 attempted to harvest where no crop was found at (20,7)",
+        "Player 1 attempted to harvest where no crop was found at (20,8)",
+        "Player 2 attempted to harvest where no crop was found at (24,5)",
+        "Player 2 attempted to harvest where no crop was found at (25,4)",
+        "Player 2 attempted to harvest where no crop was found at (25,5)"
+      ]
+    },
+    {
+      "Turn": 17,
+      "Info": [
+        "Turn 17 took 252.99 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (18,12)",
+        "Player 1 attempted to harvest where no crop was found at (19,11)",
+        "Player 1 attempted to harvest where no crop was found at (19,12)",
+        "Player 2 attempted to harvest where no crop was found at (24,5)",
+        "Player 2 attempted to harvest where no crop was found at (25,4)",
+        "Player 2 attempted to harvest where no crop was found at (25,5)"
+      ]
+    },
+    {
+      "Turn": 18,
+      "Info": [
+        "Turn 18 took 249.05 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (20,12)",
+        "Player 1 attempted to harvest where no crop was found at (21,11)",
+        "Player 1 attempted to harvest where no crop was found at (21,12)",
+        "Player 2 attempted to harvest where no crop was found at (24,5)",
+        "Player 2 attempted to harvest where no crop was found at (25,4)",
+        "Player 2 attempted to harvest where no crop was found at (25,5)"
+      ]
+    },
+    {
+      "Turn": 19,
+      "Info": [
+        "Turn 19 took 248.01 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (18,8)",
+        "Player 1 attempted to harvest where no crop was found at (19,7)",
+        "Player 1 attempted to harvest where no crop was found at (19,8)",
+        "Player 2 attempted to harvest where no crop was found at (24,5)",
+        "Player 2 attempted to harvest where no crop was found at (25,4)",
+        "Player 2 attempted to harvest where no crop was found at (25,5)"
+      ]
+    },
+    {
+      "Turn": 20,
+      "Info": [
+        "Turn 20 took 249.84 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (16,11)",
+        "Player 1 attempted to harvest where no crop was found at (17,10)",
+        "Player 1 attempted to harvest where no crop was found at (17,11)",
+        "Player 2 attempted to harvest where no crop was found at (24,5)",
+        "Player 2 attempted to harvest where no crop was found at (25,4)",
+        "Player 2 attempted to harvest where no crop was found at (25,5)"
+      ]
+    },
+    {
+      "Turn": 21,
+      "Info": [
+        "Turn 21 took 248.22 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (16,7)",
+        "Player 1 attempted to harvest where no crop was found at (17,6)",
+        "Player 1 attempted to harvest where no crop was found at (17,7)",
+        "Player 2 attempted to harvest where no crop was found at (24,5)",
+        "Player 2 attempted to harvest where no crop was found at (25,4)",
+        "Player 2 attempted to harvest where no crop was found at (25,5)"
+      ]
+    },
+    {
+      "Turn": 22,
+      "Info": [
+        "Turn 22 took 237.38 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (19,3)",
+        "Player 1 attempted to harvest where no crop was found at (20,2)",
+        "Player 1 attempted to harvest where no crop was found at (20,3)",
+        "Player 2 attempted to harvest where no crop was found at (24,5)",
+        "Player 2 attempted to harvest where no crop was found at (25,4)",
+        "Player 2 attempted to harvest where no crop was found at (25,5)"
+      ]
+    },
+    {
+      "Turn": 23,
+      "Info": [
+        "Turn 23 took 249.71 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (21,4)",
+        "Player 1 attempted to harvest where no crop was found at (22,3)",
+        "Player 1 attempted to harvest where no crop was found at (22,4)",
+        "Player 2 attempted to harvest where no crop was found at (28,1)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,1)"
+      ]
+    },
+    {
+      "Turn": 24,
+      "Info": [
+        "Turn 24 took 248.67 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (23,8)",
+        "Player 1 attempted to harvest where no crop was found at (24,7)",
+        "Player 1 attempted to harvest where no crop was found at (24,8)",
+        "Player 2 attempted to harvest where no crop was found at (28,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)"
+      ]
+    },
+    {
+      "Turn": 25,
+      "Info": [
+        "Turn 25 took 251.10 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (14 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (26,4)",
+        "Player 1 attempted to harvest where no crop was found at (27,3)",
+        "Player 1 attempted to harvest where no crop was found at (27,4)",
+        "Player 2 attempted to harvest where no crop was found at (28,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)"
+      ]
+    },
+    {
+      "Turn": 26,
+      "Info": [
+        "Turn 26 took 249.05 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (14 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (28,8)",
+        "Player 1 attempted to harvest where no crop was found at (29,7)",
+        "Player 1 attempted to harvest where no crop was found at (29,8)",
+        "Player 2 attempted to harvest where no crop was found at (28,0)",
+        "Player 2 attempted to harvest where no crop was found at (29,0)"
+      ]
+    },
+    {
+      "Turn": 27,
+      "Info": [
+        "Player 1 planted CORN at (29,4)",
+        "Turn 27 took 252.29 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 attempted to harvest where no crop was found at (27,0)",
+        "Player 2 attempted to harvest where no crop was found at (28,0)"
+      ]
+    },
+    {
+      "Turn": 28,
+      "Info": [
+        "Turn 28 took 251.63 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (27,4)",
+        "Player 1 attempted to harvest where no crop was found at (28,3)",
+        "Player 1 attempted to harvest where no crop was found at (28,4)",
+        "Player 2 attempted to harvest where no crop was found at (23,0)",
+        "Player 2 attempted to harvest where no crop was found at (24,0)"
+      ]
+    },
+    {
+      "Turn": 29,
+      "Info": [
+        "Player 2 is at a GREEN_GROCER, selling inventory",
+        "Player 2 bought 1 GRAPE seeds",
+        "Turn 29 took 251.91 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (28,1)",
+        "Player 1 attempted to harvest where no crop was found at (29,0)",
+        "Player 1 attempted to harvest where no crop was found at (29,1)"
+      ]
+    },
+    {
+      "Turn": 30,
+      "Info": [
+        "Player 2 is at a GREEN_GROCER, selling inventory",
+        "Player 2 bought 1 GRAPE seeds",
+        "Turn 30 took 250.66 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (28,0)",
+        "Player 1 attempted to harvest where no crop was found at (29,0)"
+      ]
+    },
+    {
+      "Turn": 31,
+      "Info": [
+        "Turn 31 took 254.50 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (24,0)",
+        "Player 1 attempted to harvest where no crop was found at (25,0)",
+        "Player 2 attempted to harvest where no crop was found at (8,0)",
+        "Player 2 attempted to harvest where no crop was found at (9,0)"
+      ]
+    },
+    {
+      "Turn": 32,
+      "Info": [
+        "Player 2 planted GRAPE at (7,4)",
+        "Turn 32 took 286.04 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to plant at (29,4) with plant, rejecting"
+      ]
+    },
+    {
+      "Turn": 33,
+      "Info": [
+        "Turn 33 took 246.40 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (28,2)",
+        "Player 1 attempted to harvest where no crop was found at (29,1)",
+        "Player 1 attempted to harvest where no crop was found at (29,2)",
+        "Player 2 attempted to harvest where no crop was found at (6,0)",
+        "Player 2 attempted to harvest where no crop was found at (7,0)"
+      ]
+    },
+    {
+      "Turn": 34,
+      "Info": [
+        "Turn 34 took 308.50 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (27,0)",
+        "Player 1 attempted to harvest where no crop was found at (28,0)",
+        "Player 2 attempted to harvest where no crop was found at (7,0)",
+        "Player 2 attempted to harvest where no crop was found at (8,0)"
+      ]
+    },
+    {
+      "Turn": 35,
+      "Info": [
+        "Turn 35 took 324.73 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (28,0)",
+        "Player 1 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (4,0)",
+        "Player 2 attempted to harvest where no crop was found at (5,0)"
+      ]
+    },
+    {
+      "Turn": 36,
+      "Info": [
+        "Turn 36 took 296.57 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (28,0)",
+        "Player 1 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (0,0)",
+        "Player 2 attempted to harvest where no crop was found at (1,0)"
+      ]
+    },
+    {
+      "Turn": 37,
+      "Info": [
+        "Turn 37 took 244.36 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (28,0)",
+        "Player 1 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (4,1)",
+        "Player 2 attempted to harvest where no crop was found at (5,0)",
+        "Player 2 attempted to harvest where no crop was found at (5,1)"
+      ]
+    },
+    {
+      "Turn": 38,
+      "Info": [
+        "Turn 38 took 250.36 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (28,0)",
+        "Player 1 attempted to harvest where no crop was found at (29,0)",
+        "Player 2 attempted to harvest where no crop was found at (7,0)",
+        "Player 2 attempted to harvest where no crop was found at (8,0)"
+      ]
+    },
+    {
+      "Turn": 39,
+      "Info": [
+        "Turn 39 took 246.74 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (25,0)",
+        "Player 1 attempted to harvest where no crop was found at (26,0)",
+        "Player 2 attempted to harvest where no crop was found at (11,0)",
+        "Player 2 attempted to harvest where no crop was found at (12,0)"
+      ]
+    },
+    {
+      "Turn": 40,
+      "Info": [
+        "Turn 40 took 250.10 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (21,0)",
+        "Player 1 attempted to harvest where no crop was found at (22,0)",
+        "Player 2 attempted to harvest where no crop was found at (10,0)",
+        "Player 2 attempted to harvest where no crop was found at (11,0)"
+      ]
+    },
+    {
+      "Turn": 41,
+      "Info": [
+        "Player 2 is at a GREEN_GROCER, selling inventory",
+        "Player 2 bought 1 CORN seeds",
+        "Turn 41 took 236.67 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (25,2)",
+        "Player 1 attempted to harvest where no crop was found at (26,1)",
+        "Player 1 attempted to harvest where no crop was found at (26,2)"
+      ]
+    },
+    {
+      "Turn": 42,
+      "Info": [
+        "Turn 42 took 222.29 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (21,0)",
+        "Player 1 attempted to harvest where no crop was found at (22,0)",
+        "Player 2 attempted to harvest where no crop was found at (13,3)",
+        "Player 2 attempted to harvest where no crop was found at (14,2)",
+        "Player 2 attempted to harvest where no crop was found at (14,3)"
+      ]
+    },
+    {
+      "Turn": 43,
+      "Info": [
+        "Turn 43 took 247.41 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (20,1)",
+        "Player 1 attempted to harvest where no crop was found at (21,0)",
+        "Player 1 attempted to harvest where no crop was found at (21,1)",
+        "Player 2 attempted to harvest where no crop was found at (13,2)",
+        "Player 2 attempted to harvest where no crop was found at (14,1)",
+        "Player 2 attempted to harvest where no crop was found at (14,2)"
+      ]
+    },
+    {
+      "Turn": 44,
+      "Info": [
+        "Player 2 is at a GREEN_GROCER, selling inventory",
+        "Player 2 bought 1 CORN seeds",
+        "Turn 44 took 248.10 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (16,2)",
+        "Player 1 attempted to harvest where no crop was found at (17,1)",
+        "Player 1 attempted to harvest where no crop was found at (17,2)"
+      ]
+    },
+    {
+      "Turn": 45,
+      "Info": [
+        "Player 1 is at a GREEN_GROCER, selling inventory",
+        "Player 1 bought 1 POTATO seeds",
+        "Turn 45 took 251.13 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 attempted to harvest where no crop was found at (16,4)",
+        "Player 2 attempted to harvest where no crop was found at (17,3)",
+        "Player 2 attempted to harvest where no crop was found at (17,4)"
+      ]
+    },
+    {
+      "Turn": 46,
+      "Info": [
+        "Player 1 is at a GREEN_GROCER, selling inventory",
+        "Player 1 bought 1 GRAPE seeds",
+        "Player 2 planted GRAPE at (16,7)",
+        "Turn 46 took 247.64 milliseconds"
+      ],
+      "Exception": []
+    },
+    {
+      "Turn": 47,
+      "Info": [
+        "Player 2 planted CORN at (17,7)",
+        "Turn 47 took 251.21 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (13,2)",
+        "Player 1 attempted to harvest where no crop was found at (14,1)",
+        "Player 1 attempted to harvest where no crop was found at (14,2)"
+      ]
+    },
+    {
+      "Turn": 48,
+      "Info": [
+        "Turn 48 took 274.50 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (11,3)",
+        "Player 1 attempted to harvest where no crop was found at (12,2)",
+        "Player 1 attempted to harvest where no crop was found at (12,3)",
+        "Player 2 attempted to harvest an unripe crop at (17,7)",
+        "Player 2 attempted to harvest where no crop was found at (18,6)",
+        "Player 2 attempted to harvest where no crop was found at (18,7)"
+      ]
+    },
+    {
+      "Turn": 49,
+      "Info": [
+        "Turn 49 took 255.52 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (11,5)",
+        "Player 1 attempted to harvest where no crop was found at (12,4)",
+        "Player 1 attempted to harvest where no crop was found at (12,5)",
+        "Player 2 attempted to harvest where no crop was found at (14,6)",
+        "Player 2 attempted to harvest where no crop was found at (15,5)",
+        "Player 2 attempted to harvest where no crop was found at (15,6)"
+      ]
+    },
+    {
+      "Turn": 50,
+      "Info": [
+        "Player 2 planted CORN at (14,8)",
+        "Turn 50 took 261.71 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,3)",
+        "Player 1 attempted to harvest where no crop was found at (9,2)",
+        "Player 1 attempted to harvest where no crop was found at (9,3)"
+      ]
+    },
+    {
+      "Turn": 51,
+      "Info": [
+        "Turn 51 took 232.85 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (7,2)",
+        "Player 1 attempted to harvest where no crop was found at (8,1)",
+        "Player 1 attempted to harvest where no crop was found at (8,2)",
+        "Player 2 attempted to harvest where no crop was found at (9,8)",
+        "Player 2 attempted to harvest where no crop was found at (10,7)",
+        "Player 2 attempted to harvest where no crop was found at (10,8)"
+      ]
+    },
+    {
+      "Turn": 52,
+      "Info": [
+        "Player 2 harvested crop GRAPE from (7,4)",
+        "Turn 52 took 249.72 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (10,6)",
+        "Player 1 attempted to harvest where no crop was found at (11,5)",
+        "Player 1 attempted to harvest where no crop was found at (11,6)",
+        "Player 2 attempted to harvest where no crop was found at (6,4)",
+        "Player 2 attempted to harvest where no crop was found at (7,3)"
+      ]
+    },
+    {
+      "Turn": 53,
+      "Info": [
+        "Turn 53 took 233.47 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (6,7)",
+        "Player 1 attempted to harvest where no crop was found at (7,6)",
+        "Player 1 attempted to harvest where no crop was found at (7,7)",
+        "Player 2 attempted to harvest where no crop was found at (9,6)",
+        "Player 2 attempted to harvest where no crop was found at (10,5)",
+        "Player 2 attempted to harvest where no crop was found at (10,6)"
+      ]
+    },
+    {
+      "Turn": 54,
+      "Info": [
+        "Turn 54 took 236.66 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (11 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (2,6)",
+        "Player 1 attempted to harvest where no crop was found at (3,5)",
+        "Player 1 attempted to harvest where no crop was found at (3,6)",
+        "Player 2 attempted to harvest where no crop was found at (9,6)",
+        "Player 2 attempted to harvest where no crop was found at (10,5)",
+        "Player 2 attempted to harvest where no crop was found at (10,6)"
+      ]
+    },
+    {
+      "Turn": 55,
+      "Info": [
+        "Turn 55 took 231.02 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (5,7)",
+        "Player 1 attempted to harvest where no crop was found at (6,6)",
+        "Player 1 attempted to harvest where no crop was found at (6,7)",
+        "Player 2 attempted to harvest where no crop was found at (5,3)",
+        "Player 2 attempted to harvest where no crop was found at (6,2)",
+        "Player 2 attempted to harvest where no crop was found at (6,3)"
+      ]
+    },
+    {
+      "Turn": 56,
+      "Info": [
+        "Turn 56 took 247.91 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (12 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (1,11)",
+        "Player 1 attempted to harvest where no crop was found at (2,10)",
+        "Player 1 attempted to harvest where no crop was found at (2,11)",
+        "Player 2 attempted to harvest where no crop was found at (5,3)",
+        "Player 2 attempted to harvest where no crop was found at (6,2)",
+        "Player 2 attempted to harvest where no crop was found at (6,3)"
+      ]
+    },
+    {
+      "Turn": 57,
+      "Info": [
+        "Player 1 planted GRAPE at (0,12)",
+        "Turn 57 took 250.42 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 attempted to harvest where no crop was found at (4,7)",
+        "Player 2 attempted to harvest where no crop was found at (5,6)",
+        "Player 2 attempted to harvest where no crop was found at (5,7)"
+      ]
+    },
+    {
+      "Turn": 58,
+      "Info": [
+        "Turn 58 took 248.25 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,8)",
+        "Player 1 attempted to harvest where no crop was found at (0,9)",
+        "Player 2 attempted to harvest where no crop was found at (4,7)",
+        "Player 2 attempted to harvest where no crop was found at (5,6)",
+        "Player 2 attempted to harvest where no crop was found at (5,7)"
+      ]
+    },
+    {
+      "Turn": 59,
+      "Info": [
+        "Turn 59 took 245.85 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,5)",
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 2 attempted to harvest where no crop was found at (4,7)",
+        "Player 2 attempted to harvest where no crop was found at (5,6)",
+        "Player 2 attempted to harvest where no crop was found at (5,7)"
+      ]
+    },
+    {
+      "Turn": 60,
+      "Info": [
+        "Turn 60 took 248.52 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (1,7)",
+        "Player 1 attempted to harvest where no crop was found at (2,6)",
+        "Player 1 attempted to harvest where no crop was found at (2,7)",
+        "Player 2 attempted to harvest where no crop was found at (8,9)",
+        "Player 2 attempted to harvest where no crop was found at (9,8)",
+        "Player 2 attempted to harvest where no crop was found at (9,9)"
+      ]
+    },
+    {
+      "Turn": 61,
+      "Info": [
+        "Turn 61 took 233.15 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (4,7)",
+        "Player 1 attempted to harvest where no crop was found at (5,6)",
+        "Player 1 attempted to harvest where no crop was found at (5,7)",
+        "Player 2 attempted to harvest where no crop was found at (8,9)",
+        "Player 2 attempted to harvest where no crop was found at (9,8)",
+        "Player 2 attempted to harvest where no crop was found at (9,9)"
+      ]
+    },
+    {
+      "Turn": 62,
+      "Info": [
+        "Turn 62 took 238.45 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (8,3)",
+        "Player 1 attempted to harvest where no crop was found at (9,2)",
+        "Player 1 attempted to harvest where no crop was found at (9,3)",
+        "Player 2 attempted to harvest where no crop was found at (8,9)",
+        "Player 2 attempted to harvest where no crop was found at (9,8)",
+        "Player 2 attempted to harvest where no crop was found at (9,9)"
+      ]
+    },
+    {
+      "Turn": 63,
+      "Info": [
+        "Turn 63 took 234.72 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (9,5)",
+        "Player 1 attempted to harvest where no crop was found at (10,4)",
+        "Player 1 attempted to harvest where no crop was found at (10,5)",
+        "Player 2 attempted to harvest where no crop was found at (8,9)",
+        "Player 2 attempted to harvest where no crop was found at (9,8)",
+        "Player 2 attempted to harvest where no crop was found at (9,9)"
+      ]
+    },
+    {
+      "Turn": 64,
+      "Info": [
+        "Turn 64 took 236.84 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,0), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (10,6)",
+        "Player 1 attempted to harvest where no crop was found at (11,5)",
+        "Player 1 attempted to harvest where no crop was found at (11,6)",
+        "Player 2 attempted to harvest where no crop was found at (8,9)",
+        "Player 2 attempted to harvest where no crop was found at (9,8)",
+        "Player 2 attempted to harvest where no crop was found at (9,9)"
+      ]
+    },
+    {
+      "Turn": 65,
+      "Info": [
+        "Turn 65 took 248.28 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (11,3)",
+        "Player 1 attempted to harvest where no crop was found at (12,2)",
+        "Player 1 attempted to harvest where no crop was found at (12,3)",
+        "Player 2 attempted to harvest where no crop was found at (9,13)",
+        "Player 2 attempted to harvest where no crop was found at (10,12)",
+        "Player 2 attempted to harvest where no crop was found at (10,13)"
+      ]
+    },
+    {
+      "Turn": 66,
+      "Info": [
+        "Turn 66 took 251.68 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (15,4)",
+        "Player 1 attempted to harvest where no crop was found at (16,3)",
+        "Player 1 attempted to harvest where no crop was found at (16,4)",
+        "Player 2 attempted to harvest where no crop was found at (11,15)",
+        "Player 2 attempted to harvest where no crop was found at (12,14)",
+        "Player 2 attempted to harvest where no crop was found at (12,15)"
+      ]
+    },
+    {
+      "Turn": 67,
+      "Info": [
+        "Player 1 is at a GREEN_GROCER, selling inventory",
+        "Player 1 bought 1 GRAPE seeds",
+        "Turn 67 took 248.71 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 attempted to harvest where no crop was found at (8,12)",
+        "Player 2 attempted to harvest where no crop was found at (9,11)",
+        "Player 2 attempted to harvest where no crop was found at (9,12)"
+      ]
+    },
+    {
+      "Turn": 68,
+      "Info": [
+        "Turn 68 took 255.25 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,2), greater than allowed movement (16 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (9,0)",
+        "Player 1 attempted to harvest where no crop was found at (10,0)",
+        "Player 2 attempted to harvest where no crop was found at (8,12)",
+        "Player 2 attempted to harvest where no crop was found at (9,11)",
+        "Player 2 attempted to harvest where no crop was found at (9,12)"
+      ]
+    },
+    {
+      "Turn": 69,
+      "Info": [
+        "Player 1 is at a GREEN_GROCER, selling inventory",
+        "Player 1 bought 1 POTATO seeds",
+        "Turn 69 took 250.49 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 attempted to harvest where no crop was found at (12,15)",
+        "Player 2 attempted to harvest where no crop was found at (13,14)",
+        "Player 2 attempted to harvest where no crop was found at (13,15)"
+      ]
+    },
+    {
+      "Turn": 70,
+      "Info": [
+        "Turn 70 took 244.71 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (9,4)",
+        "Player 1 attempted to harvest where no crop was found at (10,3)",
+        "Player 1 attempted to harvest where no crop was found at (10,4)",
+        "Player 2 attempted to harvest where no crop was found at (16,17)",
+        "Player 2 attempted to harvest where no crop was found at (17,16)",
+        "Player 2 attempted to harvest where no crop was found at (17,17)"
+      ]
+    },
+    {
+      "Turn": 71,
+      "Info": [
+        "Turn 71 took 253.05 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,6)",
+        "Player 1 attempted to harvest where no crop was found at (9,5)",
+        "Player 1 attempted to harvest where no crop was found at (9,6)",
+        "Player 2 attempted to harvest where no crop was found at (18,21)",
+        "Player 2 attempted to harvest where no crop was found at (19,20)",
+        "Player 2 attempted to harvest where no crop was found at (19,21)"
+      ]
+    },
+    {
+      "Turn": 72,
+      "Info": [
+        "Turn 72 took 261.79 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,11), greater than allowed movement (14 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (11,6)",
+        "Player 1 attempted to harvest where no crop was found at (12,5)",
+        "Player 1 attempted to harvest where no crop was found at (12,6)",
+        "Player 2 attempted to harvest where no crop was found at (18,21)",
+        "Player 2 attempted to harvest where no crop was found at (19,20)",
+        "Player 2 attempted to harvest where no crop was found at (19,21)"
+      ]
+    },
+    {
+      "Turn": 73,
+      "Info": [
+        "Turn 73 took 248.54 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,9)",
+        "Player 1 attempted to harvest where no crop was found at (9,8)",
+        "Player 1 attempted to harvest where no crop was found at (9,9)",
+        "Player 2 attempted to harvest where no crop was found at (22,21)",
+        "Player 2 attempted to harvest where no crop was found at (23,20)",
+        "Player 2 attempted to harvest where no crop was found at (23,21)"
+      ]
+    },
+    {
+      "Turn": 74,
+      "Info": [
+        "Turn 74 took 235.47 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,11), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (6,8)",
+        "Player 1 attempted to harvest where no crop was found at (7,7)",
+        "Player 1 attempted to harvest where no crop was found at (7,8)",
+        "Player 2 attempted to harvest where no crop was found at (22,21)",
+        "Player 2 attempted to harvest where no crop was found at (23,20)",
+        "Player 2 attempted to harvest where no crop was found at (23,21)"
+      ]
+    },
+    {
+      "Turn": 75,
+      "Info": [
+        "Turn 75 took 220.31 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,11), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (7,4)",
+        "Player 1 attempted to harvest where no crop was found at (8,3)",
+        "Player 1 attempted to harvest where no crop was found at (8,4)",
+        "Player 2 attempted to harvest where no crop was found at (22,21)",
+        "Player 2 attempted to harvest where no crop was found at (23,20)",
+        "Player 2 attempted to harvest where no crop was found at (23,21)"
+      ]
+    },
+    {
+      "Turn": 76,
+      "Info": [
+        "Turn 76 took 248.23 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,11), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (4,8)",
+        "Player 1 attempted to harvest where no crop was found at (5,7)",
+        "Player 1 attempted to harvest where no crop was found at (5,8)",
+        "Player 2 attempted to harvest where no crop was found at (22,21)",
+        "Player 2 attempted to harvest where no crop was found at (23,20)",
+        "Player 2 attempted to harvest where no crop was found at (23,21)"
+      ]
+    },
+    {
+      "Turn": 77,
+      "Info": [
+        "Turn 77 took 248.61 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (7,8)",
+        "Player 1 attempted to harvest where no crop was found at (8,7)",
+        "Player 1 attempted to harvest where no crop was found at (8,8)",
+        "Player 2 attempted to harvest where no crop was found at (22,19)",
+        "Player 2 attempted to harvest where no crop was found at (23,18)",
+        "Player 2 attempted to harvest where no crop was found at (23,19)"
+      ]
+    },
+    {
+      "Turn": 78,
+      "Info": [
+        "Turn 78 took 233.90 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (6,4)",
+        "Player 1 attempted to harvest where no crop was found at (7,3)",
+        "Player 1 attempted to harvest where no crop was found at (7,4)",
+        "Player 2 attempted to harvest where no crop was found at (22,19)",
+        "Player 2 attempted to harvest where no crop was found at (23,18)",
+        "Player 2 attempted to harvest where no crop was found at (23,19)"
+      ]
+    },
+    {
+      "Turn": 79,
+      "Info": [
+        "Turn 79 took 236.01 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (3,8)",
+        "Player 1 attempted to harvest where no crop was found at (4,7)",
+        "Player 1 attempted to harvest where no crop was found at (4,8)",
+        "Player 2 attempted to harvest where no crop was found at (22,19)",
+        "Player 2 attempted to harvest where no crop was found at (23,18)",
+        "Player 2 attempted to harvest where no crop was found at (23,19)"
+      ]
+    },
+    {
+      "Turn": 80,
+      "Info": [
+        "Turn 80 took 247.86 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (4,7)",
+        "Player 1 attempted to harvest where no crop was found at (5,6)",
+        "Player 1 attempted to harvest where no crop was found at (5,7)",
+        "Player 2 attempted to harvest where no crop was found at (22,19)",
+        "Player 2 attempted to harvest where no crop was found at (23,18)",
+        "Player 2 attempted to harvest where no crop was found at (23,19)"
+      ]
+    },
+    {
+      "Turn": 81,
+      "Info": [
+        "Turn 81 took 241.54 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (1,5)",
+        "Player 1 attempted to harvest where no crop was found at (2,4)",
+        "Player 1 attempted to harvest where no crop was found at (2,5)",
+        "Player 2 attempted to harvest where no crop was found at (19,19)",
+        "Player 2 attempted to harvest where no crop was found at (20,18)",
+        "Player 2 attempted to harvest where no crop was found at (20,19)"
+      ]
+    },
+    {
+      "Turn": 82,
+      "Info": [
+        "Turn 82 took 246.57 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (15 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 2 attempted to harvest where no crop was found at (19,19)",
+        "Player 2 attempted to harvest where no crop was found at (20,18)",
+        "Player 2 attempted to harvest where no crop was found at (20,19)"
+      ]
+    },
+    {
+      "Turn": 83,
+      "Info": [
+        "Turn 83 took 230.65 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,10)",
+        "Player 1 attempted to harvest where no crop was found at (0,11)",
+        "Player 2 attempted to harvest where no crop was found at (18,19)",
+        "Player 2 attempted to harvest where no crop was found at (19,18)",
+        "Player 2 attempted to harvest where no crop was found at (19,19)"
+      ]
+    },
+    {
+      "Turn": 84,
+      "Info": [
+        "Turn 84 took 247.48 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (2,9)",
+        "Player 1 attempted to harvest where no crop was found at (3,8)",
+        "Player 1 attempted to harvest where no crop was found at (3,9)",
+        "Player 2 attempted to harvest where no crop was found at (15,19)",
+        "Player 2 attempted to harvest where no crop was found at (16,18)",
+        "Player 2 attempted to harvest where no crop was found at (16,19)"
+      ]
+    },
+    {
+      "Turn": 85,
+      "Info": [
+        "Turn 85 took 248.47 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,9)",
+        "Player 1 attempted to harvest where no crop was found at (0,10)",
+        "Player 2 attempted to harvest where no crop was found at (11,15)",
+        "Player 2 attempted to harvest where no crop was found at (12,14)",
+        "Player 2 attempted to harvest where no crop was found at (12,15)"
+      ]
+    },
+    {
+      "Turn": 86,
+      "Info": [
+        "Turn 86 took 246.53 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,8)",
+        "Player 1 attempted to harvest where no crop was found at (0,9)",
+        "Player 2 attempted to harvest where no crop was found at (7,19)",
+        "Player 2 attempted to harvest where no crop was found at (8,18)",
+        "Player 2 attempted to harvest where no crop was found at (8,19)"
+      ]
+    },
+    {
+      "Turn": 87,
+      "Info": [
+        "Turn 87 took 265.85 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 1 attempted to harvest where no crop was found at (0,8)",
+        "Player 2 attempted to harvest where no crop was found at (7,19)",
+        "Player 2 attempted to harvest where no crop was found at (8,18)",
+        "Player 2 attempted to harvest where no crop was found at (8,19)"
+      ]
+    },
+    {
+      "Turn": 88,
+      "Info": [
+        "Turn 88 took 249.57 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 1 attempted to harvest where no crop was found at (0,8)",
+        "Player 2 attempted to harvest where no crop was found at (7,19)",
+        "Player 2 attempted to harvest where no crop was found at (8,18)",
+        "Player 2 attempted to harvest where no crop was found at (8,19)"
+      ]
+    },
+    {
+      "Turn": 89,
+      "Info": [
+        "Turn 89 took 234.29 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (1,5)",
+        "Player 1 attempted to harvest where no crop was found at (1,6)",
+        "Player 2 attempted to harvest where no crop was found at (7,19)",
+        "Player 2 attempted to harvest where no crop was found at (8,18)",
+        "Player 2 attempted to harvest where no crop was found at (8,19)"
+      ]
+    },
+    {
+      "Turn": 90,
+      "Info": [
+        "Turn 90 took 220.87 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (2,7)",
+        "Player 1 attempted to harvest where no crop was found at (3,6)",
+        "Player 1 attempted to harvest where no crop was found at (3,7)",
+        "Player 2 attempted to harvest where no crop was found at (7,19)",
+        "Player 2 attempted to harvest where no crop was found at (8,18)",
+        "Player 2 attempted to harvest where no crop was found at (8,19)"
+      ]
+    },
+    {
+      "Turn": 91,
+      "Info": [
+        "Turn 91 took 233.55 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,9), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (5,11)",
+        "Player 1 attempted to harvest where no crop was found at (6,10)",
+        "Player 1 attempted to harvest where no crop was found at (6,11)",
+        "Player 2 attempted to harvest where no crop was found at (7,19)",
+        "Player 2 attempted to harvest where no crop was found at (8,18)",
+        "Player 2 attempted to harvest where no crop was found at (8,19)"
+      ]
+    },
+    {
+      "Turn": 92,
+      "Info": [
+        "Turn 92 took 234.41 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (1,7)",
+        "Player 1 attempted to harvest where no crop was found at (2,6)",
+        "Player 1 attempted to harvest where no crop was found at (2,7)",
+        "Player 2 attempted to harvest where no crop was found at (3,21)",
+        "Player 2 attempted to harvest where no crop was found at (4,20)",
+        "Player 2 attempted to harvest where no crop was found at (4,21)"
+      ]
+    },
+    {
+      "Turn": 93,
+      "Info": [
+        "Turn 93 took 252.12 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,11), greater than allowed movement (21 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 1 attempted to harvest where no crop was found at (0,8)",
+        "Player 2 attempted to harvest where no crop was found at (3,21)",
+        "Player 2 attempted to harvest where no crop was found at (4,20)",
+        "Player 2 attempted to harvest where no crop was found at (4,21)"
+      ]
+    },
+    {
+      "Turn": 94,
+      "Info": [
+        "Turn 94 took 250.58 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 1 attempted to harvest where no crop was found at (0,8)",
+        "Player 2 attempted to harvest where no crop was found at (1,24)",
+        "Player 2 attempted to harvest where no crop was found at (2,23)",
+        "Player 2 attempted to harvest where no crop was found at (2,24)"
+      ]
+    },
+    {
+      "Turn": 95,
+      "Info": [
+        "Turn 95 took 233.46 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,14), greater than allowed movement (23 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,10)",
+        "Player 1 attempted to harvest where no crop was found at (0,11)",
+        "Player 2 attempted to harvest where no crop was found at (1,24)",
+        "Player 2 attempted to harvest where no crop was found at (2,23)",
+        "Player 2 attempted to harvest where no crop was found at (2,24)"
+      ]
+    },
+    {
+      "Turn": 96,
+      "Info": [
+        "Turn 96 took 249.40 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,14), greater than allowed movement (23 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (1,11)",
+        "Player 1 attempted to harvest where no crop was found at (2,10)",
+        "Player 1 attempted to harvest where no crop was found at (2,11)",
+        "Player 2 attempted to harvest where no crop was found at (1,24)",
+        "Player 2 attempted to harvest where no crop was found at (2,23)",
+        "Player 2 attempted to harvest where no crop was found at (2,24)"
+      ]
+    },
+    {
+      "Turn": 97,
+      "Info": [
+        "Turn 97 took 234.18 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,14), greater than allowed movement (23 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,9)",
+        "Player 1 attempted to harvest where no crop was found at (0,10)",
+        "Player 2 attempted to harvest where no crop was found at (1,24)",
+        "Player 2 attempted to harvest where no crop was found at (2,23)",
+        "Player 2 attempted to harvest where no crop was found at (2,24)"
+      ]
+    },
+    {
+      "Turn": 98,
+      "Info": [
+        "Turn 98 took 235.17 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 2 attempted to harvest where no crop was found at (0,25)",
+        "Player 2 attempted to harvest where no crop was found at (0,26)"
+      ]
+    },
+    {
+      "Turn": 99,
+      "Info": [
+        "Turn 99 took 235.47 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,16), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (1,6)",
+        "Player 1 attempted to harvest where no crop was found at (2,5)",
+        "Player 1 attempted to harvest where no crop was found at (2,6)",
+        "Player 2 attempted to harvest where no crop was found at (0,25)",
+        "Player 2 attempted to harvest where no crop was found at (0,26)"
+      ]
+    },
+    {
+      "Turn": 100,
+      "Info": [
+        "Turn 100 took 230.02 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (4,2)",
+        "Player 1 attempted to harvest where no crop was found at (5,1)",
+        "Player 1 attempted to harvest where no crop was found at (5,2)",
+        "Player 2 attempted to harvest where no crop was found at (0,25)",
+        "Player 2 attempted to harvest where no crop was found at (0,26)"
+      ]
+    },
+    {
+      "Turn": 101,
+      "Info": [
+        "Turn 101 took 222.23 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (3,0)",
+        "Player 1 attempted to harvest where no crop was found at (4,0)",
+        "Player 2 attempted to harvest where no crop was found at (0,28)"
+      ]
+    },
+    {
+      "Turn": 102,
+      "Info": [
+        "Turn 102 took 234.26 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (1,3)",
+        "Player 1 attempted to harvest where no crop was found at (2,2)",
+        "Player 1 attempted to harvest where no crop was found at (2,3)",
+        "Player 2 attempted to harvest where no crop was found at (0,25)",
+        "Player 2 attempted to harvest where no crop was found at (1,24)",
+        "Player 2 attempted to harvest where no crop was found at (1,25)"
+      ]
+    },
+    {
+      "Turn": 103,
+      "Info": [
+        "Turn 103 took 247.04 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,2)",
+        "Player 1 attempted to harvest where no crop was found at (0,3)",
+        "Player 2 attempted to harvest where no crop was found at (3,26)",
+        "Player 2 attempted to harvest where no crop was found at (4,25)",
+        "Player 2 attempted to harvest where no crop was found at (4,26)"
+      ]
+    },
+    {
+      "Turn": 104,
+      "Info": [
+        "Turn 104 took 248.87 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,16), greater than allowed movement (21 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,3)",
+        "Player 1 attempted to harvest where no crop was found at (0,4)",
+        "Player 2 attempted to harvest where no crop was found at (3,26)",
+        "Player 2 attempted to harvest where no crop was found at (4,25)",
+        "Player 2 attempted to harvest where no crop was found at (4,26)"
+      ]
+    },
+    {
+      "Turn": 105,
+      "Info": [
+        "Turn 105 took 264.34 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,16), greater than allowed movement (21 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (2,6)",
+        "Player 1 attempted to harvest where no crop was found at (3,5)",
+        "Player 1 attempted to harvest where no crop was found at (3,6)",
+        "Player 2 attempted to harvest where no crop was found at (3,26)",
+        "Player 2 attempted to harvest where no crop was found at (4,25)",
+        "Player 2 attempted to harvest where no crop was found at (4,26)"
+      ]
+    },
+    {
+      "Turn": 106,
+      "Info": [
+        "Turn 106 took 244.05 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,16), greater than allowed movement (21 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,8)",
+        "Player 1 attempted to harvest where no crop was found at (0,9)",
+        "Player 2 attempted to harvest where no crop was found at (3,26)",
+        "Player 2 attempted to harvest where no crop was found at (4,25)",
+        "Player 2 attempted to harvest where no crop was found at (4,26)"
+      ]
+    },
+    {
+      "Turn": 107,
+      "Info": [
+        "Turn 107 took 248.46 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (1,5)",
+        "Player 1 attempted to harvest where no crop was found at (1,6)",
+        "Player 2 attempted to harvest where no crop was found at (7,30)"
+      ]
+    },
+    {
+      "Turn": 108,
+      "Info": [
+        "Turn 108 took 248.33 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 1 attempted to harvest where no crop was found at (1,6)",
+        "Player 1 attempted to harvest where no crop was found at (1,7)",
+        "Player 2 attempted to harvest where no crop was found at (4,26)",
+        "Player 2 attempted to harvest where no crop was found at (5,25)",
+        "Player 2 attempted to harvest where no crop was found at (5,26)"
+      ]
+    },
+    {
+      "Turn": 109,
+      "Info": [
+        "Turn 109 took 243.84 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (1,9)",
+        "Player 1 attempted to harvest where no crop was found at (2,8)",
+        "Player 1 attempted to harvest where no crop was found at (2,9)",
+        "Player 2 attempted to harvest where no crop was found at (8,30)"
+      ]
+    },
+    {
+      "Turn": 110,
+      "Info": [
+        "Turn 110 took 250.70 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 1 attempted to harvest where no crop was found at (1,6)",
+        "Player 1 attempted to harvest where no crop was found at (1,7)",
+        "Player 2 attempted to harvest where no crop was found at (5,33)"
+      ]
+    },
+    {
+      "Turn": 111,
+      "Info": [
+        "Turn 111 took 250.14 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 2 attempted to harvest where no crop was found at (9,33)"
+      ]
+    },
+    {
+      "Turn": 112,
+      "Info": [
+        "Turn 112 took 252.90 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,3)",
+        "Player 1 attempted to harvest where no crop was found at (1,2)",
+        "Player 1 attempted to harvest where no crop was found at (1,3)",
+        "Player 2 attempted to harvest where no crop was found at (7,35)"
+      ]
+    },
+    {
+      "Turn": 113,
+      "Info": [
+        "Turn 113 took 233.25 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (4,0)",
+        "Player 1 attempted to harvest where no crop was found at (5,0)",
+        "Player 2 attempted to harvest where no crop was found at (4,35)"
+      ]
+    },
+    {
+      "Turn": 114,
+      "Info": [
+        "Turn 114 took 248.29 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (3,0)",
+        "Player 1 attempted to harvest where no crop was found at (4,0)",
+        "Player 2 attempted to harvest where no crop was found at (0,37)"
+      ]
+    },
+    {
+      "Turn": 115,
+      "Info": [
+        "Turn 115 took 219.64 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,27), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (2,0)",
+        "Player 1 attempted to harvest where no crop was found at (3,0)",
+        "Player 2 attempted to harvest where no crop was found at (0,37)"
+      ]
+    },
+    {
+      "Turn": 116,
+      "Info": [
+        "Turn 116 took 248.63 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,27), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (3,0)",
+        "Player 1 attempted to harvest where no crop was found at (4,0)",
+        "Player 2 attempted to harvest where no crop was found at (0,37)"
+      ]
+    },
+    {
+      "Turn": 117,
+      "Info": [
+        "Turn 117 took 234.03 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,27), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (2,4)",
+        "Player 1 attempted to harvest where no crop was found at (3,3)",
+        "Player 1 attempted to harvest where no crop was found at (3,4)",
+        "Player 2 attempted to harvest where no crop was found at (0,37)"
+      ]
+    },
+    {
+      "Turn": 118,
+      "Info": [
+        "Turn 118 took 233.32 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 2 attempted to harvest where no crop was found at (2,41)"
+      ]
+    },
+    {
+      "Turn": 119,
+      "Info": [
+        "Turn 119 took 246.11 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,31), greater than allowed movement (23 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 2 attempted to harvest where no crop was found at (2,41)"
+      ]
+    },
+    {
+      "Turn": 120,
+      "Info": [
+        "Turn 120 took 220.66 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,31), greater than allowed movement (23 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 2 attempted to harvest where no crop was found at (2,41)"
+      ]
+    },
+    {
+      "Turn": 121,
+      "Info": [
+        "Turn 121 took 233.10 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (2,3)",
+        "Player 1 attempted to harvest where no crop was found at (3,2)",
+        "Player 1 attempted to harvest where no crop was found at (3,3)",
+        "Player 2 attempted to harvest where no crop was found at (4,42)"
+      ]
+    },
+    {
+      "Turn": 122,
+      "Info": [
+        "Turn 122 took 245.12 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,32), greater than allowed movement (21 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,0)",
+        "Player 2 attempted to harvest where no crop was found at (4,42)"
+      ]
+    },
+    {
+      "Turn": 123,
+      "Info": [
+        "Turn 123 took 248.37 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,32), greater than allowed movement (21 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (0,0)",
+        "Player 2 attempted to harvest where no crop was found at (4,42)"
+      ]
+    },
+    {
+      "Turn": 124,
+      "Info": [
+        "Turn 124 took 234.10 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,0)",
+        "Player 2 attempted to harvest where no crop was found at (1,46)"
+      ]
+    },
+    {
+      "Turn": 125,
+      "Info": [
+        "Turn 125 took 236.35 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (1,3)",
+        "Player 1 attempted to harvest where no crop was found at (2,2)",
+        "Player 1 attempted to harvest where no crop was found at (2,3)",
+        "Player 2 attempted to harvest where no crop was found at (2,42)"
+      ]
+    },
+    {
+      "Turn": 126,
+      "Info": [
+        "Turn 126 took 251.28 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,5)",
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 2 attempted to harvest where no crop was found at (0,46)"
+      ]
+    },
+    {
+      "Turn": 127,
+      "Info": [
+        "Turn 127 took 250.11 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,6)",
+        "Player 1 attempted to harvest where no crop was found at (0,7)",
+        "Player 2 attempted to harvest where no crop was found at (0,42)"
+      ]
+    },
+    {
+      "Turn": 128,
+      "Info": [
+        "Turn 128 took 248.29 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,32), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (1,8)",
+        "Player 1 attempted to harvest where no crop was found at (2,7)",
+        "Player 1 attempted to harvest where no crop was found at (2,8)",
+        "Player 2 attempted to harvest where no crop was found at (0,42)"
+      ]
+    },
+    {
+      "Turn": 129,
+      "Info": [
+        "Turn 129 took 250.64 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,32), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (4,12)",
+        "Player 1 attempted to harvest where no crop was found at (5,11)",
+        "Player 1 attempted to harvest where no crop was found at (5,12)",
+        "Player 2 attempted to harvest where no crop was found at (0,42)"
+      ]
+    },
+    {
+      "Turn": 130,
+      "Info": [
+        "Turn 130 took 235.24 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (5,9)",
+        "Player 1 attempted to harvest where no crop was found at (6,8)",
+        "Player 1 attempted to harvest where no crop was found at (6,9)",
+        "Player 2 attempted to harvest where no crop was found at (3,41)"
+      ]
+    },
+    {
+      "Turn": 131,
+      "Info": [
+        "Turn 131 took 231.96 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (6,13)",
+        "Player 1 attempted to harvest where no crop was found at (7,12)",
+        "Player 1 attempted to harvest where no crop was found at (7,13)",
+        "Player 2 attempted to harvest where no crop was found at (1,38)"
+      ]
+    },
+    {
+      "Turn": 132,
+      "Info": [
+        "Turn 132 took 232.22 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (6,15)",
+        "Player 1 attempted to harvest where no crop was found at (7,14)",
+        "Player 1 attempted to harvest where no crop was found at (7,15)",
+        "Player 2 attempted to harvest where no crop was found at (3,34)"
+      ]
+    },
+    {
+      "Turn": 133,
+      "Info": [
+        "Turn 133 took 233.40 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,24), greater than allowed movement (22 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (4,13)",
+        "Player 1 attempted to harvest where no crop was found at (5,12)",
+        "Player 1 attempted to harvest where no crop was found at (5,13)",
+        "Player 2 attempted to harvest where no crop was found at (3,34)"
+      ]
+    },
+    {
+      "Turn": 134,
+      "Info": [
+        "Turn 134 took 219.57 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,12)",
+        "Player 1 attempted to harvest where no crop was found at (9,11)",
+        "Player 1 attempted to harvest where no crop was found at (9,12)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 135,
+      "Info": [
+        "Turn 135 took 247.34 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (9,12)",
+        "Player 1 attempted to harvest where no crop was found at (10,11)",
+        "Player 1 attempted to harvest where no crop was found at (10,12)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 136,
+      "Info": [
+        "Turn 136 took 234.64 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (11,13)",
+        "Player 1 attempted to harvest where no crop was found at (12,12)",
+        "Player 1 attempted to harvest where no crop was found at (12,13)",
+        "Player 2 attempted to harvest where no crop was found at (3,32)"
+      ]
+    },
+    {
+      "Turn": 137,
+      "Info": [
+        "Turn 137 took 248.08 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (7,13)",
+        "Player 1 attempted to harvest where no crop was found at (8,12)",
+        "Player 1 attempted to harvest where no crop was found at (8,13)",
+        "Player 2 attempted to harvest where no crop was found at (7,32)"
+      ]
+    },
+    {
+      "Turn": 138,
+      "Info": [
+        "Turn 138 took 233.60 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,22), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (7,11)",
+        "Player 1 attempted to harvest where no crop was found at (8,10)",
+        "Player 1 attempted to harvest where no crop was found at (8,11)",
+        "Player 2 attempted to harvest where no crop was found at (7,32)"
+      ]
+    },
+    {
+      "Turn": 139,
+      "Info": [
+        "Turn 139 took 236.28 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (6,12)",
+        "Player 1 attempted to harvest where no crop was found at (7,11)",
+        "Player 1 attempted to harvest where no crop was found at (7,12)",
+        "Player 2 attempted to harvest where no crop was found at (3,33)"
+      ]
+    },
+    {
+      "Turn": 140,
+      "Info": [
+        "Turn 140 took 233.41 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (7,12)",
+        "Player 1 attempted to harvest where no crop was found at (8,11)",
+        "Player 1 attempted to harvest where no crop was found at (8,12)",
+        "Player 2 attempted to harvest where no crop was found at (0,33)"
+      ]
+    },
+    {
+      "Turn": 141,
+      "Info": [
+        "Turn 141 took 233.99 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (3,9)",
+        "Player 1 attempted to harvest where no crop was found at (4,8)",
+        "Player 1 attempted to harvest where no crop was found at (4,9)",
+        "Player 2 attempted to harvest where no crop was found at (2,37)"
+      ]
+    },
+    {
+      "Turn": 142,
+      "Info": [
+        "Turn 142 took 233.70 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (7,12)",
+        "Player 1 attempted to harvest where no crop was found at (8,11)",
+        "Player 1 attempted to harvest where no crop was found at (8,12)",
+        "Player 2 attempted to harvest where no crop was found at (5,36)"
+      ]
+    },
+    {
+      "Turn": 143,
+      "Info": [
+        "Turn 143 took 220.83 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (6,14)",
+        "Player 1 attempted to harvest where no crop was found at (7,13)",
+        "Player 1 attempted to harvest where no crop was found at (7,14)",
+        "Player 2 attempted to harvest where no crop was found at (8,35)"
+      ]
+    },
+    {
+      "Turn": 144,
+      "Info": [
+        "Turn 144 took 233.65 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (3,17)",
+        "Player 1 attempted to harvest where no crop was found at (4,16)",
+        "Player 1 attempted to harvest where no crop was found at (4,17)",
+        "Player 2 attempted to harvest where no crop was found at (7,31)"
+      ]
+    },
+    {
+      "Turn": 145,
+      "Info": [
+        "Turn 145 took 219.85 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,21), greater than allowed movement (18 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (2,16)",
+        "Player 1 attempted to harvest where no crop was found at (3,15)",
+        "Player 1 attempted to harvest where no crop was found at (3,16)",
+        "Player 2 attempted to harvest where no crop was found at (7,31)"
+      ]
+    },
+    {
+      "Turn": 146,
+      "Info": [
+        "Turn 146 took 221.21 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (0,20)",
+        "Player 1 attempted to harvest where no crop was found at (1,19)",
+        "Player 1 attempted to harvest where no crop was found at (1,20)",
+        "Player 2 attempted to harvest where no crop was found at (6,35)"
+      ]
+    },
+    {
+      "Turn": 147,
+      "Info": [
+        "Turn 147 took 220.21 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,25), greater than allowed movement (19 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (3,21)",
+        "Player 1 attempted to harvest where no crop was found at (4,20)",
+        "Player 1 attempted to harvest where no crop was found at (4,21)",
+        "Player 2 attempted to harvest where no crop was found at (6,35)"
+      ]
+    },
+    {
+      "Turn": 148,
+      "Info": [
+        "Turn 148 took 222.75 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,25), greater than allowed movement (19 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (1,25)",
+        "Player 1 attempted to harvest where no crop was found at (2,24)",
+        "Player 1 attempted to harvest where no crop was found at (2,25)",
+        "Player 2 attempted to harvest where no crop was found at (6,35)"
+      ]
+    },
+    {
+      "Turn": 149,
+      "Info": [
+        "Turn 149 took 234.99 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,25), greater than allowed movement (19 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (5,28)",
+        "Player 2 attempted to harvest where no crop was found at (6,35)"
+      ]
+    },
+    {
+      "Turn": 150,
+      "Info": [
+        "Turn 150 took 236.69 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (5,27)",
+        "Player 1 attempted to harvest where no crop was found at (6,26)",
+        "Player 1 attempted to harvest where no crop was found at (6,27)",
+        "Player 2 attempted to harvest where no crop was found at (8,37)"
+      ]
+    },
+    {
+      "Turn": 151,
+      "Info": [
+        "Turn 151 took 232.65 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,27), greater than allowed movement (17 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (9,25)",
+        "Player 1 attempted to harvest where no crop was found at (10,24)",
+        "Player 1 attempted to harvest where no crop was found at (10,25)",
+        "Player 2 attempted to harvest where no crop was found at (8,37)"
+      ]
+    },
+    {
+      "Turn": 152,
+      "Info": [
+        "Turn 152 took 219.22 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (13,21)",
+        "Player 1 attempted to harvest where no crop was found at (14,20)",
+        "Player 1 attempted to harvest where no crop was found at (14,21)",
+        "Player 2 attempted to harvest where no crop was found at (9,35)"
+      ]
+    },
+    {
+      "Turn": 153,
+      "Info": [
+        "Turn 153 took 234.17 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (10,25)",
+        "Player 1 attempted to harvest where no crop was found at (11,24)",
+        "Player 1 attempted to harvest where no crop was found at (11,25)",
+        "Player 2 attempted to harvest where no crop was found at (7,38)"
+      ]
+    },
+    {
+      "Turn": 154,
+      "Info": [
+        "Turn 154 took 219.75 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (9,22)",
+        "Player 1 attempted to harvest where no crop was found at (10,21)",
+        "Player 1 attempted to harvest where no crop was found at (10,22)",
+        "Player 2 attempted to harvest where no crop was found at (3,38)"
+      ]
+    },
+    {
+      "Turn": 155,
+      "Info": [
+        "Turn 155 took 234.06 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,28), greater than allowed movement (22 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (13,23)",
+        "Player 1 attempted to harvest where no crop was found at (14,22)",
+        "Player 1 attempted to harvest where no crop was found at (14,23)",
+        "Player 2 attempted to harvest where no crop was found at (3,38)"
+      ]
+    },
+    {
+      "Turn": 156,
+      "Info": [
+        "Turn 156 took 220.62 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (10,22)",
+        "Player 1 attempted to harvest where no crop was found at (11,21)",
+        "Player 1 attempted to harvest where no crop was found at (11,22)",
+        "Player 2 attempted to harvest where no crop was found at (0,41)"
+      ]
+    },
+    {
+      "Turn": 157,
+      "Info": [
+        "Turn 157 took 219.34 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (7,23)",
+        "Player 1 attempted to harvest where no crop was found at (8,22)",
+        "Player 1 attempted to harvest where no crop was found at (8,23)",
+        "Player 2 attempted to harvest where no crop was found at (0,41)"
+      ]
+    },
+    {
+      "Turn": 158,
+      "Info": [
+        "Turn 158 took 234.22 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (5,20)",
+        "Player 1 attempted to harvest where no crop was found at (6,19)",
+        "Player 1 attempted to harvest where no crop was found at (6,20)",
+        "Player 2 attempted to harvest where no crop was found at (0,41)"
+      ]
+    },
+    {
+      "Turn": 159,
+      "Info": [
+        "Turn 159 took 220.29 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (7,20)",
+        "Player 1 attempted to harvest where no crop was found at (8,19)",
+        "Player 1 attempted to harvest where no crop was found at (8,20)",
+        "Player 2 attempted to harvest where no crop was found at (0,41)"
+      ]
+    },
+    {
+      "Turn": 160,
+      "Info": [
+        "Turn 160 took 220.35 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,19)",
+        "Player 1 attempted to harvest where no crop was found at (9,18)",
+        "Player 1 attempted to harvest where no crop was found at (9,19)",
+        "Player 2 attempted to harvest where no crop was found at (0,39)"
+      ]
+    },
+    {
+      "Turn": 161,
+      "Info": [
+        "Turn 161 took 232.83 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,15)",
+        "Player 1 attempted to harvest where no crop was found at (9,14)",
+        "Player 1 attempted to harvest where no crop was found at (9,15)",
+        "Player 2 attempted to harvest where no crop was found at (2,38)"
+      ]
+    },
+    {
+      "Turn": 162,
+      "Info": [
+        "Turn 162 took 218.78 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (5,15)",
+        "Player 1 attempted to harvest where no crop was found at (6,14)",
+        "Player 1 attempted to harvest where no crop was found at (6,15)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 163,
+      "Info": [
+        "Turn 163 took 249.31 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (4,19)",
+        "Player 1 attempted to harvest where no crop was found at (5,18)",
+        "Player 1 attempted to harvest where no crop was found at (5,19)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 164,
+      "Info": [
+        "Turn 164 took 233.43 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (7,15)",
+        "Player 1 attempted to harvest where no crop was found at (8,14)",
+        "Player 1 attempted to harvest where no crop was found at (8,15)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 165,
+      "Info": [
+        "Turn 165 took 232.94 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (11,14)",
+        "Player 1 attempted to harvest where no crop was found at (12,13)",
+        "Player 1 attempted to harvest where no crop was found at (12,14)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 166,
+      "Info": [
+        "Turn 166 took 231.85 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (10,10)",
+        "Player 1 attempted to harvest where no crop was found at (11,9)",
+        "Player 1 attempted to harvest where no crop was found at (11,10)",
+        "Player 2 attempted to harvest where no crop was found at (4,33)"
+      ]
+    },
+    {
+      "Turn": 167,
+      "Info": [
+        "Turn 167 took 234.60 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (7,11)",
+        "Player 1 attempted to harvest where no crop was found at (8,10)",
+        "Player 1 attempted to harvest where no crop was found at (8,11)",
+        "Player 2 attempted to harvest where no crop was found at (1,34)"
+      ]
+    },
+    {
+      "Turn": 168,
+      "Info": [
+        "Turn 168 took 233.00 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,15)",
+        "Player 1 attempted to harvest where no crop was found at (9,14)",
+        "Player 1 attempted to harvest where no crop was found at (9,15)",
+        "Player 2 attempted to harvest where no crop was found at (0,35)"
+      ]
+    },
+    {
+      "Turn": 169,
+      "Info": [
+        "Turn 169 took 220.38 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (6,14)",
+        "Player 1 attempted to harvest where no crop was found at (7,13)",
+        "Player 1 attempted to harvest where no crop was found at (7,14)",
+        "Player 2 attempted to harvest where no crop was found at (0,31)"
+      ]
+    },
+    {
+      "Turn": 170,
+      "Info": [
+        "Turn 170 took 222.56 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,21), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (2,17)",
+        "Player 1 attempted to harvest where no crop was found at (3,16)",
+        "Player 1 attempted to harvest where no crop was found at (3,17)",
+        "Player 2 attempted to harvest where no crop was found at (0,31)"
+      ]
+    },
+    {
+      "Turn": 171,
+      "Info": [
+        "Turn 171 took 221.03 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (6,21)",
+        "Player 1 attempted to harvest where no crop was found at (7,20)",
+        "Player 1 attempted to harvest where no crop was found at (7,21)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 172,
+      "Info": [
+        "Turn 172 took 233.45 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,24), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (7,24)",
+        "Player 1 attempted to harvest where no crop was found at (8,23)",
+        "Player 1 attempted to harvest where no crop was found at (8,24)",
+        "Player 2 attempted to harvest where no crop was found at (0,34)"
+      ]
+    },
+    {
+      "Turn": 173,
+      "Info": [
+        "Turn 173 took 222.30 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (7,23)",
+        "Player 1 attempted to harvest where no crop was found at (8,22)",
+        "Player 1 attempted to harvest where no crop was found at (8,23)",
+        "Player 2 attempted to harvest where no crop was found at (1,37)"
+      ]
+    },
+    {
+      "Turn": 174,
+      "Info": [
+        "Turn 174 took 236.06 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (8,22)",
+        "Player 1 attempted to harvest where no crop was found at (9,21)",
+        "Player 1 attempted to harvest where no crop was found at (9,22)",
+        "Player 2 attempted to harvest where no crop was found at (0,41)"
+      ]
+    },
+    {
+      "Turn": 175,
+      "Info": [
+        "Turn 175 took 220.40 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (10,24)",
+        "Player 1 attempted to harvest where no crop was found at (11,23)",
+        "Player 1 attempted to harvest where no crop was found at (11,24)",
+        "Player 2 attempted to harvest where no crop was found at (0,41)"
+      ]
+    },
+    {
+      "Turn": 176,
+      "Info": [
+        "Turn 176 took 232.47 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,31), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (14,24)",
+        "Player 1 attempted to harvest where no crop was found at (15,23)",
+        "Player 1 attempted to harvest where no crop was found at (15,24)",
+        "Player 2 attempted to harvest where no crop was found at (0,41)"
+      ]
+    },
+    {
+      "Turn": 177,
+      "Info": [
+        "Turn 177 took 233.64 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (15,28)",
+        "Player 1 attempted to harvest where no crop was found at (16,27)",
+        "Player 1 attempted to harvest where no crop was found at (16,28)",
+        "Player 2 attempted to harvest where no crop was found at (0,44)"
+      ]
+    },
+    {
+      "Turn": 178,
+      "Info": [
+        "Turn 178 took 245.96 milliseconds"
+      ],
+      "Exception": [
+        "Player 2 failed to move to position (15,34), greater than allowed movement (25 > 10)",
+        "Player 1 attempted to harvest where no crop was found at (20,32)",
+        "Player 2 attempted to harvest where no crop was found at (0,44)"
+      ]
+    },
+    {
+      "Turn": 179,
+      "Info": [
+        "Turn 179 took 234.86 milliseconds"
+      ],
+      "Exception": [
+        "Player 1 attempted to harvest where no crop was found at (20,34)",
+        "Player 2 attempted to harvest where no crop was found at (4,46)"
+      ]
+    },
+    {
+      "Turn": 180,
+      "Info": [
+        "Player 2 has won due to having more money (260.00 > 250.00)",
+        "Player 1 has unlocked the following achievements:",
+        "Not Worth the Dirt He Sows",
+        "Player 2 has unlocked the following achievements:",
+        "Botanical Burglary",
+        "Not Worth the Dirt He Sows",
+        "Fruits of our Labor",
+        "A Worthy Heir",
+        "It Ain't Much, but It's Honest Work",
+        "Finished game loop"
+      ],
+      "Exception": []
+    }
+  ]
+}

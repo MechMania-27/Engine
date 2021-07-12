@@ -31,6 +31,8 @@ public class JsonLogger {
     /** Print debug statements? */
     private boolean debug = true;
 
+    private boolean printToStdout = true;
+
     public JsonLogger(int startingTurn) {
         turn = startingTurn;
     }
@@ -70,18 +72,27 @@ public class JsonLogger {
     public void info(String log) {
         if (log.length() > 0) {
             infoLogs.addAll(stringLines(log));
+            if (printToStdout) {
+                System.out.println("[info  ] " + log);
+            }
         }
     }
 
     public void debug(String log) {
         if (debug && log.length() > 0) {
             debugLogs.addAll(stringLines(log));
+            if (printToStdout) {
+                System.out.println("[debug ] " + log);
+            }
         }
     }
 
     public void severe(String log) {
         if (log.length() > 0) {
             exceptionLogs.addAll(stringLines(log));
+            if (printToStdout) {
+                System.out.println("[severe] " + log);
+            }
         }
     }
 

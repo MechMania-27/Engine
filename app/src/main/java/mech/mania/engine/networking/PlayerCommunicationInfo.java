@@ -32,6 +32,8 @@ public class PlayerCommunicationInfo {
 
     private ItemType startingItem;
     private UpgradeType startingUpgradeType;
+    
+    private int pid;
 
     public PlayerCommunicationInfo(Config gameConfig, JsonLogger engineLogger, JsonLogger logger,
                                    int playerNum, String playerName, String playerExecutable) {
@@ -53,6 +55,7 @@ public class PlayerCommunicationInfo {
         ProcessBuilder pb = new ProcessBuilder(playerExecutable);
         try {
             process = pb.start();
+            pid = MainUtils.tryGetPid(process);
         } catch (Exception e) {
             engineLogger.severe("Failed to start process for bot", e);
         }
@@ -74,7 +77,7 @@ public class PlayerCommunicationInfo {
 
         inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.PLAYER_TIMEOUT);
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-        engineLogger.debug(String.format("Bot (pid %d): started", MainUtils.tryGetPid(process)));
+        engineLogger.debug(String.format("Bot (pid %d): started", pid));
     }
 
     /**
@@ -86,19 +89,20 @@ public class PlayerCommunicationInfo {
             writer.close();
         } catch (IOException e) {
             engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
-                    MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
+                    pid, e.getClass(), e.getMessage()));
             return;
         }
-        engineLogger.debug(String.format("Bot (pid %d): closed without error", MainUtils.tryGetPid(process)));
+        engineLogger.debug(String.format("Bot (pid %d): closed without error", pid));
     }
 
     private String safeGetLine() throws IOException {
         String response = null;
         try {
             response = inputReader.readLine();
+            engineLogger.debug("Received \"" + response + "\"");
         } catch (Exception e) {
-            engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
-                    MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
+            engineLogger.debug(String.format("Bot (pid %d): failed to read from (%s): %s",
+                    pid, e.getClass(), e.getMessage()));
 
             throw(e);
         } finally {
@@ -142,7 +146,7 @@ public class PlayerCommunicationInfo {
         }
 
         engineLogger.debug(String.format("Bot (pid %d): reading (len:%d): %.30s",
-                MainUtils.tryGetPid(process), response.length(), response));
+                pid, response.length(), response));
 
         try {
             return PlayerCommunicationUtils.parseDecision(playerNum, response);
@@ -161,7 +165,7 @@ public class PlayerCommunicationInfo {
         // send player turn to stdin
         String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum);
         engineLogger.debug(String.format("Bot (pid %d): writing (len:%d): %.30s",
-                MainUtils.tryGetPid(process), message.length(), message));
+                pid, message.length(), message));
         writer.append(message);
         writer.newLine();
         writer.flush();
@@ -178,10 +182,11 @@ public class PlayerCommunicationInfo {
             logger.debug(itemResponse);
         }
         this.startingItem = PlayerCommunicationUtils.itemFromString("NONE");
-        String upgradeResponse = inputReader.readLine();
+
+        String upgradeResponse = safeGetLine();
         while (upgradeResponse.startsWith(" ")) {
             upgradeResponse = inputReader.readLine();
-            logger.debug(itemResponse);
+            logger.debug(upgradeResponse);
         }
 
         this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString("NONE");

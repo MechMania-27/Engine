@@ -34,7 +34,9 @@ public class SafeBufferedReader extends BufferedReader {
      */
     @Override
     public String readLine() throws IOException {
-        waitReadyLine();
+//        waitReadyLine();
+//        return super.readLine();
+        while (!ready());
         return super.readLine();
     }
 
@@ -70,16 +72,17 @@ public class SafeBufferedReader extends BufferedReader {
      */
     protected void waitReadyLine() throws IllegalThreadStateException, IOException {
         long timeout = System.currentTimeMillis() + millisTimeout;
-        // waitReady();
+//        waitReady();
 
         // https://stackoverflow.com/questions/45578725/java-io-ioexception-mark-invalid
         super.mark(1);
         try {
             while(System.currentTimeMillis() < timeout) {
-                int charInt;
-                while((charInt = super.read()) != -1) {
+                while(ready()) {
+                    int charInt = super.read();
+                    if(charInt==-1) return; // EOS reached
                     char character = (char) charInt;
-                    if (character == '\n' || character == '\r') return;
+                    if(character == '\n' || character == '\r' ) return;
                 }
                 try {
                     Thread.sleep(millisInterval);
@@ -94,4 +97,19 @@ public class SafeBufferedReader extends BufferedReader {
         throw new IllegalThreadStateException("readLine timed out");
     }
 
+    protected void waitReady() throws IllegalThreadStateException, IOException {
+        if(ready()) return;
+        long timeout = System.currentTimeMillis() + millisTimeout;
+        while(System.currentTimeMillis() < timeout) {
+            if(ready()) return;
+            try {
+                Thread.sleep(millisInterval);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Restore flag
+                break;
+            }
+        }
+        if(ready()) return; // Just in case.
+        throw new IllegalThreadStateException("read timed out");
+    }
 }

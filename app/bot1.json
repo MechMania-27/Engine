@@ -1,1 +1,3241 @@
-{"Logs":[{"Turn":0,"Info":[],"Debug":[],"Exception":[]},{"Turn":1,"Info":["About to send item and upgrade\r","Sending \"NONE\"\r","Sending \"NONE\"\r","Receiving game state 1 took 473.0 ms\r","Currently at (0,0)\r","Sending \"move 15 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 159.0 ms\r","I am player 1\r","Currently at (0,0), Harvested: []\r","Sending \"harvest 0 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":2,"Info":["Receiving game state 1 took 148.0 ms\r","Currently at (0,0)\r","Sending \"move 15 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 125.0 ms\r","I am player 1\r","Currently at (0,0), Harvested: []\r","Sending \"harvest 0 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":3,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (0,0)\r","Sending \"move 15 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 126.0 ms\r","I am player 1\r","Currently at (0,0), Harvested: []\r","Sending \"harvest 0 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":4,"Info":["Receiving game state 1 took 131.0 ms\r","Currently at (0,0)\r","Sending \"move 4 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (4,0), Harvested: []\r","Sending \"harvest 3 0 4 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":5,"Info":["Receiving game state 1 took 131.0 ms\r","Currently at (4,0)\r","Sending \"move 7 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (7,2), Harvested: []\r","Sending \"harvest 6 2 7 1 7 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":6,"Info":["Receiving game state 1 took 120.0 ms\r","Currently at (7,2)\r","Sending \"move 15 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 118.0 ms\r","I am player 1\r","Currently at (15,0), Harvested: []\r","Sending \"buy CORN 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":7,"Info":["Receiving game state 1 took 20.0 ms\r","Currently at (15,0)\r","Sending \"move 15 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (15,0), Harvested: []\r","Sending \"buy POTATO 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":8,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (15,0)\r","Sending \"move 18 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (18,2), Harvested: []\r","Sending \"harvest 17 2 18 1 18 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":9,"Info":["Receiving game state 1 took 133.0 ms\r","Currently at (18,2)\r","Sending \"move 15 1\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 117.0 ms\r","I am player 1\r","Currently at (15,1), Harvested: []\r","Sending \"harvest 14 1 15 0 15 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":10,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (15,1)\r","Sending \"move 18 1\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 125.0 ms\r","I am player 1\r","Currently at (18,1), Harvested: []\r","Sending \"harvest 17 1 18 0 18 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":11,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (18,1)\r","Sending \"move 20 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (20,3), Harvested: []\r","Sending \"harvest 19 3 20 2 20 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":12,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (20,3)\r","Sending \"move 23 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (23,6), Harvested: []\r","Sending \"harvest 22 6 23 5 23 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":13,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (23,6)\r","Sending \"move 25 10\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (25,10), Harvested: []\r","Sending \"harvest 24 10 25 9 25 10\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":14,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (25,10)\r","Sending \"move 25 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (25,8), Harvested: []\r","Sending \"harvest 24 8 25 7 25 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":15,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (25,8)\r","Sending \"move 21 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (21,11), Harvested: []\r","Sending \"harvest 20 11 21 10 21 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":16,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (21,11)\r","Sending \"move 20 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (20,8), Harvested: []\r","Sending \"harvest 19 8 20 7 20 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":17,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (20,8)\r","Sending \"move 19 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 128.0 ms\r","I am player 1\r","Currently at (19,12), Harvested: []\r","Sending \"harvest 18 12 19 11 19 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":18,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (19,12)\r","Sending \"move 21 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (21,12), Harvested: []\r","Sending \"harvest 20 12 21 11 21 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":19,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (21,12)\r","Sending \"move 19 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (19,8), Harvested: []\r","Sending \"harvest 18 8 19 7 19 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":20,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (19,8)\r","Sending \"move 17 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 126.0 ms\r","I am player 1\r","Currently at (17,11), Harvested: []\r","Sending \"harvest 16 11 17 10 17 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":21,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (17,11)\r","Sending \"move 17 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (17,7), Harvested: []\r","Sending \"harvest 16 7 17 6 17 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":22,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (17,7)\r","Sending \"move 20 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 112.0 ms\r","I am player 1\r","Currently at (20,3), Harvested: []\r","Sending \"harvest 19 3 20 2 20 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":23,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (20,3)\r","Sending \"move 22 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (22,4), Harvested: []\r","Sending \"harvest 21 4 22 3 22 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":24,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (22,4)\r","Sending \"move 24 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 125.0 ms\r","I am player 1\r","Currently at (24,8), Harvested: []\r","Sending \"harvest 23 8 24 7 24 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":25,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (24,8)\r","Sending \"move 27 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (27,4), Harvested: []\r","Sending \"harvest 26 4 27 3 27 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":26,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (27,4)\r","Sending \"move 29 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (29,8), Harvested: []\r","Sending \"harvest 28 8 29 7 29 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":27,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (29,8)\r","Sending \"move 29 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 126.0 ms\r","I am player 1\r","Currently at (29,4), Harvested: []\r","Sending \"plant CORN 29 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":28,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (29,4)\r","Sending \"move 28 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (28,4), Harvested: []\r","Sending \"harvest 27 4 28 3 28 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":29,"Info":["Receiving game state 1 took 130.0 ms\r","Currently at (28,4)\r","Sending \"move 29 1\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (29,1), Harvested: []\r","Sending \"harvest 28 1 29 0 29 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":30,"Info":["Receiving game state 1 took 129.0 ms\r","Currently at (29,1)\r","Sending \"move 29 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 126.0 ms\r","I am player 1\r","Currently at (29,0), Harvested: []\r","Sending \"harvest 28 0 29 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":31,"Info":["Receiving game state 1 took 120.0 ms\r","Currently at (29,0)\r","Sending \"move 25 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 134.0 ms\r","I am player 1\r","Currently at (25,0), Harvested: []\r","Sending \"harvest 24 0 25 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":32,"Info":["Receiving game state 1 took 188.0 ms\r","Currently at (25,0)\r","Sending \"move 29 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 100.0 ms\r","I am player 1\r","Currently at (29,4), Harvested: []\r","Sending \"plant POTATO 29 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":33,"Info":["Receiving game state 1 took 116.0 ms\r","Currently at (29,4)\r","Sending \"move 29 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 130.0 ms\r","I am player 1\r","Currently at (29,2), Harvested: []\r","Sending \"harvest 28 2 29 1 29 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":34,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (29,2)\r","Sending \"move 28 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 164.0 ms\r","I am player 1\r","Currently at (28,0), Harvested: []\r","Sending \"harvest 27 0 28 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":35,"Info":["Receiving game state 1 took 154.0 ms\r","Currently at (28,0)\r","Sending \"move 29 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 132.0 ms\r","I am player 1\r","Currently at (29,0), Harvested: []\r","Sending \"harvest 28 0 29 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":36,"Info":["Receiving game state 1 took 184.0 ms\r","Currently at (29,0)\r","Sending \"move 29 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 169.0 ms\r","I am player 1\r","Currently at (29,0), Harvested: []\r","Sending \"harvest 28 0 29 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":37,"Info":["Receiving game state 1 took 118.0 ms\r","Currently at (29,0)\r","Sending \"move 29 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (29,0), Harvested: []\r","Sending \"harvest 28 0 29 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":38,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (29,0)\r","Sending \"move 29 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (29,0), Harvested: []\r","Sending \"harvest 28 0 29 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":39,"Info":["Receiving game state 1 took 131.0 ms\r","Currently at (29,0)\r","Sending \"move 26 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 118.0 ms\r","I am player 1\r","Currently at (26,0), Harvested: []\r","Sending \"harvest 25 0 26 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":40,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (26,0)\r","Sending \"move 22 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (22,0), Harvested: []\r","Sending \"harvest 21 0 22 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":41,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (22,0)\r","Sending \"move 26 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (26,2), Harvested: []\r","Sending \"harvest 25 2 26 1 26 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":42,"Info":["Receiving game state 1 took 112.0 ms\r","Currently at (26,2)\r","Sending \"move 22 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 112.0 ms\r","I am player 1\r","Currently at (22,0), Harvested: []\r","Sending \"harvest 21 0 22 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":43,"Info":["Receiving game state 1 took 113.0 ms\r","Currently at (22,0)\r","Sending \"move 21 1\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (21,1), Harvested: []\r","Sending \"harvest 20 1 21 0 21 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":44,"Info":["Receiving game state 1 took 130.0 ms\r","Currently at (21,1)\r","Sending \"move 17 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (17,2), Harvested: []\r","Sending \"harvest 16 2 17 1 17 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":45,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (17,2)\r","Sending \"move 16 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (16,0), Harvested: []\r","Sending \"buy POTATO 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":46,"Info":["Receiving game state 1 took 131.0 ms\r","Currently at (16,0)\r","Sending \"move 16 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (16,0), Harvested: []\r","Sending \"buy GRAPE 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":47,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (16,0)\r","Sending \"move 14 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (14,2), Harvested: []\r","Sending \"harvest 13 2 14 1 14 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":48,"Info":["Receiving game state 1 took 131.0 ms\r","Currently at (14,2)\r","Sending \"move 12 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 155.0 ms\r","I am player 1\r","Currently at (12,3), Harvested: []\r","Sending \"harvest 11 3 12 2 12 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":49,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (12,3)\r","Sending \"move 12 5\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 131.0 ms\r","I am player 1\r","Currently at (12,5), Harvested: []\r","Sending \"harvest 11 5 12 4 12 5\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":50,"Info":["Receiving game state 1 took 133.0 ms\r","Currently at (12,5)\r","Sending \"move 9 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 130.0 ms\r","I am player 1\r","Currently at (9,3), Harvested: []\r","Sending \"harvest 8 3 9 2 9 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":51,"Info":["Receiving game state 1 took 116.0 ms\r","Currently at (9,3)\r","Sending \"move 8 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (8,2), Harvested: []\r","Sending \"harvest 7 2 8 1 8 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":52,"Info":["Receiving game state 1 took 112.0 ms\r","Currently at (8,2)\r","Sending \"move 11 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (11,6), Harvested: []\r","Sending \"harvest 10 6 11 5 11 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":53,"Info":["Receiving game state 1 took 129.0 ms\r","Currently at (11,6)\r","Sending \"move 7 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (7,7), Harvested: []\r","Sending \"harvest 6 7 7 6 7 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":54,"Info":["Receiving game state 1 took 112.0 ms\r","Currently at (7,7)\r","Sending \"move 3 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (3,6), Harvested: []\r","Sending \"harvest 2 6 3 5 3 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":55,"Info":["Receiving game state 1 took 119.0 ms\r","Currently at (3,6)\r","Sending \"move 6 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 112.0 ms\r","I am player 1\r","Currently at (6,7), Harvested: []\r","Sending \"harvest 5 7 6 6 6 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":56,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (6,7)\r","Sending \"move 2 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (2,11), Harvested: []\r","Sending \"harvest 1 11 2 10 2 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":57,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (2,11)\r","Sending \"move 0 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (0,12), Harvested: []\r","Sending \"plant GRAPE 0 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":58,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (0,12)\r","Sending \"move 0 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 125.0 ms\r","I am player 1\r","Currently at (0,9), Harvested: []\r","Sending \"harvest 0 8 0 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":59,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (0,9)\r","Sending \"move 0 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (0,6), Harvested: []\r","Sending \"harvest 0 5 0 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":60,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (0,6)\r","Sending \"move 2 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 126.0 ms\r","I am player 1\r","Currently at (2,7), Harvested: []\r","Sending \"harvest 1 7 2 6 2 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":61,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (2,7)\r","Sending \"move 5 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 118.0 ms\r","I am player 1\r","Currently at (5,7), Harvested: []\r","Sending \"harvest 4 7 5 6 5 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":62,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (5,7)\r","Sending \"move 9 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 112.0 ms\r","I am player 1\r","Currently at (9,3), Harvested: []\r","Sending \"harvest 8 3 9 2 9 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":63,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (9,3)\r","Sending \"move 10 5\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (10,5), Harvested: []\r","Sending \"harvest 9 5 10 4 10 5\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":64,"Info":["Receiving game state 1 took 113.0 ms\r","Currently at (10,5)\r","Sending \"move 11 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (11,6), Harvested: []\r","Sending \"harvest 10 6 11 5 11 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":65,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (11,6)\r","Sending \"move 12 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 137.0 ms\r","I am player 1\r","Currently at (12,3), Harvested: []\r","Sending \"harvest 11 3 12 2 12 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":66,"Info":["Receiving game state 1 took 112.0 ms\r","Currently at (12,3)\r","Sending \"move 16 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (16,4), Harvested: []\r","Sending \"harvest 15 4 16 3 16 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":67,"Info":["Receiving game state 1 took 130.0 ms\r","Currently at (16,4)\r","Sending \"move 13 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (13,0), Harvested: []\r","Sending \"buy GRAPE 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":68,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (13,0)\r","Sending \"move 10 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 131.0 ms\r","I am player 1\r","Currently at (10,0), Harvested: []\r","Sending \"harvest 9 0 10 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":69,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (10,0)\r","Sending \"move 13 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (13,0), Harvested: []\r","Sending \"buy POTATO 1\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":70,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (13,0)\r","Sending \"move 10 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 116.0 ms\r","I am player 1\r","Currently at (10,4), Harvested: []\r","Sending \"harvest 9 4 10 3 10 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":71,"Info":["Receiving game state 1 took 116.0 ms\r","Currently at (10,4)\r","Sending \"move 9 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 134.0 ms\r","I am player 1\r","Currently at (9,6), Harvested: []\r","Sending \"harvest 8 6 9 5 9 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":72,"Info":["Receiving game state 1 took 129.0 ms\r","Currently at (9,6)\r","Sending \"move 12 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (12,6), Harvested: []\r","Sending \"harvest 11 6 12 5 12 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":73,"Info":["Receiving game state 1 took 136.0 ms\r","Currently at (12,6)\r","Sending \"move 9 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (9,9), Harvested: []\r","Sending \"harvest 8 9 9 8 9 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":74,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (9,9)\r","Sending \"move 7 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (7,8), Harvested: []\r","Sending \"harvest 6 8 7 7 7 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":75,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (7,8)\r","Sending \"move 8 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (8,4), Harvested: []\r","Sending \"harvest 7 4 8 3 8 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":76,"Info":["Receiving game state 1 took 112.0 ms\r","Currently at (8,4)\r","Sending \"move 5 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (5,8), Harvested: []\r","Sending \"harvest 4 8 5 7 5 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":77,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (5,8)\r","Sending \"move 8 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (8,8), Harvested: []\r","Sending \"harvest 7 8 8 7 8 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":78,"Info":["Receiving game state 1 took 130.0 ms\r","Currently at (8,8)\r","Sending \"move 7 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 115.0 ms\r","I am player 1\r","Currently at (7,4), Harvested: []\r","Sending \"harvest 6 4 7 3 7 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":79,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (7,4)\r","Sending \"move 4 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (4,8), Harvested: []\r","Sending \"harvest 3 8 4 7 4 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":80,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (4,8)\r","Sending \"move 5 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (5,7), Harvested: []\r","Sending \"harvest 4 7 5 6 5 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":81,"Info":["Receiving game state 1 took 119.0 ms\r","Currently at (5,7)\r","Sending \"move 2 5\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 117.0 ms\r","I am player 1\r","Currently at (2,5), Harvested: []\r","Sending \"harvest 1 5 2 4 2 5\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":82,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (2,5)\r","Sending \"move 0 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (0,7), Harvested: []\r","Sending \"harvest 0 6 0 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":83,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (0,7)\r","Sending \"move 0 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 116.0 ms\r","I am player 1\r","Currently at (0,11), Harvested: []\r","Sending \"harvest 0 10 0 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":84,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (0,11)\r","Sending \"move 3 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (3,9), Harvested: []\r","Sending \"harvest 2 9 3 8 3 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":85,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (3,9)\r","Sending \"move 0 10\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (0,10), Harvested: []\r","Sending \"harvest 0 9 0 10\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":86,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (0,10)\r","Sending \"move 0 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (0,9), Harvested: []\r","Sending \"harvest 0 8 0 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":87,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (0,9)\r","Sending \"move 0 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 140.0 ms\r","I am player 1\r","Currently at (0,8), Harvested: []\r","Sending \"harvest 0 7 0 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":88,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (0,8)\r","Sending \"move 0 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (0,8), Harvested: []\r","Sending \"harvest 0 7 0 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":89,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (0,8)\r","Sending \"move 1 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 117.0 ms\r","I am player 1\r","Currently at (1,6), Harvested: []\r","Sending \"harvest 0 6 1 5 1 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":90,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (1,6)\r","Sending \"move 3 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (3,7), Harvested: []\r","Sending \"harvest 2 7 3 6 3 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":91,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (3,7)\r","Sending \"move 6 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (6,11), Harvested: []\r","Sending \"harvest 5 11 6 10 6 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":92,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (6,11)\r","Sending \"move 2 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (2,7), Harvested: []\r","Sending \"harvest 1 7 2 6 2 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":93,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (2,7)\r","Sending \"move 0 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (0,8), Harvested: []\r","Sending \"harvest 0 7 0 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":94,"Info":["Receiving game state 1 took 129.0 ms\r","Currently at (0,8)\r","Sending \"move 0 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (0,8), Harvested: []\r","Sending \"harvest 0 7 0 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":95,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (0,8)\r","Sending \"move 0 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (0,11), Harvested: []\r","Sending \"harvest 0 10 0 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":96,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (0,11)\r","Sending \"move 2 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (2,11), Harvested: []\r","Sending \"harvest 1 11 2 10 2 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":97,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (2,11)\r","Sending \"move 0 10\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (0,10), Harvested: []\r","Sending \"harvest 0 9 0 10\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":98,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (0,10)\r","Sending \"move 0 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 112.0 ms\r","I am player 1\r","Currently at (0,7), Harvested: []\r","Sending \"harvest 0 6 0 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":99,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (0,7)\r","Sending \"move 2 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (2,6), Harvested: []\r","Sending \"harvest 1 6 2 5 2 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":100,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (2,6)\r","Sending \"move 5 2\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 118.0 ms\r","I am player 1\r","Currently at (5,2), Harvested: []\r","Sending \"harvest 4 2 5 1 5 2\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":101,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (5,2)\r","Sending \"move 4 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (4,0), Harvested: []\r","Sending \"harvest 3 0 4 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":102,"Info":["Receiving game state 1 took 116.0 ms\r","Currently at (4,0)\r","Sending \"move 2 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (2,3), Harvested: []\r","Sending \"harvest 1 3 2 2 2 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":103,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (2,3)\r","Sending \"move 0 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (0,3), Harvested: []\r","Sending \"harvest 0 2 0 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":104,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (0,3)\r","Sending \"move 0 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (0,4), Harvested: []\r","Sending \"harvest 0 3 0 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":105,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (0,4)\r","Sending \"move 3 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (3,6), Harvested: []\r","Sending \"harvest 2 6 3 5 3 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":106,"Info":["Receiving game state 1 took 139.0 ms\r","Currently at (3,6)\r","Sending \"move 0 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (0,9), Harvested: []\r","Sending \"harvest 0 8 0 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":107,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (0,9)\r","Sending \"move 1 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 117.0 ms\r","I am player 1\r","Currently at (1,6), Harvested: []\r","Sending \"harvest 0 6 1 5 1 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":108,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (1,6)\r","Sending \"move 1 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (1,7), Harvested: []\r","Sending \"harvest 0 7 1 6 1 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":109,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (1,7)\r","Sending \"move 2 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (2,9), Harvested: []\r","Sending \"harvest 1 9 2 8 2 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":110,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (2,9)\r","Sending \"move 1 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 128.0 ms\r","I am player 1\r","Currently at (1,7), Harvested: []\r","Sending \"harvest 0 7 1 6 1 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":111,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (1,7)\r","Sending \"move 0 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 125.0 ms\r","I am player 1\r","Currently at (0,7), Harvested: []\r","Sending \"harvest 0 6 0 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":112,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (0,7)\r","Sending \"move 1 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (1,3), Harvested: []\r","Sending \"harvest 0 3 1 2 1 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":113,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (1,3)\r","Sending \"move 5 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (5,0), Harvested: []\r","Sending \"harvest 4 0 5 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":114,"Info":["Receiving game state 1 took 107.0 ms\r","Currently at (5,0)\r","Sending \"move 4 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (4,0), Harvested: []\r","Sending \"harvest 3 0 4 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":115,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (4,0)\r","Sending \"move 3 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 105.0 ms\r","I am player 1\r","Currently at (3,0), Harvested: []\r","Sending \"harvest 2 0 3 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":116,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (3,0)\r","Sending \"move 4 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 126.0 ms\r","I am player 1\r","Currently at (4,0), Harvested: []\r","Sending \"harvest 3 0 4 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":117,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (4,0)\r","Sending \"move 3 4\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (3,4), Harvested: []\r","Sending \"harvest 2 4 3 3 3 4\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":118,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (3,4)\r","Sending \"move 0 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (0,7), Harvested: []\r","Sending \"harvest 0 6 0 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":119,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (0,7)\r","Sending \"move 0 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (0,7), Harvested: []\r","Sending \"harvest 0 6 0 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":120,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (0,7)\r","Sending \"move 0 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (0,7), Harvested: []\r","Sending \"harvest 0 6 0 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":121,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (0,7)\r","Sending \"move 3 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (3,3), Harvested: []\r","Sending \"harvest 2 3 3 2 3 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":122,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (3,3)\r","Sending \"move 0 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 120.0 ms\r","I am player 1\r","Currently at (0,0), Harvested: []\r","Sending \"harvest 0 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":123,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (0,0)\r","Sending \"move 0 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (0,0), Harvested: []\r","Sending \"harvest 0 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":124,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (0,0)\r","Sending \"move 0 0\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (0,0), Harvested: []\r","Sending \"harvest 0 0\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":125,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (0,0)\r","Sending \"move 2 3\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 113.0 ms\r","I am player 1\r","Currently at (2,3), Harvested: []\r","Sending \"harvest 1 3 2 2 2 3\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":126,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (2,3)\r","Sending \"move 0 6\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 127.0 ms\r","I am player 1\r","Currently at (0,6), Harvested: []\r","Sending \"harvest 0 5 0 6\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":127,"Info":["Receiving game state 1 took 129.0 ms\r","Currently at (0,6)\r","Sending \"move 0 7\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 119.0 ms\r","I am player 1\r","Currently at (0,7), Harvested: []\r","Sending \"harvest 0 6 0 7\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":128,"Info":["Receiving game state 1 took 135.0 ms\r","Currently at (0,7)\r","Sending \"move 2 8\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (2,8), Harvested: []\r","Sending \"harvest 1 8 2 7 2 8\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":129,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (2,8)\r","Sending \"move 5 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (5,12), Harvested: []\r","Sending \"harvest 4 12 5 11 5 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":130,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (5,12)\r","Sending \"move 6 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (6,9), Harvested: []\r","Sending \"harvest 5 9 6 8 6 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":131,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (6,9)\r","Sending \"move 7 13\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (7,13), Harvested: []\r","Sending \"harvest 6 13 7 12 7 13\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":132,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (7,13)\r","Sending \"move 7 15\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (7,15), Harvested: []\r","Sending \"harvest 6 15 7 14 7 15\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":133,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (7,15)\r","Sending \"move 5 13\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (5,13), Harvested: []\r","Sending \"harvest 4 13 5 12 5 13\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":134,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (5,13)\r","Sending \"move 9 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (9,12), Harvested: []\r","Sending \"harvest 8 12 9 11 9 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":135,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (9,12)\r","Sending \"move 10 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (10,12), Harvested: []\r","Sending \"harvest 9 12 10 11 10 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":136,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (10,12)\r","Sending \"move 12 13\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (12,13), Harvested: []\r","Sending \"harvest 11 13 12 12 12 13\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":137,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (12,13)\r","Sending \"move 8 13\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 123.0 ms\r","I am player 1\r","Currently at (8,13), Harvested: []\r","Sending \"harvest 7 13 8 12 8 13\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":138,"Info":["Receiving game state 1 took 126.0 ms\r","Currently at (8,13)\r","Sending \"move 8 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (8,11), Harvested: []\r","Sending \"harvest 7 11 8 10 8 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":139,"Info":["Receiving game state 1 took 107.0 ms\r","Currently at (8,11)\r","Sending \"move 7 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 114.0 ms\r","I am player 1\r","Currently at (7,12), Harvested: []\r","Sending \"harvest 6 12 7 11 7 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":140,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (7,12)\r","Sending \"move 8 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (8,12), Harvested: []\r","Sending \"harvest 7 12 8 11 8 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":141,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (8,12)\r","Sending \"move 4 9\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (4,9), Harvested: []\r","Sending \"harvest 3 9 4 8 4 9\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":142,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (4,9)\r","Sending \"move 8 12\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 112.0 ms\r","I am player 1\r","Currently at (8,12), Harvested: []\r","Sending \"harvest 7 12 8 11 8 12\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":143,"Info":["Receiving game state 1 took 119.0 ms\r","Currently at (8,12)\r","Sending \"move 7 14\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (7,14), Harvested: []\r","Sending \"harvest 6 14 7 13 7 14\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":144,"Info":["Receiving game state 1 took 113.0 ms\r","Currently at (7,14)\r","Sending \"move 4 17\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (4,17), Harvested: []\r","Sending \"harvest 3 17 4 16 4 17\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":145,"Info":["Receiving game state 1 took 108.0 ms\r","Currently at (4,17)\r","Sending \"move 3 16\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (3,16), Harvested: []\r","Sending \"harvest 2 16 3 15 3 16\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":146,"Info":["Receiving game state 1 took 107.0 ms\r","Currently at (3,16)\r","Sending \"move 1 20\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (1,20), Harvested: []\r","Sending \"harvest 0 20 1 19 1 20\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":147,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (1,20)\r","Sending \"move 4 21\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (4,21), Harvested: []\r","Sending \"harvest 3 21 4 20 4 21\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":148,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (4,21)\r","Sending \"move 2 25\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 114.0 ms\r","I am player 1\r","Currently at (2,25), Harvested: []\r","Sending \"harvest 1 25 2 24 2 25\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":149,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (2,25)\r","Sending \"move 5 29\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (5,29), Harvested: []\r","Sending \"harvest 5 28\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":150,"Info":["Receiving game state 1 took 118.0 ms\r","Currently at (5,29)\r","Sending \"move 6 27\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 118.0 ms\r","I am player 1\r","Currently at (6,27), Harvested: []\r","Sending \"harvest 5 27 6 26 6 27\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":151,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (6,27)\r","Sending \"move 10 25\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (10,25), Harvested: []\r","Sending \"harvest 9 25 10 24 10 25\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":152,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (10,25)\r","Sending \"move 14 21\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (14,21), Harvested: []\r","Sending \"harvest 13 21 14 20 14 21\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":153,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (14,21)\r","Sending \"move 11 25\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (11,25), Harvested: []\r","Sending \"harvest 10 25 11 24 11 25\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":154,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (11,25)\r","Sending \"move 10 22\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (10,22), Harvested: []\r","Sending \"harvest 9 22 10 21 10 22\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":155,"Info":["Receiving game state 1 took 108.0 ms\r","Currently at (10,22)\r","Sending \"move 14 23\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (14,23), Harvested: []\r","Sending \"harvest 13 23 14 22 14 23\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":156,"Info":["Receiving game state 1 took 124.0 ms\r","Currently at (14,23)\r","Sending \"move 11 22\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 107.0 ms\r","I am player 1\r","Currently at (11,22), Harvested: []\r","Sending \"harvest 10 22 11 21 11 22\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":157,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (11,22)\r","Sending \"move 8 23\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (8,23), Harvested: []\r","Sending \"harvest 7 23 8 22 8 23\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":158,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (8,23)\r","Sending \"move 6 20\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 113.0 ms\r","I am player 1\r","Currently at (6,20), Harvested: []\r","Sending \"harvest 5 20 6 19 6 20\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":159,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (6,20)\r","Sending \"move 8 20\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (8,20), Harvested: []\r","Sending \"harvest 7 20 8 19 8 20\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":160,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (8,20)\r","Sending \"move 9 19\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (9,19), Harvested: []\r","Sending \"harvest 8 19 9 18 9 19\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":161,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (9,19)\r","Sending \"move 9 15\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (9,15), Harvested: []\r","Sending \"harvest 8 15 9 14 9 15\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":162,"Info":["Receiving game state 1 took 123.0 ms\r","Currently at (9,15)\r","Sending \"move 6 15\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 109.0 ms\r","I am player 1\r","Currently at (6,15), Harvested: []\r","Sending \"harvest 5 15 6 14 6 15\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":163,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (6,15)\r","Sending \"move 5 19\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (5,19), Harvested: []\r","Sending \"harvest 4 19 5 18 5 19\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":164,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (5,19)\r","Sending \"move 8 15\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (8,15), Harvested: []\r","Sending \"harvest 7 15 8 14 8 15\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":165,"Info":["Receiving game state 1 took 127.0 ms\r","Currently at (8,15)\r","Sending \"move 12 14\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 107.0 ms\r","I am player 1\r","Currently at (12,14), Harvested: []\r","Sending \"harvest 11 14 12 13 12 14\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":166,"Info":["Receiving game state 1 took 120.0 ms\r","Currently at (12,14)\r","Sending \"move 11 10\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (11,10), Harvested: []\r","Sending \"harvest 10 10 11 9 11 10\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":167,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (11,10)\r","Sending \"move 8 11\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 124.0 ms\r","I am player 1\r","Currently at (8,11), Harvested: []\r","Sending \"harvest 7 11 8 10 8 11\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":168,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (8,11)\r","Sending \"move 9 15\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (9,15), Harvested: []\r","Sending \"harvest 8 15 9 14 9 15\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":169,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (9,15)\r","Sending \"move 7 14\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 108.0 ms\r","I am player 1\r","Currently at (7,14), Harvested: []\r","Sending \"harvest 6 14 7 13 7 14\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":170,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (7,14)\r","Sending \"move 3 17\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (3,17), Harvested: []\r","Sending \"harvest 2 17 3 16 3 17\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":171,"Info":["Receiving game state 1 took 111.0 ms\r","Currently at (3,17)\r","Sending \"move 7 21\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (7,21), Harvested: []\r","Sending \"harvest 6 21 7 20 7 21\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":172,"Info":["Receiving game state 1 took 110.0 ms\r","Currently at (7,21)\r","Sending \"move 8 24\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (8,24), Harvested: []\r","Sending \"harvest 7 24 8 23 8 24\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":173,"Info":["Receiving game state 1 took 109.0 ms\r","Currently at (8,24)\r","Sending \"move 8 23\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (8,23), Harvested: []\r","Sending \"harvest 7 23 8 22 8 23\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":174,"Info":["Receiving game state 1 took 112.0 ms\r","Currently at (8,23)\r","Sending \"move 9 22\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 113.0 ms\r","I am player 1\r","Currently at (9,22), Harvested: []\r","Sending \"harvest 8 22 9 21 9 22\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":175,"Info":["Receiving game state 1 took 121.0 ms\r","Currently at (9,22)\r","Sending \"move 11 24\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 111.0 ms\r","I am player 1\r","Currently at (11,24), Harvested: []\r","Sending \"harvest 10 24 11 23 11 24\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":176,"Info":["Receiving game state 1 took 108.0 ms\r","Currently at (11,24)\r","Sending \"move 15 24\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 110.0 ms\r","I am player 1\r","Currently at (15,24), Harvested: []\r","Sending \"harvest 14 24 15 23 15 24\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":177,"Info":["Receiving game state 1 took 122.0 ms\r","Currently at (15,24)\r","Sending \"move 16 28\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 125.0 ms\r","I am player 1\r","Currently at (16,28), Harvested: []\r","Sending \"harvest 15 28 16 27 16 28\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":178,"Info":["Receiving game state 1 took 108.0 ms\r","Currently at (16,28)\r","Sending \"move 20 32\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 122.0 ms\r","I am player 1\r","Currently at (20,32), Harvested: []\r","Sending \"harvest 20 32\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":179,"Info":["Receiving game state 1 took 125.0 ms\r","Currently at (20,32)\r","Sending \"move 20 34\"\r","Move decision took 0.0 ms\r","Send move decision took 0.0 ms\r","Receiving game state 2 took 121.0 ms\r","I am player 1\r","Currently at (20,34), Harvested: []\r","Sending \"harvest 20 34\"\r","Action decision took 0.0 ms\r","Sending action decision took 0.0 ms\r"],"Debug":[],"Exception":[]},{"Turn":180,"Info":[],"Debug":[],"Exception":[]}]}
+{
+  "Logs": [
+    {
+      "Turn": 0,
+      "Info": [],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 1,
+      "Info": [
+        "About to send item and upgrade\r",
+        "Sending \"NONE\"\r",
+        "Sending \"NONE\"\r",
+        "Receiving game state 1 took 473.0 ms\r",
+        "Currently at (0,0)\r",
+        "Sending \"move 15 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 159.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,0), Harvested: []\r",
+        "Sending \"harvest 0 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 2,
+      "Info": [
+        "Receiving game state 1 took 148.0 ms\r",
+        "Currently at (0,0)\r",
+        "Sending \"move 15 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 125.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,0), Harvested: []\r",
+        "Sending \"harvest 0 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 3,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (0,0)\r",
+        "Sending \"move 15 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 126.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,0), Harvested: []\r",
+        "Sending \"harvest 0 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 4,
+      "Info": [
+        "Receiving game state 1 took 131.0 ms\r",
+        "Currently at (0,0)\r",
+        "Sending \"move 4 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,0), Harvested: []\r",
+        "Sending \"harvest 3 0 4 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 5,
+      "Info": [
+        "Receiving game state 1 took 131.0 ms\r",
+        "Currently at (4,0)\r",
+        "Sending \"move 7 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,2), Harvested: []\r",
+        "Sending \"harvest 6 2 7 1 7 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 6,
+      "Info": [
+        "Receiving game state 1 took 120.0 ms\r",
+        "Currently at (7,2)\r",
+        "Sending \"move 15 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 118.0 ms\r",
+        "I am player 1\r",
+        "Currently at (15,0), Harvested: []\r",
+        "Sending \"buy CORN 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 7,
+      "Info": [
+        "Receiving game state 1 took 20.0 ms\r",
+        "Currently at (15,0)\r",
+        "Sending \"move 15 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (15,0), Harvested: []\r",
+        "Sending \"buy POTATO 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 8,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (15,0)\r",
+        "Sending \"move 18 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (18,2), Harvested: []\r",
+        "Sending \"harvest 17 2 18 1 18 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 9,
+      "Info": [
+        "Receiving game state 1 took 133.0 ms\r",
+        "Currently at (18,2)\r",
+        "Sending \"move 15 1\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 117.0 ms\r",
+        "I am player 1\r",
+        "Currently at (15,1), Harvested: []\r",
+        "Sending \"harvest 14 1 15 0 15 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 10,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (15,1)\r",
+        "Sending \"move 18 1\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 125.0 ms\r",
+        "I am player 1\r",
+        "Currently at (18,1), Harvested: []\r",
+        "Sending \"harvest 17 1 18 0 18 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 11,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (18,1)\r",
+        "Sending \"move 20 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (20,3), Harvested: []\r",
+        "Sending \"harvest 19 3 20 2 20 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 12,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (20,3)\r",
+        "Sending \"move 23 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (23,6), Harvested: []\r",
+        "Sending \"harvest 22 6 23 5 23 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 13,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (23,6)\r",
+        "Sending \"move 25 10\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (25,10), Harvested: []\r",
+        "Sending \"harvest 24 10 25 9 25 10\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 14,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (25,10)\r",
+        "Sending \"move 25 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (25,8), Harvested: []\r",
+        "Sending \"harvest 24 8 25 7 25 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 15,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (25,8)\r",
+        "Sending \"move 21 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (21,11), Harvested: []\r",
+        "Sending \"harvest 20 11 21 10 21 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 16,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (21,11)\r",
+        "Sending \"move 20 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (20,8), Harvested: []\r",
+        "Sending \"harvest 19 8 20 7 20 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 17,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (20,8)\r",
+        "Sending \"move 19 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 128.0 ms\r",
+        "I am player 1\r",
+        "Currently at (19,12), Harvested: []\r",
+        "Sending \"harvest 18 12 19 11 19 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 18,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (19,12)\r",
+        "Sending \"move 21 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (21,12), Harvested: []\r",
+        "Sending \"harvest 20 12 21 11 21 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 19,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (21,12)\r",
+        "Sending \"move 19 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (19,8), Harvested: []\r",
+        "Sending \"harvest 18 8 19 7 19 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 20,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (19,8)\r",
+        "Sending \"move 17 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 126.0 ms\r",
+        "I am player 1\r",
+        "Currently at (17,11), Harvested: []\r",
+        "Sending \"harvest 16 11 17 10 17 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 21,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (17,11)\r",
+        "Sending \"move 17 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (17,7), Harvested: []\r",
+        "Sending \"harvest 16 7 17 6 17 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 22,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (17,7)\r",
+        "Sending \"move 20 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 112.0 ms\r",
+        "I am player 1\r",
+        "Currently at (20,3), Harvested: []\r",
+        "Sending \"harvest 19 3 20 2 20 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 23,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (20,3)\r",
+        "Sending \"move 22 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (22,4), Harvested: []\r",
+        "Sending \"harvest 21 4 22 3 22 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 24,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (22,4)\r",
+        "Sending \"move 24 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 125.0 ms\r",
+        "I am player 1\r",
+        "Currently at (24,8), Harvested: []\r",
+        "Sending \"harvest 23 8 24 7 24 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 25,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (24,8)\r",
+        "Sending \"move 27 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (27,4), Harvested: []\r",
+        "Sending \"harvest 26 4 27 3 27 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 26,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (27,4)\r",
+        "Sending \"move 29 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,8), Harvested: []\r",
+        "Sending \"harvest 28 8 29 7 29 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 27,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (29,8)\r",
+        "Sending \"move 29 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 126.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,4), Harvested: []\r",
+        "Sending \"plant CORN 29 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 28,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (29,4)\r",
+        "Sending \"move 28 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (28,4), Harvested: []\r",
+        "Sending \"harvest 27 4 28 3 28 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 29,
+      "Info": [
+        "Receiving game state 1 took 130.0 ms\r",
+        "Currently at (28,4)\r",
+        "Sending \"move 29 1\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,1), Harvested: []\r",
+        "Sending \"harvest 28 1 29 0 29 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 30,
+      "Info": [
+        "Receiving game state 1 took 129.0 ms\r",
+        "Currently at (29,1)\r",
+        "Sending \"move 29 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 126.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,0), Harvested: []\r",
+        "Sending \"harvest 28 0 29 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 31,
+      "Info": [
+        "Receiving game state 1 took 120.0 ms\r",
+        "Currently at (29,0)\r",
+        "Sending \"move 25 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 134.0 ms\r",
+        "I am player 1\r",
+        "Currently at (25,0), Harvested: []\r",
+        "Sending \"harvest 24 0 25 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 32,
+      "Info": [
+        "Receiving game state 1 took 188.0 ms\r",
+        "Currently at (25,0)\r",
+        "Sending \"move 29 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 100.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,4), Harvested: []\r",
+        "Sending \"plant POTATO 29 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 33,
+      "Info": [
+        "Receiving game state 1 took 116.0 ms\r",
+        "Currently at (29,4)\r",
+        "Sending \"move 29 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 130.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,2), Harvested: []\r",
+        "Sending \"harvest 28 2 29 1 29 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 34,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (29,2)\r",
+        "Sending \"move 28 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 164.0 ms\r",
+        "I am player 1\r",
+        "Currently at (28,0), Harvested: []\r",
+        "Sending \"harvest 27 0 28 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 35,
+      "Info": [
+        "Receiving game state 1 took 154.0 ms\r",
+        "Currently at (28,0)\r",
+        "Sending \"move 29 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 132.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,0), Harvested: []\r",
+        "Sending \"harvest 28 0 29 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 36,
+      "Info": [
+        "Receiving game state 1 took 184.0 ms\r",
+        "Currently at (29,0)\r",
+        "Sending \"move 29 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 169.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,0), Harvested: []\r",
+        "Sending \"harvest 28 0 29 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 37,
+      "Info": [
+        "Receiving game state 1 took 118.0 ms\r",
+        "Currently at (29,0)\r",
+        "Sending \"move 29 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,0), Harvested: []\r",
+        "Sending \"harvest 28 0 29 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 38,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (29,0)\r",
+        "Sending \"move 29 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (29,0), Harvested: []\r",
+        "Sending \"harvest 28 0 29 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 39,
+      "Info": [
+        "Receiving game state 1 took 131.0 ms\r",
+        "Currently at (29,0)\r",
+        "Sending \"move 26 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 118.0 ms\r",
+        "I am player 1\r",
+        "Currently at (26,0), Harvested: []\r",
+        "Sending \"harvest 25 0 26 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 40,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (26,0)\r",
+        "Sending \"move 22 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (22,0), Harvested: []\r",
+        "Sending \"harvest 21 0 22 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 41,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (22,0)\r",
+        "Sending \"move 26 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (26,2), Harvested: []\r",
+        "Sending \"harvest 25 2 26 1 26 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 42,
+      "Info": [
+        "Receiving game state 1 took 112.0 ms\r",
+        "Currently at (26,2)\r",
+        "Sending \"move 22 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 112.0 ms\r",
+        "I am player 1\r",
+        "Currently at (22,0), Harvested: []\r",
+        "Sending \"harvest 21 0 22 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 43,
+      "Info": [
+        "Receiving game state 1 took 113.0 ms\r",
+        "Currently at (22,0)\r",
+        "Sending \"move 21 1\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (21,1), Harvested: []\r",
+        "Sending \"harvest 20 1 21 0 21 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 44,
+      "Info": [
+        "Receiving game state 1 took 130.0 ms\r",
+        "Currently at (21,1)\r",
+        "Sending \"move 17 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (17,2), Harvested: []\r",
+        "Sending \"harvest 16 2 17 1 17 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 45,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (17,2)\r",
+        "Sending \"move 16 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (16,0), Harvested: []\r",
+        "Sending \"buy POTATO 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 46,
+      "Info": [
+        "Receiving game state 1 took 131.0 ms\r",
+        "Currently at (16,0)\r",
+        "Sending \"move 16 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (16,0), Harvested: []\r",
+        "Sending \"buy GRAPE 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 47,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (16,0)\r",
+        "Sending \"move 14 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (14,2), Harvested: []\r",
+        "Sending \"harvest 13 2 14 1 14 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 48,
+      "Info": [
+        "Receiving game state 1 took 131.0 ms\r",
+        "Currently at (14,2)\r",
+        "Sending \"move 12 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 155.0 ms\r",
+        "I am player 1\r",
+        "Currently at (12,3), Harvested: []\r",
+        "Sending \"harvest 11 3 12 2 12 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 49,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (12,3)\r",
+        "Sending \"move 12 5\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 131.0 ms\r",
+        "I am player 1\r",
+        "Currently at (12,5), Harvested: []\r",
+        "Sending \"harvest 11 5 12 4 12 5\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 50,
+      "Info": [
+        "Receiving game state 1 took 133.0 ms\r",
+        "Currently at (12,5)\r",
+        "Sending \"move 9 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 130.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,3), Harvested: []\r",
+        "Sending \"harvest 8 3 9 2 9 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 51,
+      "Info": [
+        "Receiving game state 1 took 116.0 ms\r",
+        "Currently at (9,3)\r",
+        "Sending \"move 8 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,2), Harvested: []\r",
+        "Sending \"harvest 7 2 8 1 8 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 52,
+      "Info": [
+        "Receiving game state 1 took 112.0 ms\r",
+        "Currently at (8,2)\r",
+        "Sending \"move 11 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (11,6), Harvested: []\r",
+        "Sending \"harvest 10 6 11 5 11 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 53,
+      "Info": [
+        "Receiving game state 1 took 129.0 ms\r",
+        "Currently at (11,6)\r",
+        "Sending \"move 7 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,7), Harvested: []\r",
+        "Sending \"harvest 6 7 7 6 7 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 54,
+      "Info": [
+        "Receiving game state 1 took 112.0 ms\r",
+        "Currently at (7,7)\r",
+        "Sending \"move 3 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,6), Harvested: []\r",
+        "Sending \"harvest 2 6 3 5 3 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 55,
+      "Info": [
+        "Receiving game state 1 took 119.0 ms\r",
+        "Currently at (3,6)\r",
+        "Sending \"move 6 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 112.0 ms\r",
+        "I am player 1\r",
+        "Currently at (6,7), Harvested: []\r",
+        "Sending \"harvest 5 7 6 6 6 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 56,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (6,7)\r",
+        "Sending \"move 2 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,11), Harvested: []\r",
+        "Sending \"harvest 1 11 2 10 2 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 57,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (2,11)\r",
+        "Sending \"move 0 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,12), Harvested: []\r",
+        "Sending \"plant GRAPE 0 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 58,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (0,12)\r",
+        "Sending \"move 0 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 125.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,9), Harvested: []\r",
+        "Sending \"harvest 0 8 0 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 59,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (0,9)\r",
+        "Sending \"move 0 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,6), Harvested: []\r",
+        "Sending \"harvest 0 5 0 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 60,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (0,6)\r",
+        "Sending \"move 2 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 126.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,7), Harvested: []\r",
+        "Sending \"harvest 1 7 2 6 2 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 61,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (2,7)\r",
+        "Sending \"move 5 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 118.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,7), Harvested: []\r",
+        "Sending \"harvest 4 7 5 6 5 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 62,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (5,7)\r",
+        "Sending \"move 9 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 112.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,3), Harvested: []\r",
+        "Sending \"harvest 8 3 9 2 9 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 63,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (9,3)\r",
+        "Sending \"move 10 5\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (10,5), Harvested: []\r",
+        "Sending \"harvest 9 5 10 4 10 5\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 64,
+      "Info": [
+        "Receiving game state 1 took 113.0 ms\r",
+        "Currently at (10,5)\r",
+        "Sending \"move 11 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (11,6), Harvested: []\r",
+        "Sending \"harvest 10 6 11 5 11 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 65,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (11,6)\r",
+        "Sending \"move 12 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 137.0 ms\r",
+        "I am player 1\r",
+        "Currently at (12,3), Harvested: []\r",
+        "Sending \"harvest 11 3 12 2 12 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 66,
+      "Info": [
+        "Receiving game state 1 took 112.0 ms\r",
+        "Currently at (12,3)\r",
+        "Sending \"move 16 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (16,4), Harvested: []\r",
+        "Sending \"harvest 15 4 16 3 16 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 67,
+      "Info": [
+        "Receiving game state 1 took 130.0 ms\r",
+        "Currently at (16,4)\r",
+        "Sending \"move 13 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (13,0), Harvested: []\r",
+        "Sending \"buy GRAPE 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 68,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (13,0)\r",
+        "Sending \"move 10 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 131.0 ms\r",
+        "I am player 1\r",
+        "Currently at (10,0), Harvested: []\r",
+        "Sending \"harvest 9 0 10 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 69,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (10,0)\r",
+        "Sending \"move 13 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (13,0), Harvested: []\r",
+        "Sending \"buy POTATO 1\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 70,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (13,0)\r",
+        "Sending \"move 10 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 116.0 ms\r",
+        "I am player 1\r",
+        "Currently at (10,4), Harvested: []\r",
+        "Sending \"harvest 9 4 10 3 10 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 71,
+      "Info": [
+        "Receiving game state 1 took 116.0 ms\r",
+        "Currently at (10,4)\r",
+        "Sending \"move 9 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 134.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,6), Harvested: []\r",
+        "Sending \"harvest 8 6 9 5 9 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 72,
+      "Info": [
+        "Receiving game state 1 took 129.0 ms\r",
+        "Currently at (9,6)\r",
+        "Sending \"move 12 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (12,6), Harvested: []\r",
+        "Sending \"harvest 11 6 12 5 12 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 73,
+      "Info": [
+        "Receiving game state 1 took 136.0 ms\r",
+        "Currently at (12,6)\r",
+        "Sending \"move 9 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,9), Harvested: []\r",
+        "Sending \"harvest 8 9 9 8 9 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 74,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (9,9)\r",
+        "Sending \"move 7 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,8), Harvested: []\r",
+        "Sending \"harvest 6 8 7 7 7 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 75,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (7,8)\r",
+        "Sending \"move 8 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,4), Harvested: []\r",
+        "Sending \"harvest 7 4 8 3 8 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 76,
+      "Info": [
+        "Receiving game state 1 took 112.0 ms\r",
+        "Currently at (8,4)\r",
+        "Sending \"move 5 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,8), Harvested: []\r",
+        "Sending \"harvest 4 8 5 7 5 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 77,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (5,8)\r",
+        "Sending \"move 8 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,8), Harvested: []\r",
+        "Sending \"harvest 7 8 8 7 8 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 78,
+      "Info": [
+        "Receiving game state 1 took 130.0 ms\r",
+        "Currently at (8,8)\r",
+        "Sending \"move 7 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 115.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,4), Harvested: []\r",
+        "Sending \"harvest 6 4 7 3 7 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 79,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (7,4)\r",
+        "Sending \"move 4 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,8), Harvested: []\r",
+        "Sending \"harvest 3 8 4 7 4 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 80,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (4,8)\r",
+        "Sending \"move 5 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,7), Harvested: []\r",
+        "Sending \"harvest 4 7 5 6 5 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 81,
+      "Info": [
+        "Receiving game state 1 took 119.0 ms\r",
+        "Currently at (5,7)\r",
+        "Sending \"move 2 5\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 117.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,5), Harvested: []\r",
+        "Sending \"harvest 1 5 2 4 2 5\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 82,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (2,5)\r",
+        "Sending \"move 0 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,7), Harvested: []\r",
+        "Sending \"harvest 0 6 0 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 83,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (0,7)\r",
+        "Sending \"move 0 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 116.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,11), Harvested: []\r",
+        "Sending \"harvest 0 10 0 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 84,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (0,11)\r",
+        "Sending \"move 3 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,9), Harvested: []\r",
+        "Sending \"harvest 2 9 3 8 3 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 85,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (3,9)\r",
+        "Sending \"move 0 10\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,10), Harvested: []\r",
+        "Sending \"harvest 0 9 0 10\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 86,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (0,10)\r",
+        "Sending \"move 0 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,9), Harvested: []\r",
+        "Sending \"harvest 0 8 0 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 87,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (0,9)\r",
+        "Sending \"move 0 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 140.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,8), Harvested: []\r",
+        "Sending \"harvest 0 7 0 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 88,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (0,8)\r",
+        "Sending \"move 0 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,8), Harvested: []\r",
+        "Sending \"harvest 0 7 0 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 89,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (0,8)\r",
+        "Sending \"move 1 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 117.0 ms\r",
+        "I am player 1\r",
+        "Currently at (1,6), Harvested: []\r",
+        "Sending \"harvest 0 6 1 5 1 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 90,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (1,6)\r",
+        "Sending \"move 3 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,7), Harvested: []\r",
+        "Sending \"harvest 2 7 3 6 3 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 91,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (3,7)\r",
+        "Sending \"move 6 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (6,11), Harvested: []\r",
+        "Sending \"harvest 5 11 6 10 6 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 92,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (6,11)\r",
+        "Sending \"move 2 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,7), Harvested: []\r",
+        "Sending \"harvest 1 7 2 6 2 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 93,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (2,7)\r",
+        "Sending \"move 0 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,8), Harvested: []\r",
+        "Sending \"harvest 0 7 0 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 94,
+      "Info": [
+        "Receiving game state 1 took 129.0 ms\r",
+        "Currently at (0,8)\r",
+        "Sending \"move 0 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,8), Harvested: []\r",
+        "Sending \"harvest 0 7 0 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 95,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (0,8)\r",
+        "Sending \"move 0 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,11), Harvested: []\r",
+        "Sending \"harvest 0 10 0 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 96,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (0,11)\r",
+        "Sending \"move 2 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,11), Harvested: []\r",
+        "Sending \"harvest 1 11 2 10 2 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 97,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (2,11)\r",
+        "Sending \"move 0 10\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,10), Harvested: []\r",
+        "Sending \"harvest 0 9 0 10\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 98,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (0,10)\r",
+        "Sending \"move 0 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 112.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,7), Harvested: []\r",
+        "Sending \"harvest 0 6 0 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 99,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (0,7)\r",
+        "Sending \"move 2 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,6), Harvested: []\r",
+        "Sending \"harvest 1 6 2 5 2 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 100,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (2,6)\r",
+        "Sending \"move 5 2\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 118.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,2), Harvested: []\r",
+        "Sending \"harvest 4 2 5 1 5 2\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 101,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (5,2)\r",
+        "Sending \"move 4 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,0), Harvested: []\r",
+        "Sending \"harvest 3 0 4 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 102,
+      "Info": [
+        "Receiving game state 1 took 116.0 ms\r",
+        "Currently at (4,0)\r",
+        "Sending \"move 2 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,3), Harvested: []\r",
+        "Sending \"harvest 1 3 2 2 2 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 103,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (2,3)\r",
+        "Sending \"move 0 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,3), Harvested: []\r",
+        "Sending \"harvest 0 2 0 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 104,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (0,3)\r",
+        "Sending \"move 0 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,4), Harvested: []\r",
+        "Sending \"harvest 0 3 0 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 105,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (0,4)\r",
+        "Sending \"move 3 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,6), Harvested: []\r",
+        "Sending \"harvest 2 6 3 5 3 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 106,
+      "Info": [
+        "Receiving game state 1 took 139.0 ms\r",
+        "Currently at (3,6)\r",
+        "Sending \"move 0 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,9), Harvested: []\r",
+        "Sending \"harvest 0 8 0 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 107,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (0,9)\r",
+        "Sending \"move 1 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 117.0 ms\r",
+        "I am player 1\r",
+        "Currently at (1,6), Harvested: []\r",
+        "Sending \"harvest 0 6 1 5 1 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 108,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (1,6)\r",
+        "Sending \"move 1 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (1,7), Harvested: []\r",
+        "Sending \"harvest 0 7 1 6 1 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 109,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (1,7)\r",
+        "Sending \"move 2 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,9), Harvested: []\r",
+        "Sending \"harvest 1 9 2 8 2 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 110,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (2,9)\r",
+        "Sending \"move 1 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 128.0 ms\r",
+        "I am player 1\r",
+        "Currently at (1,7), Harvested: []\r",
+        "Sending \"harvest 0 7 1 6 1 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 111,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (1,7)\r",
+        "Sending \"move 0 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 125.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,7), Harvested: []\r",
+        "Sending \"harvest 0 6 0 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 112,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (0,7)\r",
+        "Sending \"move 1 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (1,3), Harvested: []\r",
+        "Sending \"harvest 0 3 1 2 1 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 113,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (1,3)\r",
+        "Sending \"move 5 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,0), Harvested: []\r",
+        "Sending \"harvest 4 0 5 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 114,
+      "Info": [
+        "Receiving game state 1 took 107.0 ms\r",
+        "Currently at (5,0)\r",
+        "Sending \"move 4 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,0), Harvested: []\r",
+        "Sending \"harvest 3 0 4 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 115,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (4,0)\r",
+        "Sending \"move 3 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 105.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,0), Harvested: []\r",
+        "Sending \"harvest 2 0 3 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 116,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (3,0)\r",
+        "Sending \"move 4 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 126.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,0), Harvested: []\r",
+        "Sending \"harvest 3 0 4 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 117,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (4,0)\r",
+        "Sending \"move 3 4\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,4), Harvested: []\r",
+        "Sending \"harvest 2 4 3 3 3 4\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 118,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (3,4)\r",
+        "Sending \"move 0 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,7), Harvested: []\r",
+        "Sending \"harvest 0 6 0 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 119,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (0,7)\r",
+        "Sending \"move 0 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,7), Harvested: []\r",
+        "Sending \"harvest 0 6 0 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 120,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (0,7)\r",
+        "Sending \"move 0 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,7), Harvested: []\r",
+        "Sending \"harvest 0 6 0 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 121,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (0,7)\r",
+        "Sending \"move 3 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,3), Harvested: []\r",
+        "Sending \"harvest 2 3 3 2 3 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 122,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (3,3)\r",
+        "Sending \"move 0 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 120.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,0), Harvested: []\r",
+        "Sending \"harvest 0 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 123,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (0,0)\r",
+        "Sending \"move 0 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,0), Harvested: []\r",
+        "Sending \"harvest 0 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 124,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (0,0)\r",
+        "Sending \"move 0 0\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,0), Harvested: []\r",
+        "Sending \"harvest 0 0\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 125,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (0,0)\r",
+        "Sending \"move 2 3\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 113.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,3), Harvested: []\r",
+        "Sending \"harvest 1 3 2 2 2 3\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 126,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (2,3)\r",
+        "Sending \"move 0 6\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 127.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,6), Harvested: []\r",
+        "Sending \"harvest 0 5 0 6\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 127,
+      "Info": [
+        "Receiving game state 1 took 129.0 ms\r",
+        "Currently at (0,6)\r",
+        "Sending \"move 0 7\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 119.0 ms\r",
+        "I am player 1\r",
+        "Currently at (0,7), Harvested: []\r",
+        "Sending \"harvest 0 6 0 7\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 128,
+      "Info": [
+        "Receiving game state 1 took 135.0 ms\r",
+        "Currently at (0,7)\r",
+        "Sending \"move 2 8\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,8), Harvested: []\r",
+        "Sending \"harvest 1 8 2 7 2 8\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 129,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (2,8)\r",
+        "Sending \"move 5 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,12), Harvested: []\r",
+        "Sending \"harvest 4 12 5 11 5 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 130,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (5,12)\r",
+        "Sending \"move 6 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (6,9), Harvested: []\r",
+        "Sending \"harvest 5 9 6 8 6 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 131,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (6,9)\r",
+        "Sending \"move 7 13\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,13), Harvested: []\r",
+        "Sending \"harvest 6 13 7 12 7 13\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 132,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (7,13)\r",
+        "Sending \"move 7 15\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,15), Harvested: []\r",
+        "Sending \"harvest 6 15 7 14 7 15\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 133,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (7,15)\r",
+        "Sending \"move 5 13\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,13), Harvested: []\r",
+        "Sending \"harvest 4 13 5 12 5 13\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 134,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (5,13)\r",
+        "Sending \"move 9 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,12), Harvested: []\r",
+        "Sending \"harvest 8 12 9 11 9 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 135,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (9,12)\r",
+        "Sending \"move 10 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (10,12), Harvested: []\r",
+        "Sending \"harvest 9 12 10 11 10 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 136,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (10,12)\r",
+        "Sending \"move 12 13\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (12,13), Harvested: []\r",
+        "Sending \"harvest 11 13 12 12 12 13\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 137,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (12,13)\r",
+        "Sending \"move 8 13\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 123.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,13), Harvested: []\r",
+        "Sending \"harvest 7 13 8 12 8 13\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 138,
+      "Info": [
+        "Receiving game state 1 took 126.0 ms\r",
+        "Currently at (8,13)\r",
+        "Sending \"move 8 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,11), Harvested: []\r",
+        "Sending \"harvest 7 11 8 10 8 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 139,
+      "Info": [
+        "Receiving game state 1 took 107.0 ms\r",
+        "Currently at (8,11)\r",
+        "Sending \"move 7 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 114.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,12), Harvested: []\r",
+        "Sending \"harvest 6 12 7 11 7 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 140,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (7,12)\r",
+        "Sending \"move 8 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,12), Harvested: []\r",
+        "Sending \"harvest 7 12 8 11 8 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 141,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (8,12)\r",
+        "Sending \"move 4 9\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,9), Harvested: []\r",
+        "Sending \"harvest 3 9 4 8 4 9\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 142,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (4,9)\r",
+        "Sending \"move 8 12\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 112.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,12), Harvested: []\r",
+        "Sending \"harvest 7 12 8 11 8 12\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 143,
+      "Info": [
+        "Receiving game state 1 took 119.0 ms\r",
+        "Currently at (8,12)\r",
+        "Sending \"move 7 14\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,14), Harvested: []\r",
+        "Sending \"harvest 6 14 7 13 7 14\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 144,
+      "Info": [
+        "Receiving game state 1 took 113.0 ms\r",
+        "Currently at (7,14)\r",
+        "Sending \"move 4 17\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,17), Harvested: []\r",
+        "Sending \"harvest 3 17 4 16 4 17\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 145,
+      "Info": [
+        "Receiving game state 1 took 108.0 ms\r",
+        "Currently at (4,17)\r",
+        "Sending \"move 3 16\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,16), Harvested: []\r",
+        "Sending \"harvest 2 16 3 15 3 16\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 146,
+      "Info": [
+        "Receiving game state 1 took 107.0 ms\r",
+        "Currently at (3,16)\r",
+        "Sending \"move 1 20\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (1,20), Harvested: []\r",
+        "Sending \"harvest 0 20 1 19 1 20\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 147,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (1,20)\r",
+        "Sending \"move 4 21\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (4,21), Harvested: []\r",
+        "Sending \"harvest 3 21 4 20 4 21\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 148,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (4,21)\r",
+        "Sending \"move 2 25\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 114.0 ms\r",
+        "I am player 1\r",
+        "Currently at (2,25), Harvested: []\r",
+        "Sending \"harvest 1 25 2 24 2 25\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 149,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (2,25)\r",
+        "Sending \"move 5 29\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,29), Harvested: []\r",
+        "Sending \"harvest 5 28\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 150,
+      "Info": [
+        "Receiving game state 1 took 118.0 ms\r",
+        "Currently at (5,29)\r",
+        "Sending \"move 6 27\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 118.0 ms\r",
+        "I am player 1\r",
+        "Currently at (6,27), Harvested: []\r",
+        "Sending \"harvest 5 27 6 26 6 27\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 151,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (6,27)\r",
+        "Sending \"move 10 25\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (10,25), Harvested: []\r",
+        "Sending \"harvest 9 25 10 24 10 25\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 152,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (10,25)\r",
+        "Sending \"move 14 21\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (14,21), Harvested: []\r",
+        "Sending \"harvest 13 21 14 20 14 21\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 153,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (14,21)\r",
+        "Sending \"move 11 25\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (11,25), Harvested: []\r",
+        "Sending \"harvest 10 25 11 24 11 25\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 154,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (11,25)\r",
+        "Sending \"move 10 22\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (10,22), Harvested: []\r",
+        "Sending \"harvest 9 22 10 21 10 22\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 155,
+      "Info": [
+        "Receiving game state 1 took 108.0 ms\r",
+        "Currently at (10,22)\r",
+        "Sending \"move 14 23\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (14,23), Harvested: []\r",
+        "Sending \"harvest 13 23 14 22 14 23\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 156,
+      "Info": [
+        "Receiving game state 1 took 124.0 ms\r",
+        "Currently at (14,23)\r",
+        "Sending \"move 11 22\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 107.0 ms\r",
+        "I am player 1\r",
+        "Currently at (11,22), Harvested: []\r",
+        "Sending \"harvest 10 22 11 21 11 22\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 157,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (11,22)\r",
+        "Sending \"move 8 23\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,23), Harvested: []\r",
+        "Sending \"harvest 7 23 8 22 8 23\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 158,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (8,23)\r",
+        "Sending \"move 6 20\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 113.0 ms\r",
+        "I am player 1\r",
+        "Currently at (6,20), Harvested: []\r",
+        "Sending \"harvest 5 20 6 19 6 20\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 159,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (6,20)\r",
+        "Sending \"move 8 20\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,20), Harvested: []\r",
+        "Sending \"harvest 7 20 8 19 8 20\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 160,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (8,20)\r",
+        "Sending \"move 9 19\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,19), Harvested: []\r",
+        "Sending \"harvest 8 19 9 18 9 19\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 161,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (9,19)\r",
+        "Sending \"move 9 15\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,15), Harvested: []\r",
+        "Sending \"harvest 8 15 9 14 9 15\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 162,
+      "Info": [
+        "Receiving game state 1 took 123.0 ms\r",
+        "Currently at (9,15)\r",
+        "Sending \"move 6 15\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 109.0 ms\r",
+        "I am player 1\r",
+        "Currently at (6,15), Harvested: []\r",
+        "Sending \"harvest 5 15 6 14 6 15\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 163,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (6,15)\r",
+        "Sending \"move 5 19\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (5,19), Harvested: []\r",
+        "Sending \"harvest 4 19 5 18 5 19\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 164,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (5,19)\r",
+        "Sending \"move 8 15\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,15), Harvested: []\r",
+        "Sending \"harvest 7 15 8 14 8 15\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 165,
+      "Info": [
+        "Receiving game state 1 took 127.0 ms\r",
+        "Currently at (8,15)\r",
+        "Sending \"move 12 14\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 107.0 ms\r",
+        "I am player 1\r",
+        "Currently at (12,14), Harvested: []\r",
+        "Sending \"harvest 11 14 12 13 12 14\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 166,
+      "Info": [
+        "Receiving game state 1 took 120.0 ms\r",
+        "Currently at (12,14)\r",
+        "Sending \"move 11 10\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (11,10), Harvested: []\r",
+        "Sending \"harvest 10 10 11 9 11 10\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 167,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (11,10)\r",
+        "Sending \"move 8 11\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 124.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,11), Harvested: []\r",
+        "Sending \"harvest 7 11 8 10 8 11\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 168,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (8,11)\r",
+        "Sending \"move 9 15\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,15), Harvested: []\r",
+        "Sending \"harvest 8 15 9 14 9 15\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 169,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (9,15)\r",
+        "Sending \"move 7 14\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 108.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,14), Harvested: []\r",
+        "Sending \"harvest 6 14 7 13 7 14\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 170,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (7,14)\r",
+        "Sending \"move 3 17\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (3,17), Harvested: []\r",
+        "Sending \"harvest 2 17 3 16 3 17\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 171,
+      "Info": [
+        "Receiving game state 1 took 111.0 ms\r",
+        "Currently at (3,17)\r",
+        "Sending \"move 7 21\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (7,21), Harvested: []\r",
+        "Sending \"harvest 6 21 7 20 7 21\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 172,
+      "Info": [
+        "Receiving game state 1 took 110.0 ms\r",
+        "Currently at (7,21)\r",
+        "Sending \"move 8 24\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,24), Harvested: []\r",
+        "Sending \"harvest 7 24 8 23 8 24\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 173,
+      "Info": [
+        "Receiving game state 1 took 109.0 ms\r",
+        "Currently at (8,24)\r",
+        "Sending \"move 8 23\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (8,23), Harvested: []\r",
+        "Sending \"harvest 7 23 8 22 8 23\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 174,
+      "Info": [
+        "Receiving game state 1 took 112.0 ms\r",
+        "Currently at (8,23)\r",
+        "Sending \"move 9 22\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 113.0 ms\r",
+        "I am player 1\r",
+        "Currently at (9,22), Harvested: []\r",
+        "Sending \"harvest 8 22 9 21 9 22\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 175,
+      "Info": [
+        "Receiving game state 1 took 121.0 ms\r",
+        "Currently at (9,22)\r",
+        "Sending \"move 11 24\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 111.0 ms\r",
+        "I am player 1\r",
+        "Currently at (11,24), Harvested: []\r",
+        "Sending \"harvest 10 24 11 23 11 24\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 176,
+      "Info": [
+        "Receiving game state 1 took 108.0 ms\r",
+        "Currently at (11,24)\r",
+        "Sending \"move 15 24\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 110.0 ms\r",
+        "I am player 1\r",
+        "Currently at (15,24), Harvested: []\r",
+        "Sending \"harvest 14 24 15 23 15 24\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 177,
+      "Info": [
+        "Receiving game state 1 took 122.0 ms\r",
+        "Currently at (15,24)\r",
+        "Sending \"move 16 28\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 125.0 ms\r",
+        "I am player 1\r",
+        "Currently at (16,28), Harvested: []\r",
+        "Sending \"harvest 15 28 16 27 16 28\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 178,
+      "Info": [
+        "Receiving game state 1 took 108.0 ms\r",
+        "Currently at (16,28)\r",
+        "Sending \"move 20 32\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 122.0 ms\r",
+        "I am player 1\r",
+        "Currently at (20,32), Harvested: []\r",
+        "Sending \"harvest 20 32\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 179,
+      "Info": [
+        "Receiving game state 1 took 125.0 ms\r",
+        "Currently at (20,32)\r",
+        "Sending \"move 20 34\"\r",
+        "Move decision took 0.0 ms\r",
+        "Send move decision took 0.0 ms\r",
+        "Receiving game state 2 took 121.0 ms\r",
+        "I am player 1\r",
+        "Currently at (20,34), Harvested: []\r",
+        "Sending \"harvest 20 34\"\r",
+        "Action decision took 0.0 ms\r",
+        "Sending action decision took 0.0 ms\r"
+      ],
+      "Debug": [],
+      "Exception": []
+    },
+    {
+      "Turn": 180,
+      "Info": [],
+      "Debug": [],
+      "Exception": []
+    }
+  ]
+}

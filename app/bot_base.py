@@ -20,6 +20,8 @@ class Logger:
 
 logger = Logger()
 
+signal.signal(signal.SIGTERM, lambda: exit(0))
+
 action_text = None
 
 cli = sys.modules['flask.cli']
@@ -82,14 +84,29 @@ def get_upgrade() -> str:
     return upgrade
 
 
+def print_board(board) -> str:
+    final_str = "<tt>"
+    for col in board:
+        for cell in col:
+            if cell["crop"]["type"] != "NONE":
+                cell_text = f'{cell["crop"]["type"][:1]}{cell["crop"]["growthTimer"]:02d}'
+            else:
+                cell_text = cell["type"][:3]
+            final_str += cell_text + " "
+        final_str += "<br>"
+    return final_str + "</tt>"
+
+
 def get_move_decision(game_state) -> str:
     player_num = game_state['playerNum']
     pos = game_state[f"p{player_num}"]["position"]
     logger.info(f"Currently at ({pos['x']},{pos['y']})")
 
     global action_text
-    socketio.emit("request", f"Please submit a move decision. Player: {player_num}, Current "
-                    f"position: ({pos['x']},{pos['y']})")
+    socketio.emit("request", f"Please submit a move decision.<br>Board State:<br>" +
+                  print_board(game_state["tileMap"]["tiles"]) +
+                  f"\nPlayer: {player_num}, Current " +
+                  f"position: ({pos['x']},{pos['y']})")
     while action_text is None:
         pass
     move = action_text
@@ -104,8 +121,10 @@ def get_action_decision(game_state) -> str:
     pos = game_state[f"p{player_num}"]["position"]
 
     global action_text
-    socketio.emit("request", f"Please submit an action decision. Player: {player_num}, Current "
-                    f"position: ({pos['x']},{pos['y']})")
+    socketio.emit("request", f"Please submit an action decision.\nBoard State:\n" +
+                  print_board(game_state["tileMap"]["tiles"]) +
+                  f"\nPlayer: {player_num}, Current " +
+                  f"position: ({pos['x']},{pos['y']})")
     while action_text is None:
         pass
     action = action_text
@@ -129,9 +148,12 @@ def test():
 
 if __name__ == "__main__":
     logger.info("Starting Flask server")
-    threading.Thread(
+    socketio_app = threading.Thread(
         target=lambda: socketio.run(app, host="0.0.0.0", port=8080, debug=False,
-                                    use_reloader=False)).start()
+                                    use_reloader=False))
+    socketio_app.daemon = True
+    socketio_app.start()
+
     time.sleep(3)
     logger.info("About to send item and upgrade")
     send_item(get_item())

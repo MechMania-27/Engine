@@ -85,16 +85,28 @@ def get_upgrade() -> str:
 
 
 def print_board(board) -> str:
-    final_str = "<tt>"
+    final_str = "<table><tr><td>y\\x</td>"
+    col_num = 0
+    for _ in board[0]:
+        final_str += f"<td>{col_num}</td>"
+        col_num += 1
+    final_str += "</tr>"
+
+    row_num, col_num = 0, 0
     for col in board:
+        final_str += f"<tr><td>{row_num}</td>"
+        col_num = 0
+        row_num += 1
         for cell in col:
+            final_str += "<td>"
             if cell["crop"]["type"] != "NONE":
-                cell_text = f'{cell["crop"]["type"][:1]}{cell["crop"]["growthTimer"]:02d}'
+                final_str += f'{cell["crop"]["type"][:1]}{cell["crop"]["growthTimer"]:02d}'
             else:
-                cell_text = cell["type"][:3]
-            final_str += cell_text + " "
-        final_str += "<br>"
-    return final_str + "</tt>"
+                final_str += cell["type"][:3]
+            final_str += "</td>"
+            col_num += 1
+        final_str += "</tr>"
+    return final_str + "</table>"
 
 
 def get_move_decision(game_state) -> str:

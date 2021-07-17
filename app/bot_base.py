@@ -12,9 +12,6 @@ from flask_socketio import SocketIO, emit
 
 
 class Logger:
-    def __init__(self) -> None:
-        pass
-
     def info(self, message: str) -> None:
         print(f"info: {message}", file=sys.stderr, flush=True)
 
@@ -34,7 +31,7 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 
-@socketio.on('on_conection')
+@socketio.on('on_connection')
 def handle_on_connection(data):
     logger.info('connected! received data: ' + str(data))
 
@@ -140,9 +137,9 @@ def get_cell_html(cell: dict) -> str:
     if "player_present" in cell:
         player = cell["player_present"]
         text = None
-        if player & 1:
+        if player & 0b01:
             text = "P1"
-        if player & 2:
+        if player & 0b10:
             text = "P2" if text is None else "P12"
         return text
     elif cell["crop"]["type"] != "NONE":

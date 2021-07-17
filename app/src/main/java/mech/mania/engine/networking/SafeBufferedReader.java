@@ -34,7 +34,7 @@ public class SafeBufferedReader extends BufferedReader {
      */
     @Override
     public String readLine() throws IOException {
-        waitReadyLine();
+        waitReady();
 //        while (!ready());
         return super.readLine();
     }
@@ -71,7 +71,7 @@ public class SafeBufferedReader extends BufferedReader {
      */
     protected void waitReadyLine() throws IllegalThreadStateException, IOException {
         long timeout = System.currentTimeMillis() + millisTimeout;
-//        waitReady();
+        waitReady();
 
         // https://stackoverflow.com/questions/45578725/java-io-ioexception-mark-invalid
         super.mark(1);

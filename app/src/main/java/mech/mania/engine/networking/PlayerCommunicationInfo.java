@@ -11,6 +11,7 @@ import mech.mania.engine.util.PlayerCommunicationUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A class that will hold information about communication with the player, including
@@ -215,6 +216,6 @@ public class PlayerCommunicationInfo {
         if (!response.equals("heartbeat")) {
             throw(new IOException());
         }
-        inputReader.setMillisInterval(gameConfig.PLAYER_TIMEOUT);
+        inputReader.setTimeout(gameConfig.PLAYER_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 }

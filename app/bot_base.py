@@ -1,3 +1,5 @@
+#!/usr/bin/env python3 -u
+
 import json
 import sys
 import threading

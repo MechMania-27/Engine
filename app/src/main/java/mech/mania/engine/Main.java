@@ -90,11 +90,6 @@ public class Main {
             player2EndState = PlayerEndState.ERROR;
         }
 
-        // start the game
-        player1Logger.incrementTurn();
-        player2Logger.incrementTurn();
-        engineLogger.incrementTurn();
-
         // TODO: refactor this somehow
         if (player1EndState != null || player2EndState != null) {
             player1EndState = PlayerEndState.ERROR;
@@ -124,6 +119,11 @@ public class Main {
                 player1EndState = PlayerEndState.ERROR;
                 player2EndState = PlayerEndState.ERROR;
             } else {
+
+                // start the game
+                player1Logger.incrementTurn();
+                player2Logger.incrementTurn();
+                engineLogger.incrementTurn();
 
                 GameLog gameLog = new GameLog();
                 gameLoop(gameConfig, gameLog, player1, player2, engineLogger);

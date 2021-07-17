@@ -4,7 +4,7 @@
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="mech.mania.engine.Main" />
     <module name="Engine.app.main" />
-    <option name="PROGRAM_PARAMETERS" value="-d -n &quot;bot1&quot; -N &quot;bot2&quot; -e &quot;python3 -u app/bot_base.py&quot; -E &quot;python3 -u app/src/test/resources/bots/bot1.py&quot;" />
+    <option name="PROGRAM_PARAMETERS" value="-d -n &quot;bot1&quot; -N &quot;bot_base&quot; -e &quot;python3 -u app/src/test/resources/bots/bot1.py&quot; -E &quot;python3 -u app/bot_base.py&quot;" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

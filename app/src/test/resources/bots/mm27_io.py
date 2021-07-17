@@ -19,6 +19,10 @@ def send_upgrade(upgrade: str) -> None:
     print(upgrade)
 
 
+def send_heartbeat() -> None:
+    print("heartbeat")
+
+
 class Logger:
     def __init__(self) -> None:
         pass

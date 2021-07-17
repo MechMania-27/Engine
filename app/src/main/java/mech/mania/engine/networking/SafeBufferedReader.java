@@ -34,9 +34,8 @@ public class SafeBufferedReader extends BufferedReader {
      */
     @Override
     public String readLine() throws IOException {
-//        waitReadyLine();
-//        return super.readLine();
-        while (!ready());
+        waitReadyLine();
+//        while (!ready());
         return super.readLine();
     }
 

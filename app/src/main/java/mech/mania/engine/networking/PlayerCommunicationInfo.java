@@ -75,9 +75,11 @@ public class PlayerCommunicationInfo {
         });
         errorStreamCatchProcess.start();
 
-        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.PLAYER_TIMEOUT);
+        // originally set timeout to heartbeat timeout. once we receive a heartbeat from the bot we can set it to the
+        // player turn timeout
+        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.HEARTBEAT_TIMEOUT);
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-        engineLogger.debug(String.format("Bot (pid %d): started", pid));
+        engineLogger.debug(String.format("Bot (pid %d): started process", pid));
     }
 
     /**
@@ -96,7 +98,7 @@ public class PlayerCommunicationInfo {
     }
 
     private String safeGetLine() throws IOException {
-        String response = null;
+        String response;
         try {
             response = inputReader.readLine();
             engineLogger.debug("Received \"" + response + "\"");
@@ -208,4 +210,11 @@ public class PlayerCommunicationInfo {
         return logger;
     }
 
+    public void checkHeartbeat() throws IOException {
+        String response = safeGetLine();
+        if (!response.equals("heartbeat")) {
+            throw(new IOException());
+        }
+        inputReader.setMillisInterval(gameConfig.PLAYER_TIMEOUT);
+    }
 }

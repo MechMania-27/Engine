@@ -1,8 +1,7 @@
 import sys
 import random
 import time
-from mm27_io import receive_gamestate, send_decision, send_item, send_upgrade
-from mm27_io import Logger
+from mm27_io import *
 
 logger = Logger()
 
@@ -68,6 +67,7 @@ def get_action_decision(game_state) -> str:
 
 
 if __name__ == "__main__":
+    send_heartbeat()
     logger.info(f"Started bot")
     send_item(get_item())
     send_upgrade(get_upgrade())

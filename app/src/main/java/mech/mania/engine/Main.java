@@ -71,14 +71,11 @@ public class Main {
         PlayerEndState player1EndState = null;
         PlayerEndState player2EndState = null;
 
-        System.out.println("hello!");
-
         // player process startup
         try {
             player1.start();
+            player1.checkHeartbeat();
             engineLogger.debug("Started player 1 process");
-            player1.askForStartingItems();
-            engineLogger.debug("Finished asking player 1 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 1 failed to start", e);
             player1EndState = PlayerEndState.ERROR;
@@ -86,9 +83,8 @@ public class Main {
 
         try {
             player2.start();
+            player2.checkHeartbeat();
             engineLogger.debug("Started player 2 process");
-            player2.askForStartingItems();
-            engineLogger.debug("Finished asking player 2 for starting items");
         } catch (IOException | IllegalThreadStateException e) {
             engineLogger.severe("Player 2 failed to start", e);
             player2EndState = PlayerEndState.ERROR;
@@ -99,23 +95,47 @@ public class Main {
         player2Logger.incrementTurn();
         engineLogger.incrementTurn();
 
+        // TODO: refactor this somehow
         if (player1EndState != null || player2EndState != null) {
             player1EndState = PlayerEndState.ERROR;
             player2EndState = PlayerEndState.ERROR;
         } else {
             engineLogger.info("Successful player initialization");
 
-            GameLog gameLog = new GameLog();
-            gameLoop(gameConfig, gameLog, player1, player2, engineLogger);
+            try {
+                engineLogger.debug("Asking player 1 for starting items");
+                player1.askForStartingItems();
+                engineLogger.debug("Finished asking player 1 for starting items");
+            } catch (IOException | IllegalThreadStateException e) {
+                engineLogger.severe("Error while receiving starting items from player 2: ", e);
+                player1EndState = PlayerEndState.ERROR;
+            }
 
-            player1EndState = gameLog.getPlayer1EndState();
-            player2EndState = gameLog.getPlayer2EndState();
+            try {
+                engineLogger.debug("Asking player 2 for starting items");
+                player2.askForStartingItems();
+                engineLogger.debug("Finished asking player 2 for starting items");
+            } catch (IOException | IllegalThreadStateException e) {
+                engineLogger.severe("Error while receiving starting items from player 2: ", e);
+                player2EndState = PlayerEndState.ERROR;
+            }
 
-            engineLogger.info("Finished game loop");
+            if (player1EndState != null || player2EndState != null) {
+                player1EndState = PlayerEndState.ERROR;
+                player2EndState = PlayerEndState.ERROR;
+            } else {
 
-            Gson serializer = new GsonBuilder()
-                    .excludeFieldsWithoutExposeAnnotation()
-                    .create();
+                GameLog gameLog = new GameLog();
+                gameLoop(gameConfig, gameLog, player1, player2, engineLogger);
+
+                player1EndState = gameLog.getPlayer1EndState();
+                player2EndState = gameLog.getPlayer2EndState();
+
+                engineLogger.info("Finished game loop");
+
+                Gson serializer = new GsonBuilder()
+                        .excludeFieldsWithoutExposeAnnotation()
+                        .create();
 //                    .registerTypeAdapter(GameLog.class, new CustomSerializerGame())
 
 //                    .addSerializationExclusionStrategy(new ExclusionStrategy() {
@@ -136,16 +156,15 @@ public class Main {
 //                    })
 //                    .create();
 
-            // TODO
+                // TODO
 
-            String gameLogJson = serializer.toJson(gameLog, GameLog.class);
-            writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
+                String gameLogJson = serializer.toJson(gameLog, GameLog.class);
+                writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
+            }
         }
 
         player1.stop();
-        // engineLogger.debug("Stopped player 1");
         player2.stop();
-        // engineLogger.debug("Stopped player 2");
 
         player1Logger.incrementTurn();
         player2Logger.incrementTurn();

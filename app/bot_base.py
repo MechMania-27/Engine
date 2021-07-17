@@ -3,7 +3,9 @@ import sys
 import threading
 import signal
 import time
-from flask import Flask, render_template, request
+from typing import List, Dict
+
+from flask import Flask, render_template, request, cli
 from flask_socketio import SocketIO, emit
 
 
@@ -24,7 +26,6 @@ signal.signal(signal.SIGTERM, lambda: exit(0))
 
 action_text = None
 
-cli = sys.modules['flask.cli']
 cli.show_server_banner = lambda *x: None
 
 app = Flask(__name__)
@@ -40,6 +41,10 @@ def handle_on_connection(data):
 def receive_action(text):
     global action_text
     action_text = text['text']
+
+
+def send_heartbeat() -> None:
+    print("heartbeat")
 
 
 def receive_gamestate() -> dict:
@@ -144,7 +149,7 @@ def get_cell_html(cell: dict) -> str:
         return cell["type"][:3]
 
 
-def print_board(board: list[list[dict]]) -> str:
+def print_board(board: List[List[Dict]]) -> str:
     """
     :param board: board (2d array of cell objects)
     :return: HTML for the board to display on screen
@@ -227,6 +232,7 @@ def test():
 
 
 if __name__ == "__main__":
+    send_heartbeat()
     logger.info("Starting Flask server")
     socketio_app = threading.Thread(
         target=lambda: socketio.run(app, host="0.0.0.0", port=8080, debug=False,

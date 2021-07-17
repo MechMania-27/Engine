@@ -42,33 +42,52 @@ def receive_action(text):
     action_text = text['text']
 
 
-def receive_gamestate():
+def receive_gamestate() -> dict:
+    """
+    Receive the gamestate from the engine, make edits as necessary, then return the usable gamestate
+    :return: gamestate ready to be parsed by bot
+    """
     gamestate_bytes = sys.stdin.readline()
-    return json.loads(gamestate_bytes)
+    gamestate = json.loads(gamestate_bytes)
+
+    # alter the gamestate for ease of parsing later on
+    p1_pos = gamestate["p1"]["position"]
+    p2_pos = gamestate["p2"]["position"]
+
+    # if player 1 is present, value is b01
+    # if player 2 is present, value is b10
+    # if both players are present, value is b11
+    gamestate["tileMap"]["tiles"][p1_pos["y"]][p1_pos["x"]]["player_present"] = 0
+    gamestate["tileMap"]["tiles"][p2_pos["y"]][p2_pos["x"]]["player_present"] = 0
+    gamestate["tileMap"]["tiles"][p1_pos["y"]][p1_pos["x"]]["player_present"] |= 1
+    gamestate["tileMap"]["tiles"][p2_pos["y"]][p2_pos["x"]]["player_present"] |= 2
+
+    return gamestate
 
 
 def send_decision(decision: str) -> None:
+    """
+    Send decision to the engine
+    :param decision: Decision to send
+    :return: Nothing
+    """
     logger.info(f"sending decision \"{decision}\"")
     print(decision)
-
-
-def send_item(item: str) -> None:
-    logger.info(f"sending item \"{item}\"")
-    print(item)
-
-
-def send_upgrade(upgrade: str) -> None:
-    logger.info(f"sending upgrade \"{upgrade}\"")
-    print(upgrade)
 
 
 def get_item() -> str:
     global action_text
     socketio.emit("request", "Please submit an item to use")
+
+    # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
         pass
     item = action_text
+
+    # reset action_text for the next action
     action_text = None
+
+    # display on screen that the bot has received their information
     socketio.emit("request", "Sent. Waiting for next instruction.")
     return item
 
@@ -76,15 +95,60 @@ def get_item() -> str:
 def get_upgrade() -> str:
     global action_text
     socketio.emit("request", "Please submit an upgrade to use")
+
+    # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
         pass
     upgrade = action_text
+
+    # reset action_text for the next action
     action_text = None
+
+    # display on screen that the bot has received their information
     socketio.emit("request", "Sent. Waiting for next instruction.")
     return upgrade
 
 
-def print_board(board) -> str:
+def get_cell_html(cell: dict) -> str:
+    """
+    Converts a cell (example below) into raw HTML for a single cell (cells will be contained within
+    HTML <table/> attribute)
+    ```
+    {
+      "type": "GRASS",
+      "crop": {
+        "type": "NONE",
+        "growthTimer": 0,
+        "value": 0.0
+      },
+      "p1_item": "NONE",
+      "p2_item": "NONE"
+    }
+    ```
+
+    :param cell: cell dictionary containing the type, crop, and items on the tile
+    :return: HTML to be displayed on screen for one cell
+    """
+
+    if "player_present" in cell:
+        player = cell["player_present"]
+        text = None
+        if player & 1:
+            text = "P1"
+        if player & 2:
+            text = "P2" if text is None else "P12"
+        return text
+    elif cell["crop"]["type"] != "NONE":
+        return f'{cell["crop"]["type"][:1]}{cell["crop"]["growthTimer"]:02d}'
+    else:
+        return cell["type"][:3]
+
+
+def print_board(board: list[list[dict]]) -> str:
+    """
+    :param board: board (2d array of cell objects)
+    :return: HTML for the board to display on screen
+    """
     final_str = "<table><tr><td>y\\x</td>"
     col_num = 0
     for _ in board[0]:
@@ -98,12 +162,7 @@ def print_board(board) -> str:
         col_num = 0
         row_num += 1
         for cell in col:
-            final_str += "<td>"
-            if cell["crop"]["type"] != "NONE":
-                final_str += f'{cell["crop"]["type"][:1]}{cell["crop"]["growthTimer"]:02d}'
-            else:
-                final_str += cell["type"][:3]
-            final_str += "</td>"
+            final_str += f"<td>{get_cell_html(cell)}</td>"
             col_num += 1
         final_str += "</tr>"
     return final_str + "</table>"
@@ -119,11 +178,16 @@ def get_move_decision(game_state) -> str:
                   print_board(game_state["tileMap"]["tiles"]) +
                   f"\nPlayer: {player_num}, Current " +
                   f"position: ({pos['x']},{pos['y']})")
+
+    # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
         pass
     move = action_text
 
+    # reset action_text for the next action
     action_text = None
+
+    # display on screen that the bot has received their information
     socketio.emit("request", "Sent. Waiting for next instruction.")
     return move
 
@@ -137,12 +201,16 @@ def get_action_decision(game_state) -> str:
                   print_board(game_state["tileMap"]["tiles"]) +
                   f"\nPlayer: {player_num}, Current " +
                   f"position: ({pos['x']},{pos['y']})")
+
+    # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
         pass
     action = action_text
 
-    logger.info(f"Sending \"{action:.30s}\"")
+    # reset action_text for the next action
     action_text = None
+
+    # display on screen that the bot has received their information
     socketio.emit("request", "Sent. Waiting for next instruction.")
     return action
 
@@ -168,8 +236,8 @@ if __name__ == "__main__":
 
     time.sleep(3)
     logger.info("About to send item and upgrade")
-    send_item(get_item())
-    send_upgrade(get_upgrade())
+    send_decision(get_item())
+    send_decision(get_upgrade())
 
     while True:
         start_time = time.perf_counter_ns()

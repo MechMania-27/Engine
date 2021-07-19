@@ -15,13 +15,13 @@ public class UseItemActionTest {
 
     private final static Config GAME_CONFIG = new Config("debug");
     private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
-    private static UseItemAction action;
-    private static GameState state;
+    private UseItemAction action;
+    private GameState state;
 
     private final static UpgradeType myPlayerUpgrade = UpgradeType.NONE;
     private final static UpgradeType opponentPlayerUpgrade = UpgradeType.NONE;
 
-    private final static CropType[] types = {CropType.CORN, CropType.POTATO, CropType.NONE};
+    private final static CropType[] types = {CropType.CORN, CropType.POTATO};
 
     @Before
     public void setup() {
@@ -46,10 +46,10 @@ public class UseItemActionTest {
 
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4));
         action.parse("");
+        action.performAction(state, BOT_LOGGER);
 
         state.getTileMap().growCrops();
 
-        action.performAction(state, BOT_LOGGER);
         Assert.assertEquals(1, state.getTileMap().get(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4).getCrop().getGrowthTimer());
     }
 
@@ -91,11 +91,28 @@ public class UseItemActionTest {
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, ItemType.PESTICIDE, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, ItemType.NONE, opponentPlayerUpgrade);
 
-        state.getPlayer(MY_PLAYER_ID).setPosition(new Position(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4));
+
         action.parse("");
 
         int width = GAME_CONFIG.BOARD_WIDTH;
         int height = GAME_CONFIG.BOARD_HEIGHT;
+
+        int match_i, match_j = 0;
+        boolean found = false;
+        for (match_i = 0; match_i < width; match_i++) {
+            for (match_j = 0; match_j < height; match_j++) {
+                if (state.getTileMap().get(match_i, match_j).getType() == TileType.SOIL) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found) {
+                break;
+            }
+        }
+
+        state.getPlayer(MY_PLAYER_ID).setPosition(new Position(match_i, match_j));
+
 
         for (int i = width / 4; i < 3 * width / 4; i++) {
             for (int j = height / 4; j < 3 * height / 4; j++) {
@@ -105,33 +122,24 @@ public class UseItemActionTest {
             }
         }
 
-        int x = GAME_CONFIG.BOARD_WIDTH / 4;
-        int y = GAME_CONFIG.BOARD_HEIGHT / 4;
-
-        for (int i = 0; i < 10; i++) {
-            state.getTileMap().growCrops();
-        }
+        state.getTileMap().growCrops();
 
         action.performAction(state, BOT_LOGGER);
 
-        for (int i = x - 2; i < x + 2; i++) {
-            for (int j = y - 2; j < y + 2; j++) {
-                Tile curTile = state.getTileMap().get(i, j);
-                Assert.assertEquals(0.8 * curTile.getCrop().getType().getValueGrowth(), curTile.getCrop().getValue(), 0.001);
-            }
-        }
+        Tile curTile = state.getTileMap().get(match_i, match_j);
+        Assert.assertEquals(0.8 * curTile.getCrop().getType().getValueGrowth(), curTile.getCrop().getValue(), 0.001);
     }
 
     @Test
     public void coffeeThermosUseTest() throws PlayerDecisionParseException {
-        state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, ItemType.PESTICIDE, myPlayerUpgrade,
+        state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, ItemType.COFFEE_THERMOS, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, ItemType.NONE, opponentPlayerUpgrade);
 
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4));
         action.parse("");
 
         action.performAction(state, BOT_LOGGER);
-
+        Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getUseCoffeeThermos());
         Assert.assertEquals(GAME_CONFIG.MAX_MOVEMENT * 3, state.getPlayer(MY_PLAYER_ID).getSpeed());
     }
 

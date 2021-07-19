@@ -13,7 +13,7 @@ public class UseItemAction extends PlayerDecision {
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<item>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        String regex = "";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 

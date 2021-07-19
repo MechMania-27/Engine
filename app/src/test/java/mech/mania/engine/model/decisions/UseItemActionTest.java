@@ -50,7 +50,7 @@ public class UseItemActionTest {
 
         state.getTileMap().growCrops();
 
-        Assert.assertEquals(1, state.getTileMap().get(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4).getCrop().getGrowthTimer());
+        Assert.assertEquals(0, state.getTileMap().get(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4).getCrop().getGrowthTimer());
     }
 
     @Test

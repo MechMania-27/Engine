@@ -53,7 +53,6 @@ public class UseItemAction extends PlayerDecision {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
-                            map.get(loc.getX() + i, loc.getY() + j).setPesticideEffect(true);
                             map.get(loc.getX() + i, loc.getY() + j).getCrop().applyPesticide();
                         }
                     }

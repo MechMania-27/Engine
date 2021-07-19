@@ -149,7 +149,6 @@ public class TileMap implements Iterable<Tile> {
             // Update tile states
             tile.setFertilityIdolEffect(false);
             tile.setRainTotemEffect(false);
-            tile.setPesticideEffect(false);
         }
     }
 

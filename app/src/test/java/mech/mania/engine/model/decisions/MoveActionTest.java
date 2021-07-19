@@ -168,7 +168,7 @@ public class MoveActionTest {
         playerAction.parse(playerDecision);
         playerAction.performAction(state, BOT_LOGGER);
 
-        Assert.assertEquals(new Position(1, 1), state.getPlayer(MY_PLAYER_ID).getPosition());
+        Assert.assertEquals(new Position(1, 1), state.getPlayer(OPPONENT_PLAYER_ID).getPosition());
     }
 
     @Test

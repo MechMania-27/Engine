@@ -89,8 +89,8 @@ public enum ItemType {
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j){
                 Tile tile = tilemap.getTile(new Position(i - 1, j - 1));
-                if (tile != null){
-                    tile.setPesticideEffect(true);
+                if (tile != null) {
+                    tile.getCrop().applyPesticide();
                 }
             }
         }

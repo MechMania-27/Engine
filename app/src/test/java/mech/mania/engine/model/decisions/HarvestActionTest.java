@@ -23,7 +23,7 @@ public class HarvestActionTest {
 
     HarvestAction action;
     GameState state;
-    CropType[] types = {CropType.CORN, CropType.POTATO, CropType.NONE};
+    private final static CropType[] types = {CropType.CORN, CropType.POTATO, CropType.NONE};
 
     @Before
     public void setup() {
@@ -37,7 +37,7 @@ public class HarvestActionTest {
 
         for (int i = width / 4; i < 3 * width / 4; i++) {
             for (int j = height / 4; j < 3 * height / 4; j++) {
-                CropType curCrop = CropType.values()[(i + j) % CropType.values().length];
+                CropType curCrop = types[(i + j) % types.length];
                 Player player = state.getPlayer(MY_PLAYER_ID);
                 state.getTileMap().plantCrop(new Position(i, j), curCrop, player);
             }
@@ -67,6 +67,7 @@ public class HarvestActionTest {
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
+        state.getTileMap().growCrops();
 
         action.performAction(state, BOT_LOGGER);
         Assert.assertEquals(1, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
@@ -89,8 +90,7 @@ public class HarvestActionTest {
                 new Position(GAME_CONFIG.BOARD_WIDTH / 4 + state.getPlayer(MY_PLAYER_ID).getHarvestRadius() + 1,
                         GAME_CONFIG.BOARD_HEIGHT / 4 + 1));
 
-        System.out.println(state.getPlayer(MY_PLAYER_ID).getPosition());
-
+        state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
@@ -114,7 +114,6 @@ public class HarvestActionTest {
         for (int i = GAME_CONFIG.BOARD_WIDTH / 4; i < GAME_CONFIG.BOARD_WIDTH / 4 + 5; i++) {
             for (int j = GAME_CONFIG.BOARD_HEIGHT / 4; j < GAME_CONFIG.BOARD_HEIGHT / 4 + 5; j++) {
                 builder.append(String.format("%d %d ", i, j));
-                System.out.println(state.getTileMap().get(i, j).getCrop().getType());
             }
         }
 
@@ -128,8 +127,6 @@ public class HarvestActionTest {
 
         String regularDecision = builder.toString();
         action.parse(regularDecision);
-
-        System.out.println(action.coords);
 
         action.performAction(state, BOT_LOGGER);
 
@@ -192,6 +189,7 @@ public class HarvestActionTest {
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
+        state.getTileMap().growCrops();
 
         action.performAction(state, BOT_LOGGER);
         Assert.assertEquals(0, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
@@ -200,18 +198,30 @@ public class HarvestActionTest {
     @Test
     public void insideScytheHarvestRadiusHarvestActionPerformActionTest() throws PlayerDecisionParseException {
         String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4);
+        action = new HarvestAction(OPPONENT_PLAYER_ID);
         action.parse(regularDecision);
 
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(
                 new Position(GAME_CONFIG.BOARD_WIDTH / 4 + GAME_CONFIG.HARVEST_RADIUS + 1,
-                        GAME_CONFIG.BOARD_HEIGHT / 4 + 1));
+                        GAME_CONFIG.BOARD_HEIGHT / 4));
 
+        state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
 
         action.performAction(state, BOT_LOGGER);
-        Assert.assertNotEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getHarvestedCrops().size());
+
+        Assert.assertEquals(1, state.getPlayer(OPPONENT_PLAYER_ID).getHarvestedCrops().size());
+        Assert.assertEquals(CropType.POTATO, state.getPlayer(OPPONENT_PLAYER_ID).getHarvestedCrops().get(0).getType());
+
+        Assert.assertEquals(
+                CropType.NONE,
+                state.getTileMap()
+                        .get(GAME_CONFIG.BOARD_WIDTH / 4, GAME_CONFIG.BOARD_HEIGHT / 4)
+                        .getCrop()
+                        .getType());
+
     }
 
     @Test
@@ -223,8 +233,7 @@ public class HarvestActionTest {
                 new Position(GAME_CONFIG.BOARD_WIDTH / 4 + state.getPlayer(OPPONENT_PLAYER_ID).getHarvestRadius() + 1,
                         GAME_CONFIG.BOARD_HEIGHT / 4 + 1));
 
-        System.out.println(state.getPlayer(OPPONENT_PLAYER_ID).getPosition());
-
+        state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
@@ -243,7 +252,7 @@ public class HarvestActionTest {
     @Test
     public void insideOpponentProtectionRadiusTest() throws PlayerDecisionParseException {
         String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4 + GAME_CONFIG.PROTECTION_RADIUS + 1,
-                                                GAME_CONFIG.BOARD_HEIGHT / 4);
+                                                GAME_CONFIG.BOARD_HEIGHT / 4);;
         action.parse(regularDecision);
 
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(
@@ -254,6 +263,7 @@ public class HarvestActionTest {
                 new Position(GAME_CONFIG.BOARD_WIDTH / 4 + GAME_CONFIG.PROTECTION_RADIUS + GAME_CONFIG.HARVEST_RADIUS,
                         GAME_CONFIG.BOARD_HEIGHT / 4));
 
+        state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();

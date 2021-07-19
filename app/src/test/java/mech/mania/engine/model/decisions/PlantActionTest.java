@@ -19,7 +19,7 @@ public class PlantActionTest {
     private final static ItemType myPlayerItem = ItemType.NONE;
     private final static UpgradeType myPlayerUpgrade = UpgradeType.NONE;
     private final static ItemType opponentPlayerItem = ItemType.NONE;
-    private final static UpgradeType opponentPlayerUpgrade = UpgradeType.NONE;
+    private final static UpgradeType opponentPlayerUpgrade = UpgradeType.SEED_A_PULT;
 
     PlantAction action;
     GameState state;
@@ -138,13 +138,14 @@ public class PlantActionTest {
     @Test
     public void upgradePlantActionTest() throws PlayerDecisionParseException {
         String regularDecision = "corn 5 5";
+        action = new PlantAction(OPPONENT_PLAYER_ID);
         action.parse(regularDecision);
 
-        state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
-        state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5 + GAME_CONFIG.PLANT_RADIUS + 1));
+        state.getPlayer(OPPONENT_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(5, 5 + GAME_CONFIG.PLANT_RADIUS + 1));
 
         action.performAction(state, BOT_LOGGER);
-        int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
+        int res = state.getPlayer(OPPONENT_PLAYER_ID).getSeeds().get(CropType.CORN);
         Assert.assertEquals(0, res);
         Assert.assertEquals(CropType.CORN, state.getTileMap().get(5, 5).getCrop().getType());
     }

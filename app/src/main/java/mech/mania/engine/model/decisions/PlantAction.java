@@ -13,7 +13,8 @@ public class PlantAction extends PlayerDecision {
     protected ArrayList<Position> coords;
     protected ArrayList<CropType> cropTypes;
 
-    public PlantAction(int playerID){
+    public PlantAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.coords = new ArrayList<>();
         this.cropTypes = new ArrayList<>();
@@ -47,7 +48,7 @@ public class PlantAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
         // will use playerID to get the Player object from state and then validate each planting action
         Player player = state.getPlayer(playerID);
         Player opponent = state.getOpponentPlayer(playerID);

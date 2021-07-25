@@ -11,7 +11,8 @@ import java.util.regex.Pattern;
 public class HarvestAction extends PlayerDecision {
     protected ArrayList<Position> coords;
 
-    public HarvestAction(int playerID){
+    public HarvestAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.coords = new ArrayList<>();
     }
@@ -42,7 +43,7 @@ public class HarvestAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
         Player player = state.getPlayer(playerID);
         Player opponent = state.getOpponentPlayer(playerID);
         Position curPosition = player.getPosition();

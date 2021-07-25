@@ -15,6 +15,7 @@ public class HarvestActionTest {
 
     private final static Config GAME_CONFIG = new Config("debug");
     private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
+    private final static JsonLogger ENGINE_LOGGER = new JsonLogger(0);
 
     HarvestAction action;
     GameState state;
@@ -22,7 +23,7 @@ public class HarvestActionTest {
 
     @Before
     public void setup() {
-        action = new HarvestAction(MY_PLAYER_ID);
+        action = new HarvestAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         ItemType myPlayerItem = ItemType.NONE;
         UpgradeType myPlayerUpgrade = UpgradeType.NONE;
         ItemType opponentPlayerItem = ItemType.NONE;
@@ -67,7 +68,7 @@ public class HarvestActionTest {
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         Assert.assertEquals(1, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
         Assert.assertEquals(CropType.POTATO, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().get(0).getType());
 
@@ -96,7 +97,7 @@ public class HarvestActionTest {
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         Assert.assertEquals(0, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
 
         Assert.assertEquals(
@@ -132,7 +133,7 @@ public class HarvestActionTest {
 
         System.out.println(action.coords);
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         Assert.assertEquals(
                     state.getPlayer(MY_PLAYER_ID).getCarryingCapacity(),
@@ -158,7 +159,7 @@ public class HarvestActionTest {
 
         state.getPlayer(MY_PLAYER_ID).setPosition(noCropPos);
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         Assert.assertEquals(state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size(), 0);
 
     }
@@ -172,7 +173,7 @@ public class HarvestActionTest {
                 new Position(GAME_CONFIG.BOARD_WIDTH / 4,
                         GAME_CONFIG.BOARD_HEIGHT / 4));
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         Assert.assertEquals(0, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
 //        Assert.assertEquals(CropType.CORN, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().get(0).getType());
 
@@ -194,7 +195,7 @@ public class HarvestActionTest {
         state.getTileMap().growCrops();
         state.getTileMap().growCrops();
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         Assert.assertEquals(0, state.getPlayer(MY_PLAYER_ID).getHarvestedCrops().size());
     }
 }

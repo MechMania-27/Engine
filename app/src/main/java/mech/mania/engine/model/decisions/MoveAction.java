@@ -10,7 +10,8 @@ import java.util.regex.Pattern;
 public class MoveAction extends PlayerDecision {
     protected Position destination;
 
-    public MoveAction(int playerID) {
+    public MoveAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.destination = null;
     }
@@ -36,7 +37,7 @@ public class MoveAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
         if (this.destination == null) {
             engineLogger.severe(
                             String.format(

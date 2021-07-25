@@ -126,7 +126,7 @@ public class Main {
                 engineLogger.incrementTurn();
 
                 GameLog gameLog = new GameLog();
-                gameLoop(gameConfig, gameLog, player1, player2, engineLogger);
+                gameLoop(gameConfig, gameLog, player1, player2, player1Logger, player2Logger, engineLogger);
 
                 player1EndState = gameLog.getPlayer1EndState();
                 player2EndState = gameLog.getPlayer2EndState();
@@ -315,6 +315,7 @@ public class Main {
     protected static void gameLoop(Config gameConfig, GameLog gameLog,
                                    PlayerCommunicationInfo player1,
                                    PlayerCommunicationInfo player2,
+                                   JsonLogger player1Logger, JsonLogger player2Logger,
                                    JsonLogger engineLogger) {
         GameState gameState = new GameState(gameConfig,
                 player1.getPlayerName(), player1.getStartingItem(), player1.getStartingUpgrade(),
@@ -381,20 +382,20 @@ public class Main {
                 engineLogger.debug("Both players submitted a move decision");
                 gameState = GameLogic.movePlayer(gameState,
                         (MoveAction) player1Decision,
-                        (MoveAction) player2Decision, engineLogger);
+                        (MoveAction) player2Decision);
             } else if (player1Decision instanceof MoveAction) {
                 engineLogger.debug("Player 2 did not submit a move decision");
                 // player 2 submitted a non-move decision, so store the decision
                 gameState = GameLogic.movePlayer(gameState,
                         (MoveAction) player1Decision,
-                        new MoveAction(1), engineLogger);
+                        new MoveAction(1, player1Logger, engineLogger));
                 validPlayer2MoveAction = false;
             } else if (player2Decision instanceof MoveAction) {
                 engineLogger.debug("Player 1 did not submit a move decision");
                 // player 1 submitted a non-move decision, so store the decision
                 gameState = GameLogic.movePlayer(gameState,
-                        new MoveAction(0),
-                        (MoveAction) player2Decision, engineLogger);
+                        new MoveAction(0, player1Logger, engineLogger),
+                        (MoveAction) player2Decision);
                 validPlayer1MoveAction = false;
             } else {
                 engineLogger.debug("Both players did not submit a move decision");
@@ -452,7 +453,7 @@ public class Main {
             if (badEndState(gameLog, player1EndState, player2EndState)) return;
 
             // update game state
-            gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision, gameConfig, engineLogger);
+            gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision, gameConfig);
             engineLogger.debug("Updated game state");
 
             long endTime = System.nanoTime();

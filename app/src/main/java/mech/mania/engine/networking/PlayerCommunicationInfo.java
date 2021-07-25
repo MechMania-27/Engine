@@ -80,7 +80,6 @@ public class PlayerCommunicationInfo {
         // player turn timeout
         inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.HEARTBEAT_TIMEOUT);
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-        engineLogger.debug(String.format("Bot (pid %d): started process", pid));
     }
 
     /**
@@ -152,7 +151,7 @@ public class PlayerCommunicationInfo {
                 pid, response.length(), response));
 
         try {
-            return PlayerCommunicationUtils.parseDecision(playerNum, response);
+            return PlayerCommunicationUtils.parseDecision(playerNum, response, logger, engineLogger);
         } catch (PlayerDecisionParseException e){
             throw(e);
         }
@@ -217,5 +216,6 @@ public class PlayerCommunicationInfo {
             throw(new IOException());
         }
         inputReader.setTimeout(gameConfig.PLAYER_TIMEOUT, TimeUnit.MILLISECONDS);
+        engineLogger.debug(String.format("Bot (pid %d): started process (received heartbeat)", pid));
     }
 }

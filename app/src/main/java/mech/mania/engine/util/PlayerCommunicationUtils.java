@@ -2,6 +2,7 @@ package mech.mania.engine.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.*;
 
@@ -61,7 +62,8 @@ public class PlayerCommunicationUtils {
      * @param decisionString String to parse
      * @return PlayerDecision object
      */
-    public static PlayerDecision parseDecision(int playerID, String decisionString) throws PlayerDecisionParseException {
+    public static PlayerDecision parseDecision(int playerID, String decisionString,
+                                               JsonLogger playerLogger, JsonLogger engineLogger) throws PlayerDecisionParseException {
         int space = decisionString.indexOf(' ');
         if (space == -1) {
             throw new PlayerDecisionParseException(String.format("Action type not found in string: %s", decisionString));
@@ -73,15 +75,15 @@ public class PlayerCommunicationUtils {
 
         switch (action.toLowerCase()) {
             case "move":
-                return new MoveAction(playerID).parse(args);
+                return new MoveAction(playerID, playerLogger, engineLogger).parse(args);
             case "plant":
-                return new PlantAction(playerID).parse(args);
+                return new PlantAction(playerID, playerLogger, engineLogger).parse(args);
             case "harvest":
-                return new HarvestAction(playerID).parse(args);
+                return new HarvestAction(playerID, playerLogger, engineLogger).parse(args);
             case "buy":
-                return new BuyAction(playerID).parse(args);
+                return new BuyAction(playerID, playerLogger, engineLogger).parse(args);
             case "useitem": case "use_item":
-                return new UseItemAction(playerID).parse(args);
+                return new UseItemAction(playerID, playerLogger, engineLogger).parse(args);
             default:
                 throw new PlayerDecisionParseException(String.format("Unrecognized action: %s", action));
         }

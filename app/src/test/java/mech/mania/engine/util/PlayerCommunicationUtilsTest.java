@@ -66,23 +66,23 @@ public class PlayerCommunicationUtilsTest {
         // TODO: add crashing tests
 
         String decisionString = "buy corn 1";
-        PlayerDecision decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        PlayerDecision decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof BuyAction);
 
         decisionString = "harvest corn 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof HarvestAction);
 
         decisionString = "move 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof MoveAction);
 
         decisionString = "plant corn 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof PlantAction);
 
         decisionString = "use_item scarecrow 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof UseItemAction);
     }
 

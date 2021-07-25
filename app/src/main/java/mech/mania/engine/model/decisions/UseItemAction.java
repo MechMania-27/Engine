@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 
 public class UseItemAction extends PlayerDecision {
 
-    public UseItemAction(int playerID) {
+    public UseItemAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
     }
 
@@ -24,7 +25,7 @@ public class UseItemAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
         Position loc = state.getPlayer(playerID).getPosition();
         ItemType item = state.getPlayer(playerID).getItem();
         TileMap map = state.getTileMap();

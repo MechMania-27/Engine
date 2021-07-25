@@ -35,28 +35,26 @@ public class GameLogic {
 
     public static GameState movePlayer(GameState gameState,
                                        MoveAction player1Decision,
-                                       MoveAction player2Decision,
-                                       JsonLogger engineLogger) {
+                                       MoveAction player2Decision) {
         GameState newGameState = new GameState(gameState);
-        player1Decision.performAction(newGameState, engineLogger);
-        player2Decision.performAction(newGameState, engineLogger);
+        player1Decision.performAction(newGameState);
+        player2Decision.performAction(newGameState);
         return newGameState;
     }
 
     public static GameState updateGameState(GameState gameState,
                                             PlayerDecision player1Decision,
                                             PlayerDecision player2Decision,
-                                            Config gameConfig,
-                                            JsonLogger engineLogger) {
+                                            Config gameConfig) {
         GameState newGameState = new GameState(gameState);
         newGameState.setTurn(gameState.getTurn() + 1);
 
         // Perform non-movement actions
         if (! (player1Decision instanceof MoveAction)) {
-            player1Decision.performAction(newGameState, engineLogger);
+            player1Decision.performAction(newGameState);
         }
         if (! (player2Decision instanceof MoveAction)) {
-            player2Decision.performAction(newGameState, engineLogger);
+            player2Decision.performAction(newGameState);
         }
 
         // Grow crops

@@ -11,7 +11,8 @@ public class BuyAction extends PlayerDecision {
     protected ArrayList<CropType> seeds;
     protected ArrayList<Integer> quantities;
 
-    public BuyAction(int playerID) {
+    public BuyAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
     }
 
@@ -41,7 +42,7 @@ public class BuyAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
         Player player = state.getPlayer(playerID);
         TileType curTile = state.getTileMap().getTileType(player.getPosition());
         if (curTile != TileType.GREEN_GROCER) {

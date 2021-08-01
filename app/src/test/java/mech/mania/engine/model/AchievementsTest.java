@@ -110,15 +110,15 @@ public class AchievementsTest {
         gameState.getPlayer1().setMoney(10000);
         moveToGrocer.performAction(gameState, engineLogger);
         buyAction.performAction(gameState, engineLogger);
-        PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", 3, 1));
+        PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", 3, 4));
         moveToTile.performAction(gameState, engineLogger);
-        PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", 3, 1));
+        PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", 3, 4));
         plant.performAction(gameState, engineLogger);
-        Position p = new Position(3, 1);
+        Position p = new Position(3, 4);
         gameState.getTileMap().get(p).getCrop().setGrowthTimer(0);
-        player2.setPosition(new Position(3, 2));
+        player2.setPosition(new Position(3, 3));
         player1.setPosition(new Position(9,9));
-        PlayerDecision harvest = new HarvestAction(1).parse("3 1");
+        PlayerDecision harvest = new HarvestAction(1).parse("3 4");
         harvest.performAction(gameState, engineLogger);
         PlayerDecision moveToGrocer2 = new MoveAction(1).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         moveToGrocer2.performAction(gameState, engineLogger);
@@ -168,17 +168,17 @@ public class AchievementsTest {
         plantCorn.performAction(gameState, engineLogger);
 
         for(int i = 0; i < 5; i++) {
-            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", i, 2));
+            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", i, 4));
             moveToTile.performAction(gameState, engineLogger);
-            PlayerDecision plant = new PlantAction(0).parse(String.format("grape %d %d", i, 2));
+            PlayerDecision plant = new PlantAction(0).parse(String.format("grape %d %d", i, 4));
             plant.performAction(gameState, engineLogger);
-            Position p = new Position(i, 2);
+            Position p = new Position(i, 4);
             gameState.getTileMap().get(p).getCrop().setGrowthTimer(0);
         }
         player1.setPosition(new Position(9,9));
         for(int i = 0; i < 5; i++) {
-            player2.setPosition(new Position(i, 2));
-            PlayerDecision harvest = new HarvestAction(1).parse(String.format("grape %d %d", i, 2));
+            player2.setPosition(new Position(i, 4));
+            PlayerDecision harvest = new HarvestAction(1).parse(String.format("grape %d %d", i, 4));
             harvest.performAction(gameState, engineLogger);
         }
 

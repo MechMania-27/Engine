@@ -36,7 +36,7 @@ public enum UpgradeType {
             return UpgradeType.NONE;
         }
         upgrade = upgrade.toUpperCase();
-        upgrade = upgrade.replaceAll("-", "_");
+        upgrade = upgrade.replaceAll("[-_]", "");
 
         // handle any two word upgrades
         switch (upgrade) {

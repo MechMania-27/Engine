@@ -119,6 +119,7 @@ public class Player {
         this.hasDeliveryDrone = other.hasDeliveryDrone;
         this.useCoffeeThermos = other.useCoffeeThermos;
         this.itemTimeExpired = other.itemTimeExpired;
+        this.achievements = other.achievements;
     }
 
     public void sellInventory() {

@@ -2,16 +2,15 @@ package mech.mania.engine.model;
 
 
 import java.util.ResourceBundle;
-import java.util.function.BiFunction;
 
 public enum ItemType {
-    RAIN_TOTEM("itemtype.raintotem", ItemType::rainTotemProcess),
-    FERTILITY_IDOL("itemtype.fertilityidol", ItemType::fertilityIdolProcess),
-    PESTICIDE("itemtype.pesticide", ItemType::pesticideProcess),
-    SCARECROW("itemtype.scarecrow", ItemType::scarecrowProcess),
-    DELIVERY_DRONE("itemtype.deliverydrone", ItemType::deliveryDroneProcess),
-    COFFEE_THERMOS("itemtype.coffeethermos", ItemType::coffeeThermosProcess),
-    NONE("itemtype.none", ItemType::nothing);
+    RAIN_TOTEM("itemtype.raintotem"),
+    FERTILITY_IDOL("itemtype.fertilityidol"),
+    PESTICIDE("itemtype.pesticide"),
+    SCARECROW("itemtype.scarecrow"),
+    DELIVERY_DRONE("itemtype.deliverydrone"),
+    COFFEE_THERMOS("itemtype.coffeethermos"),
+    NONE("itemtype.none");
 
     /**
      * ResourceBundle to get properties file values from
@@ -28,14 +27,8 @@ public enum ItemType {
      * properties.
      */
     private String propsPrefix;
-    BiFunction<Player, TileMap, Boolean> applyProcess;
-    ItemType(String propsPrefix, BiFunction<Player, TileMap, Boolean> process) {
+    ItemType(String propsPrefix) {
         this.propsPrefix = propsPrefix;
-        this.applyProcess = process;
-    }
-
-    public BiFunction<Player, TileMap, Boolean> getApplyProcess() {
-        return applyProcess;
     }
 
     public String getDescription() {
@@ -59,100 +52,4 @@ public enum ItemType {
 
         return ItemType.valueOf(item);
     }
-
-    private static boolean rainTotemProcess(Player player, TileMap tilemap){
-        if (!tilemap.isValidPosition(player.getPosition())) return false;
-        for (int i = 0; i < 5; ++i) {
-            for (int j = 0; j < 5; ++j){
-                Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
-                if (tile != null){
-                    tile.setRainTotemEffect(true);
-                }
-            }
-        }
-        return true;
-    }
-    private static boolean fertilityIdolProcess(Player player, TileMap tilemap){
-        if (!tilemap.isValidPosition(player.getPosition())) return false;
-        for (int i = 0; i < 5; ++i) {
-            for (int j = 0; j < 5; ++j){
-                Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
-                if (tile != null){
-                    tile.setFertilityIdolEffect(true);
-                }
-            }
-        }
-        return true;
-    }
-    private static boolean pesticideProcess(Player player, TileMap tilemap){
-        if (!tilemap.isValidPosition(player.getPosition())) return false;
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j){
-                Tile tile = tilemap.getTile(new Position(i - 1, j - 1));
-                if (tile != null) {
-                    tile.getCrop().applyPesticide();
-                }
-            }
-        }
-        return true;
-    }
-    private static boolean scarecrowProcess(Player player, TileMap tilemap){
-        if (!tilemap.isValidPosition(player.getPosition())) return false;
-        for (int i = 0; i < 5; ++i) {
-            for (int j = 0; j < 5; ++j){
-                Tile tile = tilemap.getTile(new Position(i - 2, j - 2));
-                if (tile != null){
-                    tile.setScarecrowEffect(player.getPlayerID());
-                }
-            }
-        }
-        return true;
-    }
-
-    private static boolean deliveryDroneProcess(Player player, TileMap tilemap) {
-        player.setDeliveryDrone(true);
-        return true;
-    }
-
-    private static boolean coffeeThermosProcess(Player player, TileMap tilemap) {
-        player.setUseCoffeeThermos(true);
-        return true;
-    }
-
-    private static boolean nothing(Player player, TileMap tilemap){
-        // do nothing
-        return true;
-    }
 }
-
-/*
-
-    private ItemType type;
-    private String description;  // optional
-
-    public Item(ItemType type) {
-        this.type = type;
-    }
-
-    public Item(ItemType type, String description) {
-        this.type = type;
-        this.description = description;
-    }
-
-    public ItemType getType() {
-        return type;
-    }
-
-    public void setType(ItemType type) {
-        this.type = type;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-}
-*/

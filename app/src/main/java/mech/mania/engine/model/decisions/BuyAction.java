@@ -44,8 +44,9 @@ public class BuyAction extends PlayerDecision {
     public void performAction(GameState state, JsonLogger engineLogger) {
         Player player = state.getPlayer(playerID);
         TileType curTile = state.getTileMap().getTileType(player.getPosition());
-        if (curTile != TileType.GREEN_GROCER) {
-            engineLogger.severe(String.format("Player %d failed to purchase, not on Green Grocer tile", playerID + 1));
+        if (!player.getDeliveryDrone() && curTile != TileType.GREEN_GROCER) {
+            engineLogger.severe(String.format("Player %d failed to purchase, not on Green Grocer" +
+                                                "tile and no delivery drone", playerID + 1));
             return;
         }
 

@@ -25,6 +25,15 @@ public final class Config {
     public final int CARRYING_CAPACITY;
     public final int PROTECTION_RADIUS;
 
+    // =========== UPGRADE CONSTANTS ============
+    public final double GREEN_GROCER_LOYALTY_CARD_DISCOUNT;
+    public final double RABBITS_FOOT_DOUBLE_DROP_CHANCE;
+    public final int LONGER_LEGS_MAX_MOVEMENT;
+    public final int SEED_A_PULT_PLANT_RADIUS;
+    public final int LONGER_SCYTHE_HARVEST_RADIUS;
+    public final int BACKPACK_CARRYING_CAPACITY;
+    public final int SPYGLASS_PROTECTION_RADIUS;
+
     // ========== OTHER CONSTANTS ===============
     public final String REPLAY_FILENAME;
     public final String ENGINELOG_FILENAME;
@@ -64,6 +73,14 @@ public final class Config {
         REPLAY_FILENAME =        rb.getString("replayfile.name");
         ENGINELOG_FILENAME =     rb.getString("enginelogfile.name");
         PLAYERLOG_EXTENSION =    rb.getString("playerlogfile.extension");
+
+        GREEN_GROCER_LOYALTY_CARD_DISCOUNT  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_discount"));
+        RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString("upgrades.rabbits_foot_double_drop_chance"));
+        LONGER_LEGS_MAX_MOVEMENT            = Integer.parseInt(rb.getString("upgrades.longer_legs_max_movement"));
+        SEED_A_PULT_PLANT_RADIUS            = Integer.parseInt(rb.getString("upgrades.seed_a_pult_plant_radius"));
+        LONGER_SCYTHE_HARVEST_RADIUS        = Integer.parseInt(rb.getString("upgrades.longer_scythe_harvest_radius"));
+        BACKPACK_CARRYING_CAPACITY          = Integer.parseInt(rb.getString("upgrades.backpack_carrying_capacity"));
+        SPYGLASS_PROTECTION_RADIUS          = Integer.parseInt(rb.getString("upgrades.spyglass_protection_radius"));
     }
 
 }

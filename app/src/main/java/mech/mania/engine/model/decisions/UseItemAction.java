@@ -13,7 +13,7 @@ public class UseItemAction extends PlayerDecision {
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<item>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        String regex = "";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 
@@ -25,6 +25,14 @@ public class UseItemAction extends PlayerDecision {
     }
 
     public void performAction(GameState state, JsonLogger engineLogger) {
+        if (state.getPlayer(playerID).getUsedItem()) {
+            engineLogger.severe(String.format(
+                                        "Item was already used by player %d",
+                                        playerID + 1
+            ));
+            return;
+        }
+
         Position loc = state.getPlayer(playerID).getPosition();
         ItemType item = state.getPlayer(playerID).getItem();
         TileMap map = state.getTileMap();
@@ -45,7 +53,6 @@ public class UseItemAction extends PlayerDecision {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
-                            map.get(loc.getX() + i, loc.getY() + j).setPesticideEffect(true);
                             map.get(loc.getX() + i, loc.getY() + j).getCrop().applyPesticide();
                         }
                     }
@@ -88,6 +95,12 @@ public class UseItemAction extends PlayerDecision {
                     }
                 }
                 break;
+            case COFFEE_THERMOS:
+                state.getPlayer(playerID).setUseCoffeeThermos(true);
+                break;
+            case DELIVERY_DRONE:
+                state.getPlayer(playerID).setDeliveryDrone(true);
+                break;
         }
 
         if (playerID == 0) {
@@ -95,6 +108,8 @@ public class UseItemAction extends PlayerDecision {
         } else {
             map.get(loc).setP2Item(item);
         }
+
+        state.getPlayer(playerID).setUsedItem();
 
         engineLogger.info(
                         String.format(

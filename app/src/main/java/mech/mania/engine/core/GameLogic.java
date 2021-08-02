@@ -5,6 +5,7 @@ import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
+import mech.mania.engine.model.decisions.UseItemAction;
 
 public class GameLogic {
     public static boolean isGameOver(GameState gameState, Config gameConfig) {
@@ -59,6 +60,44 @@ public class GameLogic {
             player2Decision.performAction(newGameState, engineLogger);
         }
 
+        if (gameState.getPlayer1().getDeliveryDrone()) {
+            if (gameState.getPlayer1().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer1().setDeliveryDrone(false);
+            } else {
+                // just activated drone
+                newGameState.getPlayer1().setItemTimeExpired();
+            }
+        }
+
+        if (gameState.getPlayer2().getDeliveryDrone()) {
+            if (gameState.getPlayer2().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer2().setDeliveryDrone(false);
+            } else {
+                newGameState.getPlayer2().setItemTimeExpired();
+            }
+        }
+
+        if (gameState.getPlayer1().getUseCoffeeThermos()) {
+            if (gameState.getPlayer1().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer1().setUseCoffeeThermos(false);
+            } else {
+                // just activated drone
+                newGameState.getPlayer1().setItemTimeExpired();
+            }
+        }
+
+        if (gameState.getPlayer2().getUseCoffeeThermos()) {
+            if (gameState.getPlayer2().getItemTimeExpired()) {
+                // it's already been 1 turn
+                newGameState.getPlayer2().setUseCoffeeThermos(false);
+            } else {
+                newGameState.getPlayer2().setItemTimeExpired();
+            }
+        }
+
         // Grow crops
         newGameState.getTileMap().growCrops();
 
@@ -76,6 +115,8 @@ public class GameLogic {
 
             }
         }
+
+
 
         return newGameState;
     }

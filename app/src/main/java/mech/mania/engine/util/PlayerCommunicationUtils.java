@@ -41,7 +41,7 @@ public class PlayerCommunicationUtils {
      * @param playerNum player number to set for the game state (0 or 1)
      * @return String to give to bot
      */
-    public static String sendInfoFromGameState(GameState gameState, int playerNum) {
+    public static String sendInfoFromGameState(GameState gameState, int playerNum, String feedback) {
 //        Gson gson = new GsonBuilder()
 //                .registerTypeAdapter(GameState.class, new CustomSerializerGameStates())
 //                .create();
@@ -50,6 +50,7 @@ public class PlayerCommunicationUtils {
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
         gameState.setPlayerNum(playerNum + 1);
+        gameState.setFeedback(feedback);
         String s = gson.toJson(gameState, GameState.class);
         return s;
     }

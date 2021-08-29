@@ -97,7 +97,7 @@ public class AchievementsTest {
             //gameState = GameLogic.updateGameState(gameState, plant, player2Decision, gameConfig, engineLogger);
         }
         gameState.setTurn(155);
-        gameState = GameLogic.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig, engineLogger);
+        gameState = GameLogic.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig);
         //Position p = new Position(3, 0);
         //Tile t = gameState.getTileMap().getTile(p);
         //System.out.println(t.getType());

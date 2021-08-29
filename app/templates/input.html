@@ -3,7 +3,6 @@
     const socket = io();
     socket.on('connect', function() {
         console.log('received \'connect\'');
-        socket.emit('on_connection', {data: 'I\'m connected!'});
         document.getElementById("header").innerHTML = "Welcome to MM27 (connected)";
     });
 
@@ -17,6 +16,11 @@
         document.getElementById("instruction_field").innerHTML = text;
     })
 
+    socket.on('reset', function() {
+        console.log('received \'reset\'')
+        document.getElementById("header").value = "Welcome to MM27"
+    })
+
     function submitDecision() {
         const textboxValue = document.getElementById("input_command_textbox").value;
         console.log('value inside textbox = \'' + textboxValue + '\', submitting this via \'submit\'');
@@ -25,7 +29,7 @@
     }
 </script>
 
-<h1 id="header">Welcome to MM27</h1>
+<h1 id="header">MechMania27 Test Human Starterpack</h1>
 <p id="instruction_field">Please wait until the engine responds.</p>
 <label for="input_command_textbox"></label>
 <input type="text" id="input_command_textbox"/>

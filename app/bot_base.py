@@ -21,19 +21,29 @@ class Logger:
 
 logger = Logger()
 
-signal.signal(signal.SIGTERM, lambda: exit(0))
-
 action_text = None
 
 cli.show_server_banner = lambda *x: None
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, logger=True, engineio_logger=True)
+socketio_app = None
+
+signal.signal(signal.SIGTERM, lambda: socketio.emit('disconnect') and exit())
 
 
-@socketio.on('on_connection')
-def handle_on_connection(data):
-    logger.info('connected! received data: ' + str(data))
+def ack():
+    logger.info("[Ack] Client has successfully received message!")
+
+
+@socketio.on('connect')
+def handle_on_connection():
+    logger.info('[connect] Client connected!')
+
+
+@socketio.on('disconnect')
+def handle_on_connection():
+    logger.info('[disconnect] Client disconnected!')
 
 
 @socketio.on('submit')
@@ -81,7 +91,7 @@ def send_decision(decision: str) -> None:
 
 def get_item() -> str:
     global action_text
-    socketio.emit("request", "Please submit an item to use")
+    socketio.emit("request", "Please submit an item to use", callback=ack)
 
     # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
@@ -92,13 +102,13 @@ def get_item() -> str:
     action_text = None
 
     # display on screen that the bot has received their information
-    socketio.emit("request", "Sent. Waiting for next instruction.")
+    socketio.emit("request", "Sent. Waiting for next instruction.", callback=ack)
     return item
 
 
 def get_upgrade() -> str:
     global action_text
-    socketio.emit("request", "Please submit an upgrade to use")
+    socketio.emit("request", "Please submit an upgrade to use", callback=ack)
 
     # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
@@ -109,7 +119,7 @@ def get_upgrade() -> str:
     action_text = None
 
     # display on screen that the bot has received their information
-    socketio.emit("request", "Sent. Waiting for next instruction.")
+    socketio.emit("request", "Sent. Waiting for next instruction.", callback=ack)
     return upgrade
 
 
@@ -181,7 +191,7 @@ def get_move_decision(game_state) -> str:
     socketio.emit("request", f"Please submit a move decision.<br>Board State:<br>" +
                   print_board(game_state["tileMap"]["tiles"]) +
                   f"\nPlayer: {player_num}, Current " +
-                  f"position: ({pos['x']},{pos['y']})")
+                  f"position: ({pos['x']},{pos['y']})", callback=ack)
 
     # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
@@ -192,7 +202,7 @@ def get_move_decision(game_state) -> str:
     action_text = None
 
     # display on screen that the bot has received their information
-    socketio.emit("request", "Sent. Waiting for next instruction.")
+    socketio.emit("request", "Sent. Waiting for next instruction.", callback=ack)
     return move
 
 
@@ -204,7 +214,7 @@ def get_action_decision(game_state) -> str:
     socketio.emit("request", f"Please submit an action decision.\nBoard State:\n" +
                   print_board(game_state["tileMap"]["tiles"]) +
                   f"\nPlayer: {player_num}, Current " +
-                  f"position: ({pos['x']},{pos['y']})")
+                  f"position: ({pos['x']},{pos['y']})", callback=ack)
 
     # wait for action_text to be populated (when the user presses submit)
     while action_text is None:
@@ -215,22 +225,16 @@ def get_action_decision(game_state) -> str:
     action_text = None
 
     # display on screen that the bot has received their information
-    socketio.emit("request", "Sent. Waiting for next instruction.")
+    socketio.emit("request", "Sent. Waiting for next instruction.", callback=ack)
     return action
 
 
 @app.route('/test', methods=["GET", "POST"])
 def test():
-    if request.method == "POST":
-        input = request.form['input_command']
-        send_decision(input)
-        logger.info(f"Sending {input} as decision")
-        return render_template("input.html")
-
     return render_template("input.html")
 
 
-if __name__ == "__main__":
+def main():
     send_heartbeat()
     logger.info("Starting Flask server")
     socketio_app = threading.Thread(
@@ -240,6 +244,7 @@ if __name__ == "__main__":
     socketio_app.start()
 
     time.sleep(3)
+    socketio.emit("reset", "", callback=ack)
     logger.info("About to send item and upgrade")
     send_decision(get_item())
     send_decision(get_upgrade())
@@ -278,3 +283,8 @@ if __name__ == "__main__":
     # all logging and errors should be redirected to sys.stderr
     # while all commands sent back to the game engine as decision should
     # be sent in stdout using print
+
+
+if __name__ == "__main__":
+    main()
+

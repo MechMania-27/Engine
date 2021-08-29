@@ -52,78 +52,53 @@ public class HarvestAction extends PlayerDecision {
 
         for (Position coord : coords) {
             if (GameUtils.distance(curPosition, coord) > player.getHarvestRadius()) {
-                engineLogger.severe(
-                                    String.format(
-                                            "Player %d failed to harvest at %s outside of harvest radius %d",
-                                            playerID + 1,
-                                            coord,
-                                            player.getHarvestRadius()));
+                String message = String.format("failed to harvest at %s outside of harvest radius %d",
+                        coord,
+                        player.getHarvestRadius());
+                engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 continue;
             }
 
             if (curCropCount == player.getCarryingCapacity()) {
-                engineLogger.severe(
-                                    String.format(
-                                                "Player %d attempted to harvest at %s, more crops than carrying capacity %d",
-                                                playerID + 1,
-                                                coord,
-                                                player.getCarryingCapacity()));
+                String message = String.format("attempted to harvest at %s, more crops than carrying capacity %d",
+                        coord,
+                        player.getCarryingCapacity());
+                engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 break;
             }
 
             Tile target = state.getTileMap().get(coord);
             if (target.getCrop().getType() == CropType.NONE) {
-                engineLogger.severe(
-                        String.format(
-                                "Player %d attempted to harvest where no crop was found at %s",
-                                playerID + 1,
-                                coord
-                        )
-                );
+                String message = String.format("attempted to harvest where no crop was found at %s", coord);
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 continue;
             }
 
             if (target.getCrop().getGrowthTimer() > 0) {
-                engineLogger.severe(
-                        String.format(
-                                "Player %d attempted to harvest an unripe crop at %s",
-                                playerID + 1,
-                                coord
-                        )
-                );
+                String message = String.format("attempted to harvest an unripe crop at %s", coord);
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: ", playerID + 1));
                 continue;
             }
 
             if (GameUtils.distance(opponent.getPosition(), coord) <= opponent.getProtectionRadius()) {
-                engineLogger.severe(
-                        String.format(
-                                "Player %d attempted to harvest at %s inside opponent's protection radius",
-                                playerID + 1,
-                                coord
-                        )
-                );
+                String message = String.format("attempted to harvest at %s inside opponent's protection radius", coord);
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d", playerID + 1));
                 continue;
             }
 
             if (target.isScarecrowEffect() >= 0 && target.isScarecrowEffect() != playerID) {
-                engineLogger.severe(
-                        String.format(
-                                "Player %d attempted to harvest at %s inside opponent's scarecrow radius",
-                                playerID + 1,
-                                coord
-                        )
-                );
+                String message = String.format("attempted to harvest at %s inside opponent's scarecrow radius", coord);
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d", playerID + 1));
                 continue;
             }
 
-            engineLogger.info(
-                    String.format(
-                            "Player %d harvested crop %s from %s",
-                            playerID + 1,
-                            target.getCrop().getType(),
-                            coord
-                    )
-            );
+            String message = String.format("harvested crop %s from %s", target.getCrop().getType(), coord);
+            playerLogger.feedback(message);
+            engineLogger.info(String.format("Player %d ", playerID + 1));
 
             //update achievements
             Achievements achievements = player.getAchievements();

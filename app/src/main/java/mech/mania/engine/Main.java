@@ -48,9 +48,9 @@ public class Main {
             return;
         }
 
-        JsonLogger player1Logger = new JsonLogger(0);
-        JsonLogger player2Logger = new JsonLogger(0);
-        JsonLogger engineLogger = new JsonLogger(0);
+        JsonLogger player1Logger = new JsonLogger(0, "player1");
+        JsonLogger player2Logger = new JsonLogger(0, "player2");
+        JsonLogger engineLogger = new JsonLogger(0, "engine");
 
         // should the logger print debug statements?
         player1Logger.setDebug(true);
@@ -73,6 +73,7 @@ public class Main {
 
         // player process startup
         try {
+            engineLogger.debug("Starting player 1 process...");
             player1.start();
             player1.checkHeartbeat();
             engineLogger.debug("Started player 1 process");
@@ -82,6 +83,7 @@ public class Main {
         }
 
         try {
+            engineLogger.debug("Starting player 2 process...");
             player2.start();
             player2.checkHeartbeat();
             engineLogger.debug("Started player 2 process");
@@ -332,6 +334,7 @@ public class Main {
             player2EndState = null;
 
             try {
+                engineLogger.debug("Sending player 1's game state...");
                 player1.sendGameState(gameState);
                 engineLogger.debug("Sent player 1 a game state");
             } catch (IOException | IllegalThreadStateException e) {
@@ -340,6 +343,7 @@ public class Main {
             }
 
             try {
+                engineLogger.debug("Sending player 2's game state...");
                 player2.sendGameState(gameState);
                 engineLogger.debug("Sent player 2 a game state");
             } catch (IOException | IllegalThreadStateException e) {
@@ -358,6 +362,7 @@ public class Main {
             PlayerDecision player2Decision = null;
 
             try {
+                engineLogger.debug("Getting player 1's decision...");
                 player1Decision = player1.getPlayerDecision();
                 engineLogger.debug("Got player 1's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
@@ -366,6 +371,7 @@ public class Main {
             }
 
             try {
+                engineLogger.debug("Getting player 2's decision...");
                 player2Decision = player2.getPlayerDecision();
                 engineLogger.debug("Got player 2's decision");
             } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
@@ -405,6 +411,7 @@ public class Main {
 
             // send the players another game state after moving
             try {
+                engineLogger.debug("Sending player 1's game state...");
                 player1.sendGameState(gameState);
                 engineLogger.debug("Sent player 1 a game state");
             } catch (IOException | IllegalThreadStateException e) {
@@ -413,6 +420,7 @@ public class Main {
             }
 
             try {
+                engineLogger.debug("Sending player 2's game state...");
                 player2.sendGameState(gameState);
                 engineLogger.debug("Sent player 2 a game state");
             } catch (IOException | IllegalThreadStateException e) {
@@ -428,6 +436,7 @@ public class Main {
 
             if (validPlayer1MoveAction) {
                 try {
+                    engineLogger.debug("Getting player 1's action decision...");
                     player1Decision = player1.getPlayerDecision();
                     engineLogger.debug("Got player 1's action decision");
                 } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {
@@ -440,6 +449,7 @@ public class Main {
 
             if (validPlayer2MoveAction) {
                 try {
+                    engineLogger.debug("Getting player 2's action decision...");
                     player2Decision = player2.getPlayerDecision();
                     engineLogger.debug("Got player 2's action decision");
                 } catch (IOException | IllegalThreadStateException | PlayerDecisionParseException e) {

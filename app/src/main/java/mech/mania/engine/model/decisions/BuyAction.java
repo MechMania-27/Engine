@@ -53,15 +53,13 @@ public class BuyAction extends PlayerDecision {
         for (int i = 0; i < seeds.size(); i++) {
             int cost = seeds.get(i).getSeedBuyPrice() * quantities.get(i);
             if (cost > player.getMoney()) {
-                engineLogger.severe(
-                                String.format(
-                                                "Player %d failed to purchase %d %s seeds, budget %.2f, cost %d",
-                                                playerID + 1,
-                                                quantities.get(i),
-                                                seeds.get(i),
-                                                player.getMoney(),
-                                                cost)
-                );
+                String message = String.format("Failed to purchase %d %s seeds, budget %.2f, cost %d",
+                        quantities.get(i),
+                        seeds.get(i),
+                        player.getMoney(),
+                        cost);
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 continue;
             }
             player.addSeeds(seeds.get(i), quantities.get(i));
@@ -69,9 +67,9 @@ public class BuyAction extends PlayerDecision {
             Achievements achievements = player.getAchievements();
             achievements.spendMoney(cost);
 
-            engineLogger.info(String.format("Player %d bought %d %s seeds",
-                    playerID + 1, quantities.get(i), seeds.get(i)));
-
+            String message = String.format(" bought %d %s seeds",
+                    quantities.get(i), seeds.get(i));
+            engineLogger.info(String.format("Player %d: ", playerID + 1) + message);
         }
 
     }

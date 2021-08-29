@@ -31,6 +31,9 @@ public class PlayerCommunicationInfo {
     private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
     private BufferedWriter writer;
 
+    private Thread errorStreamCatchProcess;
+    private Thread errorStreamReadProcess;
+
     private ItemType startingItem;
     private UpgradeType startingUpgradeType;
     
@@ -67,7 +70,7 @@ public class PlayerCommunicationInfo {
         // (reading from both input and error streams requires at least one
         // extra thread reading one of the streams to keep the buffer empty
         // https://stackoverflow.com/questions/1349298/reading-input-and-error-streams-concurrently-using-bufferedreaders-hangs)
-        Thread errorStreamCatchProcess = new Thread(() -> {
+        errorStreamCatchProcess = new Thread(() -> {
             try {
                 IOUtils.copy(process.getErrorStream(), errorStream);
             } catch (IOException e) {
@@ -75,6 +78,30 @@ public class PlayerCommunicationInfo {
             }
         });
         errorStreamCatchProcess.start();
+
+        errorStreamReadProcess = new Thread(() -> {
+            while (true) {
+                String[] allMessages = errorStream.toString().split("\n");
+                for (String message : allMessages) {
+                    if (!message.contains(":")) {
+                        logger.severe(message);
+                        continue;
+                    }
+                    switch (message.substring(0, message.indexOf(":"))) {
+                        case "info":
+                            logger.info(message.substring(message.indexOf(":") + 2));
+                            break;
+                        case "debug":
+                            logger.debug(message.substring(message.indexOf(":") + 2));
+                            break;
+                        default:
+                            logger.severe(message);
+                    }
+                }
+                errorStream.reset();
+            }
+        });
+        errorStreamReadProcess.start();
 
         // originally set timeout to heartbeat timeout. once we receive a heartbeat from the bot we can set it to the
         // player turn timeout
@@ -89,6 +116,9 @@ public class PlayerCommunicationInfo {
         try {
             inputReader.close();
             writer.close();
+            process.destroyForcibly();
+            errorStreamCatchProcess.interrupt();
+            errorStreamReadProcess.interrupt();
         } catch (IOException e) {
             engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
                     pid, e.getClass(), e.getMessage()));
@@ -107,25 +137,6 @@ public class PlayerCommunicationInfo {
                     pid, e.getClass(), e.getMessage()));
 
             throw(e);
-        } finally {
-            String[] allMessages = errorStream.toString().split("\n");
-            for (String message : allMessages) {
-                if (!message.contains(":")) {
-                    logger.severe(message);
-                    continue;
-                }
-                switch (message.substring(0, message.indexOf(":"))) {
-                    case "info":
-                        logger.info(message.substring(message.indexOf(":") + 2));
-                        break;
-                    case "debug":
-                        logger.debug(message.substring(message.indexOf(":") + 2));
-                        break;
-                    default:
-                        logger.severe(message);
-                }
-            }
-            errorStream.reset();
         }
 
         return response;
@@ -165,7 +176,7 @@ public class PlayerCommunicationInfo {
      */
     public void sendGameState(GameState gameState) throws IOException {
         // send player turn to stdin
-        String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum);
+        String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum, logger.getFeedback());
         engineLogger.debug(String.format("Bot (pid %d): writing (len:%d): %.30s",
                 pid, message.length(), message));
         writer.append(message);

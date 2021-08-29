@@ -17,6 +17,8 @@ public class GameState {
     private TileMap tileMap;
     @Expose
     private int playerNum;
+    @Expose
+    private String feedback;
 
     private Config gameConfig;
 
@@ -83,5 +85,9 @@ public class GameState {
 
     public void setPlayerNum(int playerNum) {
         this.playerNum = playerNum;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 }

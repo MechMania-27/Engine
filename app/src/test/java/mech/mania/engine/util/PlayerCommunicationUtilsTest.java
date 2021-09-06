@@ -42,12 +42,12 @@ public class PlayerCommunicationUtilsTest {
         upgradeString = null;
         Assert.assertEquals(UpgradeType.NONE, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
-        upgradeString = "BIGGER_MUSCLES";
-        Assert.assertEquals(UpgradeType.BIGGER_MUSCLES, PlayerCommunicationUtils.upgradeFromString(upgradeString));
-        upgradeString = "bigger-muscles";
-        Assert.assertEquals(UpgradeType.BIGGER_MUSCLES, PlayerCommunicationUtils.upgradeFromString(upgradeString));
-        upgradeString = "biggermuscles";
-        Assert.assertEquals(UpgradeType.BIGGER_MUSCLES, PlayerCommunicationUtils.upgradeFromString(upgradeString));
+        upgradeString = "LOYALTY_CARD";
+        Assert.assertEquals(UpgradeType.LOYALTY_CARD, PlayerCommunicationUtils.upgradeFromString(upgradeString));
+        upgradeString = "loyalty-card";
+        Assert.assertEquals(UpgradeType.LOYALTY_CARD, PlayerCommunicationUtils.upgradeFromString(upgradeString));
+        upgradeString = "loyaltycard";
+        Assert.assertEquals(UpgradeType.LOYALTY_CARD, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
         upgradeString = "longer_legs";
         Assert.assertEquals(UpgradeType.LONGER_LEGS, PlayerCommunicationUtils.upgradeFromString(upgradeString));

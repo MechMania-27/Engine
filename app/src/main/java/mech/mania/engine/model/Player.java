@@ -23,11 +23,27 @@ public class Player {
     @Expose
     private Achievements achievements;
 
+    private double discount;
+    private int playerID;
+    private int amountSpent;
+    private int protectionRadius;
+    private int harvestRadius;
+    private int plantRadius;
+    private int carryingCapacity;
+    private int maxMovement;
+    private double doubleDropChance;
+
+    private boolean usedItem = false;
+    private boolean hasDeliveryDrone = false;
+    private boolean useCoffeeThermos = false;
+    private boolean itemTimeExpired = false;
+
     private Config gameConfig;
 
-    public Player(String name, Position position, ItemType item, UpgradeType upgrade, int money, Config gameConfig) {
+    public Player(String name, int playerID, Position position, ItemType item, UpgradeType upgrade, int money, Config gameConfig) {
         this.gameConfig = gameConfig;
         this.name = name;
+        this.playerID = playerID;
         this.position = position;
         this.item = item;
         this.upgrade = upgrade;
@@ -37,9 +53,48 @@ public class Player {
         for (CropType type : CropType.values()) {
             seedInventory.put(type, 0);
         }
+
+        if (upgrade != UpgradeType.BACKPACK) {
+            this.carryingCapacity = gameConfig.CARRYING_CAPACITY;
+        } else {
+            this.carryingCapacity = gameConfig.BACKPACK_CARRYING_CAPACITY;
+        }
+
+        if (upgrade != UpgradeType.LONGER_SCYTHE) {
+            this.harvestRadius = gameConfig.HARVEST_RADIUS;
+        } else {
+            this.harvestRadius = gameConfig.LONGER_SCYTHE_HARVEST_RADIUS;
+        }
+
+        // don't need to do anything for loyalty card yet
+
+        if (upgrade != UpgradeType.LONGER_LEGS) {
+            this.maxMovement = gameConfig.MAX_MOVEMENT;
+        } else {
+            this.maxMovement = gameConfig.LONGER_LEGS_MAX_MOVEMENT;
+        }
+
+        if (upgrade != UpgradeType.RABBITS_FOOT) {
+            this.doubleDropChance = 0;
+        } else {
+            this.doubleDropChance = gameConfig.RABBITS_FOOT_DOUBLE_DROP_CHANCE;
+        }
+
+        if (upgrade != UpgradeType.SEED_A_PULT) {
+            this.plantRadius = gameConfig.PLANT_RADIUS;
+        } else {
+            this.plantRadius = gameConfig.SEED_A_PULT_PLANT_RADIUS;
+        }
+
+        if (upgrade != UpgradeType.SPYGLASS) {
+            this.protectionRadius = gameConfig.PROTECTION_RADIUS;
+        } else {
+            this.protectionRadius = gameConfig.SPYGLASS_PROTECTION_RADIUS;
+        }
     }
 
     public Player(Player other) {
+        this.playerID = other.playerID;
         this.gameConfig = other.gameConfig;
         this.name = other.name;
         this.position = new Position(other.position);
@@ -50,7 +105,21 @@ public class Player {
         seedInventory.putAll(other.seedInventory);
         this.seedInventory = new HashMap<>(other.seedInventory);
         this.harvestedInventory = new ArrayList<>(other.harvestedInventory);
-        this.achievements = new Achievements();
+
+        this.discount = other.discount;
+        this.amountSpent = other.amountSpent;
+        this.protectionRadius = other.protectionRadius;
+        this.plantRadius = other.plantRadius;
+        this.doubleDropChance = other.doubleDropChance;
+        this.harvestRadius = other.harvestRadius;
+        this.maxMovement = other.maxMovement;
+        this.carryingCapacity = other.carryingCapacity;
+
+        this.usedItem = other.usedItem;
+        this.hasDeliveryDrone = other.hasDeliveryDrone;
+        this.useCoffeeThermos = other.useCoffeeThermos;
+        this.itemTimeExpired = other.itemTimeExpired;
+        this.achievements = other.achievements;
     }
 
     public void sellInventory() {
@@ -82,11 +151,26 @@ public class Player {
     public double getMoney() {
         return money;
     }
-
-    public void changeBalance(double delta) {
-        this.money += delta;
+    public void setMoney(int money){
+            this.money = money;
     }
+    public void changeBalance(double delta) {
+        if (delta < 0) {
+            if (this.discount != 0) {
+                this.money += delta * (1 - this.discount);
+                this.amountSpent -= delta * (1 - this.discount);
+            } else {
+                this.money += delta;
+                this.amountSpent -= delta;
+            }
 
+        } else {
+            this.money += delta;
+        }
+        if (this.upgrade == UpgradeType.LOYALTY_CARD && this.amountSpent >= 25) {
+            this.discount = gameConfig.GREEN_GROCER_LOYALTY_CARD_DISCOUNT;
+        }
+    }
     public UpgradeType getUpgrade() {
         return upgrade;
     }
@@ -94,54 +178,116 @@ public class Player {
     public void setUpgrade(UpgradeType upgradeType) {
         this.upgrade = upgradeType;
     }
-
     public ItemType getItem() {
         return item;
     }
-
     public void setItem(ItemType item) {
         this.item = item;
     }
-
     public Position getPosition() {
         return position;
     }
-
     public void setPosition(Position position) {
         this.position = position;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    // TODO factor item
-    public int getHarvestRadius() {
-        return gameConfig.HARVEST_RADIUS;
+    public int getPlayerID() {
+        return this.playerID;
     }
 
-    // TODO factor item
-    public int getPlantingRadius() {
-        return gameConfig.PLANT_RADIUS;
+    public double getDiscount() {
+        return discount;
+    }
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
-    // TODO factor item
-    public int getSpeed() {
-        return gameConfig.MAX_MOVEMENT;
+    public int getAmountSpent() {
+        return amountSpent;
+    }
+    public void setProtectionRadius(int protectionRadius) {
+        this.protectionRadius = protectionRadius;
     }
 
-    // TODO factor item
-    public int getCarryingCapacity() {
-        return gameConfig.CARRYING_CAPACITY;
-    }
-
-    // TODO stub for now
     public int getProtectionRadius() {
-        return gameConfig.PROTECTION_RADIUS;
+        return protectionRadius;
+    }
+
+    public int getHarvestRadius() {
+        return harvestRadius;
+    }
+
+    public void setHarvestRadius(int harvestRadius) {
+        this.harvestRadius = harvestRadius;
+    }
+
+    public void setCarryingCapacity(int carryingCapacity) {
+        this.carryingCapacity = carryingCapacity;
+    }
+
+    public void setMaxMovement(int maxMovement) {
+        this.maxMovement = maxMovement;
+    }
+
+    public void setDoubleDropChance(double doubleDropChance) {
+        this.doubleDropChance = doubleDropChance;
+    }
+
+    public void setPlantRadius(int plantRadius) {
+        this.plantRadius = plantRadius;
+    }
+
+    public boolean getUsedItem() {
+        return usedItem;
+    }
+
+    public void setUsedItem() {
+        this.usedItem = true;
+    }
+
+    public boolean getItemTimeExpired() {
+        return this.itemTimeExpired;
+    }
+
+    public void setItemTimeExpired() {
+        this.itemTimeExpired = true;
+    }
+
+    public boolean getDeliveryDrone() {
+        return hasDeliveryDrone;
+    }
+
+    public void setDeliveryDrone(boolean hasDeliveryDrone) {
+        this.hasDeliveryDrone = hasDeliveryDrone;
+    }
+
+    public boolean getUseCoffeeThermos() {
+        return useCoffeeThermos;
+    }
+
+    public void setUseCoffeeThermos(boolean useCoffeeThermos) {
+        this.useCoffeeThermos = useCoffeeThermos;
+    }
+
+    public int getPlantingRadius() {
+        return this.plantRadius;
+    }
+
+    public int getSpeed() {
+        if (this.getUseCoffeeThermos()) {
+            return this.maxMovement * 3;
+        }
+        return this.maxMovement;
+    }
+
+    public int getCarryingCapacity() {
+        return this.carryingCapacity;
     }
 
     public ArrayList<Crop> getHarvestedCrops() {
@@ -166,6 +312,14 @@ public class Player {
 
     public void harvest(Tile tile) {
         harvestedInventory.add(new Crop(tile.getCrop()));
+
+        if (this.doubleDropChance > 0 && harvestedInventory.size() < this.carryingCapacity) {
+            Random r = new Random();
+            if (r.nextDouble() < this.doubleDropChance) {
+                harvestedInventory.add(new Crop(tile.getCrop()));
+            }
+        }
+
         tile.clearCrop();
     }
 

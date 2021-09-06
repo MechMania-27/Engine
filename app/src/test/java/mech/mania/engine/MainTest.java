@@ -77,7 +77,7 @@ public class MainTest {
         engineLogger.incrementTurn();
 
         GameLog gameLog = new GameLog();
-        gameLoop(gameConfig, gameLog, bot1, bot2, engineLogger);
+        gameLoop(gameConfig, gameLog, bot1, bot2, player1Logger, player2Logger, engineLogger);
 
         bot1.stop();
         bot2.stop();

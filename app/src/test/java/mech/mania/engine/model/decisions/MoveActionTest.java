@@ -16,11 +16,12 @@ public class MoveActionTest {
     private final static String OPPONENT_PLAYER_NAME = "bot2";
 
     private final static Config GAME_CONFIG = new Config("debug");
-    private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
+    private final static JsonLogger BOT_LOGGER = new JsonLogger();
+    private final static JsonLogger ENGINE_LOGGER = new JsonLogger();
 
     @Test
     public void moveActionParseDecisionTest() throws PlayerDecisionParseException {
-        MoveAction action = new MoveAction(MY_PLAYER_ID);
+        MoveAction action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
 
         String regularDecision = "1 1";
         action.parse(regularDecision);
@@ -49,18 +50,18 @@ public class MoveActionTest {
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
 
         String player1Decision = "1 1";
-        MoveAction player1Action = new MoveAction(MY_PLAYER_ID);
+        MoveAction player1Action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player1Action.parse(player1Decision);
-        player1Action.performAction(state, BOT_LOGGER);
+        player1Action.performAction(state);
 
         Assert.assertEquals(new Position(1, 1), state.getPlayer(MY_PLAYER_ID).getPosition());
 
         String player2Decision = String.format("%d %d",
                 GAME_CONFIG.BOARD_WIDTH - 2,
                 GAME_CONFIG.BOARD_HEIGHT - 2);
-        MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID);
+        MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player2Action.parse(player2Decision);
-        player2Action.performAction(state, BOT_LOGGER);
+        player2Action.performAction(state);
 
         Assert.assertEquals(new Position(GAME_CONFIG.BOARD_WIDTH - 2, GAME_CONFIG.BOARD_HEIGHT - 2),
                 state.getPlayer(OPPONENT_PLAYER_ID).getPosition());
@@ -81,31 +82,31 @@ public class MoveActionTest {
         // top left to bottom right
         Position player1Destination = new Position(9, 9);
         String player1Decision = String.format("%d %d", player1Destination.getX(), player1Destination.getY());
-        MoveAction player1Action = new MoveAction(MY_PLAYER_ID);
+        MoveAction player1Action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player1Action.parse(player1Decision);
-        player1Action.performAction(state, BOT_LOGGER);
+        player1Action.performAction(state);
 
         // didn't move, ends at the stating position
         Assert.assertEquals(new Position(0, 0), state.getPlayer(MY_PLAYER_ID).getPosition());
 
         // fails for the right reason
-        List<String> exceptionLogs = BOT_LOGGER.getExceptionLogs();
+        List<String> exceptionLogs = ENGINE_LOGGER.getExceptionLogs();
         Assert.assertEquals("Player 1 failed to move to position (9,9), greater than allowed movement (18 > 10)",
                 exceptionLogs.get(exceptionLogs.size() - 1));
 
         // top right to bottom left
         Position player2Destination = new Position(0, 9);
         String player2Decision = String.format("%d %d", player2Destination.getX(), player2Destination.getY());
-        MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID);
+        MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player2Action.parse(player2Decision);
-        player2Action.performAction(state, BOT_LOGGER);
+        player2Action.performAction(state);
 
         // didn't move, ends at the starting position
         Assert.assertEquals(new Position(GAME_CONFIG.BOARD_WIDTH - 1, 0),
                 state.getPlayer(OPPONENT_PLAYER_ID).getPosition());
 
         // fails for the right reason
-        exceptionLogs = BOT_LOGGER.getExceptionLogs();
+        exceptionLogs = ENGINE_LOGGER.getExceptionLogs();
         Assert.assertEquals("Player 2 failed to move to position (0,9), greater than allowed movement (18 > 10)",
                 exceptionLogs.get(exceptionLogs.size() - 1));
     }
@@ -137,18 +138,58 @@ public class MoveActionTest {
         // green grocer move (x = 3, 4, 5, 6 are green grocers, see debug.properties)
         Position destination = new Position(4, 0);
         String decision = String.format("%d %d", destination.getX(), destination.getY());
-        MoveAction action = new MoveAction(MY_PLAYER_ID);
+        MoveAction action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         action.parse(decision);
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         // didn't move, ends at the stating position
         Assert.assertEquals(new Position(4, 0), state.getPlayer(MY_PLAYER_ID).getPosition());
         Assert.assertEquals(initialMoney + additionalMoney, state.getPlayer(MY_PLAYER_ID).getMoney(), 1e-3);
 
         // fails for the right reason
-        List<String> infoLogs = BOT_LOGGER.getInfoLogs();
+        List<String> infoLogs = ENGINE_LOGGER.getInfoLogs();
         Assert.assertEquals("Player 1 is at a GREEN_GROCER, selling inventory",
                 infoLogs.get(infoLogs.size() - 1));
+    }
+
+    @Test
+    public void upgradeMoveDistanceTest() throws PlayerDecisionParseException {
+        ItemType myPlayerItem = ItemType.NONE;
+        UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+        ItemType opponentPlayerItem = ItemType.NONE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.LONGER_LEGS;
+
+        GameState state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
+                OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
+
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(1, GAME_CONFIG.MAX_MOVEMENT + 2));
+
+        String playerDecision = "1 1";
+        MoveAction playerAction = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        playerAction.parse(playerDecision);
+        playerAction.performAction(state);
+
+        Assert.assertEquals(new Position(1, 1), state.getPlayer(OPPONENT_PLAYER_ID).getPosition());
+    }
+
+    @Test
+    public void outsideUpgradeMoveDistanceTest() throws PlayerDecisionParseException {
+        ItemType myPlayerItem = ItemType.NONE;
+        UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+        ItemType opponentPlayerItem = ItemType.NONE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.LONGER_LEGS;
+
+        GameState state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
+                OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
+
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(1, GAME_CONFIG.LONGER_LEGS_MAX_MOVEMENT + 2));
+
+        String playerDecision = "1 1";
+        MoveAction playerAction = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        playerAction.parse(playerDecision);
+        playerAction.performAction(state);
+
+        Assert.assertNotEquals(new Position(1, 1), state.getPlayer(MY_PLAYER_ID).getPosition());
     }
 
     // TODO: do we need to test null destinations? this will only occur if we forget to call parse(String)

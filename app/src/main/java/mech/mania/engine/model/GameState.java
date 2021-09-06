@@ -32,8 +32,8 @@ public class GameState {
         Position player1Position = new Position(0, 0);
         Position player2Position = new Position(gameConfig.BOARD_WIDTH - 1, 0);
 
-        Player player1 = new Player(player1Name, player1Position, player1Item, player1UpgradeType, startingMoney, gameConfig);
-        Player player2 = new Player(player2Name, player2Position, player2Item, player2UpgradeType, startingMoney, gameConfig);
+        Player player1 = new Player(player1Name, 0, player1Position, player1Item, player1UpgradeType, startingMoney, gameConfig);
+        Player player2 = new Player(player2Name, 1, player2Position, player2Item, player2UpgradeType, startingMoney, gameConfig);
 
         this.player1 = player1;
         this.player2 = player2;

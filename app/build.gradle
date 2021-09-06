@@ -51,11 +51,16 @@ jar {
                 'Main-Class': 'mech.mania.engine.Main'
         )
     }
+
+    baseName 'mm27-engine'
 }
 
+// https://stackoverflow.com/questions/4871656/using-gradle-to-build-a-jar-with-dependencies
 task fatJar(type: Jar) {
     manifest.from jar.manifest
     classifier = 'all'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     } {
@@ -64,6 +69,8 @@ task fatJar(type: Jar) {
         exclude "META-INF/*.RSA"
     }
     with jar
+
+    baseName 'mm27-engine'
 }
 
 artifacts {

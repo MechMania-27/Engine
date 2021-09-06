@@ -43,6 +43,7 @@ public class JsonLogger {
 
     public JsonLogger(int startingTurn, String loggerName) {
         this.loggerName = loggerName;
+        this.turn = startingTurn;
     }
 
     public JsonLogger(int startingTurn) {

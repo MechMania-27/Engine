@@ -62,6 +62,7 @@ public class MainTest {
                 new PlayerCommunicationInfo(gameConfig, engineLogger, player1Logger, 0,
                         "bot1", bot1Executable);
         bot1.start();
+        bot1.checkHeartbeat();
         bot1.askForStartingItems();
 
         // launch bot 2
@@ -70,6 +71,7 @@ public class MainTest {
                 new PlayerCommunicationInfo(gameConfig, engineLogger, player2Logger, 1,
                         "bot2", bot2Executable);
         bot2.start();
+        bot2.checkHeartbeat();
         bot2.askForStartingItems();
 
         player1Logger.incrementTurn();

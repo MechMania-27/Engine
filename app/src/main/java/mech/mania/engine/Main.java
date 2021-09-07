@@ -45,12 +45,13 @@ public class Main {
         }
         CommandLine commandLine = getCommandLineArgs(args, gameConfig);
         if (commandLine == null) {
+            System.err.println("CommandLineArgs object was null, quitting");
             return;
         }
 
-        JsonLogger player1Logger = new JsonLogger(0, "player1");
-        JsonLogger player2Logger = new JsonLogger(0, "player2");
-        JsonLogger engineLogger = new JsonLogger(0, "engine");
+        JsonLogger player1Logger = new JsonLogger(0, "player1", commandLine.hasOption("p"));
+        JsonLogger player2Logger = new JsonLogger(0, "player2", commandLine.hasOption("p"));
+        JsonLogger engineLogger = new JsonLogger(0, "engine", commandLine.hasOption("p"));
 
         // should the logger print debug statements?
         player1Logger.setDebug(true);
@@ -287,6 +288,13 @@ public class Main {
                 .type(boolean.class)
                 .build();
         options.addOption(debug);
+
+        Option printLogToStdout = Option.builder("p")
+                .longOpt("print-logs")
+                .desc("All log statements (engine and both players) should be printed to stdout (for debug)")
+                .type(boolean.class)
+                .build();
+        options.addOption(printLogToStdout);
 
         CommandLineParser parser = new DefaultParser();
         CommandLine commandLine = null;

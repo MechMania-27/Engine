@@ -18,7 +18,7 @@ public class GameState {
     @Expose
     private int playerNum;
     @Expose
-    private String feedback;
+    private String feedback = "";
 
     private Config gameConfig;
 

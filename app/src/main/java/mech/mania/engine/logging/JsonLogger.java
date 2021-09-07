@@ -35,19 +35,24 @@ public class JsonLogger {
     private boolean debug = true;
 
     /** Print all log statements to stdout? */
-    private final boolean printToStdout = true;
+    private final boolean printToStdout;
 
     public JsonLogger() {
-        this(0);
-    }
-
-    public JsonLogger(int startingTurn, String loggerName) {
-        this.loggerName = loggerName;
-        this.turn = startingTurn;
+        this(0, "JsonLogger", false);
     }
 
     public JsonLogger(int startingTurn) {
-        this(startingTurn, "JsonLogger");
+        this(startingTurn, "JsonLogger", false);
+    }
+
+    public JsonLogger(int startingTurn, String loggerName) {
+        this(startingTurn, loggerName, false);
+    }
+
+    public JsonLogger(int startingTurn, String loggerName, boolean printToStdout) {
+        this.loggerName = loggerName;
+        this.turn = startingTurn;
+        this.printToStdout = printToStdout;
     }
 
     /**

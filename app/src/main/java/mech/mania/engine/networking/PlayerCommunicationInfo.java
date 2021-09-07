@@ -39,6 +39,8 @@ public class PlayerCommunicationInfo {
     
     private int pid;
 
+    private boolean gameOver = false;
+
     public PlayerCommunicationInfo(Config gameConfig, JsonLogger engineLogger, JsonLogger logger,
                                    int playerNum, String playerName, String playerExecutable) {
         this.engineLogger = engineLogger;
@@ -80,7 +82,7 @@ public class PlayerCommunicationInfo {
         errorStreamCatchProcess.start();
 
         errorStreamReadProcess = new Thread(() -> {
-            while (true) {
+            while (!gameOver) {
                 String[] allMessages = errorStream.toString().split("\n");
                 for (String message : allMessages) {
                     if (!message.contains(":")) {
@@ -116,6 +118,7 @@ public class PlayerCommunicationInfo {
         try {
             inputReader.close();
             writer.close();
+            gameOver = true;
             process.destroyForcibly();
             errorStreamCatchProcess.interrupt();
             errorStreamReadProcess.interrupt();

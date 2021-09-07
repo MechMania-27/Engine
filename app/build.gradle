@@ -57,9 +57,9 @@ jar {
 
 // https://stackoverflow.com/questions/4871656/using-gradle-to-build-a-jar-with-dependencies
 task fatJar(type: Jar) {
+    duplicatesStrategy = 'include'
     manifest.from jar.manifest
     classifier = 'all'
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }

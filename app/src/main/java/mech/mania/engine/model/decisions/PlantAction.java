@@ -55,54 +55,43 @@ public class PlantAction extends PlayerDecision {
 
         for (int i = 0; i < cropTypes.size(); i++) {
             if (GameUtils.distance(player.getPosition(), coords.get(i)) > player.getPlantingRadius()) {
-                engineLogger.severe(
-                                String.format(
-                                        "Player %d is trying to plant at a position (%s) farther than planting radius (%d > %d)",
-                                        playerID + 1,
-                                        coords.get(i),
-                                        GameUtils.distance(player.getPosition(), coords.get(i)),
-                                        player.getPlantingRadius()));
+                String message = String.format("Trying to plant at a position (%s) farther than planting radius (%d > %d)",
+                        coords.get(i),
+                        GameUtils.distance(player.getPosition(), coords.get(i)),
+                        player.getPlantingRadius());
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
                 continue;
             }
 
             if (player.getSeeds().get(cropTypes.get(i)) == 0) {
-                engineLogger.severe(
-                                String.format(
-                                        "Player %d failed to plant %s string at %s, not enough",
-                                        playerID + 1,
-                                        cropTypes.get(i),
-                                        coords.get(i)));
+                String message = String.format("Failed to plant %s string at %s, not enough seeds",
+                        cropTypes.get(i), coords.get(i));
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
                 continue;
 
             }
 
             if (state.getTileMap().get(coords.get(i)).getCrop().getType() != CropType.NONE) {
-                engineLogger.severe(
-                                String.format(
-                                            "Player %d attempted to plant at %s with plant, rejecting",
-                                            playerID + 1,
-                                            coords.get(i)));
+                String message = String.format("Attempted to plant at %s with plant, rejecting", coords.get(i));
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
                 continue;
             }
 
             if (GameUtils.distance(opponent.getPosition(), coords.get(i)) <= opponent.getProtectionRadius()) {
-                engineLogger.severe(
-                                String.format(
-                                            "Player %d attempted to plant at %s inside opponent's protection radius",
-                                            playerID + 1,
-                                            coords.get(i)));
+                String message = String.format("Attempted to plant at %s inside opponent's protection radius", coords.get(i));
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
                 continue;
             }
 
             Tile target = state.getTileMap().get(coords.get(i));
             if (target.isScarecrowEffect() >= 0 && target.isScarecrowEffect() != playerID) {
-                engineLogger.severe(
-                        String.format(
-                                "Player %d attempted to harvest at %s inside opponent's scarecrow radius",
-                                playerID + 1,
-                                coords.get(i)
-                        )
-                );
+                String message = String.format("Attempted to harvest at %s inside opponent 's scarecrow radius", coords.get(i));
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
                 continue;
             }
 
@@ -113,11 +102,9 @@ public class PlantAction extends PlayerDecision {
             }
             player.removeSeeds(cropTypes.get(i), 1);
 
-            engineLogger.info(
-                            String.format(
-                                        "Player %d planted %s at %s",
-                                        playerID + 1,
-                                        cropTypes.get(i), coords.get(i)));
+            String message = String.format("Planted %s at %s", cropTypes.get(i), coords.get(i));
+            playerLogger.feedback(message);
+            engineLogger.info(String.format("Player %d: " + message, playerID + 1));
         }
     }
 }

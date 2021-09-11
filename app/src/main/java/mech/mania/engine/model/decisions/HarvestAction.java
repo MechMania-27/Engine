@@ -52,7 +52,7 @@ public class HarvestAction extends PlayerDecision {
 
         for (Position coord : coords) {
             if (GameUtils.distance(curPosition, coord) > player.getHarvestRadius()) {
-                String message = String.format("failed to harvest at %s outside of harvest radius %d",
+                String message = String.format("Failed to harvest at %s outside of harvest radius %d",
                         coord,
                         player.getHarvestRadius());
                 engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
@@ -60,7 +60,7 @@ public class HarvestAction extends PlayerDecision {
             }
 
             if (curCropCount == player.getCarryingCapacity()) {
-                String message = String.format("attempted to harvest at %s, more crops than carrying capacity %d",
+                String message = String.format("Attempted to harvest at %s, more crops than carrying capacity %d",
                         coord,
                         player.getCarryingCapacity());
                 engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
@@ -69,48 +69,50 @@ public class HarvestAction extends PlayerDecision {
 
             Tile target = state.getTileMap().get(coord);
             if (target.getCrop().getType() == CropType.NONE) {
-                String message = String.format("attempted to harvest where no crop was found at %s", coord);
+                String message = String.format("Attempted to harvest where no crop was found at %s", coord);
                 playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 continue;
             }
 
             if (target.getCrop().getGrowthTimer() > 0) {
-                String message = String.format("attempted to harvest an unripe crop at %s", coord);
+                String message = String.format("Attempted to harvest an unripe crop at %s", coord);
                 playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: ", playerID + 1));
                 continue;
             }
 
             if (GameUtils.distance(opponent.getPosition(), coord) <= opponent.getProtectionRadius()) {
-                String message = String.format("attempted to harvest at %s inside opponent's protection radius", coord);
+                String message = String.format("Attempted to harvest at %s inside opponent's protection radius", coord);
                 playerLogger.feedback(message);
-                engineLogger.severe(String.format("Player %d", playerID + 1));
+                engineLogger.severe(String.format("Player %d: ", playerID + 1));
                 continue;
             }
 
             if (target.isScarecrowEffect() >= 0 && target.isScarecrowEffect() != playerID) {
-                String message = String.format("attempted to harvest at %s inside opponent's scarecrow radius", coord);
+                String message = String.format("Attempted to harvest at %s inside opponent's scarecrow radius", coord);
                 playerLogger.feedback(message);
-                engineLogger.severe(String.format("Player %d", playerID + 1));
+                engineLogger.severe(String.format("Player %d: ", playerID + 1));
                 continue;
             }
 
-            String message = String.format("harvested crop %s from %s", target.getCrop().getType(), coord);
+            String message = String.format("Harvested crop %s from %s", target.getCrop().getType(), coord);
             playerLogger.feedback(message);
-            engineLogger.info(String.format("Player %d ", playerID + 1));
+            engineLogger.info(String.format("Player %d: ", playerID + 1));
 
             //update achievements
             Achievements achievements = player.getAchievements();
-            if(target.getPlanter() != player) {
+            if (target.getPlanter() != player) {
                 achievements.steal();
-                //System.out.println("debug");
+                engineLogger.debug(String.format("Player %d: Achievement: steal", playerID + 1));
             }
-            if(target.getCrop().getType() == CropType.GRAPE) {
+            if (target.getCrop().getType() == CropType.GRAPE) {
                 achievements.stealGrapes(1);
+                engineLogger.debug(String.format("Player %d: Achievement: steal grapes + 1", playerID + 1));
             }
-            if(target.getCrop().getType() != CropType.JOGANFRUIT && target.getCrop().getType() != CropType.DUCHAMFRUIT&& target.getCrop().getType() != CropType.GRAPE) {
+            if (target.getCrop().getType() != CropType.JOGANFRUIT && target.getCrop().getType() != CropType.DUCHAMFRUIT&& target.getCrop().getType() != CropType.GRAPE) {
                 achievements.fruit();
+                engineLogger.debug(String.format("Player %d: Achievement: fruit", playerID + 1));
             }
             player.harvest(target);
             curCropCount++;

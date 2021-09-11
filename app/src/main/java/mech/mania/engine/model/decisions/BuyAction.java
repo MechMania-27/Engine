@@ -46,8 +46,9 @@ public class BuyAction extends PlayerDecision {
         Player player = state.getPlayer(playerID);
         TileType curTile = state.getTileMap().getTileType(player.getPosition());
         if (!player.getDeliveryDrone() && curTile != TileType.GREEN_GROCER) {
-            engineLogger.severe(String.format("Player %d failed to purchase, not on Green Grocer" +
-                                                "tile and no delivery drone", playerID + 1));
+            String message = "Failed to purchase, not on Green Grocer" +
+                    "tile and no delivery drone";
+            engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
             return;
         }
 
@@ -68,7 +69,7 @@ public class BuyAction extends PlayerDecision {
             Achievements achievements = player.getAchievements();
             achievements.spendMoney(cost);
 
-            String message = String.format(" bought %d %s seeds",
+            String message = String.format("Bought %d %s seeds",
                     quantities.get(i), seeds.get(i));
             engineLogger.info(String.format("Player %d: ", playerID + 1) + message);
         }

@@ -27,10 +27,9 @@ public class UseItemAction extends PlayerDecision {
 
     public void performAction(GameState state) {
         if (state.getPlayer(playerID).getUsedItem()) {
-            engineLogger.severe(String.format(
-                                        "Item was already used by player %d",
-                                        playerID + 1
-            ));
+            String message = "Item was already used";
+            playerLogger.feedback(message);
+            engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
             return;
         }
 
@@ -41,12 +40,9 @@ public class UseItemAction extends PlayerDecision {
 
         switch (item) {
             case NONE:
-                engineLogger.severe(
-                                String.format(
-                                        "An item was never specified by player %d",
-                                        playerID + 1
-                                )
-                );
+                String message = "An item was never specified";
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
                 break;
 
             case PESTICIDE:
@@ -112,11 +108,8 @@ public class UseItemAction extends PlayerDecision {
 
         state.getPlayer(playerID).setUsedItem();
 
-        engineLogger.info(
-                        String.format(
-                                "Player %d placed %s at %s",
-                                playerID + 1,
-                                item,
-                                loc));
+        String message = String.format("Placed %s at %s", item, loc);
+        playerLogger.feedback(message);
+        engineLogger.info(String.format("Player %d: " + message, playerID + 1));
     }
 }

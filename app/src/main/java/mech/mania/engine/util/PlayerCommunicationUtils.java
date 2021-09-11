@@ -6,6 +6,8 @@ import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.*;
 
+import java.util.List;
+
 
 public class PlayerCommunicationUtils {
     /**
@@ -41,7 +43,7 @@ public class PlayerCommunicationUtils {
      * @param playerNum player number to set for the game state (0 or 1)
      * @return String to give to bot
      */
-    public static String sendInfoFromGameState(GameState gameState, int playerNum, String feedback) {
+    public static String sendInfoFromGameState(GameState gameState, int playerNum, List<String> feedback) {
 //        Gson gson = new GsonBuilder()
 //                .registerTypeAdapter(GameState.class, new CustomSerializerGameStates())
 //                .create();

@@ -27,7 +27,7 @@ public class JsonLogger {
     private List<String> infoLogs = new ArrayList<>();
     private List<String> debugLogs = new ArrayList<>();
     private List<String> exceptionLogs = new ArrayList<>();
-    private String turnFeedback;
+    private List<String> turnFeedback = new ArrayList<>();
 
     private final String loggerName;
 
@@ -83,8 +83,10 @@ public class JsonLogger {
         return exceptionLogs;
     }
 
-    public String getFeedback() {
-        return turnFeedback;
+    public List<String> getFeedback() {
+        List<String> returnFeedback = new ArrayList<>(turnFeedback);
+        turnFeedback.clear();
+        return returnFeedback;
     }
 
     public void setDebug(boolean debug) {
@@ -92,7 +94,7 @@ public class JsonLogger {
     }
 
     public void feedback(String log) {
-        turnFeedback = log;
+        turnFeedback.add(log);
     }
 
     public void info(String log) {

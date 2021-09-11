@@ -20,7 +20,6 @@ public class Player {
     private Map<CropType, Integer> seedInventory = new HashMap<>();
     @Expose
     private ArrayList<Crop> harvestedInventory = new ArrayList<>();
-    @Expose
     private Achievements achievements;
 
     @Expose

@@ -23,20 +23,33 @@ public class Player {
     @Expose
     private Achievements achievements;
 
+    @Expose
     private double discount;
-    private int playerID;
+    @Expose
     private int amountSpent;
+    @Expose
     private int protectionRadius;
+    @Expose
     private int harvestRadius;
+    @Expose
     private int plantRadius;
+    @Expose
     private int carryingCapacity;
+    @Expose
     private int maxMovement;
+    @Expose
     private double doubleDropChance;
 
+    @Expose
     private boolean usedItem = false;
+    @Expose
     private boolean hasDeliveryDrone = false;
+    @Expose
     private boolean useCoffeeThermos = false;
+    @Expose
     private boolean itemTimeExpired = false;
+
+    private int playerID;
 
     private Config gameConfig;
 

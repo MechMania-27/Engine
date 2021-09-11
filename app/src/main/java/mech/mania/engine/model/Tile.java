@@ -15,11 +15,16 @@ public class Tile {
     @SerializedName("p2_item")
     private ItemType p2Item;
 
+    @Expose
     private int turnsLeftToGrow;
+    @Expose
     private Player planter;
 
+    @Expose
     private boolean rainTotemEffect = false;
+    @Expose
     private boolean fertilityIdolEffect = false;
+    @Expose
     private int scarecrowEffect = -1;
 
     public Tile(TileType type) {

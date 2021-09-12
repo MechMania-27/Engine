@@ -21,7 +21,7 @@ public class GameState {
     @Expose
     private int playerNum;
     @Expose
-    private List<String> feedback;
+    private List<String> feedback = new ArrayList<>();
 
     private Config gameConfig;
 

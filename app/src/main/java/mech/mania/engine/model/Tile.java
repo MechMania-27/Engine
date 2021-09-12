@@ -35,6 +35,10 @@ public class Tile {
         this.p1Item = other.p1Item;
         this.p2Item = other.p2Item;
         this.planter = other.planter;
+        this.turnsLeftToGrow = other.turnsLeftToGrow;
+        this.rainTotemEffect = other.rainTotemEffect;
+        this.fertilityIdolEffect = other.fertilityIdolEffect;
+        this.scarecrowEffect = other.scarecrowEffect;
     }
 
     public TileType getType() {
@@ -98,7 +102,7 @@ public class Tile {
     }
 
     public double getFertility() {
-        if (isFertilityIdolEffect()){
+        if (isFertilityIdolEffect()) {
             return 2 * type.getFertility();
         }
         return type.getFertility();

@@ -28,6 +28,7 @@ public final class Config {
 
     // =========== UPGRADE CONSTANTS ============
     public final double GREEN_GROCER_LOYALTY_CARD_DISCOUNT;
+    public final double GREEN_GROCER_LOYALTY_CARD_MINIMUM;
     public final double RABBITS_FOOT_DOUBLE_DROP_CHANCE;
     public final int LONGER_LEGS_MAX_MOVEMENT;
     public final int SEED_A_PULT_PLANT_RADIUS;
@@ -78,6 +79,7 @@ public final class Config {
         PLAYERLOG_EXTENSION =    rb.getString("playerlogfile.extension");
 
         GREEN_GROCER_LOYALTY_CARD_DISCOUNT  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_discount"));
+        GREEN_GROCER_LOYALTY_CARD_MINIMUM  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_minimum"));
         RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString("upgrades.rabbits_foot_double_drop_chance"));
         LONGER_LEGS_MAX_MOVEMENT            = Integer.parseInt(rb.getString("upgrades.longer_legs_max_movement"));
         SEED_A_PULT_PLANT_RADIUS            = Integer.parseInt(rb.getString("upgrades.seed_a_pult_plant_radius"));

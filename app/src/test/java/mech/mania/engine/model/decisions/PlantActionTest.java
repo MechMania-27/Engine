@@ -43,6 +43,9 @@ public class PlantActionTest {
 
         String negativeBuyDecision = "corn -1 -1";
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(negativeBuyDecision));
+
+        String invalidBuyDecision = "corn hi hi";
+        Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(invalidBuyDecision));
     }
 
     @Test

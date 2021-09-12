@@ -33,9 +33,9 @@ public enum CropType {
         this.propsPrefix = propsPrefix;
     }
 
-    public String getDescription() {
-        return rb.getString(propsPrefix + ".description");
-    }
+//    public String getDescription() {
+//        return rb.getString(propsPrefix + ".description");
+//    }
 
     public static CropType getEnum(String crop) {
         if (crop == null || crop.length() == 0) {

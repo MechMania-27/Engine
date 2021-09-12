@@ -40,7 +40,6 @@ def get_move_decision(game_state) -> str:
 def get_action_decision(game_state) -> str:
     player_num = game_state['playerNum']
     logger.info(f"I am player {player_num}")
-    logger.info(f"Received ")
 
     pos = game_state[f"p{player_num}"]["position"]
     logger.info(f"Currently at ({pos['x']},{pos['y']}), Harvested: {game_state[f'p{player_num}']['harvestedInventory']}")

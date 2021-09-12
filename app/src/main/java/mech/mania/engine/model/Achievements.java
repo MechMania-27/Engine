@@ -24,7 +24,7 @@ public class Achievements {
         fruitOnly = true;
         cropsDestroyed = 0;
     }
-    public void spendMoney(int money) {
+    public void spendMoney(double money) {
         moneySpent += money;
     }
     public void addCropType(CropType type) {
@@ -33,7 +33,6 @@ public class Achievements {
     public void destroyCrops(int amount) {
         cropsDestroyed += amount;
     }
-    public int getCropsDestroyed() {return cropsDestroyed;}
     public void stealGrapes(int amount) {
         grapesStolen += amount;
     }
@@ -52,8 +51,8 @@ public class Achievements {
     public void fruit() {
         fruitOnly = false;
     }
-    public void destroyCrop() {
-        cropsDestroyed += 1;
+    public double getMoneySpent() {
+        return moneySpent;
     }
     public void addAchievement(String achievement) {
         achievements.add(achievement);
@@ -87,10 +86,6 @@ public class Achievements {
                 achievements.add("Fruits of our Labor");
             }
         }
-        List<String> ret = new ArrayList<>();
-        for(String e : achievements) {
-            ret.add(e);
-        }
-        return ret;
+        return new ArrayList<>(achievements);
     }
 }

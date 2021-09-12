@@ -31,9 +31,9 @@ public enum ItemType {
         this.propsPrefix = propsPrefix;
     }
 
-    public String getDescription() {
-        return rb.getString(propsPrefix + ".description");
-    }
+//    public String getDescription() {
+//        return rb.getString(propsPrefix + ".description");
+//    }
 
     public static ItemType getEnum(String item) {
         if (item == null || item.length() == 0) {

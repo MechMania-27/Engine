@@ -173,11 +173,13 @@ public class BuyActionTest {
 
     @Test
     public void largePurchaseNewDiscount() throws PlayerDecisionParseException {
-        state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * 20);
+        int amountToBuy = (int) (GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM / CropType.GRAPE.getSeedBuyPrice()) + 1;
+
+        state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * amountToBuy);
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
 
         BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
-        String decision = "grape 20";
+        String decision = String.format("grape %d", amountToBuy);
         action.parse(decision);
         action.performAction(state);
 
@@ -197,10 +199,61 @@ public class BuyActionTest {
         action.parse(decision);
         action.performAction(state);
 
-        Assert.assertEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getMoney(), 0.001);
+        // 20 * 15 = 300 cost without loyalty card
+        // 2 * 15 = 30 cost before loyalty card takes effect
+        // 18 * (15 * 0.95) = 256.5 after loyalty card discount
+        // remaining = 13.5
+        Assert.assertEquals(13.5, state.getPlayer(OPPONENT_PLAYER_ID).getMoney(), 0.001);
 
         state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * 20);
         action.performAction(state);
         Assert.assertNotEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getMoney(), 0.001);
+    }
+
+    @Test
+    public void testLoyaltyCardDiscount() throws PlayerDecisionParseException {
+        // spend $GREEN_GROCER_LOYALTY_CARD_MINIMUM, buy seeds $GREEN_GROCER_LOYALTY_CARD_DISCOUNT % less
+        int numSeedsToBuy = (int) Math.ceil(GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM / CropType.GRAPE.getSeedBuyPrice()) * 2;
+        double moneyToSpend = (double) (numSeedsToBuy / 2) * CropType.GRAPE.getSeedBuyPrice() * (2 - GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_DISCOUNT);
+        state.getPlayer2().setMoney(moneyToSpend);
+        state.getPlayer2().setPosition(state.getTileMap().getGreenGrocer().get(0));
+        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+
+        String decision = String.format("grape %d", numSeedsToBuy);
+        action.parse(decision);
+        action.performAction(state);
+
+        Assert.assertEquals(0, state.getPlayer2().getMoney(), 0.001);
+        Assert.assertEquals(moneyToSpend, state.getPlayer2().getAchievements().getMoneySpent(), 0.001);
+    }
+
+    @Test
+    public void testLoyaltyCardDiscountMultiplePurchases() throws PlayerDecisionParseException {
+        // spend $GREEN_GROCER_LOYALTY_CARD_MINIMUM, buy seeds $GREEN_GROCER_LOYALTY_CARD_DISCOUNT % less
+        state.getPlayer2().setMoney(GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM * 2);
+        state.getPlayer2().setPosition(state.getTileMap().getGreenGrocer().get(0));
+        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+
+        int numSeedsToBuy = (int) Math.ceil(GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM / CropType.GRAPE.getSeedBuyPrice()) / 2;
+        String decision = String.format("grape %d", numSeedsToBuy);
+        action.parse(decision);
+        action.performAction(state);
+
+        Assert.assertEquals(0, state.getPlayer2().getDiscount(), 0.001);
+
+        numSeedsToBuy = (int) Math.ceil(GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM / CropType.GRAPE.getSeedBuyPrice()) - numSeedsToBuy;
+        decision = String.format("grape %d", numSeedsToBuy);
+        action.parse(decision);
+        action.performAction(state);
+
+        Assert.assertNotEquals(0, state.getPlayer2().getDiscount(), 0.001);
+
+        numSeedsToBuy = (int) Math.ceil(GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM / CropType.GRAPE.getSeedBuyPrice());
+        decision = String.format("grape %d", numSeedsToBuy);
+        action.parse(decision);
+        action.performAction(state);
+
+        Assert.assertNotEquals(0, state.getPlayer2().getMoney());
+        Assert.assertNotEquals(0, state.getPlayer2().getAchievements().getMoneySpent());
     }
 }

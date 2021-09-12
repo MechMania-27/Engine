@@ -102,6 +102,8 @@ public class PlantAction extends PlayerDecision {
             }
             player.removeSeeds(cropTypes.get(i), 1);
 
+            player.getAchievements().plant();
+
             String message = String.format("Planted %s at %s", cropTypes.get(i), coords.get(i));
             playerLogger.feedback(message);
             engineLogger.info(String.format("Player %d: " + message, playerID + 1));

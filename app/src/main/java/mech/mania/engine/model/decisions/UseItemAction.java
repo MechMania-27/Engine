@@ -93,7 +93,7 @@ public class UseItemAction extends PlayerDecision {
                 }
                 break;
             case COFFEE_THERMOS:
-                state.getPlayer(playerID).setUseCoffeeThermos(true);
+                state.getPlayer(playerID).setHasCoffeeThermos(true);
                 break;
             case DELIVERY_DRONE:
                 state.getPlayer(playerID).setDeliveryDrone(true);

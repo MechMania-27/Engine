@@ -45,14 +45,14 @@ public class CropTest {
 
         // type, expected profit, start turn (first turn of growing area is 13)
         Map<CropType, Pair<Double, Integer>> expectedProfitMargin = new HashMap<>();
-        expectedProfitMargin.put(CropType.POTATO, new Pair<>(1.1, 13));
-        expectedProfitMargin.put(CropType.CORN, new Pair<>(1.0, 13));
-        expectedProfitMargin.put(CropType.GRAPE, new Pair<>(1.1, 13)); // ended with 16.83 after starting at turn 13
-        expectedProfitMargin.put(CropType.JOGANFRUIT, new Pair<>(1.0, 13));
-        expectedProfitMargin.put(CropType.PEANUTS, new Pair<>(0.0, 13)); // ended with 0 (since 30 turns is too long)
-        expectedProfitMargin.put(CropType.QUADROTRITICALE, new Pair<>(1.3, 13)); // ended with 40.50 after starting at turn 13
-        expectedProfitMargin.put(CropType.DUCHAMFRUIT, new Pair<>(1.0, 13));
-        expectedProfitMargin.put(CropType.GOLDENCORN, new Pair<>(1.5, 13));
+        expectedProfitMargin.put(CropType.POTATO, new Pair<>(1.10, 1));
+        expectedProfitMargin.put(CropType.CORN, new Pair<>(1.25, 24));
+        expectedProfitMargin.put(CropType.GRAPE, new Pair<>(1.25, 21));
+        expectedProfitMargin.put(CropType.JOGANFRUIT, new Pair<>(1.29, 24));
+        expectedProfitMargin.put(CropType.PEANUTS, new Pair<>(1.00, 1));
+        expectedProfitMargin.put(CropType.QUADROTRITICALE, new Pair<>(1.36, 21)); // ended with 40.50 after starting at turn 13
+        expectedProfitMargin.put(CropType.DUCHAMFRUIT, new Pair<>(1.38, 24));
+        expectedProfitMargin.put(CropType.GOLDENCORN, new Pair<>(2.25, 24));
 
         for (Map.Entry<CropType, Pair<Double, Integer>> entry : expectedProfitMargin.entrySet()) {
             CropType type = entry.getKey();
@@ -60,7 +60,7 @@ public class CropTest {
             int startTurn = entry.getValue().getValue();
             int growthTime = type.getGrowthTime();
             double growthValue = getGrowthValueAfterNTurns(type, growthTime, startTurn, engineLogger);
-            System.err.printf("Crop: %s, Original Price: %d, Final Price after %d turns: %.2f\n", type, type.getSeedBuyPrice(), type.getGrowthTime(), growthValue);
+            System.err.printf("Crop: %s, Original Price: %d, Final Price after %d turns: %.2f\n", type, type.getSeedBuyPrice(), growthTime, growthValue);
             double originalPrice = type.getSeedBuyPrice();
             if (expectedProfit > 0) {
                 Assert.assertTrue(growthValue >= originalPrice);
@@ -100,7 +100,7 @@ public class CropTest {
                     player2Decision, GAME_CONFIG, engineLogger);
             engineLogger.incrementTurn();
             double newvalue = newState.getTileMap().get(new Position(3, 3)).getCrop().getValue();
-            System.err.printf("Crop: %s, Price after %d turns: %.2f (grew %.2f)\n", type, i, newvalue, newvalue - oldvalue);
+            System.err.printf("Crop: %s, Price after %d turns: %.2f (grew %.2f)\n", type, i + 1, newvalue, newvalue - oldvalue);
         }
 
         // check growth value

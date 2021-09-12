@@ -91,7 +91,7 @@ public class MoveActionTest {
 
         // fails for the right reason
         List<String> exceptionLogs = ENGINE_LOGGER.getExceptionLogs();
-        Assert.assertEquals("Player 1 failed to move to position (9,9), greater than allowed movement (18 > 10)",
+        Assert.assertEquals("Player 1: Failed to move to position (9,9), greater than allowed movement (18 > 10)",
                 exceptionLogs.get(exceptionLogs.size() - 1));
 
         // top right to bottom left
@@ -107,7 +107,7 @@ public class MoveActionTest {
 
         // fails for the right reason
         exceptionLogs = ENGINE_LOGGER.getExceptionLogs();
-        Assert.assertEquals("Player 2 failed to move to position (0,9), greater than allowed movement (18 > 10)",
+        Assert.assertEquals("Player 2: Failed to move to position (0,9), greater than allowed movement (18 > 10)",
                 exceptionLogs.get(exceptionLogs.size() - 1));
     }
 
@@ -148,7 +148,7 @@ public class MoveActionTest {
 
         // fails for the right reason
         List<String> infoLogs = ENGINE_LOGGER.getInfoLogs();
-        Assert.assertEquals("Player 1 is at a GREEN_GROCER, selling inventory",
+        Assert.assertEquals("Player 1: Selling inventory",
                 infoLogs.get(infoLogs.size() - 1));
     }
 

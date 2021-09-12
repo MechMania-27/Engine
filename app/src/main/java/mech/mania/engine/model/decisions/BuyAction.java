@@ -48,6 +48,7 @@ public class BuyAction extends PlayerDecision {
         if (!player.getHasDeliveryDrone() && curTile != TileType.GREEN_GROCER) {
             String message = "Failed to purchase, not on Green Grocer" +
                     "tile and no delivery drone";
+            playerLogger.feedback(message);
             engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
             return;
         }

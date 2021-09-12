@@ -35,11 +35,10 @@ public class GameLogic {
 
     public static GameState movePlayer(GameState gameState,
                                        MoveAction player1Decision,
-                                       MoveAction player2Decision,
-                                       JsonLogger engineLogger) {
+                                       MoveAction player2Decision) {
         GameState newGameState = new GameState(gameState);
-        player1Decision.performAction(newGameState, engineLogger);
-        player2Decision.performAction(newGameState, engineLogger);
+        player1Decision.performAction(newGameState);
+        player2Decision.performAction(newGameState);
         return newGameState;
     }
 
@@ -62,19 +61,18 @@ public class GameLogic {
             if (tile.getType() == TileType.ARID) {
                 tile.getCrop().setGrowthTimer(0);
                 tile.getCrop().setValue(0);
-                if(tile.getCrop().getType() != CropType.NONE) {
+                if (tile.getCrop().getType() != CropType.NONE) {
                     tile.getPlanter().getAchievements().destroyCrops(1);
                 }
-
             }
         }
 
         // Perform non-movement actions
         if (! (player1Decision instanceof MoveAction)) {
-            player1Decision.performAction(newGameState, engineLogger);
+            player1Decision.performAction(newGameState);
         }
         if (! (player2Decision instanceof MoveAction)) {
-            player2Decision.performAction(newGameState, engineLogger);
+            player2Decision.performAction(newGameState);
         }
 
         return newGameState;

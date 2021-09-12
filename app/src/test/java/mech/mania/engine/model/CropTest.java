@@ -21,7 +21,9 @@ public class CropTest {
     private final static String OPPONENT_PLAYER_NAME = "bot2";
 
     private final static Config GAME_CONFIG = new Config("debug");
+    private final static JsonLogger ENGINE_LOGGER = new JsonLogger(0);
     private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
+    private final static JsonLogger OPPONENT_LOGGER = new JsonLogger(0);
 
     private static GameState state;
 
@@ -74,9 +76,9 @@ public class CropTest {
         state.getPlayer(MY_PLAYER_ID).addSeeds(type, 1);
 
         // plant crop
-        PlayerDecision player1Decision = new PlantAction(MY_PLAYER_ID);
+        PlayerDecision player1Decision = new PlantAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player1Decision.parse(String.format("%s 3 3", type));
-        PlayerDecision player2Decision = new MoveAction(OPPONENT_PLAYER_ID);
+        PlayerDecision player2Decision = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player2Decision.parse("6 3");  // move to the same position (no action)
         GameState newState = GameLogic.updateGameState(state, player1Decision,
                 player2Decision, GAME_CONFIG, engineLogger);
@@ -89,9 +91,9 @@ public class CropTest {
 
         for (int i = 0; i < turns; i++) {
             // advance turn
-            player1Decision = new MoveAction(MY_PLAYER_ID);
+            player1Decision = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
             player1Decision.parse("3 3");  // move to the same position (no action)
-            player2Decision = new MoveAction(OPPONENT_PLAYER_ID);
+            player2Decision = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
             player2Decision.parse("6 3");  // move to the same position (no action)
             double oldvalue = newState.getTileMap().get(new Position(3, 3)).getCrop().getValue();
             newState = GameLogic.updateGameState(newState, player1Decision,

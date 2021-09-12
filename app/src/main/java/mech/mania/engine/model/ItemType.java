@@ -8,6 +8,8 @@ public enum ItemType {
     FERTILITY_IDOL("itemtype.fertilityidol"),
     PESTICIDE("itemtype.pesticide"),
     SCARECROW("itemtype.scarecrow"),
+    DELIVERY_DRONE("itemtype.deliverydrone"),
+    COFFEE_THERMOS("itemtype.coffeethermos"),
     NONE("itemtype.none");
 
     /**
@@ -29,9 +31,9 @@ public enum ItemType {
         this.propsPrefix = propsPrefix;
     }
 
-    public String getDescription() {
-        return rb.getString(propsPrefix + ".description");
-    }
+//    public String getDescription() {
+//        return rb.getString(propsPrefix + ".description");
+//    }
 
     public static ItemType getEnum(String item) {
         if (item == null || item.length() == 0) {
@@ -51,35 +53,3 @@ public enum ItemType {
         return ItemType.valueOf(item);
     }
 }
-
-/*
-
-    private ItemType type;
-    private String description;  // optional
-
-    public Item(ItemType type) {
-        this.type = type;
-    }
-
-    public Item(ItemType type, String description) {
-        this.type = type;
-        this.description = description;
-    }
-
-    public ItemType getType() {
-        return type;
-    }
-
-    public void setType(ItemType type) {
-        this.type = type;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-}
-*/

@@ -8,12 +8,13 @@ import java.util.regex.Pattern;
 
 public class UseItemAction extends PlayerDecision {
 
-    public UseItemAction(int playerID) {
+    public UseItemAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<item>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        String regex = "";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 
@@ -24,7 +25,14 @@ public class UseItemAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
+        if (state.getPlayer(playerID).getUsedItem()) {
+            String message = "Item was already used";
+            playerLogger.feedback(message);
+            engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
+            return;
+        }
+
         Position loc = state.getPlayer(playerID).getPosition();
         ItemType item = state.getPlayer(playerID).getItem();
         TileMap map = state.getTileMap();
@@ -32,12 +40,9 @@ public class UseItemAction extends PlayerDecision {
 
         switch (item) {
             case NONE:
-                engineLogger.severe(
-                                String.format(
-                                        "An item was never specified by player %d",
-                                        playerID + 1
-                                )
-                );
+                String message = "An item was never specified";
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
                 break;
 
             case PESTICIDE:
@@ -45,7 +50,6 @@ public class UseItemAction extends PlayerDecision {
                 for (int i = -1; i <= 1; i++) {
                     for (int j = -1; j <= 1; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
-                            map.get(loc.getX() + i, loc.getY() + j).setPesticideEffect(true);
                             map.get(loc.getX() + i, loc.getY() + j).getCrop().applyPesticide();
                         }
                     }
@@ -88,6 +92,12 @@ public class UseItemAction extends PlayerDecision {
                     }
                 }
                 break;
+            case COFFEE_THERMOS:
+                state.getPlayer(playerID).setHasCoffeeThermos(true);
+                break;
+            case DELIVERY_DRONE:
+                state.getPlayer(playerID).setDeliveryDrone(true);
+                break;
         }
 
         if (playerID == 0) {
@@ -96,11 +106,10 @@ public class UseItemAction extends PlayerDecision {
             map.get(loc).setP2Item(item);
         }
 
-        engineLogger.info(
-                        String.format(
-                                "Player %d placed %s at %s",
-                                playerID + 1,
-                                item,
-                                loc));
+        state.getPlayer(playerID).setUsedItem();
+
+        String message = String.format("Placed %s at %s", item, loc);
+        playerLogger.feedback(message);
+        engineLogger.info(String.format("Player %d: " + message, playerID + 1));
     }
 }

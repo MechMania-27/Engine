@@ -42,12 +42,12 @@ public class PlayerCommunicationUtilsTest {
         upgradeString = null;
         Assert.assertEquals(UpgradeType.NONE, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
-        upgradeString = "BIGGER_MUSCLES";
-        Assert.assertEquals(UpgradeType.BIGGER_MUSCLES, PlayerCommunicationUtils.upgradeFromString(upgradeString));
-        upgradeString = "bigger-muscles";
-        Assert.assertEquals(UpgradeType.BIGGER_MUSCLES, PlayerCommunicationUtils.upgradeFromString(upgradeString));
-        upgradeString = "biggermuscles";
-        Assert.assertEquals(UpgradeType.BIGGER_MUSCLES, PlayerCommunicationUtils.upgradeFromString(upgradeString));
+        upgradeString = "LOYALTY_CARD";
+        Assert.assertEquals(UpgradeType.LOYALTY_CARD, PlayerCommunicationUtils.upgradeFromString(upgradeString));
+        upgradeString = "loyalty-card";
+        Assert.assertEquals(UpgradeType.LOYALTY_CARD, PlayerCommunicationUtils.upgradeFromString(upgradeString));
+        upgradeString = "loyaltycard";
+        Assert.assertEquals(UpgradeType.LOYALTY_CARD, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
         upgradeString = "longer_legs";
         Assert.assertEquals(UpgradeType.LONGER_LEGS, PlayerCommunicationUtils.upgradeFromString(upgradeString));
@@ -66,23 +66,23 @@ public class PlayerCommunicationUtilsTest {
         // TODO: add crashing tests
 
         String decisionString = "buy corn 1";
-        PlayerDecision decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        PlayerDecision decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof BuyAction);
 
         decisionString = "harvest corn 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof HarvestAction);
 
         decisionString = "move 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof MoveAction);
 
         decisionString = "plant corn 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof PlantAction);
 
         decisionString = "use_item scarecrow 1 1";
-        decision = PlayerCommunicationUtils.parseDecision(1, decisionString);
+        decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
         Assert.assertTrue(decision instanceof UseItemAction);
     }
 

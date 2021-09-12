@@ -6,6 +6,13 @@ import mech.mania.engine.model.PlayerDecisionParseException;
 
 public abstract class PlayerDecision {
     protected int playerID;
+    protected final JsonLogger playerLogger;
+    protected final JsonLogger engineLogger;
+
+    public PlayerDecision(JsonLogger playerLogger, JsonLogger engineLogger) {
+        this.playerLogger = playerLogger;
+        this.engineLogger = engineLogger;
+    }
 
     /**
      * Parses in data from an args string
@@ -15,5 +22,5 @@ public abstract class PlayerDecision {
     public abstract PlayerDecision parse(String args) throws PlayerDecisionParseException;
     protected final String separatorRegEx = "[,\\s]\\s*";
 
-    public abstract void performAction(GameState state, JsonLogger engineLogger);
+    public abstract void performAction(GameState state);
 }

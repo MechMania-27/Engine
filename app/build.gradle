@@ -11,6 +11,7 @@ plugins {
     id 'java'
     id 'application'
     id 'java-library-distribution'
+    id 'jacoco'
 }
 
 repositories {
@@ -41,11 +42,45 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'mech.mania.engine.Main'
+    mainClassName = 'mech.mania.engine.Main'
 }
 
-distributions {
-    main {
-        distributionBaseName = 'engine'
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'mech.mania.engine.Main'
+        )
     }
+
+    baseName 'mm27-engine'
+}
+
+// https://stackoverflow.com/questions/4871656/using-gradle-to-build-a-jar-with-dependencies
+task fatJar(type: Jar) {
+    manifest.from jar.manifest
+    classifier = 'all'
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    with jar
+
+    baseName 'mm27-engine'
+}
+
+artifacts {
+    archives fatJar
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
 }

@@ -10,7 +10,8 @@ import java.util.regex.Pattern;
 public class MoveAction extends PlayerDecision {
     protected Position destination;
 
-    public MoveAction(int playerID) {
+    public MoveAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.destination = null;
     }
@@ -36,39 +37,35 @@ public class MoveAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
         if (this.destination == null) {
-            engineLogger.severe(
-                            String.format(
-                                    "Failed to move player %d to null position",
-                                    playerID + 1));
+            String message = "Failed to move- null position";
+            playerLogger.feedback(message);
+            engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
         }
 
         Player player = state.getPlayer(playerID);
 
         if (!state.getTileMap().isValidPosition(this.destination)) {
-            engineLogger.severe(
-                            String.format(
-                                    "Player %d failed to move to position %s, invalid destination",
-                                    playerID + 1,
-                                    destination));
+            String message = String.format("Failed to move to position %s, invalid destination", destination);
+            playerLogger.feedback(message);
+            engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
             return;
         }
         if (GameUtils.distance(this.destination, player.getPosition()) > player.getSpeed()) {
-            engineLogger.severe(
-                    String.format("Player %d failed to move to position %s, greater than allowed movement (%d > %d)",
-                            playerID + 1,
-                            destination,
-                            GameUtils.distance(this.destination, player.getPosition()),
-                            player.getSpeed()));
+            String message = String.format("Failed to move to position %s, greater than allowed movement (%d > %d)",
+                    destination, GameUtils.distance(this.destination, player.getPosition()), player.getSpeed());
+            playerLogger.feedback(message);
+            engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
             return;
         }
 
         player.setPosition(this.destination);
 
         if (state.getTileMap().get(this.destination).getType() == TileType.GREEN_GROCER) {
-            engineLogger.info(String.format("Player %d is at a GREEN_GROCER, selling inventory",
-                    playerID + 1));
+            String message = "Selling inventory";
+            playerLogger.feedback(message);
+            engineLogger.info(String.format("Player %d: " + message, playerID + 1));
             player.sellInventory();
         }
     }

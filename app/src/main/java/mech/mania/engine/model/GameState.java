@@ -4,6 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import mech.mania.engine.config.Config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameState {
     @Expose
     private int turn;
@@ -17,6 +20,8 @@ public class GameState {
     private TileMap tileMap;
     @Expose
     private int playerNum;
+    @Expose
+    private List<String> feedback;
 
     private Config gameConfig;
 
@@ -30,8 +35,8 @@ public class GameState {
         Position player1Position = new Position(0, 0);
         Position player2Position = new Position(gameConfig.BOARD_WIDTH - 1, 0);
 
-        Player player1 = new Player(player1Name, player1Position, player1Item, player1UpgradeType, startingMoney, gameConfig);
-        Player player2 = new Player(player2Name, player2Position, player2Item, player2UpgradeType, startingMoney, gameConfig);
+        Player player1 = new Player(player1Name, 0, player1Position, player1Item, player1UpgradeType, startingMoney, gameConfig);
+        Player player2 = new Player(player2Name, 1, player2Position, player2Item, player2UpgradeType, startingMoney, gameConfig);
 
         this.player1 = player1;
         this.player2 = player2;
@@ -45,6 +50,8 @@ public class GameState {
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
         this.tileMap = new TileMap(other.tileMap);
+        this.feedback = new ArrayList<>(other.feedback);
+        this.playerNum = other.playerNum;
     }
 
     public int getTurn() {
@@ -83,5 +90,9 @@ public class GameState {
 
     public void setPlayerNum(int playerNum) {
         this.playerNum = playerNum;
+    }
+
+    public void setFeedback(List<String> feedback) {
+        this.feedback = feedback;
     }
 }

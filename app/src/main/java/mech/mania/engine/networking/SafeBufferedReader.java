@@ -3,7 +3,6 @@ package mech.mania.engine.networking;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.nio.CharBuffer;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -36,47 +35,8 @@ public class SafeBufferedReader extends BufferedReader {
     @Override
     public String readLine() throws IOException {
         waitReadyLine();
+//        while (!ready());
         return super.readLine();
-    }
-
-    @Override
-    public int read() throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return -2; // I'd throw a runtime here, as some people may just be checking if int < 0 to consider EOS
-        }
-        return super.read();
-    }
-
-    @Override
-    public int read(char[] cbuf) throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return -2;  // I'd throw a runtime here, as some people may just be checking if int < 0 to consider EOS
-        }
-        return super.read(cbuf);
-    }
-
-    @Override
-    public int read(char[] cbuf, int off, int len) throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return 0;
-        }
-        return super.read(cbuf, off, len);
-    }
-
-    @Override
-    public int read(CharBuffer target) throws IOException {
-        try {
-            waitReady();
-        } catch(IllegalThreadStateException e) {
-            return 0;
-        }
-        return super.read(target);
     }
 
     public long getMillisTimeout() {
@@ -134,7 +94,6 @@ public class SafeBufferedReader extends BufferedReader {
             super.reset();
         }
         throw new IllegalThreadStateException("readLine timed out");
-
     }
 
     protected void waitReady() throws IllegalThreadStateException, IOException {
@@ -152,5 +111,4 @@ public class SafeBufferedReader extends BufferedReader {
         if(ready()) return; // Just in case.
         throw new IllegalThreadStateException("read timed out");
     }
-
 }

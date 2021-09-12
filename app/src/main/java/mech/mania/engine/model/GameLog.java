@@ -21,13 +21,13 @@ public class GameLog {
         this.states = new ArrayList<>();
     }
 
-    public GameLog(List<GameState> states) {
-        this.states = states;
-    }
+//    public GameLog(List<GameState> states) {
+//        this.states = states;
+//    }
 
-    public List<GameState> getStates() {
-        return states;
-    }
+//    public List<GameState> getStates() {
+//        return states;
+//    }
 
     public void addState(GameState state) {
         this.states.add(state);

@@ -1,8 +1,9 @@
+#!/usr/bin/env python3 -u
+
 import sys
 import random
 import time
-from mm27_io import receive_gamestate, send_decision, send_item, send_upgrade
-from mm27_io import Logger
+from mm27_io import *
 
 logger = Logger()
 
@@ -68,6 +69,8 @@ def get_action_decision(game_state) -> str:
 
 
 if __name__ == "__main__":
+    send_heartbeat()
+    logger.info(f"Started bot")
     send_item(get_item())
     send_upgrade(get_upgrade())
 
@@ -78,32 +81,32 @@ if __name__ == "__main__":
         start_time = time.perf_counter_ns()
         game_state = receive_gamestate()
         duration = time.perf_counter_ns() - start_time
-        logger.info(f"Receiving game state 1 took {duration // 1e6} ms")
+        logger.debug(f"Receiving game state 1 took {duration // 1e6} ms")
 
         start_time = time.perf_counter_ns()
         move_decision = get_move_decision(game_state)
         duration = time.perf_counter_ns() - start_time
-        logger.info(f"Move decision took {duration // 1e6} ms")
+        logger.debug(f"Move decision took {duration // 1e6} ms")
 
         start_time = time.perf_counter_ns()
         send_decision(move_decision)
         duration = time.perf_counter_ns() - start_time
-        logger.info(f"Send move decision took {duration // 1e6} ms")
+        logger.debug(f"Send move decision took {duration // 1e6} ms")
 
 
         start_time = time.perf_counter_ns()
         game_state = receive_gamestate()
         duration = time.perf_counter_ns() - start_time
-        logger.info(f"Receiving game state 2 took {duration // 1e6} ms")
+        logger.debug(f"Receiving game state 2 took {duration // 1e6} ms")
 
         start_time = time.perf_counter_ns()
         action_decision = get_action_decision(game_state)
         duration = time.perf_counter_ns() - start_time
-        logger.info(f"Action decision took {duration // 1e6} ms")
+        logger.debug(f"Action decision took {duration // 1e6} ms")
 
         start_time = time.perf_counter_ns()
         send_decision(action_decision)
         duration = time.perf_counter_ns() - start_time
-        logger.info(f"Sending action decision took {duration // 1e6} ms")
+        logger.debug(f"Sending action decision took {duration // 1e6} ms")
 
 

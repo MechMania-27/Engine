@@ -20,8 +20,6 @@ public class Tile {
 
     private boolean rainTotemEffect = false;
     private boolean fertilityIdolEffect = false;
-    // TODO this is duplicated, maybe remove?
-    private boolean pesticideEffect = false;
     private int scarecrowEffect = -1;
 
     public Tile(TileType type) {
@@ -37,6 +35,10 @@ public class Tile {
         this.p1Item = other.p1Item;
         this.p2Item = other.p2Item;
         this.planter = other.planter;
+        this.turnsLeftToGrow = other.turnsLeftToGrow;
+        this.rainTotemEffect = other.rainTotemEffect;
+        this.fertilityIdolEffect = other.fertilityIdolEffect;
+        this.scarecrowEffect = other.scarecrowEffect;
     }
 
     public TileType getType() {
@@ -61,14 +63,6 @@ public class Tile {
 
     public void setFertilityIdolEffect(boolean fertilityIdolEffect) {
         this.fertilityIdolEffect = fertilityIdolEffect;
-    }
-
-    public boolean isPesticideEffect() {
-        return pesticideEffect;
-    }
-
-    public void setPesticideEffect(boolean pesticideEffect) {
-        this.pesticideEffect = pesticideEffect;
     }
 
     public int isScarecrowEffect() {
@@ -108,7 +102,7 @@ public class Tile {
     }
 
     public double getFertility() {
-        if (isFertilityIdolEffect()){
+        if (isFertilityIdolEffect()) {
             return 2 * type.getFertility();
         }
         return type.getFertility();

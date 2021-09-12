@@ -14,18 +14,20 @@ public class PlantActionTest {
     private final static String OPPONENT_PLAYER_NAME = "bot2";
 
     private final static Config GAME_CONFIG = new Config("debug");
-    private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
+    private final static JsonLogger BOT_LOGGER = new JsonLogger();
+    private final static JsonLogger ENGINE_LOGGER = new JsonLogger();
+
+    private final static ItemType myPlayerItem = ItemType.NONE;
+    private final static UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+    private final static ItemType opponentPlayerItem = ItemType.NONE;
+    private final static UpgradeType opponentPlayerUpgrade = UpgradeType.SEED_A_PULT;
 
     PlantAction action;
     GameState state;
 
     @Before
     public void setup() {
-        action = new PlantAction(MY_PLAYER_ID);
-        ItemType myPlayerItem = ItemType.NONE;
-        UpgradeType myPlayerUpgrade = UpgradeType.NONE;
-        ItemType opponentPlayerItem = ItemType.NONE;
-        UpgradeType opponentPlayerUpgrade = UpgradeType.NONE;
+        action = new PlantAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
 
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
@@ -41,6 +43,9 @@ public class PlantActionTest {
 
         String negativeBuyDecision = "corn -1 -1";
         Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(negativeBuyDecision));
+
+        String invalidBuyDecision = "corn hi hi";
+        Assert.assertThrows(PlayerDecisionParseException.class, () -> action.parse(invalidBuyDecision));
     }
 
     @Test
@@ -51,7 +56,7 @@ public class PlantActionTest {
         state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5));
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
         Assert.assertEquals(0, res);
         Assert.assertEquals(CropType.CORN, state.getTileMap().get(5, 5).getCrop().getType());
@@ -65,7 +70,7 @@ public class PlantActionTest {
         state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(7, 7));
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
         Assert.assertEquals(1, res);
         Assert.assertEquals(CropType.NONE, state.getTileMap().get(5, 5).getCrop().getType());
@@ -79,7 +84,7 @@ public class PlantActionTest {
 //        state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5));
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
         Assert.assertEquals(0, res);
         Assert.assertEquals(CropType.NONE, state.getTileMap().get(5, 5).getCrop().getType());
@@ -95,7 +100,7 @@ public class PlantActionTest {
         state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5));
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
         Assert.assertEquals(1, res);
         Assert.assertEquals(CropType.POTATO, state.getTileMap().get(5, 5).getCrop().getType());
@@ -110,7 +115,7 @@ public class PlantActionTest {
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5));
         state.getOpponentPlayer(MY_PLAYER_ID).setPosition(new Position(6, 6));
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
         Assert.assertEquals(1, res);
         Assert.assertEquals(CropType.NONE, state.getTileMap().get(5, 5).getCrop().getType());
@@ -125,12 +130,41 @@ public class PlantActionTest {
         state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.GRAPE, 1);
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5));
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
         Assert.assertEquals(0, res);
         res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.GRAPE);
         Assert.assertEquals(0, res);
         Assert.assertEquals(CropType.CORN, state.getTileMap().get(5, 5).getCrop().getType());
         Assert.assertEquals(CropType.GRAPE, state.getTileMap().get(6, 5).getCrop().getType());
+    }
+
+    @Test
+    public void upgradePlantActionTest() throws PlayerDecisionParseException {
+        String regularDecision = "corn 5 5";
+        action = new PlantAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        action.parse(regularDecision);
+
+        state.getPlayer(OPPONENT_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
+        state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(5, 5 + GAME_CONFIG.PLANT_RADIUS + 1));
+
+        action.performAction(state);
+        int res = state.getPlayer(OPPONENT_PLAYER_ID).getSeeds().get(CropType.CORN);
+        Assert.assertEquals(0, res);
+        Assert.assertEquals(CropType.CORN, state.getTileMap().get(5, 5).getCrop().getType());
+    }
+
+    @Test
+    public void outsideUpgradePlantActionTest() throws PlayerDecisionParseException {
+        String regularDecision = "corn 5 5";
+        action.parse(regularDecision);
+
+        state.getPlayer(MY_PLAYER_ID).getSeeds().put(CropType.CORN, 1);
+        state.getPlayer(MY_PLAYER_ID).setPosition(new Position(5, 5 + GAME_CONFIG.SEED_A_PULT_PLANT_RADIUS + 1));
+
+        action.performAction(state);
+        int res = state.getPlayer(MY_PLAYER_ID).getSeeds().get(CropType.CORN);
+        Assert.assertEquals(1, res);
+        Assert.assertEquals(CropType.NONE, state.getTileMap().get(5, 5).getCrop().getType());
     }
 }

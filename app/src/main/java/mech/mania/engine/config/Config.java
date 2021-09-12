@@ -26,6 +26,16 @@ public final class Config {
     public final int CARRYING_CAPACITY;
     public final int PROTECTION_RADIUS;
 
+    // =========== ITEM CONSTANTS ============
+    public final int RAIN_TOTEM_GROWTH_MULTIPLIER;
+    public final int RAIN_TOTEM_EFFECT_RADIUS;
+    public final int FERTILITY_IDOL_FERTILITY_MULTIPLIER;
+    public final int FERTILITY_IDOL_EFFECT_RADIUS;
+    public final double PESTICIDE_CROP_VALUE_DECREASE;
+    public final int PESTICIDE_EFFECT_RADIUS;
+    public final int SCARECROW_EFFECT_RADIUS;
+    public final int COFFEE_THERMOS_MOVEMENT_MULTIPLIER;
+
     // =========== UPGRADE CONSTANTS ============
     public final double GREEN_GROCER_LOYALTY_CARD_DISCOUNT;
     public final double GREEN_GROCER_LOYALTY_CARD_MINIMUM;
@@ -78,6 +88,17 @@ public final class Config {
         ENGINELOG_FILENAME =     rb.getString("enginelogfile.name");
         PLAYERLOG_EXTENSION =    rb.getString("playerlogfile.extension");
 
+        // item constants
+        RAIN_TOTEM_GROWTH_MULTIPLIER        = Integer.parseInt(rb.getString("item.rain_totem.growth_multiplier"));
+        RAIN_TOTEM_EFFECT_RADIUS            = Integer.parseInt(rb.getString("item.rain_totem.effect_radius"));
+        FERTILITY_IDOL_FERTILITY_MULTIPLIER = Integer.parseInt(rb.getString("item.fertility_idol.fertility_multiplier"));
+        FERTILITY_IDOL_EFFECT_RADIUS        = Integer.parseInt(rb.getString("item.fertility_idol.effect_radius"));
+        PESTICIDE_CROP_VALUE_DECREASE       = Double.parseDouble(rb.getString("item.pesticide.crop_value_decrease"));
+        PESTICIDE_EFFECT_RADIUS             = Integer.parseInt(rb.getString("item.pesticide.effect_radius"));
+        SCARECROW_EFFECT_RADIUS             = Integer.parseInt(rb.getString("item.scarecrow.effect_radius"));
+        COFFEE_THERMOS_MOVEMENT_MULTIPLIER = Integer.parseInt(rb.getString("items.coffee_thermos.movement_multiplier"));
+
+        // upgrade constants
         GREEN_GROCER_LOYALTY_CARD_DISCOUNT  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_discount"));
         GREEN_GROCER_LOYALTY_CARD_MINIMUM  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_minimum"));
         RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString("upgrades.rabbits_foot_double_drop_chance"));

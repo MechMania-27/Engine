@@ -124,8 +124,8 @@ public class MoveActionTest {
         // make player harvest something that they can sell
         double initialMoney = state.getPlayer(MY_PLAYER_ID).getMoney();
         double additionalMoney = 15;
-        Tile tile = new Tile(TileType.F_BAND_INNER);
-        tile.setCrop(new Crop(CropType.CORN));
+        Tile tile = new Tile(TileType.F_BAND_INNER, GAME_CONFIG);
+        tile.setCrop(new Crop(CropType.CORN, GAME_CONFIG));
         tile.getCrop().setValue(additionalMoney);
         // this will simply put the crop in the player's inventory
         state.getPlayer(MY_PLAYER_ID).harvest(tile);

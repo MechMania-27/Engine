@@ -181,6 +181,8 @@ public class Player {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+    // already initialized with name, unnecessary?
     public String getName() {
         return name;
     }
@@ -268,7 +270,7 @@ public class Player {
 
     public int getSpeed() {
         if (this.getHasCoffeeThermos()) {
-            return this.maxMovement * 3;
+            return this.maxMovement * gameConfig.COFFEE_THERMOS_MOVEMENT_MULTIPLIER;
         }
         return this.maxMovement;
     }

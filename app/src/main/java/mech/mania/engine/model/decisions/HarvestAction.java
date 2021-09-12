@@ -55,6 +55,7 @@ public class HarvestAction extends PlayerDecision {
                 String message = String.format("Failed to harvest at %s outside of harvest radius %d",
                         coord,
                         player.getHarvestRadius());
+                playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 continue;
             }
@@ -63,6 +64,7 @@ public class HarvestAction extends PlayerDecision {
                 String message = String.format("Attempted to harvest at %s, more crops than carrying capacity %d",
                         coord,
                         player.getCarryingCapacity());
+                playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 break;
             }

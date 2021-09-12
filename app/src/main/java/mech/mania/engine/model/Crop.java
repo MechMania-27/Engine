@@ -1,6 +1,7 @@
 package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
+import mech.mania.engine.config.Config;
 
 public class Crop {
     @Expose
@@ -10,16 +11,20 @@ public class Crop {
     @Expose
     private double value;
 
-    public Crop(CropType type) {
+    private final Config gameConfig;
+
+    public Crop(CropType type, Config gameConfig) {
         this.type = type;
         this.growthTimer = type.getTimeToGrow();
         this.value = 0;
+        this.gameConfig = gameConfig;
     }
 
     public Crop(Crop other) {
         this.type = other.type;
         this.growthTimer = other.growthTimer;
         this.value = other.value;
+        this.gameConfig = other.gameConfig;
     }
 
     /** Increases this crop's value based on the multiplier and decrements the growthTimer if crop is still growing */
@@ -47,7 +52,7 @@ public class Crop {
     }
 
     public void applyPesticide() {
-        this.value *= 0.8;
+        this.value *= (1 - gameConfig.PESTICIDE_CROP_VALUE_DECREASE);
     }
 
     public void setGrowthTimer(int growthTimer) {

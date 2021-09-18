@@ -75,11 +75,11 @@ public class PlayerCommunicationInfo {
 
         errorStreamReadProcess = new Thread(() -> {
             while (!gameOver) {
-                String allMessagesStr = null;
+                String allMessagesStr;
                 try {
                     allMessagesStr = errorStream.readLine();
                 } catch (IOException e) {
-                    engineLogger.severe("Failed to read from bot error stream", e);
+                    continue;
                 }
 
                 if (allMessagesStr == null) {

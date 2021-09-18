@@ -44,17 +44,12 @@ public class PlayerCommunicationUtils {
      * @return String to give to bot
      */
     public static String sendInfoFromGameState(GameState gameState, int playerNum, List<String> feedback) {
-//        Gson gson = new GsonBuilder()
-//                .registerTypeAdapter(GameState.class, new CustomSerializerGameStates())
-//                .create();
-
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
         gameState.setPlayerNum(playerNum + 1);
         gameState.setFeedback(feedback);
-        String s = gson.toJson(gameState, GameState.class);
-        return s;
+        return gson.toJson(gameState, GameState.class);
     }
 
     /**
@@ -69,7 +64,9 @@ public class PlayerCommunicationUtils {
                                                JsonLogger playerLogger, JsonLogger engineLogger) throws PlayerDecisionParseException {
         int space = decisionString.indexOf(' ');
         if (space == -1) {
-            throw new PlayerDecisionParseException(String.format("Action type not found in string: %s", decisionString));
+            String message = String.format("Action type not found in string: %s", decisionString);
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
 
         String action = decisionString.substring(0, space);
@@ -88,7 +85,9 @@ public class PlayerCommunicationUtils {
             case "useitem": case "use_item":
                 return new UseItemAction(playerID, playerLogger, engineLogger).parse(args);
             default:
-                throw new PlayerDecisionParseException(String.format("Unrecognized action: %s", action));
+                String message = String.format("Unrecognized action: %s", action);
+                playerLogger.feedback(message);
+                throw new PlayerDecisionParseException(message);
         }
     }
 }

@@ -30,7 +30,9 @@ public class PlantAction extends PlayerDecision {
 
         // Command must have at least one result
         if (!matcher.find()) {
-            throw new PlayerDecisionParseException("Arguments did not match Plant regex");
+            String message = "Arguments did not match Plant regex";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
 
         do {
@@ -41,7 +43,9 @@ public class PlantAction extends PlayerDecision {
                 cropTypes.add(CropType.getEnum(matcher.group("crop")));
             } catch (NumberFormatException e) {
                 // will occur if input can't be parsed into an int (ex: Integer.MAX_VALUE + 1)
-                throw new PlayerDecisionParseException("Arguments did not match Plant regex (did you pass too big an int?)");
+                String message = "Arguments did not match Plant regex (did you pass too big an int?)";
+                playerLogger.feedback(message);
+                throw new PlayerDecisionParseException(message);
             }
         } while (matcher.find());
 

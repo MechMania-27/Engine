@@ -19,9 +19,10 @@ public class UseItemAction extends PlayerDecision {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 
-
         if (!matcher.find()) {
-            throw new PlayerDecisionParseException("Arguments did not match UseItem regex");
+            String message = "Arguments did not match UseItem regex (make sure the command is only use_item/useitem)";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
         return this;
     }

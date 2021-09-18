@@ -26,7 +26,9 @@ public class HarvestAction extends PlayerDecision {
 
         // Command must have at least one result
         if (!matcher.find()) {
-            throw new PlayerDecisionParseException("Arguments did not match Harvest regex");
+            String message = "Arguments did not match Harvest regex";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
 
         do {
@@ -36,7 +38,9 @@ public class HarvestAction extends PlayerDecision {
                 coords.add(new Position(x, y));
             } catch (NumberFormatException e) {
                 // will occur if input can't be parsed into an int (ex: Integer.MAX_VALUE + 1)
-                throw new PlayerDecisionParseException("Arguments did not match Harvest regex (did you pass too big an int?)");
+                String message = "Arguments did not match Harvest regex (did you pass too big an int?)";
+                playerLogger.feedback(message);
+                throw new PlayerDecisionParseException(message);
             }
         } while (matcher.find());
 

@@ -79,12 +79,13 @@ public class MainTest {
         engineLogger.incrementTurn();
 
         GameLog gameLog = new GameLog();
-        gameLoop(gameConfig, gameLog, bot1, bot2, player1Logger, player2Logger, engineLogger);
+        int turn = gameLoop(gameConfig, gameLog, bot1, bot2, player1Logger, player2Logger, engineLogger);
 
         bot1.stop();
         bot2.stop();
 
         printBotLogs(player1Logger, player2Logger, engineLogger);
+        Assert.assertEquals(Math.min(bot1CrashTurn, bot2CrashTurn), turn);
 
         return gameLog;
     }
@@ -94,7 +95,7 @@ public class MainTest {
      */
     @Test
     public void bot1CrashesBot2Wins() throws IOException {
-        GameLog log = launchCrashingBots(0, 5);
+        GameLog log = launchCrashingBots(1, 5);
         Assert.assertEquals(PlayerEndState.ERROR, log.getPlayer1EndState());
         Assert.assertEquals(PlayerEndState.WON, log.getPlayer2EndState());
     }
@@ -114,7 +115,7 @@ public class MainTest {
      */
     @Test
     public void bot5CrashesBot1Wins() throws IOException {
-        GameLog log = launchCrashingBots(5, 0);
+        GameLog log = launchCrashingBots(5, 1);
         Assert.assertEquals(PlayerEndState.WON, log.getPlayer1EndState());
         Assert.assertEquals(PlayerEndState.ERROR, log.getPlayer2EndState());
     }

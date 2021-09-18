@@ -66,7 +66,7 @@ def get_action_decision(game_state) -> str:
 
 
 def crash_on_turn(curr_turn: int, turn: int) -> None:
-    if curr_turn == turn:
+    if curr_turn >= turn:
         a = [1, 2, 3]
         # simulate crashing
         b = a[4]

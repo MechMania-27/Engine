@@ -300,8 +300,9 @@ public class Main {
      * @param gameLog    GameLog object that contains the running list of GameState objects. Should be empty, will be filled
      * @param player1    PlayerCommunicationInfo object that keeps information about communication with player 1
      * @param player2    PlayerCommunicationInfo object that keeps information about communication with player 2
+     * @return turns     Number of turns the game went through
      */
-    protected static void gameLoop(Config gameConfig, GameLog gameLog,
+    protected static int gameLoop(Config gameConfig, GameLog gameLog,
                                    PlayerCommunicationInfo player1,
                                    PlayerCommunicationInfo player2,
                                    JsonLogger player1Logger, JsonLogger player2Logger,
@@ -313,6 +314,7 @@ public class Main {
         PlayerEndState player1EndState;
         PlayerEndState player2EndState;
 
+        int turn = 1;
         do {
             long startTime = System.nanoTime();
 
@@ -338,7 +340,7 @@ public class Main {
                 player2EndState = PlayerEndState.ERROR;
             }
 
-            if (badEndState(gameLog, player1EndState, player2EndState)) return;
+            if (badEndState(gameLog, player1EndState, player2EndState)) return turn;
 
             // add game states to list of total game states
             gameLog.addState(new GameState(gameState));
@@ -366,7 +368,7 @@ public class Main {
                 player2EndState = PlayerEndState.ERROR;
             }
 
-            if (badEndState(gameLog, player1EndState, player2EndState)) return;
+            if (badEndState(gameLog, player1EndState, player2EndState)) return turn;
 
             // move the players based on move decisions
             boolean validPlayer1MoveAction = true;
@@ -415,7 +417,7 @@ public class Main {
                 player2EndState = PlayerEndState.ERROR;
             }
 
-            if (badEndState(gameLog, player1EndState, player2EndState)) return;
+            if (badEndState(gameLog, player1EndState, player2EndState)) return turn;
 
             // retrieve action decisions from players
             player1EndState = null;
@@ -447,7 +449,7 @@ public class Main {
                 engineLogger.debug("Player 2 did not submit a move decision (probably an action decision), skipping getting decision");
             }
 
-            if (badEndState(gameLog, player1EndState, player2EndState)) return;
+            if (badEndState(gameLog, player1EndState, player2EndState)) return turn;
 
             // update game state
             gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision, gameConfig);
@@ -460,6 +462,7 @@ public class Main {
             player2.getLogger().incrementTurn();
             engineLogger.incrementTurn();
 
+            turn++;
         } while (!GameLogic.isGameOver(gameState, gameConfig));
 
         System.out.printf("Player 1: $%.2f, Player 2: $%.2f\n",
@@ -486,6 +489,8 @@ public class Main {
 
         gameLog.setPlayer1Achievements(p1achievements);
         gameLog.setPlayer2Achievements(p2achievements);
+
+        return turn;
     }
 
     private static boolean badEndState(GameLog gameStates, PlayerEndState player1EndState, PlayerEndState player2EndState) {

@@ -112,7 +112,7 @@ public class HarvestAction extends PlayerDecision {
                 achievements.stealGrapes(1);
                 engineLogger.debug(String.format("Player %d: Achievement: steal grapes + 1", playerID + 1));
             }
-            if (target.getCrop().getType() != CropType.JOGANFRUIT && target.getCrop().getType() != CropType.DUCHAMFRUIT&& target.getCrop().getType() != CropType.GRAPE) {
+            if (target.getCrop().getType() != CropType.JOGAN_FRUIT && target.getCrop().getType() != CropType.DUCHAM_FRUIT && target.getCrop().getType() != CropType.GRAPE) {
                 achievements.fruit();
                 engineLogger.debug(String.format("Player %d: Achievement: fruit", playerID + 1));
             }

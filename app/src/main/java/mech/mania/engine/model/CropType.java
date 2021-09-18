@@ -7,11 +7,11 @@ public enum CropType {
     GRAPE("croptype.grapes"),
     CORN("croptype.corn"),
     POTATO("croptype.potato"),
-    JOGANFRUIT("croptype.joganfruit"),
-    PEANUTS("croptype.peanuts"),
+    JOGAN_FRUIT("croptype.joganfruit"),
+    PEANUT("croptype.peanuts"),
     QUADROTRITICALE("croptype.quadrotriticale"),
-    DUCHAMFRUIT("croptype.duchamfruit"),
-    GOLDENCORN("croptype.goldencorn");
+    DUCHAM_FRUIT("croptype.duchamfruit"),
+    GOLDEN_CORN("croptype.goldencorn");
 
 
     /**
@@ -58,5 +58,4 @@ public enum CropType {
     public double getValueGrowth() {
         return Double.parseDouble(rb.getString(propsPrefix + ".valuegrowth"));
     }
-
 }

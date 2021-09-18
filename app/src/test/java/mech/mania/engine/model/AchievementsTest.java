@@ -156,10 +156,10 @@ public class AchievementsTest {
      */
     @Test
     public void achievement5() throws IOException, PlayerDecisionParseException {
-        player1.addToHarvestInventory(new Crop(CropType.DUCHAMFRUIT, gameConfig));
+        player1.addToHarvestInventory(new Crop(CropType.DUCHAM_FRUIT, gameConfig));
         player1.addToHarvestInventory(new Crop(CropType.GRAPE, gameConfig));
         player1.addToHarvestInventory(new Crop(CropType.POTATO, gameConfig));
-        player1.addToHarvestInventory(new Crop(CropType.JOGANFRUIT, gameConfig));
+        player1.addToHarvestInventory(new Crop(CropType.JOGAN_FRUIT, gameConfig));
         player1.addToHarvestInventory(new Crop(CropType.QUADROTRITICALE, gameConfig));
         player1.addToHarvestInventory(new Crop(CropType.CORN, gameConfig));
         player1.sellInventory();
@@ -258,7 +258,7 @@ public class AchievementsTest {
      */
     @Test
     public void achievement11() throws IOException, PlayerDecisionParseException {
-        player1.addToHarvestInventory(new Crop(CropType.GOLDENCORN, gameConfig));
+        player1.addToHarvestInventory(new Crop(CropType.GOLDEN_CORN, gameConfig));
         player1.sellInventory();
         String achievement = "Stalks and Bonds";
         List<String> p1achievements = player1.getAchievements().getFinalAchievements(false, gameConfig.STARTING_MONEY, player1.getMoney());

@@ -17,7 +17,7 @@ public class GameState {
     private Player player2;
     @Expose
     private TileMap tileMap;
-    @Expose
+
     private int playerNum;
     @Expose
     private List<String> feedback;

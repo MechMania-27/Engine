@@ -16,18 +16,16 @@ public class GameLog {
     @Expose
     @SerializedName("p2_status")
     private PlayerEndState player2EndState;
+    @Expose
+    @SerializedName("p1_achievements")
+    private List<String> player1Achievements;
+    @Expose
+    @SerializedName("p2_achievements")
+    private List<String> player2Achievements;
 
     public GameLog() {
         this.states = new ArrayList<>();
     }
-
-//    public GameLog(List<GameState> states) {
-//        this.states = states;
-//    }
-
-//    public List<GameState> getStates() {
-//        return states;
-//    }
 
     public void addState(GameState state) {
         this.states.add(state);
@@ -47,5 +45,13 @@ public class GameLog {
 
     public void setPlayer2EndState(PlayerEndState player2EndState) {
         this.player2EndState = player2EndState;
+    }
+
+    public void setPlayer1Achievements(List<String> player1Achievements) {
+        this.player1Achievements = player1Achievements;
+    }
+
+    public void setPlayer2Achievements(List<String> player2Achievements) {
+        this.player2Achievements = player2Achievements;
     }
 }

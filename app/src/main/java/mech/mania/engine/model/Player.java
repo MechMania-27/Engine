@@ -20,7 +20,7 @@ public class Player {
     private Map<CropType, Integer> seedInventory = new HashMap<>();
     @Expose
     private ArrayList<Crop> harvestedInventory = new ArrayList<>();
-    @Expose
+
     private Achievements achievements;
 
     private double discount;
@@ -141,10 +141,10 @@ public class Player {
             Crop crop = inventoryIter.next();
 
             //store the sold CropType to achievements
-            if(crop.getType() != CropType.GOLDENCORN && crop.getType() != CropType.PEANUTS) {
+            if(crop.getType() != CropType.GOLDEN_CORN && crop.getType() != CropType.PEANUT) {
                 achievements.addCropType(crop.getType());
             }
-            if(crop.getType() == CropType.GOLDENCORN) {
+            if(crop.getType() == CropType.GOLDEN_CORN) {
                 achievements.addAchievement("Stalks and Bonds");
             }
             money += crop.getValue();

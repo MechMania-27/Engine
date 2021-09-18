@@ -139,27 +139,6 @@ public class Main {
                 Gson serializer = new GsonBuilder()
                         .excludeFieldsWithoutExposeAnnotation()
                         .create();
-//                    .registerTypeAdapter(GameLog.class, new CustomSerializerGame())
-
-//                    .addSerializationExclusionStrategy(new ExclusionStrategy() {
-//
-//                        @Override
-//                        public boolean shouldSkipField(FieldAttributes f) {
-//                            if (f.getDeclaringClass() == Tile.class) {
-//                                if (f.getName())
-//                            } return false;
-////                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean shouldSkipClass(Class<?> clazz) {
-//                            return false;
-////                            return clazz.getFields()[0].getName().equals("tiles");
-//                        }
-//                    })
-//                    .create();
-
-                // TODO
 
                 String gameLogJson = serializer.toJson(gameLog, GameLog.class);
                 writeListToFile(Collections.singletonList(gameLogJson), commandLine.getOptionValue("g", gameConfig.REPLAY_FILENAME), engineLogger);
@@ -504,6 +483,9 @@ public class Main {
         for (int i = 0; i < p2achievements.size(); i++) {
             engineLogger.info(p2achievements.get(i));
         }
+
+        gameLog.setPlayer1Achievements(p1achievements);
+        gameLog.setPlayer2Achievements(p2achievements);
     }
 
     private static boolean badEndState(GameLog gameStates, PlayerEndState player1EndState, PlayerEndState player2EndState) {

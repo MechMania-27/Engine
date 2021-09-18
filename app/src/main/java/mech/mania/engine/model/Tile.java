@@ -18,11 +18,16 @@ public class Tile {
 
     private final Config gameConfig;
 
+    @Expose
     private int turnsLeftToGrow;
+    @Expose
     private Player planter;
 
+    @Expose
     private boolean rainTotemEffect = false;
+    @Expose
     private boolean fertilityIdolEffect = false;
+    @Expose
     private int scarecrowEffect = -1;
 
     public Tile(TileType type, Config gameConfig) {

@@ -94,7 +94,7 @@ public class MainTest {
      */
     @Test
     public void bot1CrashesBot2Wins() throws IOException {
-        GameLog log = launchCrashingBots(5, 0);
+        GameLog log = launchCrashingBots(0, 5);
         Assert.assertEquals(PlayerEndState.ERROR, log.getPlayer1EndState());
         Assert.assertEquals(PlayerEndState.WON, log.getPlayer2EndState());
     }
@@ -114,7 +114,7 @@ public class MainTest {
      */
     @Test
     public void bot5CrashesBot1Wins() throws IOException {
-        GameLog log = launchCrashingBots(0, 5);
+        GameLog log = launchCrashingBots(5, 0);
         Assert.assertEquals(PlayerEndState.WON, log.getPlayer1EndState());
         Assert.assertEquals(PlayerEndState.ERROR, log.getPlayer2EndState());
     }

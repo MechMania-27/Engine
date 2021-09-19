@@ -53,8 +53,7 @@ public class PlayerCommunicationUtils {
                 .create();
         gameState.setPlayerNum(playerNum + 1);
         gameState.setFeedback(feedback);
-        String s = gson.toJson(gameState, GameState.class);
-        return s;
+        return gson.toJson(gameState, GameState.class);
     }
 
     /**

@@ -1,6 +1,0 @@
-# Utility Functions
-
-## Notes
-
-## TODO
-

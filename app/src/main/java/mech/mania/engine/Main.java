@@ -471,7 +471,7 @@ public class Main {
             if (badEndState(gameLog, player1EndState, player2EndState)) return;
 
             // update game state
-            gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision, gameConfig);
+            gameState = GameLogic.updateGameState(gameState, player1Decision, player2Decision, gameConfig, engineLogger);
             engineLogger.debug("Updated game state");
 
             long endTime = System.nanoTime();
@@ -494,15 +494,15 @@ public class Main {
         if (p1achievements.size() == 0) {
             engineLogger.info("Player 1 does not unlock any achievements");
         }
-        for (int i = 0; i < p1achievements.size(); i++) {
-            engineLogger.info(p1achievements.get(i));
+        for (String p1achievement : p1achievements) {
+            engineLogger.info(p1achievement);
         }
         engineLogger.info("Player 2 has unlocked the following achievements:");
         if (p2achievements.size() == 0) {
             engineLogger.info("Player 2 does not unlock any achievements");
         }
-        for (int i = 0; i < p2achievements.size(); i++) {
-            engineLogger.info(p2achievements.get(i));
+        for (String p2achievement : p2achievements) {
+            engineLogger.info(p2achievement);
         }
     }
 

@@ -155,7 +155,6 @@ public class TileMap implements Iterable<Tile> {
 
     public void plantCrop(Position pos, CropType type, Player planter) {
         if (isValidPosition(pos) && isPlantable(pos)) {
-            // TODO this needs to validate not being in grass
             get(pos).setCrop(new Crop(type));
             get(pos).setPlanter(planter);
         }
@@ -205,14 +204,6 @@ public class TileMap implements Iterable<Tile> {
     public TileType getTileType(Position pos) {
         return get(pos).getType();
     }
-
-    public Tile getTile(Position pos) {
-        if (isValidPosition(pos)) {
-            return tiles.get(pos.getY()).get(pos.getX());
-        }
-        return null;
-    }
-
 
     @Override
     public Iterator<Tile> iterator() {

@@ -44,7 +44,7 @@ public class Player {
     @Expose
     private boolean hasDeliveryDrone = false;
     @Expose
-    private boolean useCoffeeThermos = false;
+    private boolean hasCoffeeThermos = false;
     @Expose
     private boolean itemTimeExpired = false;
 
@@ -73,35 +73,41 @@ public class Player {
         }
 
         if (upgrade != UpgradeType.LONGER_SCYTHE) {
-            this.harvestRadius = gameConfig.HARVEST_RADIUS;
+            setHarvestRadius(gameConfig.HARVEST_RADIUS);
         } else {
-            this.harvestRadius = gameConfig.LONGER_SCYTHE_HARVEST_RADIUS;
+            setHarvestRadius(gameConfig.LONGER_SCYTHE_HARVEST_RADIUS);
         }
 
         // don't need to do anything for loyalty card yet
 
         if (upgrade != UpgradeType.LONGER_LEGS) {
-            this.maxMovement = gameConfig.MAX_MOVEMENT;
+            setMaxMovement(gameConfig.MAX_MOVEMENT);
         } else {
-            this.maxMovement = gameConfig.LONGER_LEGS_MAX_MOVEMENT;
+            setMaxMovement(gameConfig.LONGER_LEGS_MAX_MOVEMENT);
         }
 
         if (upgrade != UpgradeType.RABBITS_FOOT) {
-            this.doubleDropChance = 0;
+            setDoubleDropChance(0);
         } else {
-            this.doubleDropChance = gameConfig.RABBITS_FOOT_DOUBLE_DROP_CHANCE;
+            setDoubleDropChance(gameConfig.RABBITS_FOOT_DOUBLE_DROP_CHANCE);
         }
 
         if (upgrade != UpgradeType.SEED_A_PULT) {
-            this.plantRadius = gameConfig.PLANT_RADIUS;
+            setPlantRadius(gameConfig.PLANT_RADIUS);
         } else {
-            this.plantRadius = gameConfig.SEED_A_PULT_PLANT_RADIUS;
+            setPlantRadius(gameConfig.SEED_A_PULT_PLANT_RADIUS);
         }
 
         if (upgrade != UpgradeType.SPYGLASS) {
-            this.protectionRadius = gameConfig.PROTECTION_RADIUS;
+            setProtectionRadius(gameConfig.PROTECTION_RADIUS);
         } else {
-            this.protectionRadius = gameConfig.SPYGLASS_PROTECTION_RADIUS;
+            setProtectionRadius(gameConfig.SPYGLASS_PROTECTION_RADIUS);
+        }
+
+        if (upgrade != UpgradeType.BACKPACK) {
+            setCarryingCapacity(gameConfig.CARRYING_CAPACITY);
+        } else {
+            setCarryingCapacity(gameConfig.BACKPACK_CARRYING_CAPACITY);
         }
     }
 
@@ -119,7 +125,6 @@ public class Player {
         this.harvestedInventory = new ArrayList<>(other.harvestedInventory);
 
         this.discount = other.discount;
-        this.amountSpent = other.amountSpent;
         this.protectionRadius = other.protectionRadius;
         this.plantRadius = other.plantRadius;
         this.doubleDropChance = other.doubleDropChance;
@@ -129,7 +134,7 @@ public class Player {
 
         this.usedItem = other.usedItem;
         this.hasDeliveryDrone = other.hasDeliveryDrone;
-        this.useCoffeeThermos = other.useCoffeeThermos;
+        this.hasCoffeeThermos = other.hasCoffeeThermos;
         this.itemTimeExpired = other.itemTimeExpired;
         this.achievements = other.achievements;
     }
@@ -167,29 +172,16 @@ public class Player {
             this.money = money;
     }
     public void changeBalance(double delta) {
-        if (delta < 0) {
-            if (this.discount != 0) {
-                this.money += delta * (1 - this.discount);
-                this.amountSpent -= delta * (1 - this.discount);
-            } else {
-                this.money += delta;
-                this.amountSpent -= delta;
-            }
-
-        } else {
-            this.money += delta;
-        }
-        if (this.upgrade == UpgradeType.LOYALTY_CARD && this.amountSpent >= 25) {
-            this.discount = gameConfig.GREEN_GROCER_LOYALTY_CARD_DISCOUNT;
-        }
+        this.money += delta;
     }
     public UpgradeType getUpgrade() {
         return upgrade;
     }
 
-    public void setUpgrade(UpgradeType upgradeType) {
-        this.upgrade = upgradeType;
-    }
+    // player is initialized with UpgradeType + can't change item anyways
+//    public void setUpgrade(UpgradeType upgradeType) {
+//        this.upgrade = upgradeType;
+//    }
     public ItemType getItem() {
         return item;
     }
@@ -209,20 +201,17 @@ public class Player {
         this.name = name;
     }
 
-    public int getPlayerID() {
-        return this.playerID;
-    }
-
     public double getDiscount() {
+        if (this.upgrade == UpgradeType.LOYALTY_CARD && achievements.getMoneySpent() >= gameConfig.GREEN_GROCER_LOYALTY_CARD_MINIMUM) {
+            setDiscount(gameConfig.GREEN_GROCER_LOYALTY_CARD_DISCOUNT);
+        }
         return discount;
     }
+
     public void setDiscount(double discount) {
         this.discount = discount;
     }
 
-    public int getAmountSpent() {
-        return amountSpent;
-    }
     public void setProtectionRadius(int protectionRadius) {
         this.protectionRadius = protectionRadius;
     }
@@ -243,8 +232,15 @@ public class Player {
         this.carryingCapacity = carryingCapacity;
     }
 
+    public int getMaxMovement() {
+        return maxMovement;
+    }
     public void setMaxMovement(int maxMovement) {
         this.maxMovement = maxMovement;
+    }
+
+    public double getDoubleDropChance() {
+        return doubleDropChance;
     }
 
     public void setDoubleDropChance(double doubleDropChance) {
@@ -263,15 +259,7 @@ public class Player {
         this.usedItem = true;
     }
 
-    public boolean getItemTimeExpired() {
-        return this.itemTimeExpired;
-    }
-
-    public void setItemTimeExpired() {
-        this.itemTimeExpired = true;
-    }
-
-    public boolean getDeliveryDrone() {
+    public boolean getHasDeliveryDrone() {
         return hasDeliveryDrone;
     }
 
@@ -279,12 +267,12 @@ public class Player {
         this.hasDeliveryDrone = hasDeliveryDrone;
     }
 
-    public boolean getUseCoffeeThermos() {
-        return useCoffeeThermos;
+    public boolean getHasCoffeeThermos() {
+        return hasCoffeeThermos;
     }
 
-    public void setUseCoffeeThermos(boolean useCoffeeThermos) {
-        this.useCoffeeThermos = useCoffeeThermos;
+    public void setHasCoffeeThermos(boolean hasCoffeeThermos) {
+        this.hasCoffeeThermos = hasCoffeeThermos;
     }
 
     public int getPlantingRadius() {
@@ -292,7 +280,7 @@ public class Player {
     }
 
     public int getSpeed() {
-        if (this.getUseCoffeeThermos()) {
+        if (this.getHasCoffeeThermos()) {
             return this.maxMovement * 3;
         }
         return this.maxMovement;
@@ -333,6 +321,10 @@ public class Player {
         }
 
         tile.clearCrop();
+    }
+
+    public Config getConfig() {
+        return gameConfig;
     }
 
 

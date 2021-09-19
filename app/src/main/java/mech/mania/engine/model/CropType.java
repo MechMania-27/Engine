@@ -13,7 +13,6 @@ public enum CropType {
     DUCHAMFRUIT("croptype.duchamfruit"),
     GOLDENCORN("croptype.goldencorn");
 
-
     /**
      * ResourceBundle to get properties file values from
      * Note: Since "mm27" is defined here, we cannot change the values for
@@ -33,9 +32,9 @@ public enum CropType {
         this.propsPrefix = propsPrefix;
     }
 
-    public String getDescription() {
-        return rb.getString(propsPrefix + ".description");
-    }
+//    public String getDescription() {
+//        return rb.getString(propsPrefix + ".description");
+//    }
 
     public static CropType getEnum(String crop) {
         if (crop == null || crop.length() == 0) {
@@ -47,7 +46,11 @@ public enum CropType {
         return CropType.valueOf(crop);
     }
 
-    public int getTimeToGrow() {
+    public double getFertilitySensitivity() {
+        return Double.parseDouble(rb.getString(propsPrefix + ".fertilitysens"));
+    }
+
+    public int getGrowthTime() {
         return Integer.parseInt(rb.getString(propsPrefix + ".growthtime"));
     }
 
@@ -55,8 +58,8 @@ public enum CropType {
         return Integer.parseInt(rb.getString(propsPrefix + ".seedprice"));
     }
 
-    public double getValueGrowth() {
-        return Double.parseDouble(rb.getString(propsPrefix + ".valuegrowth"));
+    public double getGrowthValuePerTurn() {
+        return Double.parseDouble(rb.getString(propsPrefix + ".growthvalue"));
     }
 
 }

@@ -15,7 +15,7 @@ public class UseItemActionTest {
     private final static int OPPONENT_PLAYER_ID = 1;
     private final static String OPPONENT_PLAYER_NAME = "bot2";
 
-    private final static Config GAME_CONFIG = new Config("mm27");
+    private final static Config GAME_CONFIG = new Config("debug");
     private final static JsonLogger BOT_LOGGER = new JsonLogger();
     private final static JsonLogger ENGINE_LOGGER = new JsonLogger();
     private UseItemAction action;
@@ -67,7 +67,7 @@ public class UseItemActionTest {
             for (int j = 8; j <= 9; j++) {
                 CropType curCrop = types[(i + j) % types.length];
                 // should grow all crops by 1
-                int expectedTimer = Math.max(0, curCrop.getTimeToGrow() - 1);
+                int expectedTimer = Math.max(0, curCrop.getGrowthTime() - 1);
                 int actualTimer = state.getTileMap().get(i, j).getCrop().getGrowthTimer();
                 Assert.assertEquals(expectedTimer, actualTimer);
             }
@@ -77,7 +77,7 @@ public class UseItemActionTest {
             for (int j = 3; j <= 7; j++) {
                 CropType curCrop = types[(i + j) % types.length];
                 // should grow all crops by 3
-                int expectedTimer = Math.max(0, curCrop.getTimeToGrow() - 3);
+                int expectedTimer = Math.max(0, curCrop.getGrowthTime() - 3);
                 int actualTimer = state.getTileMap().get(i, j).getCrop().getGrowthTimer();
                 Assert.assertEquals(expectedTimer, actualTimer);
             }
@@ -168,7 +168,7 @@ public class UseItemActionTest {
         action.performAction(state);
 
         Tile curTile = state.getTileMap().get(match_i, match_j);
-        Assert.assertEquals(0.8 * curTile.getCrop().getType().getValueGrowth(), curTile.getCrop().getValue(), 0.001);
+        Assert.assertEquals(0.8 * curTile.getCrop().getType().getGrowthValuePerTurn(), curTile.getCrop().getValue(), 0.001);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class UseItemActionTest {
         action.parse("");
 
         action.performAction(state);
-        Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getUseCoffeeThermos());
+        Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getHasCoffeeThermos());
         Assert.assertEquals(GAME_CONFIG.MAX_MOVEMENT * 3, state.getPlayer(MY_PLAYER_ID).getSpeed());
 
         // can't test whether this actually increases the movement because the board is too small
@@ -217,13 +217,13 @@ public class UseItemActionTest {
 
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(x - 1, y - 1));
         state.getPlayer(OPPONENT_PLAYER_ID).addSeeds(CropType.CORN, 1);
-        Assert.assertEquals(CropType.NONE, state.getTileMap().getTile(new Position(x - 1, y - 1)).getCrop().getType());
+        Assert.assertEquals(CropType.NONE, state.getTileMap().get(new Position(x - 1, y - 1)).getCrop().getType());
 
         PlantAction opponentAction = new PlantAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         opponentAction.parse(String.format("corn %d %d", x - 1, y - 1));
         opponentAction.performAction(state);
         // make sure nothing was planted
-        Assert.assertEquals(CropType.NONE, state.getTileMap().getTile(new Position(x - 1, y - 1)).getCrop().getType());
+        Assert.assertEquals(CropType.NONE, state.getTileMap().get(new Position(x - 1, y - 1)).getCrop().getType());
     }
 
     @Test
@@ -236,7 +236,7 @@ public class UseItemActionTest {
         action.parse("");
         action.performAction(state);
 
-        Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getDeliveryDrone());
+        Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getHasDeliveryDrone());
         // player should have 0 seeds
         Assert.assertEquals(Optional.of(0), state.getPlayer(MY_PLAYER_ID).getSeeds().values().stream().reduce(Integer::sum));
 
@@ -247,5 +247,18 @@ public class UseItemActionTest {
 
         // sum up all of the different numbers of seeds that the player has, make sure they only have one
         Assert.assertEquals(Optional.of(1), state.getPlayer(MY_PLAYER_ID).getSeeds().values().stream().reduce(Integer::sum));
+    }
+
+    @Test
+    public void testItemExpires() throws PlayerDecisionParseException {
+        state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, ItemType.DELIVERY_DRONE, myPlayerUpgrade,
+                OPPONENT_PLAYER_NAME, ItemType.NONE, opponentPlayerUpgrade);
+
+        state.getPlayer(MY_PLAYER_ID).setPosition(new Position(9, 9));
+
+        action.parse("");
+        action.performAction(state);
+
+        Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getHasDeliveryDrone());
     }
 }

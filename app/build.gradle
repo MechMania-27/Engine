@@ -11,6 +11,7 @@ plugins {
     id 'java'
     id 'application'
     id 'java-library-distribution'
+    id 'jacoco'
 }
 
 repositories {
@@ -57,7 +58,6 @@ jar {
 
 // https://stackoverflow.com/questions/4871656/using-gradle-to-build-a-jar-with-dependencies
 task fatJar(type: Jar) {
-    duplicatesStrategy = 'include'
     manifest.from jar.manifest
     classifier = 'all'
 
@@ -75,4 +75,12 @@ task fatJar(type: Jar) {
 
 artifacts {
     archives fatJar
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
 }

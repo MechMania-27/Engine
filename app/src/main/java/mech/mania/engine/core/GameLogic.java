@@ -5,7 +5,6 @@ import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 import mech.mania.engine.model.decisions.MoveAction;
 import mech.mania.engine.model.decisions.PlayerDecision;
-import mech.mania.engine.model.decisions.UseItemAction;
 
 public class GameLogic {
     public static boolean isGameOver(GameState gameState, Config gameConfig) {
@@ -46,55 +45,10 @@ public class GameLogic {
     public static GameState updateGameState(GameState gameState,
                                             PlayerDecision player1Decision,
                                             PlayerDecision player2Decision,
-                                            Config gameConfig) {
+                                            Config gameConfig,
+                                            JsonLogger engineLogger) {
         GameState newGameState = new GameState(gameState);
         newGameState.setTurn(gameState.getTurn() + 1);
-
-        // Perform non-movement actions
-        if (! (player1Decision instanceof MoveAction)) {
-            player1Decision.performAction(newGameState);
-        }
-        if (! (player2Decision instanceof MoveAction)) {
-            player2Decision.performAction(newGameState);
-        }
-
-        if (gameState.getPlayer1().getDeliveryDrone()) {
-            if (gameState.getPlayer1().getItemTimeExpired()) {
-                // it's already been 1 turn
-                newGameState.getPlayer1().setDeliveryDrone(false);
-            } else {
-                // just activated drone
-                newGameState.getPlayer1().setItemTimeExpired();
-            }
-        }
-
-        if (gameState.getPlayer2().getDeliveryDrone()) {
-            if (gameState.getPlayer2().getItemTimeExpired()) {
-                // it's already been 1 turn
-                newGameState.getPlayer2().setDeliveryDrone(false);
-            } else {
-                newGameState.getPlayer2().setItemTimeExpired();
-            }
-        }
-
-        if (gameState.getPlayer1().getUseCoffeeThermos()) {
-            if (gameState.getPlayer1().getItemTimeExpired()) {
-                // it's already been 1 turn
-                newGameState.getPlayer1().setUseCoffeeThermos(false);
-            } else {
-                // just activated drone
-                newGameState.getPlayer1().setItemTimeExpired();
-            }
-        }
-
-        if (gameState.getPlayer2().getUseCoffeeThermos()) {
-            if (gameState.getPlayer2().getItemTimeExpired()) {
-                // it's already been 1 turn
-                newGameState.getPlayer2().setUseCoffeeThermos(false);
-            } else {
-                newGameState.getPlayer2().setItemTimeExpired();
-            }
-        }
 
         // Grow crops
         newGameState.getTileMap().growCrops();
@@ -107,14 +61,19 @@ public class GameLogic {
             if (tile.getType() == TileType.ARID) {
                 tile.getCrop().setGrowthTimer(0);
                 tile.getCrop().setValue(0);
-                if(tile.getCrop().getType() != CropType.NONE) {
+                if (tile.getCrop().getType() != CropType.NONE) {
                     tile.getPlanter().getAchievements().destroyCrops(1);
                 }
-
             }
         }
 
-
+        // Perform non-movement actions
+        if (! (player1Decision instanceof MoveAction)) {
+            player1Decision.performAction(newGameState);
+        }
+        if (! (player2Decision instanceof MoveAction)) {
+            player2Decision.performAction(newGameState);
+        }
 
         return newGameState;
     }

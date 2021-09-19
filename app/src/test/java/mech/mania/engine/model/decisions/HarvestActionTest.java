@@ -19,15 +19,16 @@ public class HarvestActionTest {
 
     HarvestAction action;
     GameState state;
-    CropType[] types = {CropType.CORN, CropType.POTATO};
+    private final static CropType[] types = {CropType.CORN, CropType.POTATO, CropType.GRAPE};
 
     @Before
     public void setup() {
         action = new HarvestAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+
         ItemType myPlayerItem = ItemType.NONE;
-        UpgradeType myPlayerUpgrade = UpgradeType.NONE;
+        UpgradeType myPlayerUpgrade = UpgradeType.SPYGLASS;
         ItemType opponentPlayerItem = ItemType.NONE;
-        UpgradeType opponentPlayerUpgrade = UpgradeType.NONE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.LONGER_SCYTHE;
 
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
@@ -258,7 +259,7 @@ public class HarvestActionTest {
     @Test
     public void insideOpponentProtectionRadiusTest() throws PlayerDecisionParseException {
         String regularDecision = String.format("%d %d", GAME_CONFIG.BOARD_WIDTH / 4 + GAME_CONFIG.PROTECTION_RADIUS + 1,
-                                                GAME_CONFIG.BOARD_HEIGHT / 4);;
+                                                GAME_CONFIG.BOARD_HEIGHT / 4);
         action.parse(regularDecision);
 
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(
@@ -277,4 +278,5 @@ public class HarvestActionTest {
         action.performAction(state);
         Assert.assertEquals(0, state.getPlayer(OPPONENT_PLAYER_ID).getHarvestedCrops().size());
     }
+
 }

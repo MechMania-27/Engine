@@ -12,7 +12,7 @@ public class Crop {
 
     public Crop(CropType type) {
         this.type = type;
-        this.growthTimer = type.getTimeToGrow();
+        this.growthTimer = type.getGrowthTime();
         this.value = 0;
     }
 
@@ -22,10 +22,13 @@ public class Crop {
         this.value = other.value;
     }
 
-    /** Increases this crop's value based on the multiplier and decrements the growthTimer if crop is still growing */
-    public void grow(double multiplier){
-        if(growthTimer > 0) {
-            value += type.getValueGrowth() * multiplier;
+    /** Increases this crop's value based on the tile fertility and decrements the growthTimer if crop is still growing */
+    public void grow(double tileFertility) {
+        if (growthTimer > 0) {
+            double GVT = type.getGrowthValuePerTurn();
+            double FS = type.getFertilitySensitivity();
+            double TF = tileFertility;
+            value += GVT * ((1 * (1 - FS)) + (TF * FS));
             growthTimer--;
         }
     }

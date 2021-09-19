@@ -6,7 +6,6 @@ import mech.mania.engine.model.decisions.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AchievementsTest {
@@ -31,7 +30,7 @@ public class AchievementsTest {
      * Test for the achievement "Not Worth the Dirt He Sows", "A Worthy Heir", "It Ain’t Much, but It’s Honest Work"
      */
     @Test
-    public void Achievement1and7and8() throws IOException, PlayerDecisionParseException {
+    public void Achievement1and7and8() throws PlayerDecisionParseException {
         PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
                 .parse("corn 10");
         PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
@@ -55,7 +54,7 @@ public class AchievementsTest {
      * Test for the achievement "My Favorite Customer", "Botanical Burglary"
      */
     @Test
-    public void achievement2() throws IOException, PlayerDecisionParseException {
+    public void achievement2() throws PlayerDecisionParseException {
         PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
                 .parse("corn 200");
         PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
@@ -77,7 +76,7 @@ public class AchievementsTest {
      * Test for the achievement "Dust Bowl"
      */
     @Test
-    public void achievement3() throws IOException, PlayerDecisionParseException {
+    public void achievement3() throws PlayerDecisionParseException {
         PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
                 .parse("corn 200");
         PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
@@ -97,7 +96,7 @@ public class AchievementsTest {
             //gameState = GameLogic.updateGameState(gameState, plant, player2Decision, gameConfig, engineLogger);
         }
         gameState.setTurn(155);
-        gameState = GameLogic.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig);
+        gameState = GameLogic.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig, engineLogger);
         //Position p = new Position(3, 0);
         //Tile t = gameState.getTileMap().getTile(p);
         //System.out.println(t.getType());
@@ -115,7 +114,7 @@ public class AchievementsTest {
      * Test for the achievement "Seedy Business"
      */
     @Test
-    public void achievement4() throws IOException, PlayerDecisionParseException {
+    public void achievement4() throws PlayerDecisionParseException {
         int x = 3;
         int y = 4;
         PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
@@ -155,7 +154,7 @@ public class AchievementsTest {
      * Test for the achievement "Omni-Agriculturalist"
      */
     @Test
-    public void achievement5() throws IOException, PlayerDecisionParseException {
+    public void achievement5() {
         player1.addToHarvestInventory(new Crop(CropType.DUCHAMFRUIT));
         player1.addToHarvestInventory(new Crop(CropType.GRAPE));
         player1.addToHarvestInventory(new Crop(CropType.POTATO));
@@ -174,7 +173,7 @@ public class AchievementsTest {
      * Test for the achievement "Grapes of Mild Displeasure", "Richer than Phineas Himself", "Fruits of our Labor"
      */
     @Test
-    public void achievement6and9and13() throws IOException, PlayerDecisionParseException {
+    public void achievement6and9and13() throws PlayerDecisionParseException {
         PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
                 .parse("grape 200");
         PlayerDecision buyAction2 = new BuyAction(0, playerLogger, engineLogger)
@@ -231,7 +230,7 @@ public class AchievementsTest {
      * Test for the achievement "Ornithophobia"
      */
     @Test
-    public void achievement10() throws IOException, PlayerDecisionParseException {
+    public void achievement10() throws PlayerDecisionParseException {
         player1.setItem(ItemType.SCARECROW);
         player2.setItem(ItemType.SCARECROW);
         Position p = new Position(3, 3);
@@ -257,7 +256,7 @@ public class AchievementsTest {
      * Test for the achievement "Stalks and Bonds"
      */
     @Test
-    public void achievement11() throws IOException, PlayerDecisionParseException {
+    public void achievement11() {
         player1.addToHarvestInventory(new Crop(CropType.GOLDENCORN));
         player1.sellInventory();
         String achievement = "Stalks and Bonds";

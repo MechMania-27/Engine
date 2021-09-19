@@ -44,7 +44,7 @@ public class Player {
     @Expose
     private boolean hasDeliveryDrone = false;
     @Expose
-    private boolean useCoffeeThermos = false;
+    private boolean hasCoffeeThermos = false;
     @Expose
     private boolean itemTimeExpired = false;
 

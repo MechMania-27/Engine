@@ -67,7 +67,7 @@ public class UseItemActionTest {
             for (int j = 8; j <= 9; j++) {
                 CropType curCrop = types[(i + j) % types.length];
                 // should grow all crops by 1
-                int expectedTimer = Math.max(0, curCrop.getTimeToGrow() - 1);
+                int expectedTimer = Math.max(0, curCrop.getGrowthTime() - 1);
                 int actualTimer = state.getTileMap().get(i, j).getCrop().getGrowthTimer();
                 Assert.assertEquals(expectedTimer, actualTimer);
             }
@@ -77,7 +77,7 @@ public class UseItemActionTest {
             for (int j = 3; j <= 7; j++) {
                 CropType curCrop = types[(i + j) % types.length];
                 // should grow all crops by 3
-                int expectedTimer = Math.max(0, curCrop.getTimeToGrow() - 3);
+                int expectedTimer = Math.max(0, curCrop.getGrowthTime() - 3);
                 int actualTimer = state.getTileMap().get(i, j).getCrop().getGrowthTimer();
                 Assert.assertEquals(expectedTimer, actualTimer);
             }
@@ -168,7 +168,7 @@ public class UseItemActionTest {
         action.performAction(state);
 
         Tile curTile = state.getTileMap().get(match_i, match_j);
-        Assert.assertEquals(0.8 * curTile.getCrop().getType().getValueGrowth(), curTile.getCrop().getValue(), 0.001);
+        Assert.assertEquals(0.8 * curTile.getCrop().getType().getGrowthValuePerTurn(), curTile.getCrop().getValue(), 0.001);
     }
 
     @Test

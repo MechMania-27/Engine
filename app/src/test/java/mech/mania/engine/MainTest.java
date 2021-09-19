@@ -114,7 +114,7 @@ public class MainTest {
      * Test to make sure bot5 can crash as well.
      */
     @Test
-    public void bot5CrashesBot1Wins() throws IOException {
+    public void bot2CrashesBot1Wins() throws IOException {
         GameLog log = launchCrashingBots(5, 1);
         Assert.assertEquals(PlayerEndState.WON, log.getPlayer1EndState());
         Assert.assertEquals(PlayerEndState.ERROR, log.getPlayer2EndState());

@@ -25,8 +25,9 @@ public class Player {
     @Expose
     private double discount;
 
-    private int playerID;
-
+    @Expose
+    private int amountSpent;
+    @Expose
     private int protectionRadius;
     @Expose
     private int harvestRadius;
@@ -47,6 +48,8 @@ public class Player {
     private boolean hasCoffeeThermos = false;
     @Expose
     private boolean itemTimeExpired = false;
+
+    private int playerID;
 
     private Config gameConfig;
 

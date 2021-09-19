@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import mech.mania.engine.config.Config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameState {
@@ -20,7 +21,7 @@ public class GameState {
     @Expose
     private int playerNum;
     @Expose
-    private List<String> feedback;
+    private List<String> feedback = new ArrayList<>();
 
     private Config gameConfig;
 
@@ -49,6 +50,8 @@ public class GameState {
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
         this.tileMap = new TileMap(other.tileMap);
+        this.feedback = new ArrayList<>(other.feedback);
+        this.playerNum = other.playerNum;
     }
 
     public int getTurn() {

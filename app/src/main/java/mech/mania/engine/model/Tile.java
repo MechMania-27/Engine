@@ -17,7 +17,7 @@ public class Tile {
     private ItemType p2Item;
 
     private final Config gameConfig;
-
+  
     @Expose
     private int turnsLeftToGrow;
     @Expose
@@ -123,7 +123,7 @@ public class Tile {
     }
     @Override
     public String toString() {
-        return String.format("Tile[%s,%s]", type, crop);
+        return String.format("Tile[type=%s,crop=%s]", type, crop);
     }
     public Player getPlanter() {
         return planter;

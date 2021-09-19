@@ -45,55 +45,10 @@ public class GameLogic {
     public static GameState updateGameState(GameState gameState,
                                             PlayerDecision player1Decision,
                                             PlayerDecision player2Decision,
-                                            Config gameConfig) {
+                                            Config gameConfig,
+                                            JsonLogger engineLogger) {
         GameState newGameState = new GameState(gameState);
         newGameState.setTurn(gameState.getTurn() + 1);
-
-        // Perform non-movement actions
-        if (! (player1Decision instanceof MoveAction)) {
-            player1Decision.performAction(newGameState);
-        }
-        if (! (player2Decision instanceof MoveAction)) {
-            player2Decision.performAction(newGameState);
-        }
-
-        if (gameState.getPlayer1().getHasDeliveryDrone()) {
-            if (gameState.getPlayer1().getUsedItem()) {
-                // it's already been 1 turn
-                newGameState.getPlayer1().setDeliveryDrone(false);
-            } else {
-                // just activated drone
-                newGameState.getPlayer1().setUsedItem();
-            }
-        }
-
-        if (gameState.getPlayer2().getHasDeliveryDrone()) {
-            if (gameState.getPlayer2().getUsedItem()) {
-                // it's already been 1 turn
-                newGameState.getPlayer2().setDeliveryDrone(false);
-            } else {
-                newGameState.getPlayer2().setUsedItem();
-            }
-        }
-
-        if (gameState.getPlayer1().getHasCoffeeThermos()) {
-            if (gameState.getPlayer1().getUsedItem()) {
-                // it's already been 1 turn
-                newGameState.getPlayer1().setHasCoffeeThermos(false);
-            } else {
-                // just activated drone
-                newGameState.getPlayer1().setUsedItem();
-            }
-        }
-
-        if (gameState.getPlayer2().getHasCoffeeThermos()) {
-            if (gameState.getPlayer2().getUsedItem()) {
-                // it's already been 1 turn
-                newGameState.getPlayer2().setHasCoffeeThermos(false);
-            } else {
-                newGameState.getPlayer2().setUsedItem();
-            }
-        }
 
         // Grow crops
         newGameState.getTileMap().growCrops();
@@ -110,6 +65,14 @@ public class GameLogic {
                     tile.getPlanter().getAchievements().destroyCrops(1);
                 }
             }
+        }
+
+        // Perform non-movement actions
+        if (! (player1Decision instanceof MoveAction)) {
+            player1Decision.performAction(newGameState);
+        }
+        if (! (player2Decision instanceof MoveAction)) {
+            player2Decision.performAction(newGameState);
         }
 
         return newGameState;

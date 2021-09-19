@@ -22,7 +22,6 @@ public class Achievements {
         stole = false;
         cropsPlant = false;
         fruitOnly = true;
-        cropsDestroyed = 0;
     }
     public void spendMoney(double money) {
         moneySpent += money;

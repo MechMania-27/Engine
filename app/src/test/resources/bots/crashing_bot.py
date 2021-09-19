@@ -65,13 +65,6 @@ def get_action_decision(game_state) -> str:
     return action
 
 
-def crash_on_turn(curr_turn: int, turn: int) -> None:
-    if curr_turn >= turn:
-        a = [1, 2, 3]
-        # simulate crashing
-        b = a[4]
-
-
 if __name__ == "__main__":
     send_heartbeat()
     send_item(get_item())
@@ -86,6 +79,10 @@ if __name__ == "__main__":
         duration = time.perf_counter_ns() - start_time
         logger.info(f"Receiving game state 1 took {duration // 1e6} ms")
 
+        if game_state["turn"] >= int(sys.argv[1]):
+            a = [1, 2, 3]
+            a[4]
+
         start_time = time.perf_counter_ns()
         move_decision = get_move_decision(game_state)
         duration = time.perf_counter_ns() - start_time
@@ -95,8 +92,6 @@ if __name__ == "__main__":
         send_decision(move_decision)
         duration = time.perf_counter_ns() - start_time
         logger.info(f"Send move decision took {duration // 1e6} ms")
-
-        crash_on_turn(game_state['turn'], int(sys.argv[1]))
 
         start_time = time.perf_counter_ns()
         game_state = receive_gamestate()

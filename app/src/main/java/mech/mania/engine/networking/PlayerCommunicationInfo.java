@@ -164,11 +164,7 @@ public class PlayerCommunicationInfo {
         engineLogger.debug(String.format("Bot (pid %d): reading (len:%d): %.30s",
                 pid, response.length(), response));
 
-        try {
-            return PlayerCommunicationUtils.parseDecision(playerNum, response, logger, engineLogger);
-        } catch (PlayerDecisionParseException e){
-            throw(e);
-        }
+        return PlayerCommunicationUtils.parseDecision(playerNum, response, logger, engineLogger);
     }
 
     /**

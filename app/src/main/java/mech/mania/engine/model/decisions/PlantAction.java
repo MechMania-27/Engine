@@ -21,7 +21,7 @@ public class PlantAction extends PlayerDecision {
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<crop>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        String regex = "(?<crop>[a-zA-Z_-]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 

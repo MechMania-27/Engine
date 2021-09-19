@@ -154,7 +154,7 @@ public class AchievementsTest {
      * Test for the achievement "Omni-Agriculturalist"
      */
     @Test
-    public void achievement5() throws IOException, PlayerDecisionParseException {
+    public void achievement5() {
         player1.addToHarvestInventory(new Crop(CropType.DUCHAM_FRUIT, gameConfig));
         player1.addToHarvestInventory(new Crop(CropType.GRAPE, gameConfig));
         player1.addToHarvestInventory(new Crop(CropType.POTATO, gameConfig));
@@ -256,7 +256,7 @@ public class AchievementsTest {
      * Test for the achievement "Stalks and Bonds"
      */
     @Test
-    public void achievement11() throws IOException, PlayerDecisionParseException {
+    public void achievement11() {
         player1.addToHarvestInventory(new Crop(CropType.GOLDEN_CORN, gameConfig));
         player1.sellInventory();
         String achievement = "Stalks and Bonds";

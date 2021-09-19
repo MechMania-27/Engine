@@ -48,11 +48,11 @@ public class CropTest {
         expectedProfitMargin.put(CropType.POTATO, new Pair<>(1.10, 1));
         expectedProfitMargin.put(CropType.CORN, new Pair<>(1.25, 24));
         expectedProfitMargin.put(CropType.GRAPE, new Pair<>(1.25, 21));
-        expectedProfitMargin.put(CropType.JOGANFRUIT, new Pair<>(1.29, 24));
-        expectedProfitMargin.put(CropType.PEANUTS, new Pair<>(1.00, 1));
+        expectedProfitMargin.put(CropType.JOGAN_FRUIT, new Pair<>(1.29, 24));
+        expectedProfitMargin.put(CropType.PEANUT, new Pair<>(1.00, 1));
         expectedProfitMargin.put(CropType.QUADROTRITICALE, new Pair<>(1.36, 21)); // ended with 40.50 after starting at turn 13
-        expectedProfitMargin.put(CropType.DUCHAMFRUIT, new Pair<>(1.38, 24));
-        expectedProfitMargin.put(CropType.GOLDENCORN, new Pair<>(2.25, 24));
+        expectedProfitMargin.put(CropType.DUCHAM_FRUIT, new Pair<>(1.38, 24));
+        expectedProfitMargin.put(CropType.GOLDEN_CORN, new Pair<>(2.25, 24));
 
         for (Map.Entry<CropType, Pair<Double, Integer>> entry : expectedProfitMargin.entrySet()) {
             CropType type = entry.getKey();

@@ -47,7 +47,7 @@ public class UseItemAction extends PlayerDecision {
                 String message = "An item was never specified";
                 playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
-                break;
+                return;
 
             case PESTICIDE:
                 int pesticideEffectRadius = config.PESTICIDE_EFFECT_RADIUS;

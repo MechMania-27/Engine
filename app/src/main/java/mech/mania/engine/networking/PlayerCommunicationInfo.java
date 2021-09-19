@@ -11,6 +11,7 @@ import mech.mania.engine.util.PlayerCommunicationUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A class that will hold information about communication with the player, including
@@ -30,8 +31,15 @@ public class PlayerCommunicationInfo {
     private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
     private BufferedWriter writer;
 
+    private Thread errorStreamCatchProcess;
+    private Thread errorStreamReadProcess;
+
     private ItemType startingItem;
     private UpgradeType startingUpgradeType;
+    
+    private int pid;
+
+    private boolean gameOver = false;
 
     public PlayerCommunicationInfo(Config gameConfig, JsonLogger engineLogger, JsonLogger logger,
                                    int playerNum, String playerName, String playerExecutable) {
@@ -51,7 +59,12 @@ public class PlayerCommunicationInfo {
     public void start() throws IOException {
         // use executable string to start process, initialize streams to communicate
         ProcessBuilder pb = new ProcessBuilder(playerExecutable);
-        process = pb.start();
+        try {
+            process = pb.start();
+            pid = MainUtils.tryGetPid(process);
+        } catch (Exception e) {
+            engineLogger.severe("Failed to start process for bot", e);
+        }
 
         // be constantly catching the error stream to keep the buffer clear
         // whenever we are reading the inputstream as well as for properly
@@ -59,7 +72,7 @@ public class PlayerCommunicationInfo {
         // (reading from both input and error streams requires at least one
         // extra thread reading one of the streams to keep the buffer empty
         // https://stackoverflow.com/questions/1349298/reading-input-and-error-streams-concurrently-using-bufferedreaders-hangs)
-        Thread errorStreamCatchProcess = new Thread(() -> {
+        errorStreamCatchProcess = new Thread(() -> {
             try {
                 IOUtils.copy(process.getErrorStream(), errorStream);
             } catch (IOException e) {
@@ -68,9 +81,34 @@ public class PlayerCommunicationInfo {
         });
         errorStreamCatchProcess.start();
 
-        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.PLAYER_TIMEOUT);
+        errorStreamReadProcess = new Thread(() -> {
+            while (!gameOver) {
+                String[] allMessages = errorStream.toString().split("\n");
+                for (String message : allMessages) {
+                    if (!message.contains(":")) {
+                        logger.severe(message);
+                        continue;
+                    }
+                    switch (message.substring(0, message.indexOf(":"))) {
+                        case "info":
+                            logger.info(message.substring(message.indexOf(":") + 2));
+                            break;
+                        case "debug":
+                            logger.debug(message.substring(message.indexOf(":") + 2));
+                            break;
+                        default:
+                            logger.severe(message);
+                    }
+                }
+                errorStream.reset();
+            }
+        });
+        errorStreamReadProcess.start();
+
+        // originally set timeout to heartbeat timeout. once we receive a heartbeat from the bot we can set it to the
+        // player turn timeout
+        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.HEARTBEAT_TIMEOUT);
         writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-        engineLogger.debug(String.format("Bot (pid %d): started", MainUtils.tryGetPid(process)));
     }
 
     /**
@@ -80,12 +118,31 @@ public class PlayerCommunicationInfo {
         try {
             inputReader.close();
             writer.close();
+            gameOver = true;
+            process.destroyForcibly();
+            errorStreamCatchProcess.interrupt();
+            errorStreamReadProcess.interrupt();
         } catch (IOException e) {
             engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
-                    MainUtils.tryGetPid(process), e.getClass(), e.getMessage()));
+                    pid, e.getClass(), e.getMessage()));
             return;
         }
-        engineLogger.debug(String.format("Bot (pid %d): closed without error", MainUtils.tryGetPid(process)));
+        engineLogger.debug(String.format("Bot (pid %d): closed without error", pid));
+    }
+
+    private String safeGetLine() throws IOException {
+        String response;
+        try {
+            response = inputReader.readLine();
+            engineLogger.debug("Received \"" + response + "\"");
+        } catch (Exception e) {
+            engineLogger.debug(String.format("Bot (pid %d): failed to read from (%s): %s",
+                    pid, e.getClass(), e.getMessage()));
+
+            throw(e);
+        }
+
+        return response;
     }
 
     /**
@@ -97,35 +154,18 @@ public class PlayerCommunicationInfo {
      * @throws PlayerDecisionParseException if the engine fails to parse the player's decision
      */
     public PlayerDecision getPlayerDecision() throws IOException, IllegalThreadStateException, PlayerDecisionParseException {
-        String response;
-        try {
+        String response = safeGetLine();
+
+        while (response.startsWith(" ")) {
             response = inputReader.readLine();
-        } finally {
-            String[] allMessages = errorStream.toString().split("\n");
-            for (String message : allMessages) {
-                if (!message.contains(":")) {
-                    logger.severe(message);
-                    continue;
-                }
-                switch (message.substring(0, message.indexOf(":"))) {
-                    case "info":
-                        logger.info(message.substring(message.indexOf(":") + 2));
-                        break;
-                    case "debug":
-                        logger.debug(message.substring(message.indexOf(":") + 2));
-                        break;
-                    default:
-                        logger.severe(message);
-                }
-            }
-            errorStream.reset();
+            logger.debug(response);
         }
 
         engineLogger.debug(String.format("Bot (pid %d): reading (len:%d): %.30s",
-                MainUtils.tryGetPid(process), response.length(), response));
+                pid, response.length(), response));
 
         try {
-            return PlayerCommunicationUtils.parseDecision(playerNum, response);
+            return PlayerCommunicationUtils.parseDecision(playerNum, response, logger, engineLogger);
         } catch (PlayerDecisionParseException e){
             throw(e);
         }
@@ -139,9 +179,9 @@ public class PlayerCommunicationInfo {
      */
     public void sendGameState(GameState gameState) throws IOException {
         // send player turn to stdin
-        String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum);
+        String message = PlayerCommunicationUtils.sendInfoFromGameState(gameState, playerNum, logger.getFeedback());
         engineLogger.debug(String.format("Bot (pid %d): writing (len:%d): %.30s",
-                MainUtils.tryGetPid(process), message.length(), message));
+                pid, message.length(), message));
         writer.append(message);
         writer.newLine();
         writer.flush();
@@ -152,10 +192,20 @@ public class PlayerCommunicationInfo {
      * for Item and Upgrade that will be used.
      */
     public void askForStartingItems() throws IOException, IllegalThreadStateException {
-        String itemResponse = inputReader.readLine();
-        this.startingItem = PlayerCommunicationUtils.itemFromString(itemResponse);
-        String upgradeResponse = inputReader.readLine();
-        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString(upgradeResponse);
+        String itemResponse = safeGetLine();
+        while (itemResponse.startsWith(" ")) {
+            itemResponse = inputReader.readLine();
+            logger.debug(itemResponse);
+        }
+        this.startingItem = PlayerCommunicationUtils.itemFromString("NONE");
+
+        String upgradeResponse = safeGetLine();
+        while (upgradeResponse.startsWith(" ")) {
+            upgradeResponse = inputReader.readLine();
+            logger.debug(upgradeResponse);
+        }
+
+        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString("NONE");
     }
 
     public String getPlayerName() {
@@ -174,4 +224,12 @@ public class PlayerCommunicationInfo {
         return logger;
     }
 
+    public void checkHeartbeat() throws IOException {
+        String response = safeGetLine();
+        if (!response.equals("heartbeat")) {
+            throw(new IOException());
+        }
+        inputReader.setTimeout(gameConfig.PLAYER_TIMEOUT, TimeUnit.MILLISECONDS);
+        engineLogger.debug(String.format("Bot (pid %d): started process (received heartbeat)", pid));
+    }
 }

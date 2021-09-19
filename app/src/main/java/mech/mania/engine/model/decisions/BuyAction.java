@@ -11,7 +11,8 @@ public class BuyAction extends PlayerDecision {
     protected ArrayList<CropType> seeds;
     protected ArrayList<Integer> quantities;
 
-    public BuyAction(int playerID) {
+    public BuyAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+        super(playerLogger, engineLogger);
         this.playerID = playerID;
     }
 
@@ -41,27 +42,26 @@ public class BuyAction extends PlayerDecision {
         return this;
     }
 
-    public void performAction(GameState state, JsonLogger engineLogger) {
+    public void performAction(GameState state) {
         Player player = state.getPlayer(playerID);
         TileType curTile = state.getTileMap().getTileType(player.getPosition());
         if (!player.getDeliveryDrone() && curTile != TileType.GREEN_GROCER) {
-            engineLogger.severe(String.format("Player %d failed to purchase, not on Green Grocer" +
-                                                "tile and no delivery drone", playerID + 1));
+            String message = "Failed to purchase, not on Green Grocer" +
+                    "tile and no delivery drone";
+            engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
             return;
         }
 
         for (int i = 0; i < seeds.size(); i++) {
             int cost = seeds.get(i).getSeedBuyPrice() * quantities.get(i);
             if (cost > player.getMoney()) {
-                engineLogger.severe(
-                                String.format(
-                                                "Player %d failed to purchase %d %s seeds, budget %.2f, cost %d",
-                                                playerID + 1,
-                                                quantities.get(i),
-                                                seeds.get(i),
-                                                player.getMoney(),
-                                                cost)
-                );
+                String message = String.format("Failed to purchase %d %s seeds, budget %.2f, cost %d",
+                        quantities.get(i),
+                        seeds.get(i),
+                        player.getMoney(),
+                        cost);
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 continue;
             }
             player.addSeeds(seeds.get(i), quantities.get(i));
@@ -69,9 +69,9 @@ public class BuyAction extends PlayerDecision {
             Achievements achievements = player.getAchievements();
             achievements.spendMoney(cost);
 
-            engineLogger.info(String.format("Player %d bought %d %s seeds",
-                    playerID + 1, quantities.get(i), seeds.get(i)));
-
+            String message = String.format("Bought %d %s seeds",
+                    quantities.get(i), seeds.get(i));
+            engineLogger.info(String.format("Player %d: ", playerID + 1) + message);
         }
 
     }

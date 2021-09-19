@@ -4,6 +4,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public final class Config {
+
     // =========== BOARD CONSTANTS ===============
     public final int BOARD_HEIGHT;
     public final int BOARD_WIDTH;
@@ -37,7 +38,8 @@ public final class Config {
     // ========== OTHER CONSTANTS ===============
     public final String REPLAY_FILENAME;
     public final String ENGINELOG_FILENAME;
-    public final int PLAYER_TIMEOUT;
+    public final long PLAYER_TIMEOUT;
+    public final long HEARTBEAT_TIMEOUT;
     public final String PLAYERLOG_EXTENSION;
 
     public Config() throws MissingResourceException {
@@ -67,7 +69,8 @@ public final class Config {
         PROTECTION_RADIUS =      Integer.parseInt(rb.getString("player.protectionradius"));
         STARTING_MONEY =         Integer.parseInt(rb.getString("player.startingmoney"));
 
-        PLAYER_TIMEOUT =         Integer.parseInt(rb.getString("networking.timeout"));
+        PLAYER_TIMEOUT =         Long.parseLong(rb.getString("networking.timeout.player"));
+        HEARTBEAT_TIMEOUT =      Long.parseLong(rb.getString("networking.timeout.heartbeat"));
 
         // other props
         REPLAY_FILENAME =        rb.getString("replayfile.name");

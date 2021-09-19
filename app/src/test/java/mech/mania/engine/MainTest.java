@@ -62,6 +62,7 @@ public class MainTest {
                 new PlayerCommunicationInfo(gameConfig, engineLogger, player1Logger, 0,
                         "bot1", bot1Executable);
         bot1.start();
+        bot1.checkHeartbeat();
         bot1.askForStartingItems();
 
         // launch bot 2
@@ -70,6 +71,7 @@ public class MainTest {
                 new PlayerCommunicationInfo(gameConfig, engineLogger, player2Logger, 1,
                         "bot2", bot2Executable);
         bot2.start();
+        bot2.checkHeartbeat();
         bot2.askForStartingItems();
 
         player1Logger.incrementTurn();
@@ -77,7 +79,7 @@ public class MainTest {
         engineLogger.incrementTurn();
 
         GameLog gameLog = new GameLog();
-        gameLoop(gameConfig, gameLog, bot1, bot2, engineLogger);
+        gameLoop(gameConfig, gameLog, bot1, bot2, player1Logger, player2Logger, engineLogger);
 
         bot1.stop();
         bot2.stop();

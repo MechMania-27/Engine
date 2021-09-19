@@ -15,6 +15,7 @@ public class AchievementsTest {
     private final Player player1;
     private final Player player2;
     private final Position greenGrocer;
+    private final JsonLogger playerLogger;
     private final JsonLogger engineLogger;
     public AchievementsTest() {
         gameConfig = new Config("debug");
@@ -22,6 +23,7 @@ public class AchievementsTest {
         player1 = gameState.getPlayer1();
         player2 = gameState.getPlayer2();
         greenGrocer = gameState.getTileMap().getGreenGrocer().get(0);
+        playerLogger = new JsonLogger(0);
         engineLogger = new JsonLogger(0);
     }
 
@@ -30,10 +32,12 @@ public class AchievementsTest {
      */
     @Test
     public void Achievement1and7and8() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("corn 10");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
-        moveToGrocer.performAction(gameState, engineLogger);
-        buyAction.performAction(gameState, engineLogger);
+        PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
+                .parse("corn 10");
+        PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
+                .parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        moveToGrocer.performAction(gameState);
+        buyAction.performAction(gameState);
         String achievement1 = "Not Worth the Dirt He Sows";
         String achievement2 = "A Worthy Heir";
         String achievement3 = "It Ain't Much, but It's Honest Work";
@@ -52,11 +56,13 @@ public class AchievementsTest {
      */
     @Test
     public void achievement2() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("corn 200");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
+                .parse("corn 200");
+        PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
+                .parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         gameState.getPlayer1().setMoney(10000);
-        moveToGrocer.performAction(gameState, engineLogger);
-        buyAction.performAction(gameState, engineLogger);
+        moveToGrocer.performAction(gameState);
+        buyAction.performAction(gameState);
         String achievement = "My Favorite Customer";
         String achievement2 = "Botanical Burglary";
         List<String> p1achievements = player1.getAchievements().getFinalAchievements(false, gameConfig.STARTING_MONEY, player1.getMoney());
@@ -72,21 +78,26 @@ public class AchievementsTest {
      */
     @Test
     public void achievement3() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("corn 200");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
-        PlayerDecision player2Decision = new MoveAction(1).parse("5 5");
+        PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
+                .parse("corn 200");
+        PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
+                .parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision player2Decision = new MoveAction(1, playerLogger, engineLogger)
+                .parse("5 5");
         gameState.getPlayer1().setMoney(10000);
-        moveToGrocer.performAction(gameState, engineLogger);
-        buyAction.performAction(gameState, engineLogger);
+        moveToGrocer.performAction(gameState);
+        buyAction.performAction(gameState);
         for(int i = 0; i < 10; i++) {
-            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", i, 3));
-            moveToTile.performAction(gameState, engineLogger);
-            PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", i, 3));
-            plant.performAction(gameState, engineLogger);
+            PlayerDecision moveToTile = new MoveAction(0, playerLogger, engineLogger)
+                    .parse(String.format("%d %d", i, 3));
+            moveToTile.performAction(gameState);
+            PlayerDecision plant = new PlantAction(0, playerLogger, engineLogger)
+                    .parse(String.format("corn %d %d", i, 3));
+            plant.performAction(gameState);
             //gameState = GameLogic.updateGameState(gameState, plant, player2Decision, gameConfig, engineLogger);
         }
         gameState.setTurn(155);
-        gameState = GameLogic.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig, engineLogger);
+        gameState = GameLogic.updateGameState(gameState, moveToGrocer, player2Decision, gameConfig);
         //Position p = new Position(3, 0);
         //Tile t = gameState.getTileMap().getTile(p);
         //System.out.println(t.getType());
@@ -105,23 +116,31 @@ public class AchievementsTest {
      */
     @Test
     public void achievement4() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("corn 200");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        int x = 3;
+        int y = 4;
+        PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
+                .parse("corn 200");
+        PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
+                .parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         gameState.getPlayer1().setMoney(10000);
-        moveToGrocer.performAction(gameState, engineLogger);
-        buyAction.performAction(gameState, engineLogger);
-        PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", 3, 4));
-        moveToTile.performAction(gameState, engineLogger);
-        PlayerDecision plant = new PlantAction(0).parse(String.format("corn %d %d", 3, 4));
-        plant.performAction(gameState, engineLogger);
-        Position p = new Position(3, 4);
+        moveToGrocer.performAction(gameState);
+        buyAction.performAction(gameState);
+        PlayerDecision moveToTile = new MoveAction(0, playerLogger, engineLogger)
+                .parse(String.format("%d %d", x, y));
+        moveToTile.performAction(gameState);
+        PlayerDecision plant = new PlantAction(0, playerLogger, engineLogger)
+                .parse(String.format("corn %d %d", x, y));
+        plant.performAction(gameState);
+        Position p = new Position(x, y);
         gameState.getTileMap().get(p).getCrop().setGrowthTimer(0);
-        player2.setPosition(new Position(3, 3));
+        player2.setPosition(new Position(x, y + 1));
         player1.setPosition(new Position(9,9));
-        PlayerDecision harvest = new HarvestAction(1).parse("3 4");
-        harvest.performAction(gameState, engineLogger);
-        PlayerDecision moveToGrocer2 = new MoveAction(1).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
-        moveToGrocer2.performAction(gameState, engineLogger);
+        PlayerDecision harvest = new HarvestAction(1, playerLogger, engineLogger)
+                .parse(String.format("%d %d", x, y));
+        harvest.performAction(gameState);
+        PlayerDecision moveToGrocer2 = new MoveAction(1, playerLogger, engineLogger)
+                .parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        moveToGrocer2.performAction(gameState);
         player2.sellInventory();
 
 
@@ -156,34 +175,42 @@ public class AchievementsTest {
      */
     @Test
     public void achievement6and9and13() throws IOException, PlayerDecisionParseException {
-        PlayerDecision buyAction = new BuyAction(0).parse("grape 200");
-        PlayerDecision buyAction2 = new BuyAction(0).parse("corn 1");
-        PlayerDecision plantCorn = new PlantAction(0).parse("corn 2 3");
-        PlayerDecision moveToGrocer = new MoveAction(0).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        PlayerDecision buyAction = new BuyAction(0, playerLogger, engineLogger)
+                .parse("grape 200");
+        PlayerDecision buyAction2 = new BuyAction(0, playerLogger, engineLogger)
+                .parse("corn 1");
+        PlayerDecision plantCorn = new PlantAction(0, playerLogger, engineLogger)
+                .parse("corn 2 4");
+        PlayerDecision moveToGrocer = new MoveAction(0, playerLogger, engineLogger)
+                .parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
         gameState.getPlayer1().setMoney(10000);
-        moveToGrocer.performAction(gameState, engineLogger);
-        buyAction.performAction(gameState, engineLogger);
-        buyAction2.performAction(gameState, engineLogger);
-        player1.setPosition(new Position(2,3));
-        plantCorn.performAction(gameState, engineLogger);
+        moveToGrocer.performAction(gameState);
+        buyAction.performAction(gameState);
+        buyAction2.performAction(gameState);
+        player1.setPosition(new Position(2,4));
+        plantCorn.performAction(gameState);
 
         for(int i = 0; i < 5; i++) {
-            PlayerDecision moveToTile = new MoveAction(0).parse(String.format("%d %d", i, 4));
-            moveToTile.performAction(gameState, engineLogger);
-            PlayerDecision plant = new PlantAction(0).parse(String.format("grape %d %d", i, 4));
-            plant.performAction(gameState, engineLogger);
-            Position p = new Position(i, 4);
+            PlayerDecision moveToTile = new MoveAction(0, playerLogger, engineLogger)
+                    .parse(String.format("%d %d", i, 3));
+            moveToTile.performAction(gameState);
+            PlayerDecision plant = new PlantAction(0, playerLogger, engineLogger)
+                    .parse(String.format("grape %d %d", i, 3));
+            plant.performAction(gameState);
+            Position p = new Position(i, 3);
             gameState.getTileMap().get(p).getCrop().setGrowthTimer(0);
         }
         player1.setPosition(new Position(9,9));
         for(int i = 0; i < 5; i++) {
-            player2.setPosition(new Position(i, 4));
-            PlayerDecision harvest = new HarvestAction(1).parse(String.format("grape %d %d", i, 4));
-            harvest.performAction(gameState, engineLogger);
+            player2.setPosition(new Position(i, 3));
+            PlayerDecision harvest = new HarvestAction(1, playerLogger, engineLogger)
+                    .parse(String.format("grape %d %d", i, 3));
+            harvest.performAction(gameState);
         }
 
-        PlayerDecision moveToGrocer2 = new MoveAction(1).parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
-        moveToGrocer2.performAction(gameState, engineLogger);
+        PlayerDecision moveToGrocer2 = new MoveAction(1, playerLogger, engineLogger)
+                .parse(String.format("%d %d", greenGrocer.getX(), greenGrocer.getY()));
+        moveToGrocer2.performAction(gameState);
         player2.sellInventory();
 
 
@@ -210,12 +237,14 @@ public class AchievementsTest {
         Position p = new Position(3, 3);
         player1.setPosition(p);
         player2.setPosition(p);
-        PlayerDecision useItem1 = new UseItemAction(0).parse("scarecrow 3 3");
-        useItem1.performAction(gameState, engineLogger);
+        PlayerDecision useItem1 = new UseItemAction(0, playerLogger, engineLogger)
+                .parse("scarecrow 3 3");
+        useItem1.performAction(gameState);
         TileMap map= gameState.getTileMap();
         //System.out.println(map.get(3, 3).isScarecrowEffect());
-        PlayerDecision useItem2 = new UseItemAction(1).parse("scarecrow 3 3");
-        useItem2.performAction(gameState, engineLogger);
+        PlayerDecision useItem2 = new UseItemAction(1, playerLogger, engineLogger)
+                .parse("scarecrow 3 3");
+        useItem2.performAction(gameState);
         //System.out.println(map.get(3, 3).isScarecrowEffect());
         String achievement = "Ornithophobia";
         List<String> p1achievements = player1.getAchievements().getFinalAchievements(false, gameConfig.STARTING_MONEY, player1.getMoney());

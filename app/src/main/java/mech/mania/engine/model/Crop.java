@@ -53,4 +53,8 @@ public class Crop {
     public void setGrowthTimer(int growthTimer) {
         this.growthTimer = growthTimer;
     }
+
+    public String toString() {
+        return String.format("[%s,%d,%.2f]", type, growthTimer, value);
+    }
 }

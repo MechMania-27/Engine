@@ -15,8 +15,9 @@ public class UseItemActionTest {
     private final static int OPPONENT_PLAYER_ID = 1;
     private final static String OPPONENT_PLAYER_NAME = "bot2";
 
-    private final static Config GAME_CONFIG = new Config("debug");
-    private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
+    private final static Config GAME_CONFIG = new Config("mm27");
+    private final static JsonLogger BOT_LOGGER = new JsonLogger();
+    private final static JsonLogger ENGINE_LOGGER = new JsonLogger();
     private UseItemAction action;
     private GameState state;
 
@@ -27,7 +28,7 @@ public class UseItemActionTest {
 
     @Before
     public void setup() {
-        action = new UseItemAction(MY_PLAYER_ID);
+        action = new UseItemAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
     }
 
     @Test
@@ -57,7 +58,7 @@ public class UseItemActionTest {
         // move the player and use the rain totem item
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(x, y));
         action.parse("");
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         // grow all crops (the ones within range of the rain totem will grow by 3)
         state.getTileMap().growCrops();
@@ -105,7 +106,7 @@ public class UseItemActionTest {
             }
         }
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         for (int i = x - 2; i < x + 2; i++) {
             for (int j = y - 2; j < y + 2; j++) {
@@ -114,7 +115,7 @@ public class UseItemActionTest {
             }
         }
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         for (int i = x - 2; i < x + 2; i++) {
             for (int j = y - 2; j < y + 2; j++) {
@@ -164,7 +165,7 @@ public class UseItemActionTest {
 
         state.getTileMap().growCrops();
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         Tile curTile = state.getTileMap().get(match_i, match_j);
         Assert.assertEquals(0.8 * curTile.getCrop().getType().getValueGrowth(), curTile.getCrop().getValue(), 0.001);
@@ -178,7 +179,7 @@ public class UseItemActionTest {
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(0, 0));
         action.parse("");
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
         Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getUseCoffeeThermos());
         Assert.assertEquals(GAME_CONFIG.MAX_MOVEMENT * 3, state.getPlayer(MY_PLAYER_ID).getSpeed());
 
@@ -205,7 +206,7 @@ public class UseItemActionTest {
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(x, y));
         action.parse("");
 
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         for (int i = x - 2; i < x + 2; i++) {
             for (int j = y - 2; j < y + 2; j++) {
@@ -218,9 +219,9 @@ public class UseItemActionTest {
         state.getPlayer(OPPONENT_PLAYER_ID).addSeeds(CropType.CORN, 1);
         Assert.assertEquals(CropType.NONE, state.getTileMap().getTile(new Position(x - 1, y - 1)).getCrop().getType());
 
-        PlantAction opponentAction = new PlantAction(OPPONENT_PLAYER_ID);
+        PlantAction opponentAction = new PlantAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         opponentAction.parse(String.format("corn %d %d", x - 1, y - 1));
-        opponentAction.performAction(state, BOT_LOGGER);
+        opponentAction.performAction(state);
         // make sure nothing was planted
         Assert.assertEquals(CropType.NONE, state.getTileMap().getTile(new Position(x - 1, y - 1)).getCrop().getType());
     }
@@ -233,16 +234,16 @@ public class UseItemActionTest {
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(9, 9));
 
         action.parse("");
-        action.performAction(state, BOT_LOGGER);
+        action.performAction(state);
 
         Assert.assertTrue(state.getPlayer(MY_PLAYER_ID).getDeliveryDrone());
         // player should have 0 seeds
         Assert.assertEquals(Optional.of(0), state.getPlayer(MY_PLAYER_ID).getSeeds().values().stream().reduce(Integer::sum));
 
         state.getPlayer(MY_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice());
-        BuyAction buyAction = new BuyAction(MY_PLAYER_ID);
+        BuyAction buyAction = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         buyAction.parse("corn 1");
-        buyAction.performAction(state, BOT_LOGGER);
+        buyAction.performAction(state);
 
         // sum up all of the different numbers of seeds that the player has, make sure they only have one
         Assert.assertEquals(Optional.of(1), state.getPlayer(MY_PLAYER_ID).getSeeds().values().stream().reduce(Integer::sum));

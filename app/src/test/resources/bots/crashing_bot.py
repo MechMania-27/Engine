@@ -1,8 +1,7 @@
 import sys
 import random
 import time
-from mm27_io import receive_gamestate, send_decision, send_item, send_upgrade
-from mm27_io import Logger
+from mm27_io import *
 
 logger = Logger()
 
@@ -69,10 +68,12 @@ def get_action_decision(game_state) -> str:
 def crash_on_turn(curr_turn: int, turn: int) -> None:
     if curr_turn == turn:
         a = [1, 2, 3]
+        # simulate crashing
         b = a[4]
 
 
 if __name__ == "__main__":
+    send_heartbeat()
     send_item(get_item())
     send_upgrade(get_upgrade())
 

@@ -27,12 +27,32 @@ public class JsonLogger {
     private List<String> infoLogs = new ArrayList<>();
     private List<String> debugLogs = new ArrayList<>();
     private List<String> exceptionLogs = new ArrayList<>();
+    private List<String> turnFeedback = new ArrayList<>();
+
+    private final String loggerName;
 
     /** Print debug statements? */
     private boolean debug = true;
 
+    /** Print all log statements to stdout? */
+    private final boolean printToStdout;
+
+    public JsonLogger() {
+        this(0, "JsonLogger", false);
+    }
+
     public JsonLogger(int startingTurn) {
-        turn = startingTurn;
+        this(startingTurn, "JsonLogger", false);
+    }
+
+    public JsonLogger(int startingTurn, String loggerName) {
+        this(startingTurn, loggerName, false);
+    }
+
+    public JsonLogger(int startingTurn, String loggerName, boolean printToStdout) {
+        this.loggerName = loggerName;
+        this.turn = startingTurn;
+        this.printToStdout = printToStdout;
     }
 
     /**
@@ -63,25 +83,44 @@ public class JsonLogger {
         return exceptionLogs;
     }
 
+    public List<String> getFeedback() {
+        List<String> returnFeedback = new ArrayList<>(turnFeedback);
+        turnFeedback.clear();
+        return returnFeedback;
+    }
+
     public void setDebug(boolean debug) {
         this.debug = debug;
+    }
+
+    public void feedback(String log) {
+        turnFeedback.add(log);
     }
 
     public void info(String log) {
         if (log.length() > 0) {
             infoLogs.addAll(stringLines(log));
+            if (printToStdout) {
+                System.out.printf("[%s][info     ] %s%n", loggerName, log);
+            }
         }
     }
 
     public void debug(String log) {
         if (debug && log.length() > 0) {
             debugLogs.addAll(stringLines(log));
+            if (printToStdout) {
+                System.out.printf("[%s][debug    ] %s%n", loggerName, log);
+            }
         }
     }
 
     public void severe(String log) {
         if (log.length() > 0) {
             exceptionLogs.addAll(stringLines(log));
+            if (printToStdout) {
+                System.out.printf("[%s][stderr   ] %s%n", loggerName, log);
+            }
         }
     }
 
@@ -91,8 +130,12 @@ public class JsonLogger {
         e.printStackTrace(pw);
 
         String res = String.format("%s: %s\nStack Trace: %s",
-                e.getClass().getSimpleName(), message, sw.toString());
+                e.getClass().getSimpleName(), message, sw);
         exceptionLogs.addAll(stringLines(res));
+
+        if (printToStdout) {
+            System.out.printf("[%s][exception] %s%n", loggerName, res);
+        }
     }
 
     /**

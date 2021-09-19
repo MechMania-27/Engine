@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import mech.mania.engine.config.Config;
 
+import java.util.List;
+
 public class GameState {
     @Expose
     private int turn;
@@ -17,6 +19,8 @@ public class GameState {
     private TileMap tileMap;
     @Expose
     private int playerNum;
+    @Expose
+    private List<String> feedback;
 
     private Config gameConfig;
 
@@ -83,5 +87,9 @@ public class GameState {
 
     public void setPlayerNum(int playerNum) {
         this.playerNum = playerNum;
+    }
+
+    public void setFeedback(List<String> feedback) {
+        this.feedback = feedback;
     }
 }

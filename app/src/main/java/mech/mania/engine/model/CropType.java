@@ -4,14 +4,14 @@ import java.util.ResourceBundle;
 
 public enum CropType {
     NONE("croptype.none"),
-    GRAPE("croptype.grapes"),
+    GRAPE("croptype.grape"),
     CORN("croptype.corn"),
     POTATO("croptype.potato"),
-    JOGAN_FRUIT("croptype.joganfruit"),
-    PEANUT("croptype.peanuts"),
+    JOGAN_FRUIT("croptype.jogan_fruit"),
+    PEANUT("croptype.peanut"),
     QUADROTRITICALE("croptype.quadrotriticale"),
-    DUCHAM_FRUIT("croptype.duchamfruit"),
-    GOLDEN_CORN("croptype.goldencorn");
+    DUCHAM_FRUIT("croptype.ducham_fruit"),
+    GOLDEN_CORN("croptype.golden_corn");
 
     /**
      * ResourceBundle to get properties file values from

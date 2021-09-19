@@ -43,7 +43,7 @@ public class MoveAction extends PlayerDecision {
 
     public void performAction(GameState state) {
         if (this.destination == null) {
-            String message = "Failed to move- null position";
+            String message = "Failed to move to null position";
             playerLogger.feedback(message);
             engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
         }

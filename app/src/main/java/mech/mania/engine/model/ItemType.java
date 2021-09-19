@@ -4,13 +4,13 @@ package mech.mania.engine.model;
 import java.util.ResourceBundle;
 
 public enum ItemType {
-    RAIN_TOTEM("itemtype.raintotem"),
-    FERTILITY_IDOL("itemtype.fertilityidol"),
-    PESTICIDE("itemtype.pesticide"),
-    SCARECROW("itemtype.scarecrow"),
-    DELIVERY_DRONE("itemtype.deliverydrone"),
-    COFFEE_THERMOS("itemtype.coffeethermos"),
-    NONE("itemtype.none");
+    RAIN_TOTEM,
+    FERTILITY_IDOL,
+    PESTICIDE,
+    SCARECROW,
+    DELIVERY_DRONE,
+    COFFEE_THERMOS,
+    NONE;
 
     /**
      * ResourceBundle to get properties file values from
@@ -19,21 +19,6 @@ public enum ItemType {
      * is initialized statically.
      */
     private static final ResourceBundle rb = ResourceBundle.getBundle("mm27");
-
-    /**
-     * A prefix to use for getting future properties from the properties file
-     * (via ResourceBundle). For example, the ItemType RAIN_TOTEM will
-     * have all of its values taken from the itemtype.raintotem.something
-     * properties.
-     */
-    private String propsPrefix;
-    ItemType(String propsPrefix) {
-        this.propsPrefix = propsPrefix;
-    }
-
-//    public String getDescription() {
-//        return rb.getString(propsPrefix + ".description");
-//    }
 
     public static ItemType getEnum(String item) {
         if (item == null || item.length() == 0) {
@@ -48,6 +33,10 @@ public enum ItemType {
                 return ItemType.FERTILITY_IDOL;
             case "RAINTOTEM":
                 return ItemType.RAIN_TOTEM;
+            case "DELIVERYDRONE":
+                return ItemType.DELIVERY_DRONE;
+            case "COFFEETHERMOS":
+                return ItemType.COFFEE_THERMOS;
         }
 
         return ItemType.valueOf(item);

@@ -63,38 +63,38 @@ public class SafeBufferedReader extends BufferedReader {
         this.millisInterval = TimeUnit.MILLISECONDS.convert(time, unit);
     }
 
-    /**
-     * This is actually forcing us to read the buffer twice in order to determine a line is actually ready.
-     *
-     * @throws IllegalThreadStateException will be thrown if the read times out
-     * @throws IOException will be thrown if the read cannot be done
-     */
-    protected void waitReadyLine() throws IllegalThreadStateException, IOException {
-        long timeout = System.currentTimeMillis() + millisTimeout;
-        waitReady();
-
-        // https://stackoverflow.com/questions/45578725/java-io-ioexception-mark-invalid
-        super.mark(1);
-        try {
-            while(System.currentTimeMillis() < timeout) {
-                while(ready()) {
-                    int charInt = super.read();
-                    if(charInt==-1) return; // EOS reached
-                    char character = (char) charInt;
-                    if(character == '\n' || character == '\r' ) return;
-                }
-                try {
-                    Thread.sleep(millisInterval);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt(); // Restore flag
-                    break;
-                }
-            }
-        } finally {
-            super.reset();
-        }
-        throw new IllegalThreadStateException("readLine timed out");
-    }
+//    /**
+//     * This is actually forcing us to read the buffer twice in order to determine a line is actually ready.
+//     *
+//     * @throws IllegalThreadStateException will be thrown if the read times out
+//     * @throws IOException will be thrown if the read cannot be done
+//     */
+//    protected void waitReadyLine() throws IllegalThreadStateException, IOException {
+//        long timeout = System.currentTimeMillis() + millisTimeout;
+//        waitReady();
+//
+//        // https://stackoverflow.com/questions/45578725/java-io-ioexception-mark-invalid
+//        super.mark(1);
+//        try {
+//            while(System.currentTimeMillis() < timeout) {
+//                while(ready()) {
+//                    int charInt = super.read();
+//                    if(charInt==-1) return; // EOS reached
+//                    char character = (char) charInt;
+//                    if(character == '\n' || character == '\r' ) return;
+//                }
+//                try {
+//                    Thread.sleep(millisInterval);
+//                } catch (InterruptedException e) {
+//                    Thread.currentThread().interrupt(); // Restore flag
+//                    break;
+//                }
+//            }
+//        } finally {
+//            super.reset();
+//        }
+//        throw new IllegalThreadStateException("readLine timed out");
+//    }
 
     protected void waitReady() throws IllegalThreadStateException, IOException {
         if(ready()) return;

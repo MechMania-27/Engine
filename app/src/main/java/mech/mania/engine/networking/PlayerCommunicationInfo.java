@@ -227,7 +227,7 @@ public class PlayerCommunicationInfo {
     public void checkHeartbeat() throws IOException {
         String response = safeGetLine();
         if (!response.equals("heartbeat")) {
-            throw(new IOException());
+            throw(new IOException("Response was not 'heartbeat'"));
         }
         inputReader.setTimeout(gameConfig.PLAYER_TIMEOUT, TimeUnit.MILLISECONDS);
         engineLogger.debug(String.format("Bot (pid %d): started process (received heartbeat)", pid));

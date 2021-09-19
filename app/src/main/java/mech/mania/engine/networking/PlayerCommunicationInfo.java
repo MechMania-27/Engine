@@ -62,6 +62,11 @@ public class PlayerCommunicationInfo {
         ProcessBuilder pb = new ProcessBuilder(playerExecutable);
         try {
             process = pb.start();
+            engineLogger.debug("Waiting for process to come alive");
+            while (!process.isAlive()) {
+                Thread.sleep(10);
+            }
+            engineLogger.debug("Process is alive");
             pid = MainUtils.tryGetPid(process);
         } catch (Exception e) {
             engineLogger.severe("Failed to start process for bot", e);

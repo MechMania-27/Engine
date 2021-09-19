@@ -1,14 +1,14 @@
 package mech.mania.engine.networking;
 
-import mech.mania.engine.model.GameState;
-import mech.mania.engine.model.decisions.PlayerDecision;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.*;
-import mech.mania.engine.util.MainUtils;
+import mech.mania.engine.model.GameState;
+import mech.mania.engine.model.ItemType;
 import mech.mania.engine.model.PlayerDecisionParseException;
+import mech.mania.engine.model.UpgradeType;
+import mech.mania.engine.model.decisions.PlayerDecision;
+import mech.mania.engine.util.MainUtils;
 import mech.mania.engine.util.PlayerCommunicationUtils;
-import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +28,8 @@ public class PlayerCommunicationInfo {
     private final String[] playerExecutable;
     private Process process;
     private SafeBufferedReader inputReader;
-    private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+    private BufferedReader errorStream;
+//    private final ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
     private BufferedWriter writer;
 
     private Thread errorStreamCatchProcess;
@@ -61,30 +62,36 @@ public class PlayerCommunicationInfo {
         ProcessBuilder pb = new ProcessBuilder(playerExecutable);
         try {
             process = pb.start();
+            engineLogger.debug("Waiting for process to come alive");
+            while (!process.isAlive()) {
+                Thread.sleep(10);
+            }
+            engineLogger.debug("Process is alive");
             pid = MainUtils.tryGetPid(process);
         } catch (Exception e) {
             engineLogger.severe("Failed to start process for bot", e);
         }
 
-        // be constantly catching the error stream to keep the buffer clear
-        // whenever we are reading the inputstream as well as for properly
-        // completely reading the errorstream
-        // (reading from both input and error streams requires at least one
-        // extra thread reading one of the streams to keep the buffer empty
-        // https://stackoverflow.com/questions/1349298/reading-input-and-error-streams-concurrently-using-bufferedreaders-hangs)
-        errorStreamCatchProcess = new Thread(() -> {
-            try {
-                IOUtils.copy(process.getErrorStream(), errorStream);
-            } catch (IOException e) {
-                engineLogger.severe("Failed to read from bot error stream", e);
-            }
-        });
-        errorStreamCatchProcess.start();
+        // originally set timeout to heartbeat timeout. once we receive a heartbeat from the bot we can set it to the
+        // player turn timeout
+        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.HEARTBEAT_TIMEOUT);
+        errorStream = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
 
         errorStreamReadProcess = new Thread(() -> {
             while (!gameOver) {
-                String[] allMessages = errorStream.toString().split("\n");
-                for (String message : allMessages) {
+                String allMessagesStr;
+                try {
+                    allMessagesStr = errorStream.readLine();
+                } catch (IOException e) {
+                    continue;
+                }
+
+                if (allMessagesStr == null) {
+                    continue;
+                }
+
+                for (String message : allMessagesStr.split("\n")) {
                     if (!message.contains(":")) {
                         logger.severe(message);
                         continue;
@@ -100,15 +107,9 @@ public class PlayerCommunicationInfo {
                             logger.severe(message);
                     }
                 }
-                errorStream.reset();
             }
         });
         errorStreamReadProcess.start();
-
-        // originally set timeout to heartbeat timeout. once we receive a heartbeat from the bot we can set it to the
-        // player turn timeout
-        inputReader = new SafeBufferedReader(new InputStreamReader(process.getInputStream()), gameConfig.HEARTBEAT_TIMEOUT);
-        writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
     }
 
     /**
@@ -118,10 +119,9 @@ public class PlayerCommunicationInfo {
         try {
             inputReader.close();
             writer.close();
-            gameOver = true;
             process.destroyForcibly();
-            errorStreamCatchProcess.interrupt();
             errorStreamReadProcess.interrupt();
+            gameOver = true;
         } catch (IOException e) {
             engineLogger.debug(String.format("Bot (pid %d): closed with error (%s): %s",
                     pid, e.getClass(), e.getMessage()));
@@ -223,7 +223,7 @@ public class PlayerCommunicationInfo {
     public void checkHeartbeat() throws IOException {
         String response = safeGetLine();
         if (!response.equals("heartbeat")) {
-            throw(new IOException());
+            throw(new IOException("Response was not 'heartbeat'"));
         }
         inputReader.setTimeout(gameConfig.PLAYER_TIMEOUT, TimeUnit.MILLISECONDS);
         engineLogger.debug(String.format("Bot (pid %d): started process (received heartbeat)", pid));

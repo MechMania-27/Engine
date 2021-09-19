@@ -26,7 +26,9 @@ public class HarvestAction extends PlayerDecision {
 
         // Command must have at least one result
         if (!matcher.find()) {
-            throw new PlayerDecisionParseException("Arguments did not match Harvest regex");
+            String message = "Arguments did not match Harvest regex";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
 
         do {
@@ -36,7 +38,9 @@ public class HarvestAction extends PlayerDecision {
                 coords.add(new Position(x, y));
             } catch (NumberFormatException e) {
                 // will occur if input can't be parsed into an int (ex: Integer.MAX_VALUE + 1)
-                throw new PlayerDecisionParseException("Arguments did not match Harvest regex (did you pass too big an int?)");
+                String message = "Arguments did not match Harvest regex (did you pass too big an int?)";
+                playerLogger.feedback(message);
+                throw new PlayerDecisionParseException(message);
             }
         } while (matcher.find());
 
@@ -55,6 +59,7 @@ public class HarvestAction extends PlayerDecision {
                 String message = String.format("Failed to harvest at %s outside of harvest radius %d",
                         coord,
                         player.getHarvestRadius());
+                playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 continue;
             }
@@ -63,6 +68,7 @@ public class HarvestAction extends PlayerDecision {
                 String message = String.format("Attempted to harvest at %s, more crops than carrying capacity %d",
                         coord,
                         player.getCarryingCapacity());
+                playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
                 break;
             }
@@ -110,7 +116,7 @@ public class HarvestAction extends PlayerDecision {
                 achievements.stealGrapes(1);
                 engineLogger.debug(String.format("Player %d: Achievement: steal grapes + 1", playerID + 1));
             }
-            if (target.getCrop().getType() != CropType.JOGANFRUIT && target.getCrop().getType() != CropType.DUCHAMFRUIT&& target.getCrop().getType() != CropType.GRAPE) {
+            if (target.getCrop().getType() != CropType.JOGAN_FRUIT && target.getCrop().getType() != CropType.DUCHAM_FRUIT && target.getCrop().getType() != CropType.GRAPE) {
                 achievements.fruit();
                 engineLogger.debug(String.format("Player %d: Achievement: fruit", playerID + 1));
             }

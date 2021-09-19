@@ -26,7 +26,9 @@ public class BuyAction extends PlayerDecision {
 
         // Command must have at least one result
         if (!matcher.find()) {
-            throw new PlayerDecisionParseException("Arguments did not match Buy regex");
+            String message = "Arguments did not match Buy regex";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
 
         do {
@@ -34,7 +36,9 @@ public class BuyAction extends PlayerDecision {
             try {
                 quantities.add(Integer.parseInt(matcher.group("quantity")));
             } catch (NumberFormatException e) {
-                throw new PlayerDecisionParseException("Value was of incorrect format");
+                String message = "Value was of incorrect format";
+                playerLogger.feedback(message);
+                throw new PlayerDecisionParseException(message);
             }
 
         } while (matcher.find());
@@ -48,6 +52,7 @@ public class BuyAction extends PlayerDecision {
         if (!player.getHasDeliveryDrone() && curTile != TileType.GREEN_GROCER) {
             String message = "Failed to purchase, not on Green Grocer" +
                     "tile and no delivery drone";
+            playerLogger.feedback(message);
             engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
             return;
         }

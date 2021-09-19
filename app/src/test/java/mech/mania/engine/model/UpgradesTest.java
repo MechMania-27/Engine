@@ -89,7 +89,7 @@ public class UpgradesTest {
             state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, MY_PLAYER_ITEM, myPlayerUpgrade,
                     OPPONENT_PLAYER_NAME, OPPONENT_PLAYER_ITEM, opponentPlayerUpgrade);
             state.getPlayer1().setPosition(new Position(x, y));
-            state.getTileMap().get(x, y).setCrop(new Crop(CropType.GRAPE));
+            state.getTileMap().get(x, y).setCrop(new Crop(CropType.GRAPE, GAME_CONFIG));
             state.getTileMap().get(x, y).getCrop().setGrowthTimer(0);
             action.performAction(state);
             numberOfTimesHarvested++;

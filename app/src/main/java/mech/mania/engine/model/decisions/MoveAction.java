@@ -28,10 +28,14 @@ public class MoveAction extends PlayerDecision {
                 destination = new Position(x, y);
             } catch (NumberFormatException e) {
                 // will occur if input can't be parsed into an int (ex: Integer.MAX_VALUE + 1)
-                throw new PlayerDecisionParseException("Arguments did not match Move regex (did you pass too big an int?)");
+                String message = "Arguments did not match Move regex (did you pass too big an int?)";
+                playerLogger.feedback(message);
+                throw new PlayerDecisionParseException(message);
             }
         } else {
-            throw new PlayerDecisionParseException("Arguments did not match Move regex");
+            String message = "Arguments did not match Move regex";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
 
         return this;

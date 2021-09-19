@@ -24,6 +24,7 @@ public class Player {
 
     @Expose
     private double discount;
+
     @Expose
     private int amountSpent;
     @Expose
@@ -154,10 +155,10 @@ public class Player {
             Crop crop = inventoryIter.next();
 
             //store the sold CropType to achievements
-            if(crop.getType() != CropType.GOLDENCORN && crop.getType() != CropType.PEANUTS) {
+            if(crop.getType() != CropType.GOLDEN_CORN && crop.getType() != CropType.PEANUT) {
                 achievements.addCropType(crop.getType());
             }
-            if(crop.getType() == CropType.GOLDENCORN) {
+            if(crop.getType() == CropType.GOLDEN_CORN) {
                 achievements.addAchievement("Stalks and Bonds");
             }
             money += crop.getValue();
@@ -194,6 +195,8 @@ public class Player {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+    // already initialized with name, unnecessary?
     public String getName() {
         return name;
     }
@@ -281,7 +284,7 @@ public class Player {
 
     public int getSpeed() {
         if (this.getHasCoffeeThermos()) {
-            return this.maxMovement * 3;
+            return this.maxMovement * gameConfig.COFFEE_THERMOS_MOVEMENT_MULTIPLIER;
         }
         return this.maxMovement;
     }

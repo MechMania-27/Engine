@@ -21,7 +21,7 @@ public class PlantAction extends PlayerDecision {
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<crop>[a-z|A-Z]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        String regex = "(?<crop>[a-zA-Z_-]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 
@@ -30,7 +30,9 @@ public class PlantAction extends PlayerDecision {
 
         // Command must have at least one result
         if (!matcher.find()) {
-            throw new PlayerDecisionParseException("Arguments did not match Plant regex");
+            String message = "Arguments did not match Plant regex";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
 
         do {
@@ -41,7 +43,9 @@ public class PlantAction extends PlayerDecision {
                 cropTypes.add(CropType.getEnum(matcher.group("crop")));
             } catch (NumberFormatException e) {
                 // will occur if input can't be parsed into an int (ex: Integer.MAX_VALUE + 1)
-                throw new PlayerDecisionParseException("Arguments did not match Plant regex (did you pass too big an int?)");
+                String message = "Arguments did not match Plant regex (did you pass too big an int?)";
+                playerLogger.feedback(message);
+                throw new PlayerDecisionParseException(message);
             }
         } while (matcher.find());
 
@@ -97,7 +101,7 @@ public class PlantAction extends PlayerDecision {
 
             state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i), player);
             //update achievements
-            if(cropTypes.get(i) != CropType.JOGANFRUIT && cropTypes.get(i) != CropType.DUCHAMFRUIT&& cropTypes.get(i) != CropType.GRAPE) {
+            if(cropTypes.get(i) != CropType.JOGAN_FRUIT && cropTypes.get(i) != CropType.DUCHAM_FRUIT && cropTypes.get(i) != CropType.GRAPE) {
                 player.getAchievements().fruit();
             }
             player.removeSeeds(cropTypes.get(i), 1);

@@ -37,12 +37,12 @@ public class TileMap implements Iterable<Tile> {
                     // Green Grocer tiles are at the top center
                     if (row == 0 && Math.abs(col - mapWidth / 2) <= gameConfig.GREENGROCER_LENGTH / 2) {
                         greenGrocerTiles.add(new Position(col, row));
-                        tiles.get(row).add(new Tile(TileType.GREEN_GROCER));
+                        tiles.get(row).add(new Tile(TileType.GREEN_GROCER, gameConfig));
                     } else {
-                        tiles.get(row).add(new Tile(TileType.GRASS));
+                        tiles.get(row).add(new Tile(TileType.GRASS, gameConfig));
                     }
                 } else {
-                    tiles.get(row).add(new Tile(TileType.SOIL));
+                    tiles.get(row).add(new Tile(TileType.SOIL, gameConfig));
                 }
             }
         }
@@ -143,8 +143,9 @@ public class TileMap implements Iterable<Tile> {
                 crop.grow(tile.getFertility());
                 
                 if (tile.isRainTotemEffect()) {
-                    crop.grow(tile.getFertility());
-                    crop.grow(tile.getFertility());
+                    for (int i = 0; i < gameConfig.RAIN_TOTEM_GROWTH_MULTIPLIER - 1; i++) {
+                        crop.grow(tile.getFertility());
+                    }
                 }
             }
             // Update tile states
@@ -155,7 +156,7 @@ public class TileMap implements Iterable<Tile> {
 
     public void plantCrop(Position pos, CropType type, Player planter) {
         if (isValidPosition(pos) && isPlantable(pos)) {
-            get(pos).setCrop(new Crop(type));
+            get(pos).setCrop(new Crop(type, gameConfig));
             get(pos).setPlanter(planter);
         }
     }

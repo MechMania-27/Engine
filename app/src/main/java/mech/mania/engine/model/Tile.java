@@ -2,6 +2,7 @@ package mech.mania.engine.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import mech.mania.engine.config.Config;
 
 public class Tile {
     @Expose
@@ -15,6 +16,8 @@ public class Tile {
     @SerializedName("p2_item")
     private ItemType p2Item;
 
+    private final Config gameConfig;
+  
     @Expose
     private int turnsLeftToGrow;
     @Expose
@@ -27,11 +30,12 @@ public class Tile {
     @Expose
     private int scarecrowEffect = -1;
 
-    public Tile(TileType type) {
+    public Tile(TileType type, Config gameConfig) {
         this.type = type;
-        this.crop = new Crop(CropType.NONE);
+        this.crop = new Crop(CropType.NONE, gameConfig);
         this.p1Item = ItemType.NONE;
         this.p2Item = ItemType.NONE;
+        this.gameConfig = gameConfig;
     }
 
     public Tile(Tile other) {
@@ -44,6 +48,7 @@ public class Tile {
         this.rainTotemEffect = other.rainTotemEffect;
         this.fertilityIdolEffect = other.fertilityIdolEffect;
         this.scarecrowEffect = other.scarecrowEffect;
+        this.gameConfig = other.gameConfig;
     }
 
     public TileType getType() {
@@ -87,19 +92,20 @@ public class Tile {
     }
 
     public void clearCrop() {
-        this.crop = new Crop(CropType.NONE);
+        this.crop = new Crop(CropType.NONE, gameConfig);
     }
 
-    public ItemType getP1Item() {
-        return p1Item;
-    }
+    // these two methods are unnecessary because only the starter packs will use them
+//    public ItemType getP1Item() {
+//        return p1Item;
+//    }
+
+//    public ItemType getP2Item() {
+//        return p2Item;
+//    }
 
     public void setP1Item(ItemType p1Item) {
         this.p1Item = p1Item;
-    }
-
-    public ItemType getP2Item() {
-        return p2Item;
     }
 
     public void setP2Item(ItemType p2Item) {
@@ -108,7 +114,7 @@ public class Tile {
 
     public double getFertility() {
         if (isFertilityIdolEffect()) {
-            return 2 * type.getFertility();
+            return gameConfig.FERTILITY_IDOL_FERTILITY_MULTIPLIER * type.getFertility();
         }
         return type.getFertility();
     }

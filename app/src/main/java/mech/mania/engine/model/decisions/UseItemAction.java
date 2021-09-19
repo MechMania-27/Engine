@@ -1,5 +1,6 @@
 package mech.mania.engine.model.decisions;
 
+import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
 
@@ -18,9 +19,10 @@ public class UseItemAction extends PlayerDecision {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 
-
         if (!matcher.find()) {
-            throw new PlayerDecisionParseException("Arguments did not match UseItem regex");
+            String message = "Arguments did not match UseItem regex (make sure the command is only use_item/useitem)";
+            playerLogger.feedback(message);
+            throw new PlayerDecisionParseException(message);
         }
         return this;
     }
@@ -37,6 +39,8 @@ public class UseItemAction extends PlayerDecision {
         ItemType item = state.getPlayer(playerID).getItem();
         TileMap map = state.getTileMap();
         Player player = state.getPlayer(playerID);
+        
+        Config config = player.getConfig();
 
         switch (item) {
             case NONE:
@@ -46,9 +50,9 @@ public class UseItemAction extends PlayerDecision {
                 break;
 
             case PESTICIDE:
-                // TODO make radius inference dynamic instead of hardcoded 1 ring
-                for (int i = -1; i <= 1; i++) {
-                    for (int j = -1; j <= 1; j++) {
+                int pesticideEffectRadius = config.PESTICIDE_EFFECT_RADIUS;
+                for (int i = -pesticideEffectRadius; i <= pesticideEffectRadius; i++) {
+                    for (int j = -pesticideEffectRadius; j <= pesticideEffectRadius; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
                             map.get(loc.getX() + i, loc.getY() + j).getCrop().applyPesticide();
                         }
@@ -57,9 +61,9 @@ public class UseItemAction extends PlayerDecision {
                 break;
 
             case FERTILITY_IDOL:
-                // TODO make radius inference dynamic instead of hardcoded 2 ring
-                for (int i = -2; i <= 2; i++) {
-                    for (int j = -2; j <= 2; j++) {
+                int fertilityIdolEffectRadius = config.FERTILITY_IDOL_EFFECT_RADIUS;
+                for (int i = -fertilityIdolEffectRadius; i <= fertilityIdolEffectRadius; i++) {
+                    for (int j = -fertilityIdolEffectRadius; j <= fertilityIdolEffectRadius; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
                             map.get(loc.getX() + i, loc.getY() + j).setFertilityIdolEffect(true);
                         }
@@ -68,9 +72,9 @@ public class UseItemAction extends PlayerDecision {
                 break;
 
             case RAIN_TOTEM:
-                // TODO make radius inference dynamic instead of hardcoded 2 ring
-                for (int i = -2; i <= 2; i++) {
-                    for (int j = -2; j <= 2; j++) {
+                int rainTotemEffectRadius = config.RAIN_TOTEM_EFFECT_RADIUS;
+                for (int i = -rainTotemEffectRadius; i <= rainTotemEffectRadius; i++) {
+                    for (int j = -rainTotemEffectRadius; j <= rainTotemEffectRadius; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
                             map.get(loc.getX() + i, loc.getY() + j).setRainTotemEffect(true);
                         }
@@ -79,9 +83,9 @@ public class UseItemAction extends PlayerDecision {
                 break;
 
             case SCARECROW:
-                // TODO make radius inference dynamic instead of hardcoded 2 ring
-                for (int i = -2; i <= 2; i++) {
-                    for (int j = -2; j <= 2; j++) {
+                int scarecrowEffectRadius = config.SCARECROW_EFFECT_RADIUS;
+                for (int i = -scarecrowEffectRadius; i <= scarecrowEffectRadius; i++) {
+                    for (int j = -scarecrowEffectRadius; j <= scarecrowEffectRadius; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
                             if(map.get(loc.getX() + i, loc.getY() + j).isScarecrowEffect() == 1 - playerID) {
                                 player.getAchievements().addAchievement("Ornithophobia");

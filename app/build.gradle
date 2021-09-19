@@ -53,21 +53,25 @@ jar {
         )
     }
 
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
     baseName 'mm27-engine'
 }
 
 // https://stackoverflow.com/questions/4871656/using-gradle-to-build-a-jar-with-dependencies
 task fatJar(type: Jar) {
     manifest.from jar.manifest
-    classifier = 'all'
+        classifier = 'all'
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-    from {
-        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    } {
-        exclude "META-INF/*.SF"
-        exclude "META-INF/*.DSA"
-        exclude "META-INF/*.RSA"
-    }
+        from {
+            configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+        } {
+            exclude "META-INF/*.SF"
+            exclude "META-INF/*.DSA"
+            exclude "META-INF/*.RSA"
+        }
     with jar
 
     baseName 'mm27-engine'

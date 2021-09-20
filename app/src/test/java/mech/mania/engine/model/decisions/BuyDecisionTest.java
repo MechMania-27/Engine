@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.Map;
 
-public class BuyActionTest {
+public class BuyDecisionTest {
     private final static int MY_PLAYER_ID = 0;
     private final static String MY_PLAYER_NAME = "bot1";
     private final static int OPPONENT_PLAYER_ID = 1;
@@ -19,12 +19,12 @@ public class BuyActionTest {
     private final static JsonLogger ENGINE_LOGGER = new JsonLogger(0);
     private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
 
-    BuyAction action;
+    BuyDecision action;
     GameState state;
 
     @Before
     public void setup() {
-        action = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        action = new BuyDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         ItemType myPlayerItem = ItemType.NONE;
         UpgradeType myPlayerUpgrade = UpgradeType.NONE;
         ItemType opponentPlayerItem = ItemType.NONE;
@@ -84,7 +84,7 @@ public class BuyActionTest {
     public void singleCropPerformAction() throws PlayerDecisionParseException {
         state.getPlayer(MY_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice() * 10);
 
-        BuyAction action = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = "corn 10";
         action.parse(decision);
         action.performAction(state);
@@ -101,7 +101,7 @@ public class BuyActionTest {
                                             + CropType.POTATO.getSeedBuyPrice() * 20
                                             + 5);
 
-        BuyAction action = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = "corn 10 potato 20";
         action.parse(decision);
         action.performAction(state);
@@ -116,7 +116,7 @@ public class BuyActionTest {
     public void notEnoughMoneyBuyActionPerformAction() throws PlayerDecisionParseException {
         state.getPlayer(MY_PLAYER_ID).setMoney(2);
 
-        BuyAction action = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = "corn 2";
         action.parse(decision);
         action.performAction(state);
@@ -130,7 +130,7 @@ public class BuyActionTest {
     public void partialPurchaseMultipleCrop() throws PlayerDecisionParseException {
         state.getPlayer(MY_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice() * 10 + 3);
 
-        BuyAction action = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = "corn 10 potato 20";
         action.parse(decision);
         action.performAction(state);
@@ -147,7 +147,7 @@ public class BuyActionTest {
         // one row below the green grocer rows
         state.getPlayer(MY_PLAYER_ID).setPosition(new Position(0, GAME_CONFIG.GRASS_ROWS));
 
-        BuyAction action = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = "corn 10 potato 20";
         action.parse(decision);
         action.performAction(state);
@@ -163,7 +163,7 @@ public class BuyActionTest {
         state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice());
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
 
-        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = "corn 1";
         action.parse(decision);
         action.performAction(state);
@@ -178,7 +178,7 @@ public class BuyActionTest {
         state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * amountToBuy);
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
 
-        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = String.format("grape %d", amountToBuy);
         action.parse(decision);
         action.performAction(state);
@@ -194,7 +194,7 @@ public class BuyActionTest {
         state.getPlayer(OPPONENT_PLAYER_ID).setMoney(CropType.GRAPE.getSeedBuyPrice() * 20);
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(state.getTileMap().getGreenGrocer().get(0));
 
-        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         String decision = "grape 20";
         action.parse(decision);
         action.performAction(state);
@@ -217,7 +217,7 @@ public class BuyActionTest {
         double moneyToSpend = (double) (numSeedsToBuy / 2) * CropType.GRAPE.getSeedBuyPrice() * (2 - GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_DISCOUNT);
         state.getPlayer2().setMoney(moneyToSpend);
         state.getPlayer2().setPosition(state.getTileMap().getGreenGrocer().get(0));
-        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
 
         String decision = String.format("grape %d", numSeedsToBuy);
         action.parse(decision);
@@ -232,7 +232,7 @@ public class BuyActionTest {
         // spend $GREEN_GROCER_LOYALTY_CARD_MINIMUM, buy seeds $GREEN_GROCER_LOYALTY_CARD_DISCOUNT % less
         state.getPlayer2().setMoney(GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM * 2);
         state.getPlayer2().setPosition(state.getTileMap().getGreenGrocer().get(0));
-        BuyAction action = new BuyAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        BuyDecision action = new BuyDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
 
         int numSeedsToBuy = (int) Math.ceil(GAME_CONFIG.GREEN_GROCER_LOYALTY_CARD_MINIMUM / CropType.GRAPE.getSeedBuyPrice()) / 2;
         String decision = String.format("grape %d", numSeedsToBuy);

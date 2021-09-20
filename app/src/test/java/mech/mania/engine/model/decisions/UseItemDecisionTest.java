@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.util.Optional;
 
-public class UseItemActionTest {
+public class UseItemDecisionTest {
     private final static int MY_PLAYER_ID = 0;
     private final static String MY_PLAYER_NAME = "bot1";
     private final static int OPPONENT_PLAYER_ID = 1;
@@ -18,7 +18,7 @@ public class UseItemActionTest {
     private final static Config GAME_CONFIG = new Config("debug");
     private final static JsonLogger BOT_LOGGER = new JsonLogger();
     private final static JsonLogger ENGINE_LOGGER = new JsonLogger();
-    private UseItemAction action;
+    private UseItemDecision action;
     private GameState state;
 
     private final static UpgradeType myPlayerUpgrade = UpgradeType.NONE;
@@ -28,7 +28,7 @@ public class UseItemActionTest {
 
     @Before
     public void setup() {
-        action = new UseItemAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        action = new UseItemDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
     }
 
     @Test
@@ -219,7 +219,7 @@ public class UseItemActionTest {
         state.getPlayer(OPPONENT_PLAYER_ID).addSeeds(CropType.CORN, 1);
         Assert.assertEquals(CropType.NONE, state.getTileMap().get(new Position(x - 1, y - 1)).getCrop().getType());
 
-        PlantAction opponentAction = new PlantAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        PlantDecision opponentAction = new PlantDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         opponentAction.parse(String.format("corn %d %d", x - 1, y - 1));
         opponentAction.performAction(state);
         // make sure nothing was planted
@@ -241,9 +241,9 @@ public class UseItemActionTest {
         Assert.assertEquals(Optional.of(0), state.getPlayer(MY_PLAYER_ID).getSeeds().values().stream().reduce(Integer::sum));
 
         state.getPlayer(MY_PLAYER_ID).setMoney(CropType.CORN.getSeedBuyPrice());
-        BuyAction buyAction = new BuyAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
-        buyAction.parse("corn 1");
-        buyAction.performAction(state);
+        BuyDecision buyDecision = new BuyDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        buyDecision.parse("corn 1");
+        buyDecision.performAction(state);
 
         // sum up all of the different numbers of seeds that the player has, make sure they only have one
         Assert.assertEquals(Optional.of(1), state.getPlayer(MY_PLAYER_ID).getSeeds().values().stream().reduce(Integer::sum));

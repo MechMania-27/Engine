@@ -3,7 +3,7 @@ package mech.mania.engine.core;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.*;
-import mech.mania.engine.model.decisions.MoveAction;
+import mech.mania.engine.model.decisions.MoveDecision;
 import mech.mania.engine.model.decisions.PlayerDecision;
 
 public class GameLogic {
@@ -34,8 +34,8 @@ public class GameLogic {
     }
 
     public static GameState movePlayer(GameState gameState,
-                                       MoveAction player1Decision,
-                                       MoveAction player2Decision) {
+                                       MoveDecision player1Decision,
+                                       MoveDecision player2Decision) {
         GameState newGameState = new GameState(gameState);
         player1Decision.performAction(newGameState);
         player2Decision.performAction(newGameState);
@@ -68,10 +68,10 @@ public class GameLogic {
         }
 
         // Perform non-movement actions
-        if (! (player1Decision instanceof MoveAction)) {
+        if (! (player1Decision instanceof MoveDecision)) {
             player1Decision.performAction(newGameState);
         }
-        if (! (player2Decision instanceof MoveAction)) {
+        if (! (player2Decision instanceof MoveDecision)) {
             player2Decision.performAction(newGameState);
         }
 

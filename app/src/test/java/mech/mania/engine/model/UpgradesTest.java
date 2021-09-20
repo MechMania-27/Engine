@@ -2,7 +2,7 @@ package mech.mania.engine.model;
 
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.decisions.HarvestAction;
+import mech.mania.engine.model.decisions.HarvestDecision;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -79,7 +79,7 @@ public class UpgradesTest {
 
         int x = 0;
         int y = 3;
-        HarvestAction action = new HarvestAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        HarvestDecision action = new HarvestDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         action.parse(String.format("%d %d", x, y));
 
         GameState state;

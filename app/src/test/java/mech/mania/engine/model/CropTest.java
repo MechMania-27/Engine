@@ -3,8 +3,8 @@ package mech.mania.engine.model;
 import mech.mania.engine.config.Config;
 import mech.mania.engine.core.GameLogic;
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.decisions.MoveAction;
-import mech.mania.engine.model.decisions.PlantAction;
+import mech.mania.engine.model.decisions.MoveDecision;
+import mech.mania.engine.model.decisions.PlantDecision;
 import mech.mania.engine.model.decisions.PlayerDecision;
 import org.junit.Assert;
 import org.junit.Before;
@@ -76,9 +76,9 @@ public class CropTest {
         state.getPlayer(MY_PLAYER_ID).addSeeds(type, 1);
 
         // plant crop
-        PlayerDecision player1Decision = new PlantAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        PlayerDecision player1Decision = new PlantDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player1Decision.parse(String.format("%s 3 3", type));
-        PlayerDecision player2Decision = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        PlayerDecision player2Decision = new MoveDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player2Decision.parse("6 3");  // move to the same position (no action)
         GameState newState = GameLogic.updateGameState(state, player1Decision,
                 player2Decision, GAME_CONFIG, engineLogger);
@@ -91,9 +91,9 @@ public class CropTest {
 
         for (int i = 0; i < turns; i++) {
             // advance turn
-            player1Decision = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+            player1Decision = new MoveDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
             player1Decision.parse("3 3");  // move to the same position (no action)
-            player2Decision = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+            player2Decision = new MoveDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
             player2Decision.parse("6 3");  // move to the same position (no action)
             double oldvalue = newState.getTileMap().get(new Position(3, 3)).getCrop().getValue();
             newState = GameLogic.updateGameState(newState, player1Decision,

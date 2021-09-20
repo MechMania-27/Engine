@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HarvestAction extends PlayerDecision {
+public class HarvestDecision extends PlayerDecision {
     protected ArrayList<Position> coords;
 
-    public HarvestAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
+    public HarvestDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
         super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.coords = new ArrayList<>();

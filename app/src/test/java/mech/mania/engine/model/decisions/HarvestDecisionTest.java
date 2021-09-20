@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HarvestActionTest {
+public class HarvestDecisionTest {
     private final static int MY_PLAYER_ID = 0;
     private final static String MY_PLAYER_NAME = "bot1";
     private final static int OPPONENT_PLAYER_ID = 1;
@@ -17,13 +17,13 @@ public class HarvestActionTest {
     private final static JsonLogger BOT_LOGGER = new JsonLogger(0);
     private final static JsonLogger ENGINE_LOGGER = new JsonLogger(0);
 
-    HarvestAction action;
+    HarvestDecision action;
     GameState state;
     private final static CropType[] types = {CropType.CORN, CropType.POTATO, CropType.GRAPE};
 
     @Before
     public void setup() {
-        action = new HarvestAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        action = new HarvestDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
 
         ItemType myPlayerItem = ItemType.NONE;
         UpgradeType myPlayerUpgrade = UpgradeType.SPYGLASS;
@@ -204,7 +204,7 @@ public class HarvestActionTest {
     public void insideScytheHarvestRadiusHarvestActionPerformActionTest() throws PlayerDecisionParseException {
         int x = 3, y = 3;
         String regularDecision = String.format("%d %d", x, y);
-        action = new HarvestAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        action = new HarvestDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         action.parse(regularDecision);
 
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(

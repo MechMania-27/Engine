@@ -75,15 +75,15 @@ public class PlayerCommunicationUtils {
 
         switch (action.toLowerCase()) {
             case "move":
-                return new MoveAction(playerID, playerLogger, engineLogger).parse(args);
+                return new MoveDecision(playerID, playerLogger, engineLogger).parse(args);
             case "plant":
-                return new PlantAction(playerID, playerLogger, engineLogger).parse(args);
+                return new PlantDecision(playerID, playerLogger, engineLogger).parse(args);
             case "harvest":
-                return new HarvestAction(playerID, playerLogger, engineLogger).parse(args);
+                return new HarvestDecision(playerID, playerLogger, engineLogger).parse(args);
             case "buy":
-                return new BuyAction(playerID, playerLogger, engineLogger).parse(args);
+                return new BuyDecision(playerID, playerLogger, engineLogger).parse(args);
             case "useitem": case "use_item":
-                return new UseItemAction(playerID, playerLogger, engineLogger).parse(args);
+                return new UseItemDecision(playerID, playerLogger, engineLogger).parse(args);
             default:
                 String message = String.format("Unrecognized action: %s", action);
                 playerLogger.feedback(message);

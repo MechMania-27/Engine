@@ -7,10 +7,10 @@ import mech.mania.engine.util.GameUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MoveAction extends PlayerDecision {
+public class MoveDecision extends PlayerDecision {
     protected Position destination;
 
-    public MoveAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+    public MoveDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
         super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.destination = null;

@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PlantActionTest {
+public class PlantDecisionTest {
     private final static int MY_PLAYER_ID = 0;
     private final static String MY_PLAYER_NAME = "bot1";
     private final static int OPPONENT_PLAYER_ID = 1;
@@ -22,12 +22,12 @@ public class PlantActionTest {
     private final static ItemType opponentPlayerItem = ItemType.NONE;
     private final static UpgradeType opponentPlayerUpgrade = UpgradeType.SEED_A_PULT;
 
-    PlantAction action;
+    PlantDecision action;
     GameState state;
 
     @Before
     public void setup() {
-        action = new PlantAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        action = new PlantDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
 
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
@@ -142,7 +142,7 @@ public class PlantActionTest {
     @Test
     public void upgradePlantActionTest() throws PlayerDecisionParseException {
         String regularDecision = "corn 5 5";
-        action = new PlantAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        action = new PlantDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         action.parse(regularDecision);
 
         state.getPlayer(OPPONENT_PLAYER_ID).getSeeds().put(CropType.CORN, 1);

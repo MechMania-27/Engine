@@ -7,9 +7,9 @@ import mech.mania.engine.model.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UseItemAction extends PlayerDecision {
+public class UseItemDecision extends PlayerDecision {
 
-    public UseItemAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+    public UseItemDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
         super(playerLogger, engineLogger);
         this.playerID = playerID;
     }

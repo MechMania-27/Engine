@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlantAction extends PlayerDecision {
+public class PlantDecision extends PlayerDecision {
     protected ArrayList<Position> coords;
     protected ArrayList<CropType> cropTypes;
 
-    public PlantAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
+    public PlantDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
         super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.coords = new ArrayList<>();

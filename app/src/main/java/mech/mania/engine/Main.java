@@ -45,7 +45,7 @@ public class Main {
         }
         CommandLine commandLine = getCommandLineArgs(args, gameConfig);
         if (commandLine == null) {
-            System.err.println("CommandLineArgs object was null, quitting");
+            // some invalid arguments, don't print anything just exit
             return;
         }
 

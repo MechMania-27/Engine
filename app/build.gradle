@@ -53,10 +53,12 @@ jar {
         )
     }
 
+    baseName 'mm27-engine'
+}
+
+compileJava {
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
-
-    baseName 'mm27-engine'
 }
 
 // https://stackoverflow.com/questions/4871656/using-gradle-to-build-a-jar-with-dependencies

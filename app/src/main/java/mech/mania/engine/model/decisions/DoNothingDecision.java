@@ -29,6 +29,5 @@ public class DoNothingDecision extends PlayerDecision {
     @Override
     public void performAction(GameState state) {
         // do nothing
-        return;
     }
 }

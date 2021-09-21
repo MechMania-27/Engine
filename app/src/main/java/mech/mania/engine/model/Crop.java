@@ -11,20 +11,33 @@ public class Crop {
     @Expose
     private double value;
 
-    private final Config gameConfig;
+    private static Config gameConfig;
 
     public Crop(CropType type, Config gameConfig) {
         this.type = type;
         this.growthTimer = type.getGrowthTime();
         this.value = 0;
-        this.gameConfig = gameConfig;
+        Crop.gameConfig = gameConfig;
     }
 
     public Crop(Crop other) {
         this.type = other.type;
         this.growthTimer = other.growthTimer;
         this.value = other.value;
-        this.gameConfig = other.gameConfig;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Crop)) {
+            return false;
+        }
+
+        Crop other = (Crop) obj;
+        if (!type.equals(other.type)) return false;
+        if (growthTimer != other.growthTimer) return false;
+        if (value != other.value) return false;
+
+        return true;
     }
 
     /** Increases this crop's value based on the tile fertility and decrements the growthTimer if crop is still growing */

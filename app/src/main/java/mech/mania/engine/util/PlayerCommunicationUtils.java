@@ -84,6 +84,8 @@ public class PlayerCommunicationUtils {
                 return new BuyDecision(playerID, playerLogger, engineLogger).parse(args);
             case "useitem": case "use_item":
                 return new UseItemDecision(playerID, playerLogger, engineLogger).parse(args);
+            case "donothing": case "do_nothing":
+                return new DoNothingDecision(playerID, playerLogger, engineLogger).parse(args);
             default:
                 String message = String.format("Unrecognized action: %s", action);
                 playerLogger.feedback(message);

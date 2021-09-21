@@ -139,6 +139,41 @@ public class Player {
         this.itemTimeExpired = other.itemTimeExpired;
         this.achievements = other.achievements;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Player)) {
+            return false;
+        }
+
+        Player other = (Player) obj;
+        if (playerID != other.playerID) return false;
+        if (gameConfig != other.gameConfig) return false;
+        if (!name.equals(other.name)) return false;
+        if (!position.equals(other.position)) return false;
+        if (item != other.item) return false;
+        if (upgrade != other.upgrade) return false;
+        if (money != other.money) return false;
+
+        if (!seedInventory.equals(other.seedInventory)) return false;
+        if (!harvestedInventory.equals(other.harvestedInventory)) return false;
+
+        if (discount != other.discount) return false;
+        if (protectionRadius != other.protectionRadius) return false;
+        if (plantRadius != other.plantRadius) return false;
+        if (doubleDropChance != other.doubleDropChance) return false;
+        if (harvestRadius != other.harvestRadius) return false;
+        if (maxMovement != other.maxMovement) return false;
+        if (carryingCapacity != other.carryingCapacity) return false;
+
+        if (usedItem != other.usedItem) return false;
+        if (hasDeliveryDrone != other.hasDeliveryDrone) return false;
+        if (hasCoffeeThermos != other.hasCoffeeThermos) return false;
+        if (itemTimeExpired != other.itemTimeExpired) return false;
+        if (!achievements.equals(other.achievements)) return false;
+
+        return true;
+    }
 
     public void sellInventory() {
         if (harvestedInventory.isEmpty()) {

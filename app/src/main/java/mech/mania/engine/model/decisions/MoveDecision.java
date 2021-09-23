@@ -64,12 +64,15 @@ public class MoveDecision extends PlayerDecision {
             return;
         }
 
+        String message = String.format("Moved to %s", this.destination);
+        playerLogger.feedback(message);
+        engineLogger.info(String.format("Player %d: " + message, playerID + 1));
         player.setPosition(this.destination);
 
         if (state.getTileMap().get(this.destination).getType() == TileType.GREEN_GROCER) {
-            String message = "Selling inventory";
-            playerLogger.feedback(message);
-            engineLogger.info(String.format("Player %d: " + message, playerID + 1));
+            String message2 = "Selling inventory";
+            playerLogger.feedback(message2);
+            engineLogger.info(String.format("Player %d: " + message2, playerID + 1));
             player.sellInventory();
         }
     }

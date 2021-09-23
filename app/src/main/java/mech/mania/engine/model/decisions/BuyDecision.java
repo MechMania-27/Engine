@@ -17,7 +17,7 @@ public class BuyDecision extends PlayerDecision {
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<seed>[a-z|A-Z]+)" + separatorRegEx + "(?<quantity>\\d+)";
+        String regex = "(?<seed>[a-zA-Z_]+)" + separatorRegEx + "(?<quantity>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 

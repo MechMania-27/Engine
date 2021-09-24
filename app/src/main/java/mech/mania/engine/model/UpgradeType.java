@@ -27,7 +27,7 @@ public enum UpgradeType {
                 return UpgradeType.LOYALTY_CARD;
             case "LONGERLEGS":
                 return UpgradeType.LONGER_LEGS;
-            case "LONGERSCYTHE":
+            case "SCYTHE":
                 return UpgradeType.SCYTHE;
             case "RABBITSFOOT":
                 return UpgradeType.RABBITS_FOOT;

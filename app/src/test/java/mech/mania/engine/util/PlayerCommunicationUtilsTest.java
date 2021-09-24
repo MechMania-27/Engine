@@ -52,7 +52,7 @@ public class PlayerCommunicationUtilsTest {
         upgradeString = "longer_legs";
         Assert.assertEquals(UpgradeType.LONGER_LEGS, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
-        upgradeString = "longerscythe";
+        upgradeString = "scythe";
         Assert.assertEquals(UpgradeType.SCYTHE, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
         upgradeString = "rabbits-foot";

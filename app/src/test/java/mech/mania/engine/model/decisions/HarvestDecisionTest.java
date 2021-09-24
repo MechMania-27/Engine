@@ -28,7 +28,7 @@ public class HarvestDecisionTest {
         ItemType myPlayerItem = ItemType.NONE;
         UpgradeType myPlayerUpgrade = UpgradeType.SPYGLASS;
         ItemType opponentPlayerItem = ItemType.NONE;
-        UpgradeType opponentPlayerUpgrade = UpgradeType.LONGER_SCYTHE;
+        UpgradeType opponentPlayerUpgrade = UpgradeType.SCYTHE;
 
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, myPlayerItem, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);

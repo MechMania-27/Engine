@@ -48,7 +48,7 @@ public final class Config {
     public final double RABBITS_FOOT_DOUBLE_DROP_CHANCE;
     public final int LONGER_LEGS_MAX_MOVEMENT;
     public final int SEED_A_PULT_PLANT_RADIUS;
-    public final int LONGER_SCYTHE_HARVEST_RADIUS;
+    public final int SCYTHE_HARVEST_RADIUS;
     public final int BACKPACK_CARRYING_CAPACITY;
     public final int SPYGLASS_PROTECTION_RADIUS;
 
@@ -116,7 +116,7 @@ public final class Config {
         RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString("upgrades.rabbits_foot.double_drop_chance"));
         LONGER_LEGS_MAX_MOVEMENT            = Integer.parseInt(rb.getString("upgrades.longer_legs.max_movement"));
         SEED_A_PULT_PLANT_RADIUS            = Integer.parseInt(rb.getString("upgrades.seed_a_pult.plant_radius"));
-        LONGER_SCYTHE_HARVEST_RADIUS        = Integer.parseInt(rb.getString("upgrades.longer_scythe.harvest_radius"));
+        SCYTHE_HARVEST_RADIUS               = Integer.parseInt(rb.getString("upgrades.scythe.harvest_radius"));
         BACKPACK_CARRYING_CAPACITY          = Integer.parseInt(rb.getString("upgrades.backpack.carrying_capacity"));
         SPYGLASS_PROTECTION_RADIUS          = Integer.parseInt(rb.getString("upgrades.spyglass.protection_radius"));
     }

@@ -73,10 +73,10 @@ public class Player {
             this.carryingCapacity = gameConfig.BACKPACK_CARRYING_CAPACITY;
         }
 
-        if (upgrade != UpgradeType.LONGER_SCYTHE) {
+        if (upgrade != UpgradeType.SCYTHE) {
             setHarvestRadius(gameConfig.HARVEST_RADIUS);
         } else {
-            setHarvestRadius(gameConfig.LONGER_SCYTHE_HARVEST_RADIUS);
+            setHarvestRadius(gameConfig.SCYTHE_HARVEST_RADIUS);
         }
 
         // don't need to do anything for loyalty card yet

@@ -44,7 +44,7 @@ public class UpgradesTest {
         Assert.assertNotEquals(GAME_CONFIG.MAX_MOVEMENT, state.getPlayer1().getMaxMovement());
 
         // LONGER SCYTHE => HARVEST RADIUS
-        myPlayerUpgrade = UpgradeType.LONGER_SCYTHE;
+        myPlayerUpgrade = UpgradeType.SCYTHE;
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, MY_PLAYER_ITEM, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, OPPONENT_PLAYER_ITEM, opponentPlayerUpgrade);
 

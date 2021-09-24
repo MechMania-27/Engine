@@ -90,8 +90,10 @@ public class UseItemDecision extends PlayerDecision {
                             if(map.get(loc.getX() + i, loc.getY() + j).isScarecrowEffect() == 1 - playerID) {
                                 player.getAchievements().addAchievement("Ornithophobia");
                                 //System.out.println("debug");
+                                map.get(loc.getX() + i, loc.getY() + j).setScarecrowEffect(2);
+                            } else {
+                                map.get(loc.getX() + i, loc.getY() + j).setScarecrowEffect(playerID);
                             }
-                            map.get(loc.getX() + i, loc.getY() + j).setScarecrowEffect(playerID);
                         }
                     }
                 }

@@ -1,20 +1,7 @@
 # MechMania Game Engine
 
-The internal game engine to be used in the MechMania 27 AI Competition.
+Game Engine run within the MechMania 27 competition.
 
-## Development
+See the [most recent release](https://github.com/MechMania-27/Engine/releases/tag/v1.0-mm27-release) for details about how to run the engine.
 
-- Most of us use the IntelliJ IDEA IDE, but this isn't necessary.
-- This is a gradle-based Java project. `src/main/java/mech/mania/engine` will contain the packages pertaining to the game engine, while `src/test/java/mech/mania/engine` contains the corresponding tests.
-- Make sure to create unit tests as necessary to help both you and future code-readers to understand what the code does and why.
-- Add any helpful links or discussion in the respective README files under each package folder.
-- Create new Github issues for anything that needs to get done.
-- Try to create a new branch for any feature development, and create a PR (pull request) to `main` once you think you are done with the feature. This will help us isolate any game-breaking changes.
-
-## Running
-
-`$GRADLEW` refers to the Gradle wrapper executable. This is either `./gradlew` for Linux machines or `./gradlew.bat` for Windows machines.
-
-- `$GRADLEW run` to run main function (located in `src/main/java/mech/mania/engine/Main.java`)
-- `$GRADLEW test` to run all unit tests
-- `$GRADLEW jar` to build a jar (creates jar in tar-ed folder in `build/distributions/Engine.{zip,tar}`
+See the [Wiki](https://github.com/MechMania-27/Wiki) for information about how to play the game.

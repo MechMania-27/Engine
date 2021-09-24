@@ -7,10 +7,10 @@ import mech.mania.engine.util.GameUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MoveAction extends PlayerDecision {
+public class MoveDecision extends PlayerDecision {
     protected Position destination;
 
-    public MoveAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+    public MoveDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
         super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.destination = null;
@@ -43,7 +43,7 @@ public class MoveAction extends PlayerDecision {
 
     public void performAction(GameState state) {
         if (this.destination == null) {
-            String message = "Failed to move- null position";
+            String message = "Failed to move to null position";
             playerLogger.feedback(message);
             engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
         }
@@ -64,12 +64,15 @@ public class MoveAction extends PlayerDecision {
             return;
         }
 
+        String message = String.format("Moved to %s", this.destination);
+        playerLogger.feedback(message);
+        engineLogger.info(String.format("Player %d: " + message, playerID + 1));
         player.setPosition(this.destination);
 
         if (state.getTileMap().get(this.destination).getType() == TileType.GREEN_GROCER) {
-            String message = "Selling inventory";
-            playerLogger.feedback(message);
-            engineLogger.info(String.format("Player %d: " + message, playerID + 1));
+            String message2 = "Selling inventory";
+            playerLogger.feedback(message2);
+            engineLogger.info(String.format("Player %d: " + message2, playerID + 1));
             player.sellInventory();
         }
     }

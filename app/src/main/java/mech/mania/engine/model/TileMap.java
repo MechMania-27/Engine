@@ -16,14 +16,14 @@ public class TileMap implements Iterable<Tile> {
     @Expose
     private final ArrayList<Position> greenGrocerTiles;
 
-    private final Config gameConfig;
+    private static Config gameConfig;
     private final Player player1;
     private final Player player2;
 
     private static final TileType[] UNPLANTABLE_TILETYPES = {TileType.GREEN_GROCER, TileType.GRASS};
 
     public TileMap(final Config gameConfig, final Player player1, final Player player2) {
-        this.gameConfig = gameConfig;
+        TileMap.gameConfig = gameConfig;
         mapHeight = gameConfig.BOARD_HEIGHT;
         mapWidth = gameConfig.BOARD_WIDTH;
 
@@ -53,7 +53,6 @@ public class TileMap implements Iterable<Tile> {
     }
 
     public TileMap(TileMap other) {
-        this.gameConfig = other.gameConfig;
         this.mapHeight = other.mapHeight;
         this.mapWidth = other.mapWidth;
         this.tiles = new ArrayList<>();
@@ -71,6 +70,28 @@ public class TileMap implements Iterable<Tile> {
 
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof TileMap)) {
+            return false;
+        }
+
+        TileMap other = (TileMap) obj;
+        if (mapHeight != other.mapHeight) return false;
+        if (mapWidth != other.mapWidth) return false;
+        for (int i = 0; i < tiles.size(); i++) {
+            for (int j = 0; j < tiles.get(i).size(); j++) {
+                if (!tiles.get(i).get(j).equals(other.tiles.get(i).get(j))) {
+                    return false;
+                }
+            }
+        }
+        if (!player1.equals(other.player1)) return false;
+        if (!player2.equals(other.player2)) return false;
+
+        return true;
     }
 
     /** Sets the fertility of tiles based on the fertility band's position at a specified turn

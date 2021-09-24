@@ -7,9 +7,9 @@ import mech.mania.engine.model.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UseItemAction extends PlayerDecision {
+public class UseItemDecision extends PlayerDecision {
 
-    public UseItemAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+    public UseItemDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
         super(playerLogger, engineLogger);
         this.playerID = playerID;
     }
@@ -47,7 +47,7 @@ public class UseItemAction extends PlayerDecision {
                 String message = "An item was never specified";
                 playerLogger.feedback(message);
                 engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
-                break;
+                return;
 
             case PESTICIDE:
                 int pesticideEffectRadius = config.PESTICIDE_EFFECT_RADIUS;

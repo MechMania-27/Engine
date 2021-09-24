@@ -9,7 +9,7 @@ import mech.mania.engine.logging.JsonLogger;
 import mech.mania.engine.model.GameLog;
 import mech.mania.engine.model.GameState;
 import mech.mania.engine.model.PlayerDecisionParseException;
-import mech.mania.engine.model.decisions.MoveAction;
+import mech.mania.engine.model.decisions.MoveDecision;
 import mech.mania.engine.model.decisions.PlayerDecision;
 import mech.mania.engine.networking.PlayerCommunicationInfo;
 import org.apache.commons.cli.*;
@@ -45,7 +45,7 @@ public class Main {
         }
         CommandLine commandLine = getCommandLineArgs(args, gameConfig);
         if (commandLine == null) {
-            System.err.println("CommandLineArgs object was null, quitting");
+            // some invalid arguments, don't print anything just exit
             return;
         }
 
@@ -373,24 +373,24 @@ public class Main {
             // move the players based on move decisions
             boolean validPlayer1MoveAction = true;
             boolean validPlayer2MoveAction = true;
-            if (player1Decision instanceof MoveAction && player2Decision instanceof MoveAction) {
+            if (player1Decision instanceof MoveDecision && player2Decision instanceof MoveDecision) {
                 engineLogger.debug("Both players submitted a move decision");
                 gameState = GameLogic.movePlayer(gameState,
-                        (MoveAction) player1Decision,
-                        (MoveAction) player2Decision);
-            } else if (player1Decision instanceof MoveAction) {
+                        (MoveDecision) player1Decision,
+                        (MoveDecision) player2Decision);
+            } else if (player1Decision instanceof MoveDecision) {
                 engineLogger.debug("Player 2 did not submit a move decision");
                 // player 2 submitted a non-move decision, so store the decision
                 gameState = GameLogic.movePlayer(gameState,
-                        (MoveAction) player1Decision,
-                        new MoveAction(1, player1Logger, engineLogger));
+                        (MoveDecision) player1Decision,
+                        new MoveDecision(1, player1Logger, engineLogger));
                 validPlayer2MoveAction = false;
-            } else if (player2Decision instanceof MoveAction) {
+            } else if (player2Decision instanceof MoveDecision) {
                 engineLogger.debug("Player 1 did not submit a move decision");
                 // player 1 submitted a non-move decision, so store the decision
                 gameState = GameLogic.movePlayer(gameState,
-                        new MoveAction(0, player1Logger, engineLogger),
-                        (MoveAction) player2Decision);
+                        new MoveDecision(0, player1Logger, engineLogger),
+                        (MoveDecision) player2Decision);
                 validPlayer1MoveAction = false;
             } else {
                 engineLogger.debug("Both players did not submit a move decision");

@@ -29,12 +29,18 @@ public final class Config {
     // =========== ITEM CONSTANTS ============
     public final int RAIN_TOTEM_GROWTH_MULTIPLIER;
     public final int RAIN_TOTEM_EFFECT_RADIUS;
+//    public final int RAIN_TOTEM_DURATION;
     public final int FERTILITY_IDOL_FERTILITY_MULTIPLIER;
     public final int FERTILITY_IDOL_EFFECT_RADIUS;
+//    public final int FERTILITY_IDOL_DURATION;
     public final double PESTICIDE_CROP_VALUE_DECREASE;
     public final int PESTICIDE_EFFECT_RADIUS;
+//    public final int PESTICIDE_DURATION;
     public final int SCARECROW_EFFECT_RADIUS;
+//    public final int SCARECROW_DURATION;
     public final int COFFEE_THERMOS_MOVEMENT_MULTIPLIER;
+//    public final int COFFEE_THERMOS_DURATION;
+//    public final int DELIVERY_DRONE_USES;
 
     // =========== UPGRADE CONSTANTS ============
     public final double GREEN_GROCER_LOYALTY_CARD_DISCOUNT;
@@ -42,7 +48,7 @@ public final class Config {
     public final double RABBITS_FOOT_DOUBLE_DROP_CHANCE;
     public final int LONGER_LEGS_MAX_MOVEMENT;
     public final int SEED_A_PULT_PLANT_RADIUS;
-    public final int LONGER_SCYTHE_HARVEST_RADIUS;
+    public final int SCYTHE_HARVEST_RADIUS;
     public final int BACKPACK_CARRYING_CAPACITY;
     public final int SPYGLASS_PROTECTION_RADIUS;
 
@@ -89,24 +95,30 @@ public final class Config {
         PLAYERLOG_EXTENSION =    rb.getString("playerlogfile.extension");
 
         // item constants
-        RAIN_TOTEM_GROWTH_MULTIPLIER        = Integer.parseInt(rb.getString("item.rain_totem.growth_multiplier"));
-        RAIN_TOTEM_EFFECT_RADIUS            = Integer.parseInt(rb.getString("item.rain_totem.effect_radius"));
-        FERTILITY_IDOL_FERTILITY_MULTIPLIER = Integer.parseInt(rb.getString("item.fertility_idol.fertility_multiplier"));
-        FERTILITY_IDOL_EFFECT_RADIUS        = Integer.parseInt(rb.getString("item.fertility_idol.effect_radius"));
-        PESTICIDE_CROP_VALUE_DECREASE       = Double.parseDouble(rb.getString("item.pesticide.crop_value_decrease"));
-        PESTICIDE_EFFECT_RADIUS             = Integer.parseInt(rb.getString("item.pesticide.effect_radius"));
-        SCARECROW_EFFECT_RADIUS             = Integer.parseInt(rb.getString("item.scarecrow.effect_radius"));
-        COFFEE_THERMOS_MOVEMENT_MULTIPLIER = Integer.parseInt(rb.getString("items.coffee_thermos.movement_multiplier"));
+        RAIN_TOTEM_GROWTH_MULTIPLIER        = Integer.parseInt(rb.getString("items.rain_totem.growth_multiplier"));
+        RAIN_TOTEM_EFFECT_RADIUS            = Integer.parseInt(rb.getString("items.rain_totem.effect_radius"));
+//        RAIN_TOTEM_DURATION                 = Integer.parseInt(rb.getString("items.rain_totem.duration"));
+        FERTILITY_IDOL_FERTILITY_MULTIPLIER = Integer.parseInt(rb.getString("items.fertility_idol.fertility_multiplier"));
+        FERTILITY_IDOL_EFFECT_RADIUS        = Integer.parseInt(rb.getString("items.fertility_idol.effect_radius"));
+//        FERTILITY_IDOL_DURATION             = Integer.parseInt(rb.getString("items.fertility_idol.duration"));
+        PESTICIDE_CROP_VALUE_DECREASE       = Double.parseDouble(rb.getString("items.pesticide.crop_value_decrease"));
+        PESTICIDE_EFFECT_RADIUS             = Integer.parseInt(rb.getString("items.pesticide.effect_radius"));
+//        PESTICIDE_DURATION                  = Integer.parseInt(rb.getString("items.pesticide.duration"));
+        SCARECROW_EFFECT_RADIUS             = Integer.parseInt(rb.getString("items.scarecrow.effect_radius"));
+//        SCARECROW_DURATION                  = Integer.parseInt(rb.getString("items.scarecrow.duration"));
+        COFFEE_THERMOS_MOVEMENT_MULTIPLIER  = Integer.parseInt(rb.getString("items.coffee_thermos.movement_multiplier"));
+//        COFFEE_THERMOS_DURATION             = Integer.parseInt(rb.getString("items.coffee_thermos.duration"));
+//        DELIVERY_DRONE_USES                 = Integer.parseInt(rb.getString("items.delivery_drone.uses"));
 
         // upgrade constants
-        GREEN_GROCER_LOYALTY_CARD_DISCOUNT  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_discount"));
-        GREEN_GROCER_LOYALTY_CARD_MINIMUM  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card_minimum"));
-        RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString("upgrades.rabbits_foot_double_drop_chance"));
-        LONGER_LEGS_MAX_MOVEMENT            = Integer.parseInt(rb.getString("upgrades.longer_legs_max_movement"));
-        SEED_A_PULT_PLANT_RADIUS            = Integer.parseInt(rb.getString("upgrades.seed_a_pult_plant_radius"));
-        LONGER_SCYTHE_HARVEST_RADIUS        = Integer.parseInt(rb.getString("upgrades.longer_scythe_harvest_radius"));
-        BACKPACK_CARRYING_CAPACITY          = Integer.parseInt(rb.getString("upgrades.backpack_carrying_capacity"));
-        SPYGLASS_PROTECTION_RADIUS          = Integer.parseInt(rb.getString("upgrades.spyglass_protection_radius"));
+        GREEN_GROCER_LOYALTY_CARD_DISCOUNT  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card.discount"));
+        GREEN_GROCER_LOYALTY_CARD_MINIMUM  = Double.parseDouble(rb.getString("upgrades.green_grocer_loyalty_card.minimum"));
+        RABBITS_FOOT_DOUBLE_DROP_CHANCE     = Double.parseDouble(rb.getString("upgrades.rabbits_foot.double_drop_chance"));
+        LONGER_LEGS_MAX_MOVEMENT            = Integer.parseInt(rb.getString("upgrades.longer_legs.max_movement"));
+        SEED_A_PULT_PLANT_RADIUS            = Integer.parseInt(rb.getString("upgrades.seed_a_pult.plant_radius"));
+        SCYTHE_HARVEST_RADIUS               = Integer.parseInt(rb.getString("upgrades.scythe.harvest_radius"));
+        BACKPACK_CARRYING_CAPACITY          = Integer.parseInt(rb.getString("upgrades.backpack.carrying_capacity"));
+        SPYGLASS_PROTECTION_RADIUS          = Integer.parseInt(rb.getString("upgrades.spyglass.protection_radius"));
     }
 
 }

@@ -52,8 +52,8 @@ public class PlayerCommunicationUtilsTest {
         upgradeString = "longer_legs";
         Assert.assertEquals(UpgradeType.LONGER_LEGS, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
-        upgradeString = "longerscythe";
-        Assert.assertEquals(UpgradeType.LONGER_SCYTHE, PlayerCommunicationUtils.upgradeFromString(upgradeString));
+        upgradeString = "scythe";
+        Assert.assertEquals(UpgradeType.SCYTHE, PlayerCommunicationUtils.upgradeFromString(upgradeString));
 
         upgradeString = "rabbits-foot";
         Assert.assertEquals(UpgradeType.RABBITS_FOOT, PlayerCommunicationUtils.upgradeFromString(upgradeString));
@@ -67,23 +67,23 @@ public class PlayerCommunicationUtilsTest {
 
         String decisionString = "buy corn 1";
         PlayerDecision decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
-        Assert.assertTrue(decision instanceof BuyAction);
+        Assert.assertTrue(decision instanceof BuyDecision);
 
         decisionString = "harvest corn 1 1";
         decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
-        Assert.assertTrue(decision instanceof HarvestAction);
+        Assert.assertTrue(decision instanceof HarvestDecision);
 
         decisionString = "move 1 1";
         decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
-        Assert.assertTrue(decision instanceof MoveAction);
+        Assert.assertTrue(decision instanceof MoveDecision);
 
         decisionString = "plant corn 1 1";
         decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
-        Assert.assertTrue(decision instanceof PlantAction);
+        Assert.assertTrue(decision instanceof PlantDecision);
 
         decisionString = "use_item scarecrow 1 1";
         decision = PlayerCommunicationUtils.parseDecision(1, decisionString, null, null);
-        Assert.assertTrue(decision instanceof UseItemAction);
+        Assert.assertTrue(decision instanceof UseItemDecision);
     }
 
     @Test

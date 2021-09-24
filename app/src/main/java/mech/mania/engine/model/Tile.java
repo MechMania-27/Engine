@@ -4,6 +4,8 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import mech.mania.engine.config.Config;
 
+import java.util.Objects;
+
 public class Tile {
     @Expose
     private TileType type;
@@ -16,7 +18,7 @@ public class Tile {
     @SerializedName("p2_item")
     private ItemType p2Item;
 
-    private final Config gameConfig;
+    private static Config gameConfig;
   
     @Expose
     private int turnsLeftToGrow;
@@ -35,7 +37,7 @@ public class Tile {
         this.crop = new Crop(CropType.NONE, gameConfig);
         this.p1Item = ItemType.NONE;
         this.p2Item = ItemType.NONE;
-        this.gameConfig = gameConfig;
+        Tile.gameConfig = gameConfig;
     }
 
     public Tile(Tile other) {
@@ -48,7 +50,26 @@ public class Tile {
         this.rainTotemEffect = other.rainTotemEffect;
         this.fertilityIdolEffect = other.fertilityIdolEffect;
         this.scarecrowEffect = other.scarecrowEffect;
-        this.gameConfig = other.gameConfig;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Tile)) {
+            return false;
+        }
+        
+        Tile other = (Tile) obj;
+        if (!type.equals(other.type)) return false;
+        if (!crop.equals(other.crop)) return false;
+        if (p1Item != other.p1Item) return false;
+        if (p2Item != other.p2Item) return false;
+        if (!Objects.equals(planter, other.planter)) return false;
+        if (turnsLeftToGrow != other.turnsLeftToGrow) return false;
+        if (rainTotemEffect != other.rainTotemEffect) return false;
+        if (fertilityIdolEffect != other.fertilityIdolEffect) return false;
+        if (scarecrowEffect != other.scarecrowEffect) return false;
+
+        return true;
     }
 
     public TileType getType() {

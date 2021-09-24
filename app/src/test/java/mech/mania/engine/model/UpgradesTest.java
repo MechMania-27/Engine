@@ -2,7 +2,7 @@ package mech.mania.engine.model;
 
 import mech.mania.engine.config.Config;
 import mech.mania.engine.logging.JsonLogger;
-import mech.mania.engine.model.decisions.HarvestAction;
+import mech.mania.engine.model.decisions.HarvestDecision;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -44,7 +44,7 @@ public class UpgradesTest {
         Assert.assertNotEquals(GAME_CONFIG.MAX_MOVEMENT, state.getPlayer1().getMaxMovement());
 
         // LONGER SCYTHE => HARVEST RADIUS
-        myPlayerUpgrade = UpgradeType.LONGER_SCYTHE;
+        myPlayerUpgrade = UpgradeType.SCYTHE;
         state = new GameState(GAME_CONFIG, MY_PLAYER_NAME, MY_PLAYER_ITEM, myPlayerUpgrade,
                 OPPONENT_PLAYER_NAME, OPPONENT_PLAYER_ITEM, opponentPlayerUpgrade);
 
@@ -79,7 +79,7 @@ public class UpgradesTest {
 
         int x = 0;
         int y = 3;
-        HarvestAction action = new HarvestAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        HarvestDecision action = new HarvestDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         action.parse(String.format("%d %d", x, y));
 
         GameState state;

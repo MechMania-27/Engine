@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BuyAction extends PlayerDecision {
+public class BuyDecision extends PlayerDecision {
     protected ArrayList<CropType> seeds;
     protected ArrayList<Integer> quantities;
 
-    public BuyAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
+    public BuyDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger) {
         super(playerLogger, engineLogger);
         this.playerID = playerID;
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<seed>[a-z|A-Z]+)" + separatorRegEx + "(?<quantity>\\d+)";
+        String regex = "(?<seed>[a-zA-Z_]+)" + separatorRegEx + "(?<quantity>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 

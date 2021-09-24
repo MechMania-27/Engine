@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class MoveActionTest {
+public class MoveDecisionTest {
 
     private final static int MY_PLAYER_ID = 0;
     private final static String MY_PLAYER_NAME = "bot1";
@@ -21,7 +21,7 @@ public class MoveActionTest {
 
     @Test
     public void moveActionParseDecisionTest() throws PlayerDecisionParseException {
-        MoveAction action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision action = new MoveDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
 
         String regularDecision = "1 1";
         action.parse(regularDecision);
@@ -50,7 +50,7 @@ public class MoveActionTest {
                 OPPONENT_PLAYER_NAME, opponentPlayerItem, opponentPlayerUpgrade);
 
         String player1Decision = "1 1";
-        MoveAction player1Action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision player1Action = new MoveDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player1Action.parse(player1Decision);
         player1Action.performAction(state);
 
@@ -59,7 +59,7 @@ public class MoveActionTest {
         String player2Decision = String.format("%d %d",
                 GAME_CONFIG.BOARD_WIDTH - 2,
                 GAME_CONFIG.BOARD_HEIGHT - 2);
-        MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision player2Action = new MoveDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player2Action.parse(player2Decision);
         player2Action.performAction(state);
 
@@ -82,7 +82,7 @@ public class MoveActionTest {
         // top left to bottom right
         Position player1Destination = new Position(9, 9);
         String player1Decision = String.format("%d %d", player1Destination.getX(), player1Destination.getY());
-        MoveAction player1Action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision player1Action = new MoveDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player1Action.parse(player1Decision);
         player1Action.performAction(state);
 
@@ -97,7 +97,7 @@ public class MoveActionTest {
         // top right to bottom left
         Position player2Destination = new Position(0, 9);
         String player2Decision = String.format("%d %d", player2Destination.getX(), player2Destination.getY());
-        MoveAction player2Action = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision player2Action = new MoveDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         player2Action.parse(player2Decision);
         player2Action.performAction(state);
 
@@ -138,7 +138,7 @@ public class MoveActionTest {
         // green grocer move (x = 3, 4, 5, 6 are green grocers, see debug.properties)
         Position destination = new Position(4, 0);
         String decision = String.format("%d %d", destination.getX(), destination.getY());
-        MoveAction action = new MoveAction(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision action = new MoveDecision(MY_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         action.parse(decision);
         action.performAction(state);
 
@@ -165,7 +165,7 @@ public class MoveActionTest {
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(1, GAME_CONFIG.MAX_MOVEMENT + 2));
 
         String playerDecision = "1 1";
-        MoveAction playerAction = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision playerAction = new MoveDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         playerAction.parse(playerDecision);
         playerAction.performAction(state);
 
@@ -185,7 +185,7 @@ public class MoveActionTest {
         state.getPlayer(OPPONENT_PLAYER_ID).setPosition(new Position(1, GAME_CONFIG.LONGER_LEGS_MAX_MOVEMENT + 2));
 
         String playerDecision = "1 1";
-        MoveAction playerAction = new MoveAction(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
+        MoveDecision playerAction = new MoveDecision(OPPONENT_PLAYER_ID, BOT_LOGGER, ENGINE_LOGGER);
         playerAction.parse(playerDecision);
         playerAction.performAction(state);
 

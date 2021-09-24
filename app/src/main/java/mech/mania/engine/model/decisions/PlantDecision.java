@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlantAction extends PlayerDecision {
+public class PlantDecision extends PlayerDecision {
     protected ArrayList<Position> coords;
     protected ArrayList<CropType> cropTypes;
 
-    public PlantAction(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
+    public PlantDecision(int playerID, JsonLogger playerLogger, JsonLogger engineLogger){
         super(playerLogger, engineLogger);
         this.playerID = playerID;
         this.coords = new ArrayList<>();
@@ -21,7 +21,7 @@ public class PlantAction extends PlayerDecision {
     }
 
     public PlayerDecision parse(String args) throws PlayerDecisionParseException {
-        String regex = "(?<crop>[a-zA-Z_-]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
+        String regex = "(?<crop>[a-zA-Z_]+)" + separatorRegEx + "(?<x>\\d+)" + separatorRegEx + "(?<y>\\d+)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(args);
 

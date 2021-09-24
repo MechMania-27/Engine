@@ -193,7 +193,7 @@ public class PlayerCommunicationInfo {
             itemResponse = inputReader.readLine();
             logger.debug(itemResponse);
         }
-        this.startingItem = PlayerCommunicationUtils.itemFromString("NONE");
+        this.startingItem = PlayerCommunicationUtils.itemFromString(itemResponse);
 
         String upgradeResponse = safeGetLine();
         while (upgradeResponse.startsWith(" ")) {
@@ -201,7 +201,7 @@ public class PlayerCommunicationInfo {
             logger.debug(upgradeResponse);
         }
 
-        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString("NONE");
+        this.startingUpgradeType = PlayerCommunicationUtils.upgradeFromString(upgradeResponse);
     }
 
     public String getPlayerName() {

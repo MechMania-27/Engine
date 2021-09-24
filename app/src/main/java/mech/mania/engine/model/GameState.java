@@ -23,12 +23,12 @@ public class GameState {
     @Expose
     private List<String> feedback = new ArrayList<>();
 
-    private Config gameConfig;
+    private static Config gameConfig;
 
     public GameState(Config gameConfig,
                      String player1Name, ItemType player1Item, UpgradeType player1UpgradeType,
                      String player2Name, ItemType player2Item, UpgradeType player2UpgradeType) {
-        this.gameConfig = gameConfig;
+        GameState.gameConfig = gameConfig;
 
         this.turn = 1;
         int startingMoney = gameConfig.STARTING_MONEY;
@@ -45,13 +45,28 @@ public class GameState {
     }
 
     public GameState(GameState other) {
-        this.gameConfig = other.gameConfig;
         this.turn = other.turn;
         this.player1 = new Player(other.player1);
         this.player2 = new Player(other.player2);
         this.tileMap = new TileMap(other.tileMap);
         this.feedback = new ArrayList<>(other.feedback);
         this.playerNum = other.playerNum;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof GameState)) {
+            return false;
+        }
+
+        GameState other = (GameState) obj;
+        if (turn != other.turn) return false;
+        if (!player1.equals(other.player1)) return false;
+        if (!player2.equals(other.player2)) return false;
+        if (!tileMap.equals(other.tileMap)) return false;
+        if (!feedback.equals(other.feedback)) return false;
+        if (playerNum != other.playerNum) return false;
+        return true;
     }
 
     public int getTurn() {

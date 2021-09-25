@@ -107,18 +107,24 @@ public class PlantDecision extends PlayerDecision {
                 continue;
             }
 
-            state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i), player);
-            //update achievements
-            if(cropTypes.get(i) != CropType.JOGAN_FRUIT && cropTypes.get(i) != CropType.DUCHAM_FRUIT && cropTypes.get(i) != CropType.GRAPE) {
-                player.getAchievements().fruit();
+            boolean success = state.getTileMap().plantCrop(coords.get(i), cropTypes.get(i), player);
+            if (success) {
+                //update achievements
+                if (cropTypes.get(i) != CropType.JOGAN_FRUIT && cropTypes.get(i) != CropType.DUCHAM_FRUIT && cropTypes.get(i) != CropType.GRAPE) {
+                    player.getAchievements().fruit();
+                }
+                player.removeSeeds(cropTypes.get(i), 1);
+
+                player.getAchievements().plant();
+
+                String message = String.format("Planted %s at %s", cropTypes.get(i), coords.get(i));
+                playerLogger.feedback(message);
+                engineLogger.info(String.format("Player %d: " + message, playerID + 1));
+            } else {
+                String message = String.format("Was unable to plant %s at %s: either invalid position or unplantable tile", cropTypes.get(i), coords.get(i));
+                playerLogger.feedback(message);
+                engineLogger.info(String.format("Player %d: " + message, playerID + 1));
             }
-            player.removeSeeds(cropTypes.get(i), 1);
-
-            player.getAchievements().plant();
-
-            String message = String.format("Planted %s at %s", cropTypes.get(i), coords.get(i));
-            playerLogger.feedback(message);
-            engineLogger.info(String.format("Player %d: " + message, playerID + 1));
         }
     }
 }

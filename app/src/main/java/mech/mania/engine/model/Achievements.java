@@ -81,7 +81,7 @@ public class Achievements {
             if (cropsPlant == false) {
                 achievements.add("Botanical Burglary");
             }
-            if (fruitOnly == true) {
+            if (fruitOnly == true && cropsPlant == true) {
                 achievements.add("Fruits of our Labor");
             }
         }

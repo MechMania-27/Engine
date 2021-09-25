@@ -175,11 +175,13 @@ public class TileMap implements Iterable<Tile> {
         }
     }
 
-    public void plantCrop(Position pos, CropType type, Player planter) {
+    public boolean plantCrop(Position pos, CropType type, Player planter) {
         if (isValidPosition(pos) && isPlantable(pos)) {
             get(pos).setCrop(new Crop(type, gameConfig));
             get(pos).setPlanter(planter);
+            return true;
         }
+        return false;
     }
 
     private boolean isPlantable(Position pos) {

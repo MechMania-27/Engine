@@ -64,6 +64,14 @@ public class HarvestDecision extends PlayerDecision {
                 continue;
             }
 
+            if (state.getTileMap().isValidPosition(coord)) {
+                String message = String.format("Cannot harvest at invalid position %s",
+                        coord);
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: ", playerID + 1) + message);
+                continue;
+            }
+
             if (curCropCount == player.getCarryingCapacity()) {
                 String message = String.format("Attempted to harvest at %s, more crops than carrying capacity %d",
                         coord,

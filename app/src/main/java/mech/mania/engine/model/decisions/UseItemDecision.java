@@ -87,10 +87,10 @@ public class UseItemDecision extends PlayerDecision {
                 for (int i = -scarecrowEffectRadius; i <= scarecrowEffectRadius; i++) {
                     for (int j = -scarecrowEffectRadius; j <= scarecrowEffectRadius; j++) {
                         if (map.isValidPosition(loc.getX() + i, loc.getY() + j)) {
-                            if(map.get(loc.getX() + i, loc.getY() + j).isScarecrowEffect() == 1 - playerID) {
+                            if(map.get(loc.getX() + i, loc.getY() + j).isScarecrowEffect() == 3 - playerID) {
                                 player.getAchievements().addAchievement("Ornithophobia");
                                 //System.out.println("debug");
-                                map.get(loc.getX() + i, loc.getY() + j).setScarecrowEffect(2);
+                                map.get(loc.getX() + i, loc.getY() + j).setScarecrowEffect(3);
                             } else {
                                 map.get(loc.getX() + i, loc.getY() + j).setScarecrowEffect(playerID);
                             }

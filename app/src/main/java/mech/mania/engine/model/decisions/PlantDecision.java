@@ -68,6 +68,14 @@ public class PlantDecision extends PlayerDecision {
                 continue;
             }
 
+            if (!state.getTileMap().isValidPosition(coords.get(i))) {
+                String message = String.format("Trying to plant at a position (%s) that is invalid",
+                        coords.get(i));
+                playerLogger.feedback(message);
+                engineLogger.severe(String.format("Player %d: " + message, playerID + 1));
+                continue;
+            }
+
             if (player.getSeeds().get(cropTypes.get(i)) == 0) {
                 String message = String.format("Failed to plant %s string at %s, not enough seeds",
                         cropTypes.get(i), coords.get(i));
